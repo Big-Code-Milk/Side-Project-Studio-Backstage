@@ -14,15 +14,25 @@
 
 ## Node 相關應用
 
-[NPM、NVM](https://ithelp.ithome.com.tw/articles/10230877)
+[開發環境安裝](https://ithelp.ithome.com.tw/articles/10238321) 待補 Dock 方式搞定開發環境
 
+[NPM、NVM 簡介](https://ithelp.ithome.com.tw/articles/10230877)
 
+安裝 [nvm for windows](https://github.com/coreybutler/nvm-windows/releases) 或用其他方法安裝
 
-`nvm` 查詢 node 版本管理，執行版本與相關指令
+`nvm` 查詢 nvm 版本與相關指令
 
-`node -v` 查詢當前使用的 node 版本
+~~`nvm ls-remote` 察看可用的 node 版本~~
 
-`npm ls` 查詢當前目錄安裝了那些套件版本
+1.1.7 window nvm 版本沒提供這個指令，所以需要到官網去找最新的 [lts (Long-term support)](https://zh.wikipedia.org/wiki/%E9%95%B7%E6%9C%9F%E6%94%AF%E6%8F%B4) 版本...
+
+`nvm install 版本號` 安裝指定版本的 nodejs
+
+`nvm ls` 查詢當前安裝了哪些 nodejs 版本
+
+`nvm use 版本號` 使用該 nodejs 版本
+
+`node -v` 查詢當前使用的 nodejs 版本
 
 `npm install npm -g` 更新 npm
 
@@ -36,8 +46,26 @@
 
 ## Angular 相關指令
 
+安裝 [Will 保哥的 VSCode AG 延伸模組](https://marketplace.visualstudio.com/items?itemName=doggy8088.angular-extension-pack)，開發上會比較舒服
 
+`npm install -g @angular/cli` 安裝全域 AG cli
+
+`ng new 專案名稱 --routing` 新增一個包含前端 router 的專案
+
+新增 `.gitignore` 排除不需要版控的檔案 搜尋 `angular gitignore`
 
 ## Angular Material
 
-[完全攻略](https://ithelp.ithome.com.tw/articles/10192517)
+[AG Material 完全攻略](https://ithelp.ithome.com.tw/articles/10192517)
+
+`npm install --save @angular/material @angular/cdk` 在此目錄安裝 AG material
+
+[新增專案基礎](https://www.cnblogs.com/fz17/p/14065521.html)
+
+`npm install --save @angular/animations` 安裝 Angular Material 動畫套件 ( 需要 import )
+
+`npm install --save web-animations-js` 支援其他瀏覽器的轉譯套件
+
+src/pollyills.ts 取消 import 'web-animations-js' 註解
+
+建立 Material 的 SharedModule
