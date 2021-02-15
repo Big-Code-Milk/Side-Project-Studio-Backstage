@@ -53,22 +53,27 @@
 
 3. `ng new 專案名稱 --routing` 新增一個包含前端 router 的專案
 
+   [新增專案基礎](https://www.cnblogs.com/fz17/p/14065521.html)
+
 4. 新增 `.gitignore` 排除不需要版控的檔案 搜尋 `angular gitignore`
 
-5. [將 tslint 改為 eslint](https://www.jianshu.com/p/cfe2d8d41e00) eslint github [星星比較多](https://stackshare.io/stackups/eslint-vs-tslint)...
+5. 待補 eslint github 星星比較多但改過去太麻煩了，日後再研究一下差異
 
 ## Angular Material
 
 [AG Material 完全攻略](https://ithelp.ithome.com.tw/articles/10192517)
 
-`npm install --save @angular/material @angular/cdk` 在此目錄安裝 AG material
+1. `npm install --save @angular/material @angular/cdk` 在此目錄安裝 AG material
 
-[新增專案基礎](https://www.cnblogs.com/fz17/p/14065521.html)
+2. `npm install --save @angular/animations` 安裝 Angular Material 動畫套件 ( 需要 import )
 
-`npm install --save @angular/animations` 安裝 Angular Material 動畫套件 ( 需要 import )
+3. `npm install --save web-animations-js` 支援其他瀏覽器的轉譯套件
 
-`npm install --save web-animations-js` 支援其他瀏覽器的轉譯套件
+   src/pollyills.ts 取消 import 'web-animations-js' 註解
 
-src/pollyills.ts 取消 import 'web-animations-js' 註解
+4. 建立 Material 的 SharedModule 方便取用 Component
 
-建立 Material 的 SharedModule
+5. `npm install --save hammerjs` 安裝手勢支援套件
+
+6. index.html 增加 Material Icons `<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">`
+
