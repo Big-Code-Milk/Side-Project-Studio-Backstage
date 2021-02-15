@@ -59,6 +59,8 @@
 
 5. 待補 eslint github 星星比較多但改過去太麻煩了，日後再研究一下差異
 
+6. 參考 PrimeNG 專案的架構與 [TrilonIO](https://github.com/TrilonIO/aspnetcore-angular-universal) ，開資料夾備用
+
 ## Angular Material
 
 [AG Material 完全攻略](https://ithelp.ithome.com.tw/articles/10192517)
