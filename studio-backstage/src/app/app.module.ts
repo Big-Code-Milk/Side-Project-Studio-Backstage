@@ -4,8 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // 動畫套件
-import { NoopAnimationsModule } from '@angular/platform-browser/animations'; // 取消動畫套件
+import { SharedAngularMaterialModule } from './angular-material/shared-angular-material.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +13,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'; // 
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    SharedAngularMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

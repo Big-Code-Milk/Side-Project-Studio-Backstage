@@ -46,13 +46,16 @@
 
 ## Angular 相關指令
 
-安裝 [Will 保哥的 VSCode AG 延伸模組](https://marketplace.visualstudio.com/items?itemName=doggy8088.angular-extension-pack)，開發上會比較舒服
+1. 安裝 [Will 保哥的 VSCode AG 延伸模組](https://marketplace.visualstudio.com/items?itemName=doggy8088.angular-extension-pack)，開發上會比較舒服，
+   安裝保哥套件後不一定要用 cli 指令，也可以右鍵新增 Component
 
-`npm install -g @angular/cli` 安裝全域 AG cli
+2. `npm install -g @angular/cli` 安裝全域 AG cli
 
-`ng new 專案名稱 --routing` 新增一個包含前端 router 的專案
+3. `ng new 專案名稱 --routing` 新增一個包含前端 router 的專案
 
-新增 `.gitignore` 排除不需要版控的檔案 搜尋 `angular gitignore`
+4. 新增 `.gitignore` 排除不需要版控的檔案 搜尋 `angular gitignore`
+
+5. [將 tslint 改為 eslint](https://www.jianshu.com/p/cfe2d8d41e00) eslint github [星星比較多](https://stackshare.io/stackups/eslint-vs-tslint)...
 
 ## Angular Material
 
