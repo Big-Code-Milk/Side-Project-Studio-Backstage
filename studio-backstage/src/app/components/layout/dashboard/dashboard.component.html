@@ -1,9 +1,12 @@
 <mat-sidenav-container style="height:100vh !important">
-    <mat-sidenav #sideNav opened="true" mode="side">
+    <mat-sidenav style="width: 20vw;" #sideNav opened="true" mode="side">
         <app-side-nav></app-side-nav>
     </mat-sidenav>
     <mat-sidenav-content>
-        <button mat-button (click)="sideNav.toggle()">切換左邊選單狀態</button>
+        <mat-toolbar style="height: 8vh;">
+            <button mat-button (click)="sideNav.toggle()"><i class="material-icons">format_list_bulleted</i></button>
+            <span>Studio Backstage</span>
+        </mat-toolbar>
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
