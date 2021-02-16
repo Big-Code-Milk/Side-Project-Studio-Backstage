@@ -1,5 +1,15 @@
 # Side-Project-Studio-Backstage
 
+## 參考
+
+[Angular Material完全攻略](https://ithelp.ithome.com.tw/articles/10193505)
+
+[Angular 深入淺出三十天](https://ithelp.ithome.com.tw/articles/10208267?sc=rss.qu)
+
+[material.io](https://material.io/resources/icons/)
+
+---
+
 * 說明：有 ctrl 為快捷鍵 / 無則是指令
 
 ## 終端機指令&快捷鍵
