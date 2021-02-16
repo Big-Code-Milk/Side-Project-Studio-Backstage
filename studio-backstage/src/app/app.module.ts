@@ -10,6 +10,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'; // 
 import 'hammerjs'; // 手勢套件
 
 import { LayoutModule } from './components/layout/layout.module';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LayoutModule } from './components/layout/layout.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    LayoutModule
+    LayoutModule,
+    PagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
