@@ -1,49 +1,7 @@
 <mat-sidenav-container style="height:100vh !important">
     <mat-sidenav #sideNav opened="true" mode="side">
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                收件夾
-            </mat-expansion-panel-header>
-            <!-- 收件夾內容 -->
-            ...
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                聯絡人列表
-            </mat-expansion-panel-header>
-            <!-- 聯絡人列表內容 -->
-            ...
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                聯絡人列表
-            </mat-expansion-panel-header>
-            <!-- 聯絡人列表內容 -->
-            ...
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                聯絡人列表
-            </mat-expansion-panel-header>
-            <!-- 聯絡人列表內容 -->
-            ...
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                聯絡人列表
-            </mat-expansion-panel-header>
-            <!-- 聯絡人列表內容 -->
-            ...
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                聯絡人列表
-            </mat-expansion-panel-header>
-            <!-- 聯絡人列表內容 -->
-            ...
-        </mat-expansion-panel>
+        <app-side-nav></app-side-nav>
     </mat-sidenav>
-
     <mat-sidenav-content>
         <button mat-button (click)="sideNav.toggle()">切換左邊選單狀態</button>
         <router-outlet></router-outlet>
