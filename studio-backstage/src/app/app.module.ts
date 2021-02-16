@@ -10,12 +10,14 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'; // 
 import { SharedAngularMaterialModule } from './shared/module/angular-material.module';
 
 import 'hammerjs';
-import { DashboardComponent } from './components/layout/dashboard/dashboard.component'; // 手勢套件
+import { DashboardComponent } from './components/layout/dashboard/dashboard.component';
+import { SignInComponent } from './components/account/sign-in/sign-in.component'; // 手勢套件
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,

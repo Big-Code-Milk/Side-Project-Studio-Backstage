@@ -61,6 +61,12 @@
 
 6. 參考 PrimeNG 專案的架構與 [TrilonIO](https://github.com/TrilonIO/aspnetcore-angular-universal) ，開資料夾備用
 
+7. 前端 Router 設定，參考 [AG 深入淺出](https://ithelp.ithome.com.tw/users/20090728/ironman/1600)，感覺這蠻好的，最後還拿六腳電商網來用 AG 套版，感覺可以給劉愷熟悉下。
+
+   設定半天想把 Components 統一到 Module 再匯入到 Router 內使用，但好像不能這樣用似乎是要用 RouterChird 來管控，
+
+8. 新增登入頁與儀表板 Component，[命名規則參考](https://www.zhihu.com/question/20330840)
+
 ## Angular Material
 
 [AG Material 完全攻略](https://ithelp.ithome.com.tw/articles/10192517)
