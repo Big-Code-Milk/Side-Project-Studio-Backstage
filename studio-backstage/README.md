@@ -2,11 +2,17 @@
 
 ## 參考
 
-[Angular Material完全攻略](https://ithelp.ithome.com.tw/articles/10193505)
+[Angular 深入淺出三十天](https://ithelp.ithome.com.tw/articles/10208267?sc=rss.qu) => 基礎有實作可參考
 
-[Angular 深入淺出三十天](https://ithelp.ithome.com.tw/articles/10208267?sc=rss.qu)
+[Angular Material完全攻略](https://ithelp.ithome.com.tw/articles/10193505) => 別人做的元件應用
 
-[material.io](https://material.io/resources/icons/)
+[Angular 大師之路](https://ithelp.ithome.com.tw/users/20020617/ironman/1630) => 更細節的內容
+
+[打通 RxJS 任督二脈](https://ithelp.ithome.com.tw/users/20020617/ironman/2959) => 更更細節的內容
+
+[高效 Coding 術：Angular Schematics 實戰三十天](https://ithelp.ithome.com.tw/users/20090728/ironman/2149) => 更更更細節的內容
+
+[material.io](https://material.io/resources/icons/) => 參考
 
 ---
 
