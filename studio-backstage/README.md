@@ -2,6 +2,8 @@
 
 ## 參考
 
+[Angular Firebase 入門與實做](https://ithelp.ithome.com.tw/m/users/20104952/ironman/1554) => 結合 firebase
+
 [Angular 深入淺出三十天](https://ithelp.ithome.com.tw/articles/10208267?sc=rss.qu) => 基礎有實作可參考
 
 [Angular Material完全攻略](https://ithelp.ithome.com.tw/articles/10193505) => 別人做的元件應用
