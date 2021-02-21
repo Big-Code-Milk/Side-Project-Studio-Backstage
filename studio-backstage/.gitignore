@@ -103,4 +103,5 @@ tools/gulp-tasks/cldr/cldr-data/
 # Husky
 .husky/_
 
-environments/environment.ts
+/studio-backstage/src/
+/studio-backstage/src/environments/
