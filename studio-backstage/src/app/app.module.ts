@@ -12,6 +12,12 @@ import 'hammerjs'; // 手勢套件
 import { LayoutModule } from './components/layout/layout.module';
 import { PagesModule } from './pages/pages.module';
 
+// Firebase 套件
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
 @NgModule({
   declarations: [
     AppComponent

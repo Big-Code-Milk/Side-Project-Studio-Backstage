@@ -91,7 +91,7 @@
 
 11. 將 firebase config 加到 environment 變數中
 
-11. `npm install firebase angularfire2` 安裝 firebase AG2 套件
+11. `npm i @angular/fire` 安裝 firebase AG2 套件
 
 ## Angular Material
 
