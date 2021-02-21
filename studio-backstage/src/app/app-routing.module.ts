@@ -20,6 +20,11 @@ const routes: Routes = [{
       path: 'pages',
       loadChildren: () => import('./pages/pages-routing.module')
         .then(mod => mod.PagesRoutingModule)
+    },
+    {
+      path: 'demo',
+      loadChildren: () => import('./components/Demo/demo-routing.module')
+        .then(mod => mod.DemoRoutingModule)
     }
   ]
 },

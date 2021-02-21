@@ -15,12 +15,12 @@ import { PagesModule } from './pages/pages.module';
 
 import { AngularFireModule } from '@angular/fire'; // Firebase 套件
 import { SharedAngularFireModule } from './shared/module/angular-fire.module';
-import { DemoAngularFireBaseComponent } from './components/Demo/demo-angular-fire-base/demo-angular-fire-base.component';
+
+import { DemoModule } from './components/Demo/demo.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DemoAngularFireBaseComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +29,8 @@ import { DemoAngularFireBaseComponent } from './components/Demo/demo-angular-fir
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
-    PagesModule
+    PagesModule,
+    DemoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
