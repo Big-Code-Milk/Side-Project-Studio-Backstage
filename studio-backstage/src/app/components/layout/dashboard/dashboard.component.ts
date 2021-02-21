@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  NowSideNavState: string = "SideNavActived";
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  GetNowSideNavState() {
+    if (this.NowSideNavState === "SideNavActived") {
+      this.NowSideNavState = "SideNavInactive";
+    } else {
+      this.NowSideNavState = "SideNavActived";
+    }
   }
 
 }

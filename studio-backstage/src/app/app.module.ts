@@ -18,12 +18,15 @@ import { SharedAngularFireModule } from './shared/module/angular-fire.module';
 
 import { DemoModule } from './components/Demo/demo.module';
 
+import { BaseSharedModule } from './shared/module/base-shared.module';
+
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
+    BaseSharedModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     SharedAngularFireModule,
     AppRoutingModule,

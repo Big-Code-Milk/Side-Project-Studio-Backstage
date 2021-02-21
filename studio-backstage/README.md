@@ -8,6 +8,8 @@
 
 [Angular Material完全攻略](https://ithelp.ithome.com.tw/articles/10193505) => 別人做的元件應用
 
+[用30天深入Angular 5的世界](https://ithelp.ithome.com.tw/users/20107113/ironman/1240)
+
 [Angular 大師之路](https://ithelp.ithome.com.tw/users/20020617/ironman/1630) => 更細節的內容
 
 [打通 RxJS 任督二脈](https://ithelp.ithome.com.tw/users/20020617/ironman/2959) => 更更細節的內容
@@ -107,6 +109,12 @@
 ```
 
 13. firebase module 跟 真正使用要 import 的類別是不同的
+
+14. tsconfig.json 加入 BasePath ts compiler build 會更方便，但此處不想太複雜不取用
+
+15. 建立 firebasehelper 共用 Service 涉及到一些 rxjs
+
+16. `npm install angular2-prettyjson` 利用 angular2-prettyjson 讓 json 在畫面上更值觀
 
 ## Angular Material
 

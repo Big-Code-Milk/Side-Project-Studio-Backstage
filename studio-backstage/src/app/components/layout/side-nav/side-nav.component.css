@@ -5,3 +5,7 @@
 mat-expansion-panel-header {
     line-height: 1.8em;
 }
+
+p {
+    padding-left: 2em;
+}
