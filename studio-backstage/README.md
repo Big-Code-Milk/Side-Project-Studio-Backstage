@@ -85,6 +85,14 @@
 
 8. 新增登入頁與儀表板 Component，[命名規則參考](https://www.zhihu.com/question/20330840)
 
+9. Auth 新增完後，先接續 firebase 套件，設定部分就不詳紀錄了，需要回看在參考[Firebase Side Project](https://github.com/johch3n611u/Side-Project-Firebase-to-WebDatabase)
+
+10. `npm i -g npm-check-updates` 這個套件不太確定需不需要，先記錄著
+
+11. 將 firebase config 加到 environment 變數中
+
+11. `npm install firebase angularfire2` 安裝 firebase AG2 套件
+
 ## Angular Material
 
 [AG Material 完全攻略](https://ithelp.ithome.com.tw/articles/10192517)
