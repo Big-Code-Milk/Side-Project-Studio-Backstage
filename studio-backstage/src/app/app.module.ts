@@ -1,3 +1,4 @@
+import { environment } from '../environments/environment';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -12,18 +13,19 @@ import 'hammerjs'; // 手勢套件
 import { LayoutModule } from './components/layout/layout.module';
 import { PagesModule } from './pages/pages.module';
 
-// Firebase 套件
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire'; // Firebase 套件
+import { SharedAngularFireModule } from './shared/module/angular-fire.module';
+import { DemoAngularFireBaseComponent } from './components/Demo/demo-angular-fire-base/demo-angular-fire-base.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DemoAngularFireBaseComponent
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    SharedAngularFireModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,

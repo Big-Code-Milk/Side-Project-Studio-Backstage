@@ -85,6 +85,8 @@
 
 8. 新增登入頁與儀表板 Component，[命名規則參考](https://www.zhihu.com/question/20330840)
 
+## Angular Firebase
+
 9. Auth 新增完後，先接續 firebase 套件，設定部分就不詳紀錄了，需要回看在參考[Firebase Side Project](https://github.com/johch3n611u/Side-Project-Firebase-to-WebDatabase)
 
 10. `npm i -g npm-check-updates` 這個套件不太確定需不需要，先記錄著
@@ -92,6 +94,19 @@
 11. 將 firebase config 加到 environment 變數中
 
 11. `npm i @angular/fire` 安裝 firebase AG2 套件
+
+12. 開發測試需求先記錄改為全部權限
+
+```json
+  {
+  "rules": {
+    ".read": "true",
+    ".write": "auth != null"
+  }
+}
+```
+
+13. firebase module 跟 真正使用要 import 的類別是不同的
 
 ## Angular Material
 
