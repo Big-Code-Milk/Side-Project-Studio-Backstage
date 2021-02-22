@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -16,26 +17,30 @@ export class FireStorageHelperService {
   // 建構子( 注入此類別參數 ){ 建構子執行之方法 }
   constructor(
     private _RealtimeDatabase: AngularFireDatabase,
-  ) { }
+    private _CloudFirestore: AngularFirestore
+  ) {
+    // 建構此 service 時就會執行
+
+  }
 
   // 方法名稱< 型別 >( 參數:型別 ) : 回傳值型別 { 方法實作 return 回傳值; }
-  GetObject<T>(url: string): Observable<T> | Observable<any> {
-    const _data = this._RealtimeDatabase.object(url);
+  GetValueChangesObject<T>(ValuePath: string): Observable<T> | Observable<any> {
+    const _data = this._RealtimeDatabase.object(ValuePath);
     return _data.valueChanges(); // 資料本身不包含key
   }
 
-  GetList<T>(url: string): Observable<T> | Observable<any> {
-    const _data = this._RealtimeDatabase.list(url);
+  GetValueChangesList<T>(ValuePath: string): Observable<T> | Observable<any> {
+    const _data = this._RealtimeDatabase.list(ValuePath);
     return _data.valueChanges();
   }
 
-  GetObjectByKey<T>(url: string): Observable<T> | Observable<any> {
-    const _data = this._RealtimeDatabase.object(url);
+  GetSnapshotChangesObject<T>(ValuePath: string): Observable<T> | Observable<any> {
+    const _data = this._RealtimeDatabase.object(ValuePath);
     return _data.snapshotChanges(); // 資料本身(payload)、key、prevKey、type
   }
 
-  GetListByKey<T>(url: string): Observable<T> | Observable<any> {
-    const _data = this._RealtimeDatabase.list(url);
+  GetSnapshotChangesList<T>(ValuePath: string): Observable<T> | Observable<any> {
+    const _data = this._RealtimeDatabase.list(ValuePath);
     return _data.snapshotChanges();
   }
 }

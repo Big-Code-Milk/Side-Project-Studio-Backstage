@@ -26,10 +26,10 @@ export class AngularFirebaseComponent implements OnInit {
     this.item$ = this._db.object('item').valueChanges();
 
     // 利用共用 Service 取得觀察者物件
-    this.ServiceItems = this._FireStorageHelper.GetList("item");
+    this.ServiceItems = this._FireStorageHelper.GetSnapshotChangesList("item");
 
     // 觀察者物件在訂閱回傳時 console.log
-    this.item$.subscribe(x => { console.log(x); });
+    this.item$.subscribe(x => { console.log('subscribe:' + x); });
   }
 
   ngOnInit(): void {
