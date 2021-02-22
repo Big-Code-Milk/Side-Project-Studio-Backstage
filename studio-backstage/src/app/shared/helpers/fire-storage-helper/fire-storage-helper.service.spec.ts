@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FirebaseHelperService } from './firebase-helper.service';
+import { FireStorageHelperService } from './fire-storage-helper.service';
 
 describe('HttpHelperService', () => {
-  let service: FirebaseHelperService;
+  let service: FireStorageHelperService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(FirebaseHelperService);
+    service = TestBed.inject(FireStorageHelperService);
   });
 
   it('should be created', () => {

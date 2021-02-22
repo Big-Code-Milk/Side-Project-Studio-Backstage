@@ -6,7 +6,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 @Injectable({
   providedIn: 'root'
 })
-export class FirebaseHelperService {
+export class FireStorageHelperService {
   // 參考
   // 實作類似 Flux https://medium.com/4cats-io/%E6%B7%B1%E5%85%A5%E6%B7%BA%E5%87%BA-flux-44a48c320e11
   // angularfire 套件官網 https://github.com/angular/angularfire

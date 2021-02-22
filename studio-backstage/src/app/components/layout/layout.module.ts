@@ -7,7 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { SharedAngularMaterialModule } from '../../shared/module/angular-material.module';
 
-import { FirebaseHelperService } from '../../shared/helpers/firebase-helper/firebase-helper.service';
+import { FireStorageHelperService } from '../../shared/helpers/fire-storage-helper/fire-storage-helper.service';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { FirebaseHelperService } from '../../shared/helpers/firebase-helper/fire
     SideNavComponent
   ],
   providers: [
-    FirebaseHelperService
+    FireStorageHelperService
   ],
   imports: [
     CommonModule,
