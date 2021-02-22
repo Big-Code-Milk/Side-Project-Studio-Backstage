@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,6 @@ export class FireStorageHelperService {
   // 建構子( 注入此類別參數 ){ 建構子執行之方法 }
   constructor(
     private _RealtimeDatabase: AngularFireDatabase,
-    private _CloudFirestore: AngularFirestore
   ) { }
 
   // 方法名稱< 型別 >( 參數:型別 ) : 回傳值型別 { 方法實作 return 回傳值; }
