@@ -16,9 +16,10 @@ import { PagesModule } from './pages/pages.module';
 import { AngularFireModule } from '@angular/fire'; // Firebase 套件
 import { SharedAngularFireModule } from './shared/module/angular-fire.module';
 
-import { DemoModule } from './components/Demo/demo.module';
+
 
 import { BaseSharedModule } from './shared/module/base-shared.module';
+import { ExampleModule } from './components/example/example.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { BaseSharedModule } from './shared/module/base-shared.module';
     BrowserAnimationsModule,
     LayoutModule,
     PagesModule,
-    DemoModule
+    ExampleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

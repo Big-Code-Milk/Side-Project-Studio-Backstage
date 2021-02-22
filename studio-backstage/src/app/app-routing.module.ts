@@ -22,9 +22,9 @@ const routes: Routes = [{
         .then(mod => mod.PagesRoutingModule)
     },
     {
-      path: 'demo',
-      loadChildren: () => import('./components/demo/demo-routing.module')
-        .then(mod => mod.DemoRoutingModule)
+      path: 'example',
+      loadChildren: () => import('./components/example/example-routing.module')
+        .then(mod => mod.ExampleRoutingModule)
     }
   ]
 },
