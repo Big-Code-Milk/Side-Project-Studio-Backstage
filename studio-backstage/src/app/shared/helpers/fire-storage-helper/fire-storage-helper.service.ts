@@ -6,7 +6,7 @@
 // 免費額度 https://firebase.google.com/pricing/
 
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -14,6 +14,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
   providedIn: 'root'
 })
 export class FireStorageHelperService {
+
 
   // 建構子( 注入此類別參數 ){ 建構子執行之方法 }
   constructor(
@@ -32,11 +33,20 @@ export class FireStorageHelperService {
 
   // T 泛型 傳啥進來就啥型別
 
-  GetAngularFireObject<T>(ValuePath: string): AngularFireObject<T> {
-    return this._RealtimeDatabase.object(ValuePath);
+  GetAngularFireObject<T>(QueryPath: string): AngularFireObject<T> {
+    return this._RealtimeDatabase.object(QueryPath);
   }
 
-  GetAngularFireList<T>(ValuePath: string): AngularFireList<T> {
-    return this._RealtimeDatabase.list(ValuePath);
+  GetAngularFireList<T>(QueryPath: string): AngularFireList<T> {
+    return this._RealtimeDatabase.list(QueryPath);
+  }
+
+  GetKeys(QueryPath: string) {
+    let _Responce: AngularFireList<any> = this._RealtimeDatabase.list(QueryPath)
+    return _Responce.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    );
   }
 }

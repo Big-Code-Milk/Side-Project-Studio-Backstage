@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { FireStorageHelperService } from '../../../shared/helpers/fire-storage-helper/fire-storage-helper.service';
 
 @Component({
@@ -11,29 +11,58 @@ import { FireStorageHelperService } from '../../../shared/helpers/fire-storage-h
 export class AngularFirebaseComponent implements OnInit {
 
   items$: Observable<any[]>;
-  item$: Observable<any>;
-  //ServiceItems: Observable<any[]>;
+  // item$: Observable<any>;
+  // ServiceItems: Observable<any[]>;
+
+  itemsRef: AngularFireList<any>;
+  items: Observable<any[]>;
 
   constructor(
     private _FireStorageHelper: FireStorageHelperService,
     private _db: AngularFireDatabase
   ) {
-    console.log('this._db', this._db);
+
+    this.items = _FireStorageHelper.GetKeys('items');
+    console.log('this.items', this.items);
+    this.itemsRef = _db.list('items');
+
+    // console.log('this._db', this._db);
     // 訂閱觀察者物件後，雲 db 資料改動，同時也會影響此處資料改動
     // snapshotChanges() 資料本身(payload)、key、prevKey、type
-    this.items$ = this._db.list("item").snapshotChanges();
+    this.items$ = this._db.list("items").valueChanges();
 
     // 直接使用 fireAG 方法操作 valueChanges() 資料本身不包含key
-    this.item$ = this._db.object('item').valueChanges();
+    // this.item$ = this._db.object('item').valueChanges();
 
     // 利用共用 Service 取得觀察者物件
-    //this.ServiceItems = this._FireStorageHelper.GetObservableList("item");
-
+    // this.ServiceItems = this._FireStorageHelper.GetKeys("item");
+    // console.log('this.ServiceItems', this.ServiceItems);
     // 觀察者物件在訂閱回傳時 console.log
-    this.item$.subscribe(x => { console.log('subscribe:' + x); });
+    // this.item$.subscribe(x => { console.log('subscribe:' + x); });
   }
 
   ngOnInit(): void {
   }
 
+  addItem(newName: string) {
+    this.itemsRef.push({ text: newName })
+      .then(_ => console.log('success'))
+      .catch(err => console.log(err, 'You do not have access!'));
+  }
+  updateItem(key: string, newText: string) {
+    console.log('key:', key, 'newText:', newText);
+    this.itemsRef.update(key, { text: newText })
+      .then(_ => console.log('success'))
+      .catch(err => console.log(err, 'You do not have access!'));
+  }
+  deleteItem(key: string) {
+    this.itemsRef.remove(key)
+      .then(_ => console.log('success'))
+      .catch(err => console.log(err, 'You do not have access!'));
+  }
+  deleteEverything() {
+    this.itemsRef.remove()
+      .then(_ => console.log('success'))
+      .catch(err => console.log(err, 'You do not have access!'));
+  }
 }
