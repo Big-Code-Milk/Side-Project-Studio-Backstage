@@ -1,0 +1,16 @@
+<p>AngularFirebase works!</p>
+<!-- async 是Angular提供的pipe，可以用來訂閱Observable，當Destroy時會自動unsubscribe，json也是另一種pipe，可以把物件轉成json顯示出來 -->
+items: {{items$ | async | json}}
+<br> item: {{item$ | async | json}}
+<br> items {{ServiceItems | async | json}}
+<br> items:
+<prettyjson [obj]="items$ | async"></prettyjson>
+<br> item:
+<prettyjson [obj]="item$ | async"></prettyjson>
+<br> items {{ServiceItems}}
+<prettyjson [obj]="item$ | async"></prettyjson>
+<prettyjson [obj]="item$ | async"></prettyjson>
+<prettyjson [obj]="item$ | async"></prettyjson>
+<prettyjson [obj]="item$ | async"></prettyjson>
+<prettyjson [obj]="item$ | async"></prettyjson>
+<prettyjson [obj]="item$ | async"></prettyjson>
