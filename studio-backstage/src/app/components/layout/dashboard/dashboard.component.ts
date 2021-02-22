@@ -9,7 +9,9 @@ export class DashboardComponent implements OnInit {
 
   NowSideNavState: string = "SideNavActived";
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit(): void {
   }

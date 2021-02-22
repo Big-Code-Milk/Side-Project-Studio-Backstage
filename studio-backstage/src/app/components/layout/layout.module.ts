@@ -8,11 +8,13 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { SharedAngularMaterialModule } from '../../shared/module/angular-material.module';
 
 import { FireStorageHelperService } from '../../shared/helpers/fire-storage-helper/fire-storage-helper.service';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    SideNavComponent
+    SideNavComponent,
+    DialogComponent
   ],
   providers: [
     FireStorageHelperService

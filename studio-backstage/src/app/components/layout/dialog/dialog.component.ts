@@ -1,0 +1,23 @@
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
+
+@Component({
+  selector: 'app-dialog',
+  templateUrl: './dialog.component.html',
+  styleUrls: ['./dialog.component.css']
+})
+export class DialogComponent implements OnInit {
+
+  DefaultBackgroundColor: string = '#E87A90';
+  Msg: string;
+
+  constructor(@Inject(MAT_DIALOG_DATA) private _DialogData: any) {
+    //console.clear();
+    console.log(_DialogData);
+    this.Msg = _DialogData;
+  }
+
+  ngOnInit(): void {
+  }
+
+}

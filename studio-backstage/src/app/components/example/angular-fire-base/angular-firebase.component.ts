@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { FireStorageHelperService } from '../../../shared/helpers/fire-storage-helper/fire-storage-helper.service';
+import { DialogHelperService } from '../../../shared/helpers/dialog-helper/dialog-helper.service';
+import { MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: './app-demo-angular-fire-base',
@@ -17,9 +19,12 @@ export class AngularFirebaseComponent implements OnInit {
   itemsRef: AngularFireList<any>;
   items: Observable<any[]>;
 
+  _DialogConfig: MatDialogConfig<any> = {};
+
   constructor(
     private _FireStorageHelper: FireStorageHelperService,
-    private _db: AngularFireDatabase
+    private _db: AngularFireDatabase,
+    private _DialogHelper: DialogHelperService
   ) {
 
     this.items = _FireStorageHelper.GetKeys('items');
@@ -46,23 +51,34 @@ export class AngularFirebaseComponent implements OnInit {
 
   addItem(newName: string) {
     this.itemsRef.push({ text: newName })
-      .then(_ => console.log('success'))
-      .catch(err => console.log(err, 'You do not have access!'));
+      .then(_ => {
+        console.log('success');
+        this._DialogHelper.ShowMessage(this._DialogConfig);
+      })
+      .catch(err => {
+        this._DialogConfig.data = err;
+        console.log(err, 'You do not have access!');
+        this._DialogHelper.ShowMessage(this._DialogConfig);
+      });
   }
+
   updateItem(key: string, newText: string) {
     console.log('key:', key, 'newText:', newText);
     this.itemsRef.update(key, { text: newText })
       .then(_ => console.log('success'))
       .catch(err => console.log(err, 'You do not have access!'));
   }
+
   deleteItem(key: string) {
     this.itemsRef.remove(key)
       .then(_ => console.log('success'))
       .catch(err => console.log(err, 'You do not have access!'));
   }
+
   deleteEverything() {
     this.itemsRef.remove()
       .then(_ => console.log('success'))
       .catch(err => console.log(err, 'You do not have access!'));
   }
+
 }
