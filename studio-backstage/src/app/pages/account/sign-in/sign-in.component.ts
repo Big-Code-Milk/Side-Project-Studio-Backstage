@@ -22,12 +22,15 @@ export class SignInComponent implements OnInit {
 
   SignInWithGoogle() {
     this._FireAuthHelper.SignInWithGoogle().then(
-      x => {
-        console.log('SignInWithGoogle', x);
-        this._FireAuthHelper.GetSignInState().subscribe(y => {
-          console.log('GetSignInState', y);
-          this.SignInState = y;
-          this.DialogConfig.data = JSON.stringify(this.SignInState);
+      GoogleInfo => {
+        //console.log('GoogleInfo', GoogleInfo);
+        this._FireAuthHelper.GetSignInState().subscribe(UserInfo => {
+          //console.log('UserInfo', UserInfo);
+          this.SignInState = UserInfo;
+          //console.log('this.SignInState', this.SignInState);
+          //this.DialogConfig.data = JSON.stringify(this.SignInState);
+          this.DialogConfig.data = this.SignInState;
+          //console.log('this.DialogConfig.data', this.DialogConfig.data);
           this._DialogHelperService.ShowMessage(this.DialogConfig);
         });
       }
