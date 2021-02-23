@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { FireStorageHelperService } from '../../../shared/helpers/fire-storage-helper/fire-storage-helper.service';
-import { DialogHelperService } from '../../../shared/helpers/dialog-helper/dialog-helper.service';
+import { FireStorageHelperService } from '../../../shared/common/fire-storage-helper/fire-storage-helper.service';
+import { DialogHelperService } from '../../../shared/common/dialog-helper/dialog-helper.service';
 import { MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
