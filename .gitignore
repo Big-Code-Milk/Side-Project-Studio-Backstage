@@ -1,6 +1,5 @@
 .DS_STORE
 
-/dist/
 /bazel-out
 /integration/bazel/bazel-*
 *.log
@@ -58,3 +57,5 @@ tools/gulp-tasks/cldr/cldr-data/
 
 # Chrome Debug
 .chrome
+
+dist
