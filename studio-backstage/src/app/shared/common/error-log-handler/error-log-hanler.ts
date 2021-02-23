@@ -13,8 +13,8 @@ export class ErrorLogHandler implements ErrorHandler {
 
   }
 
-  handleError(error:any): void {
-    console.error('handleError:',error);
+  handleError(error: any): void {
+    // console.error('handleError:', error);
     this.DialogConfig.data = error;
     this._DialogHelper.ShowMessage(this.DialogConfig);
   }

@@ -1,3 +1,8 @@
+// 參考
+// mat input ngModel https://stackoverflow.com/questions/49671478/ngmodel-is-not-working-when-an-input-field-is-repeated-with-the-property-inside
+// formModule https://stackoverflow.com/questions/38892771/cant-bind-to-ngmodel-since-it-isnt-a-known-property-of-input
+// FormControl https://angular.tw/api/forms/FormControlName
+
 import { Component, OnInit } from '@angular/core';
 import { FireAuthHelperService } from '../../../shared/common/fire-auth-helper/fire-auth-helper.service';
 import { DialogHelperService } from '../../../shared/common/dialog-helper/dialog-helper.service';
@@ -14,18 +19,36 @@ export class SignInComponent implements OnInit {
   DialogConfig: MatDialogConfig<any> = {};
   SignInState: any | null;
   SignInForm: SignIn = { Email: "", Password: "" };
+  RandomColor: string = "";
 
   constructor(
     private _FireAuthHelper: FireAuthHelperService,
     private _DialogHelperService: DialogHelperService
-  ) { }
+  ) {
 
-  ngOnInit(): void { }
 
-  CommonSignIn() {
-    this.SignInForm.Verification = this._FireAuthHelper.CommonSignIn(this.SignInForm);
   }
 
+  ngOnInit(): void {
+
+    this.RandomColor = this.getRandomColor();
+
+  }
+
+  // 帳號密碼登錄
+  CommonSignIn() {
+    this._FireAuthHelper.CommonSignIn(this.SignInForm)
+      .then(value => {
+        console.log('Success!', value);
+        this.SignInForm.Verification = 'Success!' + value;
+      })
+      .catch(err => {
+        console.log('Something went wrong:', err.message);
+        this.SignInForm.Verification = 'Something went wrong:' + err.message;
+      });
+  }
+
+  // 隨機取 rgb 字串
   getRandomColor() {
     var rgb = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',0.4)';
     console.log(rgb);
