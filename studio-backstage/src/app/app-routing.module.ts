@@ -6,11 +6,11 @@ import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './shared/auth/auth.guard';
 
 const routes: Routes = [{
-  path: 'SignIn',
+  path: '',
   component: SignInComponent
 },
 {
-  path: '',
+  path: 'Dashboard',
   canActivate: [AuthGuard],
   canActivateChild: [AuthGuard],
   component: DashboardComponent,

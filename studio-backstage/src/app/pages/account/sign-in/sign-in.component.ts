@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FireAuthHelperService } from '../../../shared/common/fire-auth-helper/fire-auth-helper.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -7,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _FireAuthHelper: FireAuthHelperService
+  ) { }
 
   ngOnInit(): void { }
+
+  SignInWithGoogle() {
+    this._FireAuthHelper.SignInWithGoogle();
+  }
 
 }
