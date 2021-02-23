@@ -9,7 +9,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angu
 export class DialogComponent implements OnInit {
 
   DefaultBackgroundColor: string = '#E87A90';
-  Msg: string;
+  Msg: any;
 
   constructor(@Inject(MAT_DIALOG_DATA) private _DialogData: any) {
     //console.clear();

@@ -7,7 +7,6 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +17,6 @@ export class FireAuthHelperService {
 
   constructor(
     private _AngularFireAuth: AngularFireAuth,
-    private _Router: Router
   ) { }
 
   // 使用 Google 登入
@@ -26,5 +24,21 @@ export class FireAuthHelperService {
     return this._AngularFireAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
+  // 登出
+  SignOut() {
+    this._AngularFireAuth.signOut();
+  }
+
+  // 使用匿名登入
+  //  signInAnonymously() {
+  //   return this.afAuth.auth.signInAnonymously()
+  //       .then(this.redirectToPopup());
+  // }
+
+  // 使用 GitHub 登入
+  // signInWithGithub() {
+  //   return this.afAuth.auth.signInWithPopup(new firebase.auth.GithubAuthProvider())
+  //       .then(this.redirectToPopup());
+  // }
 
 }

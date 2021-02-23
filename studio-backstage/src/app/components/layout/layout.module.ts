@@ -10,6 +10,8 @@ import { SharedAngularMaterialModule } from '../../shared/module/angular-materia
 import { FireStorageHelperService } from '../../shared/common/fire-storage-helper/fire-storage-helper.service';
 import { DialogComponent } from './dialog/dialog.component';
 
+import { BaseSharedModule } from '../../shared/module/base-shared.module';
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -22,6 +24,7 @@ import { DialogComponent } from './dialog/dialog.component';
   imports: [
     CommonModule,
     SharedAngularMaterialModule,
+    BaseSharedModule,
     LayoutRoutingModule
   ],
   exports: [
