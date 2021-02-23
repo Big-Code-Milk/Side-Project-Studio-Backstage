@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { SharedAngularMaterialModule } from '../shared/module/angular-material.module';
 import { SignInComponent } from './account/sign-in/sign-in.component'
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -15,7 +17,8 @@ import { SignInComponent } from './account/sign-in/sign-in.component'
   imports: [
     CommonModule,
     PagesRoutingModule,
-    SharedAngularMaterialModule
+    SharedAngularMaterialModule,
+    FormsModule
   ]
 })
 export class PagesModule { }

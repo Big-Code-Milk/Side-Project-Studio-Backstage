@@ -37,7 +37,7 @@ import { ErrorLogHandler } from '../app/shared/common/error-log-handler/error-lo
     ExampleModule,
   ],
   providers: [
-    {provide:ErrorLogHandler,useFactory:ErrorLogHandler}
+    { provide: ErrorLogHandler, useFactory: ErrorLogHandler }
   ],
   bootstrap: [AppComponent]
 })

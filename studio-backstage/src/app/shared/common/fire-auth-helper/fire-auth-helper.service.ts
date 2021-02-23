@@ -31,18 +31,7 @@ export class FireAuthHelperService {
 
   // 一般登入
   CommonSignIn(SignInForm: SignIn) {
-    let Verification;
-    this._AngularFireAuth
-      .signInWithEmailAndPassword(SignInForm.Email, SignInForm.Password)
-      .then(value => {
-        console.log('Success!', value);
-        Verification = 'Success!' + value;
-      })
-      .catch(err => {
-        console.log('Something went wrong:', err.message);
-        Verification = 'Something went wrong:' + err.message;
-      });
-    return Verification;
+    return this._AngularFireAuth.signInWithEmailAndPassword(SignInForm.Email, SignInForm.Password);
   }
 
   // 登出
