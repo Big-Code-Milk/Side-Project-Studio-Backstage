@@ -2,6 +2,7 @@
 // https://github.com/angular/angularfire/blob/master/docs/auth/getting-started.md
 // https://blog.kevinyang.net/2018/04/30/angular-firebase/
 // https://ithelp.ithome.com.tw/articles/10194424
+// 權限管理 https://ithelp.ithome.com.tw/articles/10206354
 
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -19,6 +20,14 @@ export class FireAuthHelperService {
     private _AngularFireAuth: AngularFireAuth,
   ) {
     this.SignInState = this._AngularFireAuth.authState;
+
+    // 初始化登入資訊到 window.sessionStorage 頁面沒被關閉
+    this.SignInState.subscribe(UserInfo => {
+
+    });
+
+    // window.localStorage 永久保存直到被刪除
+
   }
 
   // 使用 Google 登入
