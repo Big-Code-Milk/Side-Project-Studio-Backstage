@@ -16,10 +16,10 @@ import { PagesModule } from './pages/pages.module';
 import { AngularFireModule } from '@angular/fire'; // Firebase 套件
 import { SharedAngularFireModule } from './shared/module/angular-fire.module';
 
-
-
 import { BaseSharedModule } from './shared/module/base-shared.module';
 import { ExampleModule } from './components/example/example.module';
+
+import { ErrorLogHandler } from '../app/shared/common/error-log-handler/error-log-hanler';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,9 @@ import { ExampleModule } from './components/example/example.module';
     PagesModule,
     ExampleModule,
   ],
-  providers: [],
+  providers: [
+    {provide:ErrorLogHandler,useFactory:ErrorLogHandler}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

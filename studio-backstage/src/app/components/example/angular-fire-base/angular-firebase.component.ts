@@ -19,7 +19,7 @@ export class AngularFirebaseComponent implements OnInit {
   itemsRef: AngularFireList<any>;
   items: Observable<any[]>;
 
-  _DialogConfig: MatDialogConfig<any> = {};
+  DialogConfig: MatDialogConfig<any> = {};
 
   constructor(
     private _FireStorageHelper: FireStorageHelperService,
@@ -53,12 +53,12 @@ export class AngularFirebaseComponent implements OnInit {
     this.itemsRef.push({ text: newName })
       .then(_ => {
         console.log('success');
-        this._DialogHelper.ShowMessage(this._DialogConfig);
+        this._DialogHelper.ShowMessage(this.DialogConfig);
       })
       .catch(err => {
-        this._DialogConfig.data = err;
+        this.DialogConfig.data = err;
         console.log(err, 'You do not have access!');
-        this._DialogHelper.ShowMessage(this._DialogConfig);
+        this._DialogHelper.ShowMessage(this.DialogConfig);
       });
   }
 

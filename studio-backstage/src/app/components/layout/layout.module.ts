@@ -7,7 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { SharedAngularMaterialModule } from '../../shared/module/angular-material.module';
 
-import { FireStorageHelperService } from '../../shared/helpers/fire-storage-helper/fire-storage-helper.service';
+import { FireStorageHelperService } from '../../shared/common/fire-storage-helper/fire-storage-helper.service';
 import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
