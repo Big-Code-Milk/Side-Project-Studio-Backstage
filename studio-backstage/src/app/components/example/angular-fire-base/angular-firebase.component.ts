@@ -1,3 +1,6 @@
+// 參考
+// firebase CRUD https://github.com/angular/angularfire/blob/master/docs/rtdb/lists.md
+
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
