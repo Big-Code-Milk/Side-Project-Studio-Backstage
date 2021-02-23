@@ -20,23 +20,21 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  SignInWithGoogle() {
-    this._FireAuthHelper.SignInWithGoogle().then(
-      GoogleInfo => {
-        //console.log('GoogleInfo', GoogleInfo);
-        this._FireAuthHelper.GetSignInState().subscribe(UserInfo => {
-          //console.log('UserInfo', UserInfo);
-          this.SignInState = UserInfo;
-          //console.log('this.SignInState', this.SignInState);
-          //this.DialogConfig.data = JSON.stringify(this.SignInState);
-          this.DialogConfig.data = this.SignInState;
-          //console.log('this.DialogConfig.data', this.DialogConfig.data);
-          this._DialogHelperService.ShowMessage(this.DialogConfig);
-        });
-      }
-    );
-
-
-  }
+  // SignInWithGoogle() {
+  //   this._FireAuthHelper.SignInWithGoogle().then(
+  //     GoogleInfo => {
+  //       //console.log('GoogleInfo', GoogleInfo);
+  //       this._FireAuthHelper.GetSignInState().subscribe(UserInfo => {
+  //         //console.log('UserInfo', UserInfo);
+  //         this.SignInState = UserInfo;
+  //         //console.log('this.SignInState', this.SignInState);
+  //         //this.DialogConfig.data = JSON.stringify(this.SignInState);
+  //         this.DialogConfig.data = this.SignInState;
+  //         //console.log('this.DialogConfig.data', this.DialogConfig.data);
+  //         this._DialogHelperService.ShowMessage(this.DialogConfig);
+  //       });
+  //     }
+  //   );
+  // }
 
 }

@@ -31,9 +31,9 @@ export class FireAuthHelperService {
   }
 
   // 使用 Google 登入
-  SignInWithGoogle() {
-    return this._AngularFireAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-  }
+  // SignInWithGoogle() {
+  //   return this._AngularFireAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  // }
 
   // 登出
   SignOut() {
