@@ -21,13 +21,9 @@ export class FireAuthHelperService {
   ) {
     this.SignInState = this._AngularFireAuth.authState;
 
-    // 初始化登入資訊到 window.sessionStorage 頁面沒被關閉
-    this.SignInState.subscribe(UserInfo => {
-
-    });
-
     // window.localStorage 永久保存直到被刪除
-
+    // window.sessionStorage 頁面沒被關閉
+    // FireAuth 已經在底層實作以上
   }
 
   // 使用 Google 登入
