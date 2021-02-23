@@ -11,6 +11,7 @@ import { MatDialogConfig } from '@angular/material/dialog';
 export class SignInComponent implements OnInit {
 
   DialogConfig: MatDialogConfig<any> = {};
+  SignInState: any | null;
 
   constructor(
     private _FireAuthHelper: FireAuthHelperService,
@@ -22,8 +23,13 @@ export class SignInComponent implements OnInit {
   SignInWithGoogle() {
     this._FireAuthHelper.SignInWithGoogle().then(
       x => {
-        this.DialogConfig.data = JSON.stringify(x);
-        this._DialogHelperService.ShowMessage(this.DialogConfig);
+        console.log('SignInWithGoogle', x);
+        this._FireAuthHelper.GetSignInState().subscribe(y => {
+          console.log('GetSignInState', y);
+          this.SignInState = y;
+          this.DialogConfig.data = JSON.stringify(this.SignInState);
+          this._DialogHelperService.ShowMessage(this.DialogConfig);
+        });
       }
     );
 

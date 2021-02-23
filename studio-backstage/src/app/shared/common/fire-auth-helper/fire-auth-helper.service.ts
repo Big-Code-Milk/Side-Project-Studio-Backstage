@@ -13,11 +13,13 @@ import { Observable } from 'rxjs';
 })
 export class FireAuthHelperService {
 
-  SignInState: Observable<firebase.User | null> = this._AngularFireAuth.authState;
+  SignInState: Observable<firebase.User | null>;
 
   constructor(
     private _AngularFireAuth: AngularFireAuth,
-  ) { }
+  ) {
+    this.SignInState = this._AngularFireAuth.authState;
+  }
 
   // 使用 Google 登入
   SignInWithGoogle() {
@@ -27,6 +29,10 @@ export class FireAuthHelperService {
   // 登出
   SignOut() {
     this._AngularFireAuth.signOut();
+  }
+
+  GetSignInState() {
+    return this.SignInState;
   }
 
   // 使用匿名登入

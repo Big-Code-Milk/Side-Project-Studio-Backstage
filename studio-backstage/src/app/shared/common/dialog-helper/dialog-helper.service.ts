@@ -14,6 +14,7 @@ export class DialogHelperService {
   ShowMessage<T>(DialogConfig: MatDialogConfig<T>): MatDialogRef<DialogComponent, any> {
     DialogConfig.height = DialogConfig.height ?? "30vh";
     DialogConfig.width = DialogConfig.width ?? "30vw";
-    return this.dialog.open(DialogComponent, DialogConfig);
+    console.log(DialogConfig.data);
+    return this.dialog.open(DialogComponent);
   }
 }
