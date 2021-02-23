@@ -3,11 +3,13 @@
 // https://blog.kevinyang.net/2018/04/30/angular-firebase/
 // https://ithelp.ithome.com.tw/articles/10194424
 // 權限管理 https://ithelp.ithome.com.tw/articles/10206354
+// 一般登入 https://alligator.io/angular/firebase-authentication-angularfire2/
 
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 import { Observable } from 'rxjs';
+import SignIn from '../../../shared/models/sign-in';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,7 @@ import { Observable } from 'rxjs';
 export class FireAuthHelperService {
 
   SignInState: Observable<firebase.User | null>;
+  SignInForm: SignIn = { Email: "", Password: "" };
 
   constructor(
     private _AngularFireAuth: AngularFireAuth,
@@ -26,28 +29,58 @@ export class FireAuthHelperService {
     // FireAuth 已經在底層實作以上
   }
 
-  // 使用 Google 登入
-  // SignInWithGoogle() {
-  //   return this._AngularFireAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-  // }
+  // 一般登入
+  CommonSignIn(SignInForm: SignIn) {
+    let Verification;
+    this._AngularFireAuth
+      .signInWithEmailAndPassword(SignInForm.Email, SignInForm.Password)
+      .then(value => {
+        console.log('Success!', value);
+        Verification = 'Success!' + value;
+      })
+      .catch(err => {
+        console.log('Something went wrong:', err.message);
+        Verification = 'Something went wrong:' + err.message;
+      });
+    return Verification;
+  }
 
   // 登出
   SignOut() {
     this._AngularFireAuth.signOut();
   }
 
+  // 取得使用者資訊
   GetSignInState() {
     return this.SignInState;
   }
 
+  // 註冊
+  // signup(email: string, password: string) {
+  //   this.firebaseAuth
+  //     .auth
+  //     .createUserWithEmailAndPassword(email, password)
+  //     .then(value => {
+  //       console.log('Success!', value);
+  //     })
+  //     .catch(err => {
+  //       console.log('Something went wrong:',err.message);
+  //     });
+  // }
+
+  // 使用 Google 登入
+  // SignInWithGoogle() {
+  //   return this._AngularFireAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  // }
+
   // 使用匿名登入
-  //  signInAnonymously() {
+  //  SignInAnonymously() {
   //   return this.afAuth.auth.signInAnonymously()
   //       .then(this.redirectToPopup());
   // }
 
   // 使用 GitHub 登入
-  // signInWithGithub() {
+  // SignInWithGithub() {
   //   return this.afAuth.auth.signInWithPopup(new firebase.auth.GithubAuthProvider())
   //       .then(this.redirectToPopup());
   // }
