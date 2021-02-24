@@ -2,12 +2,14 @@
 // mat input ngModel https://stackoverflow.com/questions/49671478/ngmodel-is-not-working-when-an-input-field-is-repeated-with-the-property-inside
 // formModule https://stackoverflow.com/questions/38892771/cant-bind-to-ngmodel-since-it-isnt-a-known-property-of-input
 // FormControl https://angular.tw/api/forms/FormControlName
+// Router https://angular.tw/guide/router#accessing-query-parameters-and-fragments
 
 import { Component, OnInit } from '@angular/core';
 import { FireAuthHelperService } from '../../../shared/common/fire-auth-helper/fire-auth-helper.service';
 import { DialogHelperService } from '../../../shared/common/dialog-helper/dialog-helper.service';
 import { MatDialogConfig } from '@angular/material/dialog';
 import SignIn from '../../../shared/models/sign-in';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -23,7 +25,8 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private _FireAuthHelper: FireAuthHelperService,
-    private _DialogHelperService: DialogHelperService
+    private _DialogHelperService: DialogHelperService,
+    private router: Router
   ) {
 
 
@@ -41,6 +44,7 @@ export class SignInComponent implements OnInit {
       .then(value => {
         console.log('Success!', value);
         this.SignInForm.Verification = 'Success!' + value;
+        // this.router.navigate(['/heroes', { id: heroId }]);
       })
       .catch(err => {
         console.log('Something went wrong:', err.message);
