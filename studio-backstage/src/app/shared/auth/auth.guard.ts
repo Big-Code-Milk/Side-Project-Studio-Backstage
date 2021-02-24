@@ -10,11 +10,32 @@ export class AuthGuard implements CanActivateChild {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+
+    let responce: boolean = false;
+
+    let AuthToken = sessionStorage.getItem('AuthToken');
+
+    if (AuthToken !== undefined && AuthToken !== null && AuthToken !== "") {
+      responce = true;
+    }
+
+    // console.log('canActivate', responce);
+
+    return responce;
   }
 
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
-    return true;
 
+    let responce: boolean = false;
+
+    let AuthToken = sessionStorage.getItem('AuthToken');
+
+    if (AuthToken !== undefined && AuthToken !== null && AuthToken !== "") {
+      responce = true;
+    }
+
+    // console.log('canActivateChild', responce);
+
+    return responce;
   }
 }

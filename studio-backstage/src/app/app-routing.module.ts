@@ -30,14 +30,14 @@ const routes: Routes = [{
 },
 {
   path: '**',
-  redirectTo: '/',
+  redirectTo: '',
   pathMatch: 'full'
 }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { enableTracing: true }),
   ],
   exports: [
     RouterModule

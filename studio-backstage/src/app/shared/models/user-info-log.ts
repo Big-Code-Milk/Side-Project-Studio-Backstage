@@ -1,6 +1,6 @@
 export default class UserInfoLog {
   State: string = "";
-  Millisecond: string = "";
+  Time: string = "";
   Token: string = "";
   Email: string = "";
 }

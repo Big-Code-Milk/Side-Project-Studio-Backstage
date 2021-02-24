@@ -8,13 +8,14 @@
 // npm uninstall xx --save https://hsiangfeng.github.io/nodejs/20190626/1317979814/
 // dayjs https://www.npmjs.com/package/dayjs
 // dayjs 中文 https://www.mdeditor.tw/pl/2Mf3/zh-tw
+// 按鈕觸發 https://www.itread01.com/content/1549474753.html
 
 import { Component, OnInit } from '@angular/core';
 import { FireAuthHelperService } from '../../../shared/common/fire-auth-helper/fire-auth-helper.service';
 import { DialogHelperService } from '../../../shared/common/dialog-helper/dialog-helper.service';
 import { MatDialogConfig } from '@angular/material/dialog';
 import SignIn from '../../../shared/models/sign-in';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 import { FireStorageHelperService } from '../../../shared/common/fire-storage-helper/fire-storage-helper.service'
 import UserInfoLog from '../../../shared/models/user-info-log';
 import { EnumSignInInfoState } from '../../../shared/enum/enum-user-info-log-state';
@@ -31,7 +32,7 @@ export class SignInComponent implements OnInit {
   SignInState: any | null;
   SignInForm: SignIn = { Email: "", Password: "" };
   RandomColor: string = "";
-  _UserInfoLog: UserInfoLog = { State: "", Millisecond: "", Token: "", Email: "" };
+  _UserInfoLog: UserInfoLog = { State: "", Time: "", Token: "", Email: "" };
   _EnumSignInInfoState = EnumSignInInfoState;
 
   constructor(
@@ -41,11 +42,15 @@ export class SignInComponent implements OnInit {
     private _FireStorageHelper: FireStorageHelperService
   ) {
 
+    _FireAuthHelper.CheckStorage();
+
   }
 
   ngOnInit(): void {
 
     this.RandomColor = this.getRandomColor();
+
+
 
   }
 
@@ -58,18 +63,19 @@ export class SignInComponent implements OnInit {
 
         // 將上線資訊新增到 _RealtimeDatabase 用於 Auth Guard 認證
         this._UserInfoLog.Email = value.user.email;
-        this._UserInfoLog.Millisecond = dayjs().format('dddd, MMMM D, YYYY h:mm A');
+        this._UserInfoLog.Time = dayjs().format('dddd, MMMM D, YYYY h:mm A');
         this._UserInfoLog.Token = value.user.a.c;
         this._UserInfoLog.State = this._EnumSignInInfoState.SignIn;
         let Reference: any = this._FireStorageHelper.GetAngularFireList('UserInfoLog').push(this._UserInfoLog);
         // console.log('Reference', Reference);
 
         // 將資料存到sessionStorage
+        sessionStorage.setItem('Email', value.user.email);
         sessionStorage.setItem('AuthToken', value.user.a.c);
         sessionStorage.setItem('AuthTokenId', Reference.path.pieces_[1]);
 
         // 轉移網址
-        this._router.navigate(['/dashboard']);
+        this._router.navigate(['/dashboard/']);
       })
       .catch(err => {
         console.log('Something went wrong:', err.message);

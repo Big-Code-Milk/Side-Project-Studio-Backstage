@@ -11,6 +11,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 import SignIn from '../../../shared/models/sign-in';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,7 @@ export class FireAuthHelperService {
 
   constructor(
     private _AngularFireAuth: AngularFireAuth,
+    private _router: Router,
   ) {
     this.SignInState = this._AngularFireAuth.authState;
 
@@ -43,6 +45,17 @@ export class FireAuthHelperService {
   // 取得使用者資訊
   GetSignInState() {
     return this.SignInState;
+  }
+
+  // 避免重複狂 call api 如果本地端有值就給過
+  CheckStorage() {
+
+    let AuthToken = sessionStorage.getItem('AuthToken');
+
+    if (AuthToken !== undefined || AuthToken !== null || AuthToken !== "") {
+      // 轉移網址
+      this._router.navigate(['/dashboard/']);
+    }
   }
 
   // 註冊

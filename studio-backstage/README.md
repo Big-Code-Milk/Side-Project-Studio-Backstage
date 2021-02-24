@@ -124,7 +124,9 @@
 
 19. `npm i -g angular-cli-ghpages` 成功 repo 到 github page 結果只要 build 完，直接放到另外一個專案 push 就好... 根本沒那麼麻煩還要用套件，考慮刪除
 
-20. 完成 UserInfoLog 顯示
+20. angular 偵測按鈕，登入 enter
+
+21. 完成 UserInfoLog 顯示
 
 ## Angular Material
 

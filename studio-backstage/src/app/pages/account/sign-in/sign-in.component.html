@@ -14,7 +14,7 @@
             </mat-form-field>
             <span style="padding: 0 2em;"> </span>
             <mat-form-field>
-                <input [(ngModel)]="SignInForm.Password" type="password" name="SignInForm.Password" matInput placeholder="密碼" required/>
+                <input [(ngModel)]="SignInForm.Password" type="password" name="SignInForm.Password" matInput placeholder="密碼" required (keyup.enter)="CommonSignIn()" />
                 <!-- <mat-hint>簡單介紹一下你的興趣吧！</mat-hint>
                 <mat-error>請記得輸入自我介紹喔！</mat-error> -->
             </mat-form-field>
