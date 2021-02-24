@@ -10,6 +10,7 @@ import { DialogHelperService } from '../../../shared/common/dialog-helper/dialog
 import { MatDialogConfig } from '@angular/material/dialog';
 import SignIn from '../../../shared/models/sign-in';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { IndexedDbHelperService } from '../../../shared/common/indexed-db-helper/indexed-db-helper.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -22,14 +23,17 @@ export class SignInComponent implements OnInit {
   SignInState: any | null;
   SignInForm: SignIn = { Email: "", Password: "" };
   RandomColor: string = "";
+  _firebaseLocalStorageDb: IDBOpenDBRequest;
 
   constructor(
     private _FireAuthHelper: FireAuthHelperService,
     private _DialogHelperService: DialogHelperService,
-    private router: Router
+    private _router: Router,
+    private _IndexedDbHelper: IndexedDbHelperService
   ) {
 
-
+    this._firebaseLocalStorageDb = this._IndexedDbHelper.OpenIndexedDB("firebaseLocalStorageDb");
+    console.log('this._firebaseLocalStorageDb', this._firebaseLocalStorageDb);
   }
 
   ngOnInit(): void {
@@ -44,7 +48,7 @@ export class SignInComponent implements OnInit {
       .then(value => {
         console.log('Success!', value);
         this.SignInForm.Verification = 'Success!' + value;
-        // this.router.navigate(['/heroes', { id: heroId }]);
+        // this._router.navigate(['/heroes', { id: heroId }]);
       })
       .catch(err => {
         console.log('Something went wrong:', err.message);
@@ -55,7 +59,7 @@ export class SignInComponent implements OnInit {
   // 隨機取 rgb 字串
   getRandomColor() {
     var rgb = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',0.4)';
-    console.log(rgb);
+    // console.log(rgb);
     return rgb;
   }
 
