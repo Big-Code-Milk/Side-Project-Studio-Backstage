@@ -1,8 +1,13 @@
+// 參考
+// dayjs 中文 https://day.js.org/docs/en/installation/typescript
+
 import { CommonModule, JsonPipe } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { PrettyJsonModule } from 'angular2-prettyjson';
 
-
+import * as dayjs from 'dayjs'
+import * as isLeapYear from 'dayjs/plugin/isLeapYear' // import plugin
+import 'dayjs/locale/zh-tw' // import locale
 
 @NgModule({
   declarations: [],
@@ -14,6 +19,12 @@ import { PrettyJsonModule } from 'angular2-prettyjson';
   ]
 })
 export class BaseSharedModule {
+
+  constructor(
+  ) {
+    dayjs.extend(isLeapYear) // use plugin
+    dayjs.locale('zh-tw') // use locale
+  }
 
   // 加入forRoot，這裡未來會放一些只會在app.module建立的service
   // 因為我們這個module會多次注入，如果你直接在上面寫providers(注入service)，

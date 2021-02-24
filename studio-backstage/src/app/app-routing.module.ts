@@ -10,7 +10,7 @@ const routes: Routes = [{
   component: SignInComponent
 },
 {
-  path: 'Dashboard',
+  path: 'dashboard',
   canActivate: [AuthGuard],
   canActivateChild: [AuthGuard],
   component: DashboardComponent,

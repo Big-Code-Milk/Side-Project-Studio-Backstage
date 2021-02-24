@@ -1,4 +1,4 @@
-export enum SignInInfoState {
+export enum EnumSignInInfoState {
   SignIn = "SignIn",
   SignOut = "SignOut",
   SignUp = "SignUp",
