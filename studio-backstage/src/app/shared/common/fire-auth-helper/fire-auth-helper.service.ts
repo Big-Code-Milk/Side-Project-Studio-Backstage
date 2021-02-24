@@ -4,6 +4,7 @@
 // https://ithelp.ithome.com.tw/articles/10194424
 // 權限管理 https://ithelp.ithome.com.tw/articles/10206354
 // 一般登入 https://alligator.io/angular/firebase-authentication-angularfire2/
+// IndexedDB https://developer.mozilla.org/zh-TW/docs/Web/API/IndexedDB_API/Using_IndexedDB
 
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -26,7 +27,7 @@ export class FireAuthHelperService {
 
     // window.localStorage 永久保存直到被刪除
     // window.sessionStorage 頁面沒被關閉
-    // FireAuth 已經在底層實作以上
+    // FireAuth 會加一包 IndexedDB 在 local
   }
 
   // 一般登入

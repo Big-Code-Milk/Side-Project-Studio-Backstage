@@ -116,6 +116,10 @@
 
 16. `npm install angular2-prettyjson` 利用 angular2-prettyjson 讓 json 在畫面上更值觀
 
+17. 接著搞 fire auth / sign in / router etc...
+
+18. fireStore
+
 ## Angular Material
 
 [AG Material 完全攻略](https://ithelp.ithome.com.tw/articles/10192517)

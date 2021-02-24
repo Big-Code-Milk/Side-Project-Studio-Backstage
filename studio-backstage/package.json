@@ -2,7 +2,6 @@
     "name": "studio-backstage",
     "version": "0.0.0",
     "scripts": {
-        "參考": "https://ithelp.ithome.com.tw/articles/10195372",
         "ng": "ng",
         "start": "ng serve --port 1165 --open",
         "build": "ng build",
@@ -27,6 +26,7 @@
         "@angular/router": "^11.2.1",
         "angular2-prettyjson": "^3.0.1",
         "angularfire2": "^5.4.2",
+        "dayjs": "^1.10.4",
         "firebase": "^8.2.9",
         "hammerjs": "^2.0.8",
         "rxjs": "~6.6.0",

@@ -33,11 +33,11 @@ export class FireStorageHelperService {
 
   // T 泛型 傳啥進來就啥型別
 
-  GetAngularFireObject<T>(QueryPath: string): AngularFireObject<T> {
+  GetAngularFireObject<T>(QueryPath: any): AngularFireObject<T> {
     return this._RealtimeDatabase.object(QueryPath);
   }
 
-  GetAngularFireList<T>(QueryPath: string): AngularFireList<T> {
+  GetAngularFireList<T>(QueryPath: any): AngularFireList<T> {
     return this._RealtimeDatabase.list(QueryPath);
   }
 
