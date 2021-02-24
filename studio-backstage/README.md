@@ -1,5 +1,7 @@
 # Front-end
 
+* 2021-0224 此處改為紀錄大章節，細節內容直接紀錄於程式碼內，從無到有的後台專案
+
 ## 參考
 
 [Angular Firebase 入門與實做](https://ithelp.ithome.com.tw/m/users/20104952/ironman/1554) => 結合 firebase
