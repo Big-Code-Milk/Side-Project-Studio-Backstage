@@ -2,13 +2,15 @@
     "name": "studio-backstage",
     "version": "0.0.0",
     "scripts": {
+        "指令參考": "https://ithelp.ithome.com.tw/articles/10195372",
+        "佈版 GihubPage 參考": "https://blog.poychang.net/publish-angular-app-to-github-pages/",
         "ng": "ng",
         "start": "ng serve --port 1165 --open",
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "build:prod": "ng build --prod",
+        "build:prod": "ng build --prod --build-optimizer",
         "build:dev": "node --max_old_space_size=10000 ./node_modules/@angular/cli/bin/ng build --prod"
     },
     "private": true,
