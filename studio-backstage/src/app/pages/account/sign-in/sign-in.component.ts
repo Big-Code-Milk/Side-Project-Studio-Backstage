@@ -34,6 +34,7 @@ export class SignInComponent implements OnInit {
 
     this._firebaseLocalStorageDb = this._IndexedDbHelper.OpenIndexedDB("firebaseLocalStorageDb");
     console.log('this._firebaseLocalStorageDb', this._firebaseLocalStorageDb);
+    this._firebaseLocalStorageDb.transaction("fbase_key");
   }
 
   ngOnInit(): void {

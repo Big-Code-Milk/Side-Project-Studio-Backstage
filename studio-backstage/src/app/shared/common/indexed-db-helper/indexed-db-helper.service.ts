@@ -1,5 +1,6 @@
 // 參考
 // https://dotblogs.com.tw/shadow/2019/10/31/140527
+// https://ithelp.ithome.com.tw/articles/10160292
 
 import { Injectable } from '@angular/core';
 
