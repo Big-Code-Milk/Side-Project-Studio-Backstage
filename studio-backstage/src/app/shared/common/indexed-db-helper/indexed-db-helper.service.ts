@@ -1,6 +1,9 @@
 // 參考
 // https://dotblogs.com.tw/shadow/2019/10/31/140527
 // https://ithelp.ithome.com.tw/articles/10160292
+// typescript indexeddb https://visualstudiomagazine.com/articles/2016/09/01/working-with-indexeddb.aspx
+
+// 總結 ts 實作 indexeddb 有點麻煩，改回原來 sessionStorage 方式 auth
 
 import { Injectable } from '@angular/core';
 
@@ -25,7 +28,7 @@ export class IndexedDbHelperService {
     this._indexedDB.deleteDatabase("");
   }
 
-  OpenIndexedDB(DBName: string) {
+  OpenIndexedDB(DBName: string): IDBOpenDBRequest {
     this._DBName = DBName;
     this._IDBOpenDBRequest = indexedDB.open(this._DBName)
     return this._IDBOpenDBRequest;

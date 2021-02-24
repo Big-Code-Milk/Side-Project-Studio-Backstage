@@ -10,7 +10,6 @@ import { DialogHelperService } from '../../../shared/common/dialog-helper/dialog
 import { MatDialogConfig } from '@angular/material/dialog';
 import SignIn from '../../../shared/models/sign-in';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { IndexedDbHelperService } from '../../../shared/common/indexed-db-helper/indexed-db-helper.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -23,18 +22,16 @@ export class SignInComponent implements OnInit {
   SignInState: any | null;
   SignInForm: SignIn = { Email: "", Password: "" };
   RandomColor: string = "";
-  _firebaseLocalStorageDb: IDBOpenDBRequest;
 
   constructor(
     private _FireAuthHelper: FireAuthHelperService,
     private _DialogHelperService: DialogHelperService,
     private _router: Router,
-    private _IndexedDbHelper: IndexedDbHelperService
   ) {
 
-    this._firebaseLocalStorageDb = this._IndexedDbHelper.OpenIndexedDB("firebaseLocalStorageDb");
-    console.log('this._firebaseLocalStorageDb', this._firebaseLocalStorageDb);
-    this._firebaseLocalStorageDb.transaction("fbase_key");
+
+
+
   }
 
   ngOnInit(): void {
