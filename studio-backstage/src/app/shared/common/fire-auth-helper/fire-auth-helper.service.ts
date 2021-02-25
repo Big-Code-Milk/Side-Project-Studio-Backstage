@@ -5,6 +5,7 @@
 // 權限管理 https://ithelp.ithome.com.tw/articles/10206354
 // 一般登入 https://alligator.io/angular/firebase-authentication-angularfire2/
 // IndexedDB https://developer.mozilla.org/zh-TW/docs/Web/API/IndexedDB_API/Using_IndexedDB
+// window close https://forum.angular.tw/t/angular-window-close/234
 
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';

@@ -130,6 +130,8 @@
 
 23. 完成 UserInfoLog 顯示
 
+24. SignOut
+
 ## Angular Material
 
 [AG Material 完全攻略](https://ithelp.ithome.com.tw/articles/10192517)
