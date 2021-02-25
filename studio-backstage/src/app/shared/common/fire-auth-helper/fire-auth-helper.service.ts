@@ -39,7 +39,10 @@ export class FireAuthHelperService {
 
   // 登出
   SignOut() {
-    this._AngularFireAuth.signOut();
+    this._AngularFireAuth.signOut().then(() => {
+      this._router.navigate(['/SignIn']);
+      sessionStorage.clear();
+    });
   }
 
   // 取得使用者資訊

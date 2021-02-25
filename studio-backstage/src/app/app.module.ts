@@ -1,3 +1,6 @@
+// 參考
+// window 物件 https://stackoverflow.com/questions/34177221/how-to-inject-window-into-a-service
+
 import { environment } from '../environments/environment';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -37,7 +40,7 @@ import { ErrorLogHandler } from '../app/shared/common/error-log-handler/error-lo
     ExampleModule,
   ],
   providers: [
-    { provide: ErrorLogHandler, useFactory: ErrorLogHandler }
+    { provide: ErrorLogHandler, useFactory: ErrorLogHandler },
   ],
   bootstrap: [AppComponent]
 })

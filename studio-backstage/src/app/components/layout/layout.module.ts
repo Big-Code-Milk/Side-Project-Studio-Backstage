@@ -11,12 +11,14 @@ import { FireStorageHelperService } from '../../shared/common/fire-storage-helpe
 import { DialogComponent } from './dialog/dialog.component';
 
 import { BaseSharedModule } from '../../shared/module/base-shared.module';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     SideNavComponent,
-    DialogComponent
+    DialogComponent,
+    MenuComponent
   ],
   providers: [
     FireStorageHelperService
@@ -33,7 +35,9 @@ import { BaseSharedModule } from '../../shared/module/base-shared.module';
   ]
 })
 export class LayoutModule {
-  constructor(@Optional() @SkipSelf() parentModule: LayoutModule) {
+  constructor(
+    @Optional() @SkipSelf() parentModule: LayoutModule
+  ) {
     // 可將這段拉出去建立一個ts檔案，未來需要指注入一次的module都可以使用
     if (parentModule) {
       throw new Error(`LayoutModule 已加載 FirebaseHelperService. 確保單向資料流, 請勿再重複加載避免資料汙染.`);
