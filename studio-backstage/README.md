@@ -122,11 +122,13 @@
 
 18. 完成 UserInfoLog 寫入成功
 
-19. `npm i -g angular-cli-ghpages` 成功 repo 到 github page 結果只要 build 完，直接放到另外一個專案 push 就好... 根本沒那麼麻煩還要用套件，考慮刪除
+19. `npm i -g angular-cli-ghpages` 成功 repo 到 github page，build 完，執行此套件指令，檔案放到另外一個專案 push 就好
 
-20. angular 偵測按鈕，登入 enter
+21. 包版指令 `npx ngh --dir=dist/PROJECT_NAME --no-silent`
 
-21. 完成 UserInfoLog 顯示
+22. angular 偵測按鈕，登入 enter
+
+23. 完成 UserInfoLog 顯示
 
 ## Angular Material
 
