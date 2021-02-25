@@ -132,7 +132,7 @@
 
 24. SignOut
 
-25. 公司使用開源專案 ... 感覺超好用，但感覺會變成學到的東西變少，等熟一點在把後台搬過去。 https://github.com/akveo/ngx-admin
+25. 公司使用開源專案 ... 感覺超好用，但感覺會變成學到的東西變少，等熟一點在把後台搬過去。 [ngx-admin](https://github.com/akveo/ngx-admin) / [ngrx](https://ngrx.io/)
 
 ## Angular Material
 
