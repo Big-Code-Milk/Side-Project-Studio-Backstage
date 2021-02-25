@@ -12,12 +12,13 @@ export class DialogComponent implements OnInit {
   Msg: any;
 
   constructor(@Inject(MAT_DIALOG_DATA) private _DialogData: any) {
-    //console.clear();
-    console.log(_DialogData);
-    this.Msg = _DialogData;
+
   }
 
   ngOnInit(): void {
+    //console.clear();
+    console.log(this._DialogData);
+    this.Msg = this._DialogData;
   }
 
 }

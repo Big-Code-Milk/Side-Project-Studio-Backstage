@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FireStorageHelperService } from '../../../shared/common/fire-storage-helper/fire-storage-helper.service'
+import UserInfoLog from '../../../shared/models/user-info-log'
 
 @Component({
   selector: 'app-side-nav',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideNavComponent implements OnInit {
 
-  constructor() { }
+  _UserInfoLog = [] as UserInfoLog[];
+
+  constructor(
+    private _FireStorageHelper: FireStorageHelperService
+  ) {
+
+  }
 
   ngOnInit(): void {
+    this._FireStorageHelper.GetAngularFireList('UserInfoLog').valueChanges().subscribe((Data: any) => {
+      console.log('Data', Data)
+    });
   }
 
 }

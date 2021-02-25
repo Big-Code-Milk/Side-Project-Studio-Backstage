@@ -42,15 +42,12 @@ export class SignInComponent implements OnInit {
     private _FireStorageHelper: FireStorageHelperService
   ) {
 
-    _FireAuthHelper.CheckStorage();
-
   }
 
   ngOnInit(): void {
 
     this.RandomColor = this.getRandomColor();
-
-
+    this._FireAuthHelper.CheckStorage();
 
   }
 
