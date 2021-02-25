@@ -30,7 +30,10 @@
                 UserInfoLog
             </mat-panel-description>
         </mat-expansion-panel-header>
-        <p></p>
-        <p *ngFor=""></p>
+        <span>Welcome!!</span><span style="padding-left: 3em;">{{_Email}}</span>
+        <hr>
+        <p *ngFor="let UserInfoLog of _UserInfoLog">
+            {{UserInfoLog.Email}} ： {{UserInfoLog.State}} <br> {{UserInfoLog.Time}}
+        </p>
     </mat-expansion-panel>
 </mat-accordion>
