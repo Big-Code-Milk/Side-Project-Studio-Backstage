@@ -9,6 +9,7 @@ import UserInfoLog from '../../../shared/models/user-info-log';
 import * as dayjs from 'dayjs';
 import { EnumSignInInfoState } from '../../../shared/enum/enum-user-info-log-state';
 import { FireStorageHelperService } from '../../../shared/common/fire-storage-helper/fire-storage-helper.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ export class JumpAwayGuardGuard implements CanDeactivate<unknown> {
   _EnumSignInInfoState = EnumSignInInfoState;
 
   constructor(
-    private _FireStorageHelper: FireStorageHelperService
+    private _FireStorageHelper: FireStorageHelperService,
+    private _AngularFireAuth: AngularFireAuth,
   ) { }
 
   canDeactivate(
@@ -29,13 +31,19 @@ export class JumpAwayGuardGuard implements CanDeactivate<unknown> {
     nextState?: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    this._UserInfoLog.Email = sessionStorage.getItem('Email');
-    this._UserInfoLog.Time = dayjs().format('dddd, MMMM D, YYYY h:mm A');
-    this._UserInfoLog.Token = sessionStorage.getItem('AuthToken');
-    this._UserInfoLog.State = this._EnumSignInInfoState.SignOut;
-    let Reference: any = this._FireStorageHelper.GetAngularFireList('UserInfoLog').push(this._UserInfoLog);
-    sessionStorage.clear();
+    let Email = sessionStorage.getItem('Email');
 
+    console.log('Email', Email);
+
+    if (Email != null) {
+      this._UserInfoLog.Email = Email;
+      this._UserInfoLog.Time = dayjs().format('dddd, MMMM D, YYYY h:mm A');
+      this._UserInfoLog.Token = sessionStorage.getItem('AuthToken');
+      this._UserInfoLog.State = this._EnumSignInInfoState.SignOut;
+      let Reference: any = this._FireStorageHelper.GetAngularFireList('UserInfoLog').push(this._UserInfoLog);
+      sessionStorage.clear();
+      this._AngularFireAuth.signOut();
+    }
     return true;
   }
 

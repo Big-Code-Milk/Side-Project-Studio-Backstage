@@ -57,16 +57,19 @@ export class FireAuthHelperService {
 
   // 登出
   SignOut() {
-    this._AngularFireAuth.signOut().then(() => {
-      // 將離線資訊新增到
-      this._UserInfoLog.Email = sessionStorage.getItem('Email');
-      this._UserInfoLog.Time = dayjs().format('dddd, MMMM D, YYYY h:mm A');
-      this._UserInfoLog.Token = sessionStorage.getItem('AuthToken');
-      this._UserInfoLog.State = this._EnumSignInInfoState.SignOut;
-      let Reference: any = this._FireStorageHelper.GetAngularFireList('UserInfoLog').push(this._UserInfoLog);
-      sessionStorage.clear();
-      this._router.navigate(['/SignIn']);
-    });
+    // 將離線資訊新增到
+    this._UserInfoLog.Email = sessionStorage.getItem('Email');
+    this._UserInfoLog.Time = dayjs().format('dddd, MMMM D, YYYY h:mm A');
+    this._UserInfoLog.Token = sessionStorage.getItem('AuthToken');
+    this._UserInfoLog.State = this._EnumSignInInfoState.SignOut;
+    let Reference: any = this._FireStorageHelper.GetAngularFireList('UserInfoLog').push(this._UserInfoLog).then(
+      () => {
+        sessionStorage.clear();
+        this._router.navigate(['/SignIn']);
+        this._AngularFireAuth.signOut();
+      }
+    );
+    ;
   }
 
   // 取得使用者資訊
