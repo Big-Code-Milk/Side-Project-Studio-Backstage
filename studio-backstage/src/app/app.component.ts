@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'studio-backstage';
+
+  constructor(
+
+  ) {
+
+  }
+
 }

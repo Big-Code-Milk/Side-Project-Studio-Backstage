@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { SignInComponent } from './pages/account/sign-in/sign-in.component';
 import { DashboardComponent } from './components/layout/dashboard/dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
-import { AuthGuard } from './shared/auth/auth.guard';
+import { AuthGuard } from './shared/Guards/auth-guard/auth.guard';
+import { JumpAwayGuardGuard } from './shared/Guards/jump-away-guard/jump-away-guard.guard';
 
 const routes: Routes = [{
   path: '',
@@ -13,6 +14,7 @@ const routes: Routes = [{
   path: 'dashboard',
   canActivate: [AuthGuard],
   canActivateChild: [AuthGuard],
+  canDeactivate: [JumpAwayGuardGuard],
   component: DashboardComponent,
   children: [
     { path: '', component: HomeComponent },

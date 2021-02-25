@@ -16,10 +16,10 @@ import { DialogHelperService } from '../../../shared/common/dialog-helper/dialog
 import { MatDialogConfig } from '@angular/material/dialog';
 import SignIn from '../../../shared/models/sign-in';
 import { Router } from '@angular/router';
-import { FireStorageHelperService } from '../../../shared/common/fire-storage-helper/fire-storage-helper.service'
+import { FireStorageHelperService } from '../../../shared/common/fire-storage-helper/fire-storage-helper.service';
 import UserInfoLog from '../../../shared/models/user-info-log';
 import { EnumSignInInfoState } from '../../../shared/enum/enum-user-info-log-state';
-import * as dayjs from 'dayjs'
+import * as dayjs from 'dayjs';
 
 @Component({
   selector: 'app-sign-in',

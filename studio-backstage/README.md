@@ -124,7 +124,7 @@
 
 19. `npm i -g angular-cli-ghpages` 成功 repo 到 github page，build 完，執行此套件指令，檔案放到另外一個專案 push 就好
 
-21. 包版指令 `npx ngh --dir=dist/PROJECT_NAME --no-silent`
+21. 包版指令 `npx ngh --dir=dist/PROJECT_NAME --no-silent` 後來發現是 root 沒設好，還是刪除套件
 
 22. angular 偵測按鈕，登入 enter
 
