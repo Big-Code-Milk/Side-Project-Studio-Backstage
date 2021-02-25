@@ -11,8 +11,8 @@
         "lint": "ng lint",
         "e2e": "ng e2e",
         "沒有index錯誤": "https://blog.csdn.net/julying/article/details/110928362",
-        "build:prod": "ng build --prod --build-optimizer ---verbose --base-href=/Cara-Drumstick-Bug/",
-        "build:dev": "node --max_old_space_size=10000 ./node_modules/@angular/cli/bin/ng build --prod"
+        "build:prod": "ng build --prod --build-optimizer ---verbose",
+        "build:dev": "node --max_old_space_size=10000 ./node_modules/@angular/cli/bin/ng build --prod --base-href=/Cara-Drumstick-Bug/"
     },
     "private": true,
     "dependencies": {
