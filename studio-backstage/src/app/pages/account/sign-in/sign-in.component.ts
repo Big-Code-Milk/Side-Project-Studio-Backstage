@@ -63,7 +63,7 @@ export class SignInComponent implements OnInit {
         this._UserInfoLog.Time = dayjs().format('dddd, MMMM D, YYYY h:mm A');
         this._UserInfoLog.Token = value.user.a.c;
         this._UserInfoLog.State = this._EnumSignInInfoState.SignIn;
-        let Reference: any = this._FireStorageHelper.GetAngularFireList('UserInfoLog').push(this._UserInfoLog);
+        let Reference: any = this._FireStorageHelper.GetFireList('UserInfoLog').push(this._UserInfoLog);
         // console.log('Reference', Reference);
 
         // 將資料存到sessionStorage

@@ -62,7 +62,7 @@ export class FireAuthHelperService {
     this._UserInfoLog.Time = dayjs().format('dddd, MMMM D, YYYY h:mm A');
     this._UserInfoLog.Token = sessionStorage.getItem('AuthToken');
     this._UserInfoLog.State = this._EnumSignInInfoState.SignOut;
-    let Reference: any = this._FireStorageHelper.GetAngularFireList('UserInfoLog').push(this._UserInfoLog).then(
+    let Reference: any = this._FireStorageHelper.GetFireList('UserInfoLog').push(this._UserInfoLog).then(
       () => {
         sessionStorage.clear();
         this._router.navigate(['/SignIn']);

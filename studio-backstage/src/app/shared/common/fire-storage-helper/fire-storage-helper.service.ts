@@ -8,7 +8,7 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -33,14 +33,15 @@ export class FireStorageHelperService {
 
   // T 泛型 傳啥進來就啥型別
 
-  GetAngularFireObject<T>(QueryPath: any): AngularFireObject<T> {
+  GetFireObject<T>(QueryPath: any): AngularFireObject<T> {
     return this._RealtimeDatabase.object(QueryPath);
   }
 
-  GetAngularFireList<T>(QueryPath: any): AngularFireList<T> {
+  GetFireList<T>(QueryPath: any): AngularFireList<T> {
     return this._RealtimeDatabase.list(QueryPath);
   }
 
+  // Demo 用的 感覺要再多做一層
   GetKeys(QueryPath: string) {
     let _Responce: AngularFireList<any> = this._RealtimeDatabase.list(QueryPath)
     return _Responce.snapshotChanges().pipe(
@@ -48,5 +49,15 @@ export class FireStorageHelperService {
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       )
     );
+  }
+
+  // https://blog.kevinyang.net/2018/04/30/angular-firebase/
+
+  GetFireCollection<T>(QueryPath: string): AngularFirestoreCollection<T> {
+    return this._CloudFirestore.collection<T>(QueryPath);
+  }
+
+  GetFireDocument<T>(QueryPath: string): AngularFirestoreDocument<T> {
+    return this._CloudFirestore.doc<T>(QueryPath);
   }
 }
