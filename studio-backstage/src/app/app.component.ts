@@ -23,32 +23,31 @@ export class AppComponent {
     private _AngularFireAuth: AngularFireAuth,
     private _FireStorageHelper: FireStorageHelperService
   ) {
-
   }
 
   @HostListener('window:beforeunload') BeforeunloadHandler(event: any) {
 
     console.log(window.event)
+    console.log(event)
+    //   let Email = sessionStorage.getItem('Email');
 
-    let Email = sessionStorage.getItem('Email');
+    //   console.log('beforeunload');
 
-    console.log('beforeunload');
+    //   if (Email != null) {
+    //     this._UserInfoLog.Email = Email;
+    //     this._UserInfoLog.Time = dayjs().format('dddd, MMMM D, YYYY h:mm A');
+    //     this._UserInfoLog.Token = sessionStorage.getItem('AuthToken');
+    //     this._UserInfoLog.State = this._EnumSignInInfoState.SignOut;
+    //     let Reference: any = this._FireStorageHelper.GetFireList('UserInfoLog').push(this._UserInfoLog);
+    //     sessionStorage.clear();
+    //     this._AngularFireAuth.signOut();
+    //   }
 
-    if (Email != null) {
-      this._UserInfoLog.Email = Email;
-      this._UserInfoLog.Time = dayjs().format('dddd, MMMM D, YYYY h:mm A');
-      this._UserInfoLog.Token = sessionStorage.getItem('AuthToken');
-      this._UserInfoLog.State = this._EnumSignInInfoState.SignOut;
-      let Reference: any = this._FireStorageHelper.GetFireList('UserInfoLog').push(this._UserInfoLog);
-      sessionStorage.clear();
-      this._AngularFireAuth.signOut();
-    }
+    //   console.log('signOut');
 
-    console.log('signOut');
+    //   (event || window.event).returnValue = "";
 
-    //(event || window.event).returnValue = "";
-
-    console.log('returnValue');
+    //   console.log('returnValue');
   }
 
 }

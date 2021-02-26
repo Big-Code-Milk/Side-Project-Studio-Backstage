@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [],
@@ -24,7 +25,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatInputModule,
     MatCardModule,
     MatDialogModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTabsModule,
   ]
 })
 export class SharedAngularMaterialModule { }
