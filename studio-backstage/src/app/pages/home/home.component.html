@@ -1,5 +1,56 @@
+<mat-expansion-panel hideToggle="false" expanded="true">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            <i style="padding-right: 1em;" class="material-icons">accessibility_new</i>
+            <h2>G.T.D</h2>
+        </mat-panel-title>
+        <mat-panel-description>
+            Getting Things Done 的主要原則在於一個人需要通過記錄的方式把頭腦中的各種任務移出來。 通過這樣的方式，頭腦可以不用塞滿各種需要完成的事情，而集中精力在正在完成的事情。
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <hr>
+    <mat-selection-list #shoes>
+        <mat-list-option *ngFor="let shoe of typesOfShoes">
+            {{shoe}}
+        </mat-list-option>
+    </mat-selection-list>
+    <hr>
+    <p>
+        Options selected: {{shoes.selectedOptions.selected.length}}
+    </p>
+</mat-expansion-panel>
+<hr>
 <mat-tab-group mat-align-tabs="start">
-  <mat-tab label="公告"></mat-tab>
-  <mat-tab label="Second">Content 2</mat-tab>
-  <mat-tab label="Third">Content 3</mat-tab>
+    <!-- http://hk.uwenku.com/question/p-ngdxwddt-od.html -->
+    <mat-tab label="Top 5">
+        <mat-expansion-panel *ngFor="let i of number">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h4>Task {{i}}</h4>
+                </mat-panel-title>
+                <mat-panel-description>
+                    Getting Things Done 的主要原則在於一個人需要通過記錄的方式把頭腦中的各種任務移出來。 通過這樣的方式，頭腦可以不用塞滿各種需要完成的事情，而集中精力在正在完成的事情。
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <hr>
+            <mat-selection-list #shoes>
+                <mat-list-option *ngFor="let shoe of typesOfShoes">
+                    {{shoe}}
+                </mat-list-option>
+            </mat-selection-list>
+            <hr>
+            <p>
+                Options selected: {{shoes.selectedOptions.selected.length}}
+            </p>
+        </mat-expansion-panel>
+    </mat-tab>
+    <mat-tab label="公告">
+
+    </mat-tab>
+    <mat-tab label="公差">
+
+    </mat-tab>
+    <mat-tab label="公狗">
+
+    </mat-tab>
 </mat-tab-group>
