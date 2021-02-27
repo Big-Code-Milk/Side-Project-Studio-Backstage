@@ -24,6 +24,8 @@ import { ExampleModule } from './components/example/example.module';
 
 import { ErrorLogHandler } from '../app/shared/common/error-log-handler/error-log-hanler';
 
+import { MatTableModule } from '@angular/material/table';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -38,6 +40,7 @@ import { ErrorLogHandler } from '../app/shared/common/error-log-handler/error-lo
     LayoutModule,
     PagesModule,
     ExampleModule,
+    MatTableModule,
   ],
   providers: [
     { provide: ErrorLogHandler, useFactory: ErrorLogHandler },

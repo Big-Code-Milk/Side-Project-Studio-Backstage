@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [],
@@ -29,6 +30,7 @@ import { MatListModule } from '@angular/material/list';
     MatMenuModule,
     MatTabsModule,
     MatListModule,
+    MatPaginatorModule,
   ]
 })
 export class SharedAngularMaterialModule { }

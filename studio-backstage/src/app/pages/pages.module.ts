@@ -8,17 +8,21 @@ import { SharedAngularMaterialModule } from '../shared/module/angular-material.m
 import { SignInComponent } from './account/sign-in/sign-in.component'
 
 import { FormsModule } from '@angular/forms';
+import { GettingThingsDoneComponent } from './getting-things-done/getting-things-done.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    SignInComponent
+    SignInComponent,
+    GettingThingsDoneComponent
   ],
   imports: [
     CommonModule,
     PagesRoutingModule,
     SharedAngularMaterialModule,
-    FormsModule
+    FormsModule,
+    MatTableModule,
   ]
 })
 export class PagesModule { }
