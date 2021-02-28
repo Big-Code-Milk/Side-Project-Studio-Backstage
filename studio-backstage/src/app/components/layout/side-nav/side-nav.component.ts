@@ -17,10 +17,10 @@ export class SideNavComponent implements OnInit {
   ) {
 
     // valueChanges 取出來是過濾掉 key 的 View 可以直接用
-    this._FireStorageHelper.GetFireList('UserInfoLog').valueChanges().subscribe((Data: any) => {
-      this._UserInfoLog = Data.reverse();
-      //console.log('this._UserInfoLog', this._UserInfoLog);
-    });
+    // this._FireStorageHelper.GetFireList('UserInfoLog').valueChanges().subscribe((Data: any) => {
+    //   this._UserInfoLog = Data.reverse();
+    //   //console.log('this._UserInfoLog', this._UserInfoLog);
+    // });
 
     //console.log('SideNavComponent');
   }
