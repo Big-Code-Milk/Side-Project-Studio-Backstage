@@ -1,8 +1,14 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 // 没有初始化程序错误... http://yuanmacha.com/15604845725.html
+// paths https://ithelp.ithome.com.tw/m/articles/10193074
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "@XXXXX": [
+        ""
+      ],
+    },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

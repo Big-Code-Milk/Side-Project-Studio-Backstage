@@ -28,16 +28,13 @@ const NAMES: string[] = [
 })
 export class ProcessComponent implements AfterViewInit, OnInit {
 
-  // @ViewChild(MatPaginator) paginator: MatPaginator = new MatPaginator(new MatPaginatorIntl, this.ref, undefined);
-  @ViewChild(MatSort) sort: MatSort = new MatSort;
-
-
   displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
   dataSource: MatTableDataSource<UserData>;
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
   constructor(
-    private matPaginatorIntl: MatPaginatorIntl,
-    private ref: ChangeDetectorRef,
   ) {
     // Create 100 users
     const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
@@ -48,7 +45,7 @@ export class ProcessComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    //this.dataSource.paginator = this.paginator;
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
