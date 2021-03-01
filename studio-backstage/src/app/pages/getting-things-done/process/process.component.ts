@@ -28,7 +28,7 @@ const NAMES: string[] = [
 })
 export class ProcessComponent implements AfterViewInit, OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
+  displayedColumns: string[] = ['id', 'name', 'progress', 'color', 'tool'];
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
