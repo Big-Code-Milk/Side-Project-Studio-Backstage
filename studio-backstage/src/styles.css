@@ -21,6 +21,7 @@ body {
     text-decoration: none;
 }
 
+
 /* 滑鼠移至連結 */
 
 .ButtonLink:hover {
@@ -43,12 +44,24 @@ body {
     width: 100vw;
 }
 
+
 /* 由子層控制畫面 */
-mat-dialog-container{
+
+mat-dialog-container {
+    padding: 0 !important;
+    border-radius: 10px !important;
+}
+
+mat-dialog-content {
+    margin: 0 !important;
     padding: 0 !important;
 }
 
-mat-dialog-content{
-  margin: 0 !important;
-  padding: 0 !important;
+mat-sidenav-content {
+    height: 100vh !important;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.mat-tab-label {
+    background-color: white;
 }

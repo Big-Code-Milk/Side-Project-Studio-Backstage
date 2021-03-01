@@ -4,16 +4,12 @@
         <mat-card class="row align-items-center justify-content-center" style="max-width: 30vw;  ;position: absolute;margin-top: 35vh;left: 16vw;;
 ">
             <mat-card-header>
-                <mat-card-title>SignIn</mat-card-title>
-                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                <mat-card-title>登入</mat-card-title>
             </mat-card-header>
             <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
             <mat-card-content style="margin:0.3em 2em;">
-                <p>
-                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
-                </p>
                 <mat-form-field>
-                    <input [(ngModel)]="SignInForm.Email" type="email" name="SignInForm.Email" matInput placeholder="信箱" />
+                    <input [(ngModel)]="SignInForm.Email" type="email" name="SignInForm.Email" matInput placeholder="信箱" required/>
                 </mat-form-field>
                 <span style="padding: 0 2em;"> </span>
                 <mat-form-field>

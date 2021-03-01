@@ -1,4 +1,5 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
+// 没有初始化程序错误... http://yuanmacha.com/15604845725.html
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -19,7 +20,8 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "strictPropertyInitialization": false,
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

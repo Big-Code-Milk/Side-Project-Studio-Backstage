@@ -9,13 +9,19 @@ import * as dayjs from 'dayjs'
 import * as isLeapYear from 'dayjs/plugin/isLeapYear' // import plugin
 import 'dayjs/locale/zh-tw' // import locale
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
-    PrettyJsonModule
+    PrettyJsonModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class BaseSharedModule {

@@ -25,6 +25,7 @@ import { ExampleModule } from './components/example/example.module';
 import { ErrorLogHandler } from '../app/shared/common/error-log-handler/error-log-hanler';
 
 import { MatTableModule } from '@angular/material/table';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,8 @@ import { MatTableModule } from '@angular/material/table';
     PagesModule,
     ExampleModule,
     MatTableModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: ErrorLogHandler, useFactory: ErrorLogHandler },
