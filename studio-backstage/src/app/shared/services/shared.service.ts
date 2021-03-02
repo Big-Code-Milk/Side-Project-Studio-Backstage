@@ -16,8 +16,10 @@ export class SharedService {
   constructor(
   ) { }
 
-  SeAccounts<T>(Data: T[]) {
+  SetShareData<T>(Data: T[]) {
+    console.log('Data', Data);
     this._BehaviorSubject.next(Data);
+    console.log('SharedData', this.SharedData);
   }
 
 }

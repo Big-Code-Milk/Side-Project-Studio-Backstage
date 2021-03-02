@@ -26,14 +26,12 @@ import { ErrorLogHandler } from '../app/shared/common/error-log-handler/error-lo
 
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BaseComponent } from './components/base/base.component';
 
 import { SharedService } from './shared/services/shared.service'
 
 @NgModule({
   declarations: [
-    AppComponent,
-    BaseComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,

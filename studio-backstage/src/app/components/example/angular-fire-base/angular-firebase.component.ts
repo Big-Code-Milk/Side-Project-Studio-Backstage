@@ -8,6 +8,7 @@ import { FireStorageHelperService } from '../../../shared/common/fire-storage-he
 import { DialogHelperService } from '../../../shared/common/dialog-helper/dialog-helper.service';
 import { MatDialogConfig } from '@angular/material/dialog';
 
+import { SharedService } from '../../../shared/services/shared.service'
 @Component({
   selector: './app-demo-angular-fire-base',
   templateUrl: './angular-firebase.component.html',
@@ -24,11 +25,16 @@ export class AngularFirebaseComponent implements OnInit {
 
   DialogConfig: MatDialogConfig<any> = {};
 
+  SharedServiceTest: any;
+
   constructor(
     private _FireStorageHelper: FireStorageHelperService,
     private _db: AngularFireDatabase,
-    private _DialogHelper: DialogHelperService
+    private _DialogHelper: DialogHelperService,
+    private _SharedService: SharedService,
   ) {
+
+    _SharedService.SharedData.subscribe(x => { this.SharedServiceTest = x; })
 
     this.items = _FireStorageHelper.GetKeys('items');
     console.log('this.items', this.items);
