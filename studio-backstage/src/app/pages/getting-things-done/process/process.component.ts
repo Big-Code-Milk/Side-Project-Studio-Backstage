@@ -4,22 +4,17 @@ import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
+import GtdTask from '../../../shared/models/gtd-task';
+import { FireStorageHelperService } from '../../../shared/common/fire-storage-helper/fire-storage-helper.service';
+import { DocumentChangeAction } from '@angular/fire/firestore';
+import { map, startWith } from 'rxjs/operators';
 
-/** Constants used to fill up our data base. */
-const COLORS: string[] = [
-  'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
-  'aqua', 'blue', 'navy', 'black', 'gray'
-];
-const NAMES: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
+// export interface UserData {
+//   id: string;
+//   name: string;
+//   progress: string;
+//   color: string;
+// }
 
 @Component({
   selector: 'app-process',
@@ -28,25 +23,44 @@ const NAMES: string[] = [
 })
 export class ProcessComponent implements AfterViewInit, OnInit {
 
+  GtdTask = [] as GtdTask[];
+
   displayedColumns: string[] = ['id', 'name', 'progress', 'color', 'tool'];
-  dataSource: MatTableDataSource<UserData>;
+  dataSource: MatTableDataSource<GtdTask>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
+    private _FireStorageHelper: FireStorageHelperService
   ) {
-    // Create 100 users
-    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+    let _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task');
+    // 涉及 Rxjs 到時再研究，這段主要是由 snapshotChanges 這個服務取得 key 與 資料
+    let Data = _Collection.snapshotChanges().pipe(map((actions: DocumentChangeAction<GtdTask>[]) => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as GtdTask;
+        const id = a.payload.doc.id;
+        // 值得注意的是底下 ... es6 語法只能複製一層 obj ，無法複製 obj 內的 obj，可能到時要改
+        return { id, ...data };
+      });
+    })
+    );
+
+    Data.subscribe(ReturnData => {
+      this.GtdTask = ReturnData;
+      // init datatable
+      this.dataSource = new MatTableDataSource(this.GtdTask);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
 
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    // demo 在此生命週期設定 datatable 轉到資料取回時
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
   }
 
   ngOnInit(): void {
@@ -61,18 +75,4 @@ export class ProcessComponent implements AfterViewInit, OnInit {
     }
   }
 
-}
-
-
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
 }
