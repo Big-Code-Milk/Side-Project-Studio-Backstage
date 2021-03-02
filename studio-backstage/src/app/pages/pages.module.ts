@@ -11,7 +11,8 @@ import { GettingThingsDoneComponent } from './getting-things-done/getting-things
 import { CollectComponent } from './getting-things-done/collect/collect.component';
 import { ProcessComponent } from './getting-things-done/process/process.component';
 
-import { BaseSharedModule } from '../shared/module/base-shared.module'
+import { BaseSharedModule } from '../shared/module/base-shared.module';
+import { OrganizeComponent } from './getting-things-done/organize/organize.component'
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BaseSharedModule } from '../shared/module/base-shared.module'
     SignInComponent,
     GettingThingsDoneComponent,
     CollectComponent,
-    ProcessComponent
+    ProcessComponent,
+    OrganizeComponent
   ],
   imports: [
     CommonModule,

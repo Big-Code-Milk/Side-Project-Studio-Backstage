@@ -1,3 +1,4 @@
+import { OrganizeComponent } from './pages/getting-things-done/organize/organize.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignInComponent } from './pages/account/sign-in/sign-in.component';
@@ -47,7 +48,7 @@ function RouterHandler() {
         path: 'dashboard',
         component: DashboardComponent,
         children: [
-          { path: '', component: HomeComponent },
+          { path: '', component: OrganizeComponent },
           {
             path: 'pages',
             loadChildren: () => import('./pages/pages-routing.module')
