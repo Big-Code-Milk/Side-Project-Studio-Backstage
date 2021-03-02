@@ -5,10 +5,12 @@ import { ExampleRoutingModule } from './example-routing.module';
 import { BaseSharedModule } from '../../shared/module/base-shared.module';
 
 import { AngularFirebaseComponent } from './angular-fire-base/angular-firebase.component';
+import { ShareServiceComponent } from './share-service/share-service.component';
 
 @NgModule({
   declarations: [
-    AngularFirebaseComponent
+    AngularFirebaseComponent,
+    ShareServiceComponent
   ],
   imports: [
     CommonModule,
