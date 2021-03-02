@@ -23,9 +23,9 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class ProcessComponent implements AfterViewInit, OnInit {
 
-  GtdTask = [] as GtdTask[];
+  GtdTasks = [] as GtdTask[];
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color', 'tool'];
+  displayedColumns: string[] = ['Name', 'Content', 'StartDate', 'EndDate', 'Tags', 'tool'];
   dataSource: MatTableDataSource<GtdTask>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -48,11 +48,12 @@ export class ProcessComponent implements AfterViewInit, OnInit {
     );
 
     Data.subscribe(ReturnData => {
-      this.GtdTask = ReturnData;
+      this.GtdTasks = ReturnData;
       // init datatable
-      this.dataSource = new MatTableDataSource(this.GtdTask);
+      this.dataSource = new MatTableDataSource(this.GtdTasks);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      console.log(this.GtdTasks);
     });
 
   }
@@ -75,4 +76,10 @@ export class ProcessComponent implements AfterViewInit, OnInit {
     }
   }
 
+  Process(Id: string) {
+    alert(Id);
+  }
+  Delete(Id: string) {
+    alert(Id);
+  }
 }
