@@ -1,3 +1,5 @@
+import { BaseComponent } from '../../../components/base/base.component'; // 繼承基底 BaseComponent 方便可以寫一些共用內容 import
+
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AfterViewInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
@@ -24,7 +26,7 @@ import { MatDialogConfig } from '@angular/material/dialog';
   templateUrl: './process.component.html',
   styleUrls: ['./process.component.css']
 })
-export class ProcessComponent implements AfterViewInit, OnInit {
+export class ProcessComponent extends BaseComponent implements AfterViewInit, OnInit {
 
   GtdTasks = [] as GtdTask[];
 
@@ -38,6 +40,8 @@ export class ProcessComponent implements AfterViewInit, OnInit {
     private _FireStorageHelper: FireStorageHelperService,
     private _DialogHelper: DialogHelperService,
   ) {
+
+    super(); // 繼承基底 BaseComponent 方便可以寫一些共用內容 import
 
     let _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task');
     // 涉及 Rxjs 到時再研究，這段主要是由 snapshotChanges 這個服務取得 key 與 資料
