@@ -27,13 +27,15 @@ import { ErrorLogHandler } from '../app/shared/common/error-log-handler/error-lo
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { SharedService } from './shared/services/shared.service'
+import { SharedService } from './shared/services/shared.service';
+import { InnerHtmlPipe } from './shared/pipe/inner-html.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
+    InnerHtmlPipe,
     BrowserModule,
     BaseSharedModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),

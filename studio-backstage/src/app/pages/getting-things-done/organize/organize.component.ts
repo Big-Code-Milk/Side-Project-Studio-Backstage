@@ -14,6 +14,8 @@ import { MatDialogConfig } from '@angular/material/dialog';
 
 import { FireStorageHelperService } from '../../../shared/common/fire-storage-helper/fire-storage-helper.service';
 
+import { CKEditorComponent } from 'ng2-ckeditor';
+
 
 @Component({
   selector: 'app-organize',
@@ -42,10 +44,12 @@ export class OrganizeComponent implements OnInit {
     this._FilteredTags = this._FormControl.valueChanges.pipe(
       startWith(null),
       map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+
+
   }
 
   ngOnInit(): void {
-
+    this.InitCkeditor();
   }
 
   // Chips Autocomplete 應用
@@ -123,9 +127,31 @@ export class OrganizeComponent implements OnInit {
     }
   }
 
-  // editor
+  // ng2-ckeditor
+  name = 'ng2-ckeditor';
+  ckeConfig: CKEDITOR.config;
+  mycontent: string;
+  log: string = '';
+  @ViewChild("myckeditor") ckeditor: CKEditorComponent;
 
-  public editorControl: FormControl = new FormControl('', Validators.required);
+  InitCkeditor() {
+    this.ckeConfig = {
+      allowedContent: false,
+      extraPlugins: 'divarea',
+      forcePasteAsPlainText: true
+    };
+    this.mycontent = `<p>My html content</p>`;
+  }
 
+  onChange($event: any): void {
+    console.log("onChange");
+    //this.log += new Date() + "<br />";
+    console.log('this.mycontent', this.mycontent)
+  }
+
+  onPaste($event: any): void {
+    console.log("onPaste");
+    //this.log += new Date() + "<br />";
+  }
 
 }

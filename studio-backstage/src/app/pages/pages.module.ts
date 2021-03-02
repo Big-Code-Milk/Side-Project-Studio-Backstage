@@ -14,6 +14,8 @@ import { ProcessComponent } from './getting-things-done/process/process.componen
 import { BaseSharedModule } from '../shared/module/base-shared.module';
 import { OrganizeComponent } from './getting-things-done/organize/organize.component'
 
+import { InnerHtmlPipe } from '../shared/pipe/inner-html.pipe';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -21,13 +23,15 @@ import { OrganizeComponent } from './getting-things-done/organize/organize.compo
     GettingThingsDoneComponent,
     CollectComponent,
     ProcessComponent,
-    OrganizeComponent
+    OrganizeComponent,
+    InnerHtmlPipe,
   ],
   imports: [
     CommonModule,
     PagesRoutingModule,
     SharedAngularMaterialModule,
-    BaseSharedModule
+    BaseSharedModule,
+    InnerHtmlPipe,
   ]
 })
 export class PagesModule { }
