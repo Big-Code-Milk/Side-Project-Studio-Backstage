@@ -9,6 +9,9 @@ import { FireStorageHelperService } from '../../../shared/common/fire-storage-he
 import { DocumentChangeAction } from '@angular/fire/firestore';
 import { map, startWith } from 'rxjs/operators';
 
+import { DialogHelperService } from '../../../shared/common/dialog-helper/dialog-helper.service';
+import { MatDialogConfig } from '@angular/material/dialog';
+
 // export interface UserData {
 //   id: string;
 //   name: string;
@@ -32,7 +35,8 @@ export class ProcessComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private _FireStorageHelper: FireStorageHelperService
+    private _FireStorageHelper: FireStorageHelperService,
+    private _DialogHelper: DialogHelperService,
   ) {
 
     let _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task');
@@ -76,10 +80,19 @@ export class ProcessComponent implements AfterViewInit, OnInit {
     }
   }
 
-  Process(Id: string) {
-    alert(Id);
+  Process(TaskId: string) {
   }
-  Delete(Id: string) {
-    alert(Id);
+
+  _MatDialogConfig: MatDialogConfig = {} as MatDialogConfig;
+
+  Delete(TaskId: string) {
+    let _Document = this._FireStorageHelper.GetFireDocument<GtdTask>('Task/' + TaskId);
+    _Document.delete().catch(error => {
+      this._MatDialogConfig.data = error;
+      this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+    }).then(success => {
+      this._MatDialogConfig.data = "success";
+      this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+    });
   }
 }
