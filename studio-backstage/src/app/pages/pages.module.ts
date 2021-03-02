@@ -31,7 +31,6 @@ import { InnerHtmlPipe } from '../shared/pipe/inner-html.pipe';
     PagesRoutingModule,
     SharedAngularMaterialModule,
     BaseSharedModule,
-    InnerHtmlPipe,
   ]
 })
 export class PagesModule { }
