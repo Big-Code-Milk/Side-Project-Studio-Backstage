@@ -134,6 +134,8 @@
 
 25. 公司使用開源專案 ... 感覺超好用，但感覺會變成學到的東西變少，等熟一點在把後台搬過去。 [ngx-admin](https://github.com/akveo/ngx-admin) / [ngrx](https://ngrx.io/)
 
+26. [ng2-ckeditor](https://www.npmjs.com/package/ng2-ckeditor)
+
 ## Angular Material
 
 [AG Material 完全攻略](https://ithelp.ithome.com.tw/articles/10192517)
