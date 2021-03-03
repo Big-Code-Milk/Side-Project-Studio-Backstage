@@ -1,3 +1,6 @@
+// 參考
+// 路由帶參數 https://ithelp.ithome.com.tw/articles/10209035
+
 import { BaseComponent } from '../../../components/base/base.component'; // 繼承基底 BaseComponent 方便可以寫一些共用內容 import
 
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
@@ -13,6 +16,8 @@ import { map, startWith } from 'rxjs/operators';
 
 import { DialogHelperService } from '../../../shared/common/dialog-helper/dialog-helper.service';
 import { MatDialogConfig } from '@angular/material/dialog';
+
+import { Router } from '@angular/router';
 
 // export interface UserData {
 //   id: string;
@@ -39,6 +44,7 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
   constructor(
     private _FireStorageHelper: FireStorageHelperService,
     private _DialogHelper: DialogHelperService,
+    private _router: Router,
   ) {
 
     super(); // 繼承基底 BaseComponent 方便可以寫一些共用內容 import
@@ -85,6 +91,7 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
   }
 
   Process(TaskId: string) {
+    this._router.navigate(['dashboard/pages/organize', { key: TaskId }]);
   }
 
   _MatDialogConfig: MatDialogConfig = {} as MatDialogConfig;

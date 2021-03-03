@@ -19,12 +19,6 @@
                     </mat-form-field>
                 </td>
                 <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>摘要</mat-label>
-                        <input matInput [(ngModel)]="GtdTask.Content" name="Content" required>
-                    </mat-form-field>
-                </td>
-                <td>
                     <mat-form-field class="example-form-field" appearance="fill">
                         <mat-label>預計期限</mat-label>
                         <mat-date-range-input [formGroup]="Term" [rangePicker]="TermPicker" [comparisonStart]="Term.value.start" [comparisonEnd]="Term.value.end">
@@ -52,6 +46,12 @@
                         </mat-autocomplete>
                     </mat-form-field>
                 </td>
+                <td>
+                    <mat-form-field class="example-margin">
+                        <mat-label>工時</mat-label>
+                        <input matInput type="number" [(ngModel)]="GtdTask.DeadLine">
+                    </mat-form-field>小時
+                </td>
             </tr>
         </table>
         <div class="form-group has-feedback" [ngClass]="{ 'has-error': myckeditor.invalid && myckeditor.touched }">
@@ -59,13 +59,12 @@
             </ckeditor>
             <div *ngIf="myckeditor.invalid && myckeditor.touched" class="help-block">Required field.</div>
         </div>
-        <button [disabled]="myForm.invalid" class="btn btn-primary">Save</button>
-        <div>
-            <div [innerHTML]="mycontent | html"></div>
-        </div>
-        {{mycontent}}
+        <hr>
+        <h4>預覽</h4>
+        <div style="border-style:double;padding:0.3em" [innerHTML]="mycontent | html"></div>
+        <br>
         <div mat-dialog-actions align="end">
-            <button mat-raised-button color="primary" align="end" (click)="CheckFormThenSubmit()">Common</button>
+            <button mat-raised-button color="primary" align="end" (click)="CheckFormThenSubmit()">送出</button>
         </div>
     </form>
 </mat-expansion-panel>

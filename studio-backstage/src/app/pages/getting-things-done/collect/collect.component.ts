@@ -117,7 +117,7 @@ export class CollectComponent implements OnInit {
       }).then(success => {
         this._MatDialogConfig.data = "success";
         this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
-        setTimeout(function () { window.location.reload(); }, 3000);
+        // setTimeout(function () { window.location.reload(); }, 3000);
       });
     }
   }

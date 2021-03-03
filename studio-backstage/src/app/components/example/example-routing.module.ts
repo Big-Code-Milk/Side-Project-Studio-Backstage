@@ -4,8 +4,8 @@ import { AngularFirebaseComponent } from './angular-fire-base/angular-firebase.c
 import { ShareServiceComponent } from './share-service/share-service.component';
 
 const routes: Routes = [
-  { path: 'AngularFirebase', component: AngularFirebaseComponent },
-  { path: 'ShareService', component: ShareServiceComponent },
+  { path: 'angularfirebase', component: AngularFirebaseComponent },
+  { path: 'shareservice', component: ShareServiceComponent },
 ];
 
 @NgModule({
