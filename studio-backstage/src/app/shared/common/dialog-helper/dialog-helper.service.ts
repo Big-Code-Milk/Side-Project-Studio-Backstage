@@ -7,13 +7,13 @@ import { DialogComponent } from '../../../components/layout/dialog/dialog.compon
 })
 export class DialogHelperService {
 
-  constructor(public dialog: MatDialog) {
+  constructor(public _MatDialog: MatDialog) {
 
   }
 
   ShowMessage<T>(DialogConfig: MatDialogConfig<T>): MatDialogRef<DialogComponent, any> {
     DialogConfig.height = DialogConfig.height ?? "30vh";
     DialogConfig.width = DialogConfig.width ?? "30vw";
-    return this.dialog.open(DialogComponent, DialogConfig);
+    return this._MatDialog.open(DialogComponent, DialogConfig);
   }
 }

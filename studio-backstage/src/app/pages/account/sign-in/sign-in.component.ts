@@ -38,7 +38,7 @@ export class SignInComponent implements OnInit {
   constructor(
     private _FireAuthHelper: FireAuthHelperService,
     private _DialogHelperService: DialogHelperService,
-    private _router: Router,
+    private _Router: Router,
     private _FireStorageHelper: FireStorageHelperService
   ) {
 
@@ -72,7 +72,7 @@ export class SignInComponent implements OnInit {
         sessionStorage.setItem('AuthTokenId', Reference.path.pieces_[1]);
 
         // 轉移網址
-        this._router.navigate(['/dashboard/']);
+        this._Router.navigate(['/dashboard/']);
       })
       .catch(err => {
         console.log('Something went wrong:', err.message);

@@ -1,3 +1,6 @@
+// 參考
+// router 取得參數 https://ithelp.ithome.com.tw/articles/10209035
+
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import GtdTask from '../../../shared/models/gtd-task';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -16,6 +19,7 @@ import { FireStorageHelperService } from '../../../shared/common/fire-storage-he
 
 import { CKEditorComponent } from 'ng2-ckeditor';
 
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-organize',
@@ -30,6 +34,7 @@ export class OrganizeComponent implements OnInit {
   constructor(
     private _DialogHelper: DialogHelperService,
     private _FireStorageHelper: FireStorageHelperService,
+    private _Router: ActivatedRoute,
   ) {
     const Today = new Date();
     const TodayAdd7days = dayjs(Today).add(7, 'day').toDate();
@@ -50,6 +55,20 @@ export class OrganizeComponent implements OnInit {
 
   ngOnInit(): void {
     this.InitCkeditor();
+
+    // 取得參數
+    this._Router.queryParams.subscribe((queryParams: any) => {
+      console.log('a', queryParams);
+    });
+
+    let b = this._Router.snapshot.queryParams['key'];
+    console.log('b', b);
+
+    // let c = this._Router.params['key'];
+    // console.log('c', b);
+
+    let d = this._Router.snapshot.params['key']; // 結果只有這種方法有撈到 ...
+    console.log('d', d);
   }
 
   // Chips Autocomplete 應用

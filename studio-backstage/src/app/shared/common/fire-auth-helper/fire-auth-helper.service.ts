@@ -32,7 +32,7 @@ export class FireAuthHelperService {
 
   constructor(
     private _AngularFireAuth: AngularFireAuth,
-    private _router: Router,
+    private _Router: Router,
     private _FireStorageHelper: FireStorageHelperService
   ) {
     this.SignInState = this._AngularFireAuth.authState;
@@ -65,7 +65,7 @@ export class FireAuthHelperService {
     let Reference: any = this._FireStorageHelper.GetFireList('UserInfoLog').push(this._UserInfoLog).then(
       () => {
         sessionStorage.clear();
-        this._router.navigate(['/SignIn']);
+        this._Router.navigate(['/SignIn']);
         this._AngularFireAuth.signOut();
       }
     );
@@ -84,7 +84,7 @@ export class FireAuthHelperService {
 
     if (AuthToken !== undefined || AuthToken !== null || AuthToken !== "") {
       // 轉移網址
-      this._router.navigate(['/dashboard/']);
+      this._Router.navigate(['/dashboard/']);
     }
   }
 
