@@ -19,7 +19,7 @@ import { FireStorageHelperService } from '../../../shared/common/fire-storage-he
 
 import { CKEditorComponent } from 'ng2-ckeditor';
 
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-organize',
@@ -34,7 +34,8 @@ export class OrganizeComponent implements OnInit {
   constructor(
     private _DialogHelper: DialogHelperService,
     private _FireStorageHelper: FireStorageHelperService,
-    private _Router: ActivatedRoute,
+    private _ActivatedRoute: ActivatedRoute,
+    private _Router: Router,
   ) {
     const Today = new Date();
     const TodayAdd7days = dayjs(Today).add(7, 'day').toDate();
@@ -57,17 +58,17 @@ export class OrganizeComponent implements OnInit {
     this.InitCkeditor();
 
     // 取得參數
-    this._Router.queryParams.subscribe((queryParams: any) => {
+    this._ActivatedRoute.queryParams.subscribe((queryParams: any) => {
       console.log('a', queryParams);
     });
 
-    let b = this._Router.snapshot.queryParams['key'];
+    let b = this._ActivatedRoute.snapshot.queryParams['key'];
     console.log('b', b);
 
     // let c = this._Router.params['key'];
     // console.log('c', b);
 
-    let d = this._Router.snapshot.params['key']; // 結果只有這種方法有撈到 ...
+    let d = this._ActivatedRoute.snapshot.params['key']; // 結果只有這種方法有撈到 ...
     console.log('d', d);
 
     // 讀取特定的 docutment
@@ -144,7 +145,7 @@ export class OrganizeComponent implements OnInit {
       }).then(success => {
         this._MatDialogConfig.data = "success";
         this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
-        setTimeout(function () { window.location.reload(); }, 3000);
+        this._Router.navigate(['/dashboard/pages/gettingthingsdone']);
       });
     }
   }
@@ -152,7 +153,6 @@ export class OrganizeComponent implements OnInit {
   // ng2-ckeditor
   name = 'ng2-ckeditor';
   ckeConfig: CKEDITOR.config;
-  mycontent: string;
   log: string = '';
   @ViewChild("myckeditor") ckeditor: CKEditorComponent;
 
@@ -162,13 +162,13 @@ export class OrganizeComponent implements OnInit {
       extraPlugins: 'divarea',
       forcePasteAsPlainText: true
     };
-    this.mycontent = `<p>My html content</p>`;
+    this.GtdTask.Content = `<p>My html content</p>`;
   }
 
   onChange($event: any): void {
     console.log("onChange");
     //this.log += new Date() + "<br />";
-    console.log('this.mycontent', this.mycontent)
+    console.log('this.mycontent', this.GtdTask.Content)
   }
 
   onPaste($event: any): void {
@@ -178,6 +178,17 @@ export class OrganizeComponent implements OnInit {
 
   DataInit() {
     // https://blog.kevinyang.net/2018/04/30/angular-firebase/
+    let Key = this._ActivatedRoute.snapshot.params['key'];
+    var _Document = this._FireStorageHelper.GetFireDocument('Task/' + Key);
+    _Document.valueChanges().subscribe((Param: any) => {
+      console.log('Param', Param);
+      this.GtdTask.Content = Param.Content;
+      this.GtdTask.Name = Param.Name;
+      this.Term.value.start = Param.StartDate;
+      this.Term.value.end = Param.EndDate;
+      this.GtdTask.DeadLine = Param.DeadLine;
+      this.Tags = Param.Tags;
+    });
   }
 
 }
