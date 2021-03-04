@@ -69,6 +69,9 @@ export class OrganizeComponent implements OnInit {
 
     let d = this._Router.snapshot.params['key']; // 結果只有這種方法有撈到 ...
     console.log('d', d);
+
+    // 讀取特定的 docutment
+    this.DataInit();
   }
 
   // Chips Autocomplete 應用
@@ -171,6 +174,10 @@ export class OrganizeComponent implements OnInit {
   onPaste($event: any): void {
     console.log("onPaste");
     //this.log += new Date() + "<br />";
+  }
+
+  DataInit() {
+    // https://blog.kevinyang.net/2018/04/30/angular-firebase/
   }
 
 }
