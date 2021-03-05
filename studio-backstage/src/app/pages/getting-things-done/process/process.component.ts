@@ -1,5 +1,6 @@
 // 參考
 // 路由帶參數 https://ithelp.ithome.com.tw/articles/10209035
+// typescript 可選參數 https://ithelp.ithome.com.tw/articles/10220016
 
 import { BaseComponent } from '../../../components/base/base.component'; // 繼承基底 BaseComponent 方便可以寫一些共用內容 import
 

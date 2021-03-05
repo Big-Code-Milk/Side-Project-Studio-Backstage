@@ -53,41 +53,45 @@ export class AngularFirebaseComponent implements OnInit {
     // console.log('this.ServiceItems', this.ServiceItems);
     // 觀察者物件在訂閱回傳時 console.log
     // this.item$.subscribe(x => { console.log('subscribe:' + x); });
-  }
 
-  ngOnInit(): void {
-  }
+    this._FireStorageHelper.GetFireCollection('Task')
+    ref.
+    })
+}
 
-  addItem(newName: string) {
-    this.itemsRef.push({ text: newName })
-      .then(_ => {
-        console.log('success');
-        this._DialogHelper.ShowMessage(this.DialogConfig);
-      })
-      .catch(err => {
-        this.DialogConfig.data = err;
-        console.log(err, 'You do not have access!');
-        this._DialogHelper.ShowMessage(this.DialogConfig);
-      });
-  }
+ngOnInit(): void {
+}
 
-  updateItem(key: string, newText: string) {
-    console.log('key:', key, 'newText:', newText);
-    this.itemsRef.update(key, { text: newText })
-      .then(_ => console.log('success'))
-      .catch(err => console.log(err, 'You do not have access!'));
-  }
+addItem(newName: string) {
+  this.itemsRef.push({ text: newName })
+    .then(_ => {
+      console.log('success');
+      this._DialogHelper.ShowMessage(this.DialogConfig);
+    })
+    .catch(err => {
+      this.DialogConfig.data = err;
+      console.log(err, 'You do not have access!');
+      this._DialogHelper.ShowMessage(this.DialogConfig);
+    });
+}
 
-  deleteItem(key: string) {
-    this.itemsRef.remove(key)
-      .then(_ => console.log('success'))
-      .catch(err => console.log(err, 'You do not have access!'));
-  }
+updateItem(key: string, newText: string) {
+  console.log('key:', key, 'newText:', newText);
+  this.itemsRef.update(key, { text: newText })
+    .then(_ => console.log('success'))
+    .catch(err => console.log(err, 'You do not have access!'));
+}
 
-  deleteEverything() {
-    this.itemsRef.remove()
-      .then(_ => console.log('success'))
-      .catch(err => console.log(err, 'You do not have access!'));
-  }
+deleteItem(key: string) {
+  this.itemsRef.remove(key)
+    .then(_ => console.log('success'))
+    .catch(err => console.log(err, 'You do not have access!'));
+}
+
+deleteEverything() {
+  this.itemsRef.remove()
+    .then(_ => console.log('success'))
+    .catch(err => console.log(err, 'You do not have access!'));
+}
 
 }

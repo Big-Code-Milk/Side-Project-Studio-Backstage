@@ -4,11 +4,19 @@
 // [Angular Firebase 入門與實做] https://ithelp.ithome.com.tw/m/articles/10193310
 // [Angular] 與 Firebase 共舞 https://blog.kevinyang.net/2018/04/30/angular-firebase/
 // 免費額度 https://firebase.google.com/pricing/
+// where https://stackoverflow.com/questions/49847624/array-of-operators-for-a-firestore-query
 
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentData, QueryFn } from '@angular/fire/firestore';
+import { WhereFilterOp } from '@firebase/firestore-types';
+
+export class FirestoreQuery {
+  field: string;
+  operator: WhereFilterOp;
+  value: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -53,8 +61,11 @@ export class FireStorageHelperService {
 
   // https://blog.kevinyang.net/2018/04/30/angular-firebase/
 
-  GetFireCollection<T>(QueryPath: string): AngularFirestoreCollection<T> {
-    return this._CloudFirestore.collection<T>(QueryPath);
+  GetFireCollection<T>(QueryPath: string, _FQ?: FirestoreQuery): AngularFirestoreCollection<T> {
+
+
+    let _QueryFn?: QueryFn<DocumentData> = ref => ref.where(_FQ.field, _FQ.operator, _FQ.value);
+    return this._CloudFirestore.collection<T>(QueryPath, _QueryFn);
   }
 
   GetFireDocument<T>(QueryPath: string): AngularFirestoreDocument<T> {
