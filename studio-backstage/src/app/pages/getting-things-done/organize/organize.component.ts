@@ -136,10 +136,11 @@ export class OrganizeComponent implements OnInit {
     } else {
       // 儲存至 FireStore 之後這裡要多做一層，因為 firebase 只吃無型別資料...
       // Function addDoc() called with invalid data. Data must be an object, but it was: a custom object
-      let _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task');
+      let Key = this._ActivatedRoute.snapshot.params['key'];
+      var _Document = this._FireStorageHelper.GetFireDocument('Task/' + Key);
       let JSONString = JSON.stringify(this.GtdTask);
       let Obj = JSON.parse(JSONString);
-      _Collection.add(Obj).catch(error => {
+      _Document.update(Obj).catch(error => {
         this._MatDialogConfig.data = error;
         this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
       }).then(success => {
