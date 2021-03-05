@@ -5,6 +5,7 @@
 // [Angular] 與 Firebase 共舞 https://blog.kevinyang.net/2018/04/30/angular-firebase/
 // 免費額度 https://firebase.google.com/pricing/
 // where https://stackoverflow.com/questions/49847624/array-of-operators-for-a-firestore-query
+// WhereFilterOp https://stackoverflow.com/questions/49847624/array-of-operators-for-a-firestore-query
 
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
@@ -59,14 +60,23 @@ export class FireStorageHelperService {
     );
   }
 
-  // https://blog.kevinyang.net/2018/04/30/angular-firebase/
+  // https://stackoverflow.com/questions/49847624/array-of-operators-for-a-firestore-query
+  // 'sampleCollection', ['foo', '>', 0], ['foo', '<', 10]
+  GetFireCollection<T>(QueryPath: string, ...queries: any[]): AngularFirestoreCollection<T> {
 
-  GetFireCollection<T>(QueryPath: string, _FQ?: FirestoreQuery): AngularFirestoreCollection<T> {
+    const collection = this._CloudFirestore.collection<T>(QueryPath, ref => {
+      // reduce() https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+      return queries.reduce((accumulator, query) => {
+        const [fieldPath, opString, value] = query;
+        return accumulator.where(fieldPath, opString as WhereFilterOp, value);
+      }, ref);
+    });
 
-
-    let _QueryFn?: QueryFn<DocumentData> = ref => ref.where(_FQ.field, _FQ.operator, _FQ.value);
-    return this._CloudFirestore.collection<T>(QueryPath, _QueryFn);
+    return collection;
   }
+
+  //   let _QueryFn: QueryFn<DocumentData> | any = ref => ref.where(_FQ.field, _FQ.operator, _FQ.value);
+  // return this._CloudFirestore.collection<T>(QueryPath, _QueryFn);
 
   GetFireDocument<T>(QueryPath: string): AngularFirestoreDocument<T> {
     return this._CloudFirestore.doc<T>(QueryPath);

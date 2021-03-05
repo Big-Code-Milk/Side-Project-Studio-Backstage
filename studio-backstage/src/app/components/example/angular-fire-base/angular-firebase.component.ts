@@ -54,44 +54,50 @@ export class AngularFirebaseComponent implements OnInit {
     // 觀察者物件在訂閱回傳時 console.log
     // this.item$.subscribe(x => { console.log('subscribe:' + x); });
 
-    this._FireStorageHelper.GetFireCollection('Task')
-    ref.
-    })
-}
 
-ngOnInit(): void {
-}
+    // firebase where 函數 https://firebase.google.com/docs/firestore/query-data/queries
+    // this._FireStorageHelper.GetFireCollection('Task', ['Tags', 'array-contains-any', ['未處理']]).valueChanges().subscribe(x => { console.log('array-contains-any', x) });
 
-addItem(newName: string) {
-  this.itemsRef.push({ text: newName })
-    .then(_ => {
-      console.log('success');
-      this._DialogHelper.ShowMessage(this.DialogConfig);
-    })
-    .catch(err => {
-      this.DialogConfig.data = err;
-      console.log(err, 'You do not have access!');
-      this._DialogHelper.ShowMessage(this.DialogConfig);
-    });
-}
+    // not in array https://stackoverflow.com/questions/52085868/firestore-get-documents-where-value-not-in-array
+    this._FireStorageHelper.GetFireCollection('Task', ['Tags', '!=', '未處理']).valueChanges().subscribe(x => { console.log('not-in', x) });
+    // 因為效能關係不提供 array not in xx ...
+    // 只想到兩種思路 1. 改 table 為字串符合 not-in // 2.在處理結束時自動去掉未處理與添加已處理
+    // 去掉重複陣列元素 https://gotraveltoworld.medium.com/js-array-%E5%88%AA%E9%99%A4%E9%87%8D%E8%A4%87%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%89%E7%A8%AE%E6%96%B9%E5%BC%8F-c79be2d270e6
+  }
 
-updateItem(key: string, newText: string) {
-  console.log('key:', key, 'newText:', newText);
-  this.itemsRef.update(key, { text: newText })
-    .then(_ => console.log('success'))
-    .catch(err => console.log(err, 'You do not have access!'));
-}
+  ngOnInit(): void {
+  }
 
-deleteItem(key: string) {
-  this.itemsRef.remove(key)
-    .then(_ => console.log('success'))
-    .catch(err => console.log(err, 'You do not have access!'));
-}
+  addItem(newName: string) {
+    this.itemsRef.push({ text: newName })
+      .then(_ => {
+        console.log('success');
+        this._DialogHelper.ShowMessage(this.DialogConfig);
+      })
+      .catch(err => {
+        this.DialogConfig.data = err;
+        console.log(err, 'You do not have access!');
+        this._DialogHelper.ShowMessage(this.DialogConfig);
+      });
+  }
 
-deleteEverything() {
-  this.itemsRef.remove()
-    .then(_ => console.log('success'))
-    .catch(err => console.log(err, 'You do not have access!'));
-}
+  updateItem(key: string, newText: string) {
+    console.log('key:', key, 'newText:', newText);
+    this.itemsRef.update(key, { text: newText })
+      .then(_ => console.log('success'))
+      .catch(err => console.log(err, 'You do not have access!'));
+  }
+
+  deleteItem(key: string) {
+    this.itemsRef.remove(key)
+      .then(_ => console.log('success'))
+      .catch(err => console.log(err, 'You do not have access!'));
+  }
+
+  deleteEverything() {
+    this.itemsRef.remove()
+      .then(_ => console.log('success'))
+      .catch(err => console.log(err, 'You do not have access!'));
+  }
 
 }
