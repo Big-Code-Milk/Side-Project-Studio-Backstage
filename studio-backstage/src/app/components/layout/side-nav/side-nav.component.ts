@@ -9,7 +9,6 @@ import UserInfoLog from '../../../shared/models/user-info-log'
 })
 export class SideNavComponent implements OnInit {
 
-  _Email: string | null = "";
   _UserInfoLog = [] as UserInfoLog[];
 
   constructor(
@@ -26,7 +25,7 @@ export class SideNavComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._Email = sessionStorage.getItem('Email');
+
   }
 
 }

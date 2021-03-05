@@ -17,4 +17,10 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  Checking() {
+    let SignInState = this._FireAuthHelper.GetSignInState();
+    SignInState.subscribe(x => {
+      console.log('SignInState', x);
+    })
+  }
 }

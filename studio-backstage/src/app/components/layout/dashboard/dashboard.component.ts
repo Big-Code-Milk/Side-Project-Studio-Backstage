@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  _Email: string | null = "";
   NowSideNavState: string = "SideNavActived";
 
   constructor() {
@@ -14,6 +15,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this._Email = sessionStorage.getItem('Email');
   }
 
   GetNowSideNavState() {
