@@ -9,6 +9,9 @@ import { DialogHelperService } from '../../../shared/common/dialog-helper/dialog
 import { MatDialogConfig } from '@angular/material/dialog';
 
 import { SharedService } from '../../../shared/services/shared.service'
+
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentData, QueryFn } from '@angular/fire/firestore';
+
 @Component({
   selector: './app-demo-angular-fire-base',
   templateUrl: './angular-firebase.component.html',
@@ -30,6 +33,7 @@ export class AngularFirebaseComponent implements OnInit {
   constructor(
     private _FireStorageHelper: FireStorageHelperService,
     private _db: AngularFireDatabase,
+    private _AngularFirestore: AngularFirestore,
     private _DialogHelper: DialogHelperService,
     private _SharedService: SharedService,
   ) {
@@ -37,7 +41,7 @@ export class AngularFirebaseComponent implements OnInit {
     _SharedService.SharedData.subscribe(x => { this.SharedServiceTest = x; })
 
     this.items = _FireStorageHelper.GetKeys('items');
-    console.log('this.items', this.items);
+    // console.log('this.items', this.items);
     this.itemsRef = _db.list('items');
 
     // console.log('this._db', this._db);
@@ -59,10 +63,15 @@ export class AngularFirebaseComponent implements OnInit {
     // this._FireStorageHelper.GetFireCollection('Task', ['Tags', 'array-contains-any', ['未處理']]).valueChanges().subscribe(x => { console.log('array-contains-any', x) });
 
     // not in array https://stackoverflow.com/questions/52085868/firestore-get-documents-where-value-not-in-array
-    this._FireStorageHelper.GetFireCollection('Task', ['Tags', '!=', '未處理']).valueChanges().subscribe(x => { console.log('not-in', x) });
+    // this._FireStorageHelper.GetFireCollection('Task', ['Tags', '!=', '未處理', 'Tags', 'EndDate']).valueChanges().subscribe(x => { console.log('not-in', x) });
     // 因為效能關係不提供 array not in xx ...
     // 只想到兩種思路 1. 改 table 為字串符合 not-in // 2.在處理結束時自動去掉未處理與添加已處理
-    // 去掉重複陣列元素 https://gotraveltoworld.medium.com/js-array-%E5%88%AA%E9%99%A4%E9%87%8D%E8%A4%87%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%89%E7%A8%AE%E6%96%B9%E5%BC%8F-c79be2d270e6
+
+
+    // collection 要建立索引才能多重搜索... 建立等半天就先睡了
+    var collection = this._AngularFirestore.collection('Task', ref => ref.where('Tags', '!=', '未處理').orderBy('Tags').orderBy('EndDate'));
+    collection.valueChanges().subscribe(x => { console.log('collection', x); })
+
   }
 
   ngOnInit(): void {

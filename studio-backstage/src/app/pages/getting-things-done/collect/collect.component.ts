@@ -100,8 +100,8 @@ export class CollectComponent implements OnInit {
   CheckFormThenSubmit() {
     this.GtdTask.StartDate = this.Term.value.start;
     this.GtdTask.EndDate = this.Term.value.end;
-    this.GtdTask.Tags = this.Tags;
-
+    // 去掉重複陣列元素 https://gotraveltoworld.medium.com/js-array-%E5%88%AA%E9%99%A4%E9%87%8D%E8%A4%87%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%89%E7%A8%AE%E6%96%B9%E5%BC%8F-c79be2d270e6
+    this.GtdTask.Tags = [... new Set(this.Tags)];
     if (this.GtdTask.Content === undefined || this.GtdTask.Name === undefined) {
       this._MatDialogConfig.data = "必填請務必填寫";
       this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);

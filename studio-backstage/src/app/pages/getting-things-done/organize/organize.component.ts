@@ -126,9 +126,14 @@ export class OrganizeComponent implements OnInit {
   _MatDialogConfig: MatDialogConfig = {} as MatDialogConfig;
 
   CheckFormThenSubmit() {
+
+    if (!confirm('注意，此選項會將未處理狀態改壓已處理!!')) {
+      return;
+    }
+
     this.GtdTask.StartDate = this.Term.value.start;
     this.GtdTask.EndDate = this.Term.value.end;
-    this.GtdTask.Tags = this.Tags;
+    this.GtdTask.Tags = [... new Set(this.Tags)];
 
     if (this.GtdTask.Content === undefined || this.GtdTask.Name === undefined) {
       this._MatDialogConfig.data = "必填請務必填寫";

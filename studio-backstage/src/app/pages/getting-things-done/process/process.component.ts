@@ -62,13 +62,16 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
     })
     );
 
+    // order by firebase https://stackoverflow.com/questions/45357920/sorting-in-descending-order-in-firebase-database
+    // https://firebase.google.com/docs/firestore/query-data/order-limit-data
+
     Data.subscribe(ReturnData => {
       this.GtdTasks = ReturnData;
       // init datatable
       this.dataSource = new MatTableDataSource(this.GtdTasks);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      console.log(this.GtdTasks);
+      // console.log(this.GtdTasks);
     });
 
   }
