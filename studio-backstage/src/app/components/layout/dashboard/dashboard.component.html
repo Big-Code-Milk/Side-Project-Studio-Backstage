@@ -16,7 +16,7 @@
       </mat-menu>
       <span>Welcome!!</span>
       <span *ngIf='_Email!=null' style="padding-left: 1em;">{{_Email}}</span>
-      <span *ngIf='_Email==null' style="padding-left: 1em;color:red">目前為開發者模式，楚瑜未登入狀態，可能無法寫入資料</span>
+      <span *ngIf='_Email==null' style="padding-left: 1em;color:red">目前為開發者模式，處於未登入狀態，可能無法寫入資料</span>
     </mat-toolbar>
     <div style="padding: 2em 4em;">
       <router-outlet></router-outlet>
