@@ -28,14 +28,19 @@ function RouterHandler() {
       children: [
         { path: '', component: HomeComponent },
         {
-          path: 'pages',
+          path: 'pages', // 實際頁面
           loadChildren: () => import('./pages/pages-routing.module')
             .then(mod => mod.PagesRoutingModule)
         },
         {
-          path: 'example',
+          path: 'example', // 功能範例
           loadChildren: () => import('./components/example/example-routing.module')
             .then(mod => mod.ExampleRoutingModule)
+        },
+        {
+          path: 'template', // 單純版型
+          loadChildren: () => import('./components/template/template-routing.module')
+            .then(mod => mod.TemplateRoutingModule)
         }
       ]
     },
@@ -61,6 +66,11 @@ function RouterHandler() {
             path: 'example',
             loadChildren: () => import('./components/example/example-routing.module')
               .then(mod => mod.ExampleRoutingModule)
+          },
+          {
+            path: 'template', // 單純版型
+            loadChildren: () => import('./components/template/template-routing.module')
+              .then(mod => mod.TemplateRoutingModule)
           }
         ]
       },

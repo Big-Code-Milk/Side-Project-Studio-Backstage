@@ -24,6 +24,7 @@ import { ExampleModule } from './components/example/example.module';
 
 import { ErrorLogHandler } from '../app/shared/common/error-log-handler/error-log-hanler';
 import { SharedService } from './shared/services/shared.service';
+import { TemplateModule } from './components/template/template.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SharedService } from './shared/services/shared.service';
     LayoutModule,
     PagesModule,
     ExampleModule,
+    TemplateModule,
   ],
   providers: [
     { provide: ErrorLogHandler, useFactory: ErrorLogHandler },
