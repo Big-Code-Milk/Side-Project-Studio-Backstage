@@ -20,6 +20,8 @@ import { MatDialogConfig } from '@angular/material/dialog';
 
 import { Router } from '@angular/router';
 
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentData, QueryFn } from '@angular/fire/firestore';
+
 // export interface UserData {
 //   id: string;
 //   name: string;
@@ -46,11 +48,15 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
     private _FireStorageHelper: FireStorageHelperService,
     private _DialogHelper: DialogHelperService,
     private _router: Router,
+    private _AngularFirestore: AngularFirestore,
   ) {
 
     super(); // 繼承基底 BaseComponent 方便可以寫一些共用內容 import
 
-    let _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', 'Tags', 'array-contains-any', ['未處理'], 'EndDate');
+    // let _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', 'Tags', 'array-contains-any', ['未處理'], 'EndDate');
+
+    var _Collection = this._AngularFirestore.collection<GtdTask>('Task', ref => ref.where('Tags', 'array-contains-any', ['未處理']).orderBy('EndDate'));
+
     // 涉及 Rxjs 到時再研究，這段主要是由 snapshotChanges 這個服務取得 key 與 資料
     let Data = _Collection.snapshotChanges().pipe(map((actions: DocumentChangeAction<GtdTask>[]) => {
       return actions.map(a => {

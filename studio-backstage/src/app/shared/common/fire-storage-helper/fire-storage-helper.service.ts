@@ -67,7 +67,7 @@ export class FireStorageHelperService {
     const collection = this._CloudFirestore.collection<T>(QueryPath, ref => {
       // reduce() https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
       return queries.reduce((accumulator, query) => {
-        const [fieldPath, opString, value, orderby1, orderby2] = query;
+        const [fieldPath, opString, value, orderby1] = query;
         return accumulator.where(fieldPath, opString as WhereFilterOp, value).orderBy(orderby1);
       }, ref);
     });
