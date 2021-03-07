@@ -133,6 +133,9 @@ export class OrganizeComponent implements OnInit {
 
     this.GtdTask.StartDate = this.Term.value.start;
     this.GtdTask.EndDate = this.Term.value.end;
+    this.Tags.push('已處理');
+    // https://www.mdeditor.tw/pl/25m4/zh-tw
+    this.Tags = this.Tags.filter(function (Tag) { return Tag != "未處理" });
     this.GtdTask.Tags = [... new Set(this.Tags)];
 
     if (this.GtdTask.Content === undefined || this.GtdTask.Name === undefined) {

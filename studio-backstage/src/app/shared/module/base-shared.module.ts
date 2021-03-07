@@ -50,4 +50,18 @@ export class BaseSharedModule {
     };
   }
 
+  // 陣列移除特定元素
+  // https://www.mdeditor.tw/pl/25m4/zh-tw
+
+  // var colors = ["red", "blue", "grey"];
+  // colors.forEach(function (item, index, arr) {
+  //   if (item === "red") {
+  //     arr.splice(index, 1);
+  //   }
+  // });
+
+  //   var colors = ["red", "blue", "grey"];
+  // colors = colors.filter(function (item) {
+  //   return item != "red"
+  // });
 }

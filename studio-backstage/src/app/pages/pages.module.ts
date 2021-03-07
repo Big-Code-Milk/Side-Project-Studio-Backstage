@@ -15,6 +15,7 @@ import { BaseSharedModule } from '../shared/module/base-shared.module';
 import { OrganizeComponent } from './getting-things-done/organize/organize.component'
 
 import { InnerHtmlPipe } from '../shared/pipe/inner-html.pipe';
+import { WorkComponent } from './getting-things-done/work/work.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { InnerHtmlPipe } from '../shared/pipe/inner-html.pipe';
     ProcessComponent,
     OrganizeComponent,
     InnerHtmlPipe,
+    WorkComponent,
   ],
   imports: [
     CommonModule,

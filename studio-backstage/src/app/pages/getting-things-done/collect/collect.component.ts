@@ -52,7 +52,7 @@ export class CollectComponent implements OnInit {
   // FormControl 應用 https://angular.tw/api/forms/FormControl
   _FormControl = new FormControl();
   _FilteredTags: Observable<string[]>;
-  Tags: string[] = ['未處理'];
+  Tags: string[] = [];
   allFruits: string[] = ['工作室', '行銷', '架構', '技術', '業務'];
 
   // ViewChild 應用參考 https://www.itread01.com/content/1544339826.html
@@ -101,6 +101,7 @@ export class CollectComponent implements OnInit {
     this.GtdTask.StartDate = this.Term.value.start;
     this.GtdTask.EndDate = this.Term.value.end;
     // 去掉重複陣列元素 https://gotraveltoworld.medium.com/js-array-%E5%88%AA%E9%99%A4%E9%87%8D%E8%A4%87%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%89%E7%A8%AE%E6%96%B9%E5%BC%8F-c79be2d270e6
+    this.Tags.push('未處理');
     this.GtdTask.Tags = [... new Set(this.Tags)];
     if (this.GtdTask.Content === undefined || this.GtdTask.Name === undefined) {
       this._MatDialogConfig.data = "必填請務必填寫";
