@@ -70,7 +70,7 @@ export class AngularFirebaseComponent implements OnInit {
 
     // collection 要建立索引才能多重搜索... 建立等半天就先睡了
     var collection = this._AngularFirestore.collection('Task', ref => ref.where('Tags', 'array-contains-any', ['未處理']).orderBy('EndDate'));
-    collection.valueChanges().subscribe(x => { console.log('collection', x); })
+    collection.valueChanges().subscribe(x => { console.log('collection', x); });
 
   }
 

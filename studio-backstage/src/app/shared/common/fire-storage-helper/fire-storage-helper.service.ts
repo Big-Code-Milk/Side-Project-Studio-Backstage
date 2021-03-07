@@ -63,12 +63,12 @@ export class FireStorageHelperService {
   // https://stackoverflow.com/questions/49847624/array-of-operators-for-a-firestore-query
   // 'sampleCollection', ['foo', '>', 0], ['foo', '<', 10]
   GetFireCollection<T>(QueryPath: string, ...queries: any[]): AngularFirestoreCollection<T> {
-
+    console.log('QueryPath', QueryPath, 'queries', queries);
     const collection = this._CloudFirestore.collection<T>(QueryPath, ref => {
       // reduce() https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
       return queries.reduce((accumulator, query) => {
         const [fieldPath, opString, value, orderby1, orderby2] = query;
-        return accumulator.where(fieldPath, opString as WhereFilterOp, value);
+        return accumulator.where(fieldPath, opString as WhereFilterOp, value).orderBy(orderby1);
       }, ref);
     });
 
