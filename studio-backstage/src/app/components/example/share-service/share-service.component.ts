@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../../../shared/services/shared.service';
 
+// 參考
+// 參數 @Input required https://stackoverflow.com/questions/35528395/make-directive-input-required
+
 @Component({
   selector: 'app-share-service',
   templateUrl: './share-service.component.html',
@@ -21,6 +24,19 @@ export class ShareServiceComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // 取得參數
+    // this._ActivatedRoute.queryParams.subscribe((queryParams: any) => {
+    //   console.log('a', queryParams);
+    // });
+
+    // let b = this._ActivatedRoute.snapshot.queryParams['key'];
+    // console.log('b', b);
+
+    // let c = this._Router.params['key'];
+    // console.log('c', b);
+
+    // let d = this._ActivatedRoute.snapshot.params['key']; // 結果只有這種方法有撈到 ...
+    // console.log('d', d);
   }
 
   bbtt() {

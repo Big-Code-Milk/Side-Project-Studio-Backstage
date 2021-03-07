@@ -21,8 +21,10 @@ import { CKEditorComponent } from 'ng2-ckeditor';
 
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { EnumTableType } from '../../../shared/enum/enum-table-type';
+
 @Component({
-  selector: 'app-organize',
+  selector: 'app-organize [TableType]',
   templateUrl: './organize.component.html',
   styleUrls: ['./organize.component.css']
 })
@@ -56,21 +58,6 @@ export class OrganizeComponent implements OnInit {
 
   ngOnInit(): void {
     this.InitCkeditor();
-
-    // 取得參數
-    this._ActivatedRoute.queryParams.subscribe((queryParams: any) => {
-      console.log('a', queryParams);
-    });
-
-    let b = this._ActivatedRoute.snapshot.queryParams['key'];
-    console.log('b', b);
-
-    // let c = this._Router.params['key'];
-    // console.log('c', b);
-
-    let d = this._ActivatedRoute.snapshot.params['key']; // 結果只有這種方法有撈到 ...
-    console.log('d', d);
-
     // 讀取特定的 docutment
     this.DataInit();
   }
@@ -80,7 +67,7 @@ export class OrganizeComponent implements OnInit {
   // FormControl 應用 https://angular.tw/api/forms/FormControl
   _FormControl = new FormControl();
   _FilteredTags: Observable<string[]>;
-  Tags: string[] = ['未處理'];
+  Tags: string[] = [];
   allFruits: string[] = ['工作室', '行銷', '架構', '技術', '業務'];
 
   // ViewChild 應用參考 https://www.itread01.com/content/1544339826.html
@@ -124,20 +111,20 @@ export class OrganizeComponent implements OnInit {
   }
 
   _MatDialogConfig: MatDialogConfig = {} as MatDialogConfig;
+  _EnumTableType = EnumTableType;
 
   CheckFormThenSubmit() {
 
     if (!confirm('注意，此選項會將未處理狀態改壓已處理!!')) {
       return;
     }
-
-    this.GtdTask.StartDate = this.Term.value.start;
-    this.GtdTask.EndDate = this.Term.value.end;
     this.Tags.push('已處理');
     // https://www.mdeditor.tw/pl/25m4/zh-tw
     this.Tags = this.Tags.filter(function (Tag) { return Tag != "未處理" });
     this.GtdTask.Tags = [... new Set(this.Tags)];
 
+    this.GtdTask.StartDate = this.Term.value.start;
+    this.GtdTask.EndDate = this.Term.value.end;
     if (this.GtdTask.Content === undefined || this.GtdTask.Name === undefined) {
       this._MatDialogConfig.data = "必填請務必填寫";
       this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
@@ -154,7 +141,6 @@ export class OrganizeComponent implements OnInit {
       }).then(success => {
         this._MatDialogConfig.data = "success";
         this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
-        this._Router.navigate(['/dashboard/pages/gettingthingsdone']);
       });
     }
   }

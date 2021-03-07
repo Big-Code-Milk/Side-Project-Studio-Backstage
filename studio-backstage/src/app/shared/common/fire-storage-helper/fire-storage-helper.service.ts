@@ -66,12 +66,12 @@ export class FireStorageHelperService {
   // this._AngularFirestore.collection('Task', ref => ref.where('Tags', 'array-contains-any', ['未處理']).orderBy('EndDate')
 
   GetFireCollection<T>(QueryPath: string, ...queries: any[]): AngularFirestoreCollection<T> {
-    console.log('QueryPath', QueryPath, 'queries', queries);
+    // console.log('QueryPath', QueryPath, 'queries', queries);
     const collection = this._CloudFirestore.collection<T>(QueryPath, ref => {
       // reduce() https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
       return queries.reduce((accumulator, query) => {
         const [fieldPath, opString, value, orderBy1] = query;
-        console.log('orderBy1', orderBy1);
+        // console.log('orderBy1', orderBy1);
         return accumulator.where(fieldPath, opString as WhereFilterOp, value).orderBy(orderBy1);
       }, ref);
     });

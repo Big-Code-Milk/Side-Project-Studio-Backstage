@@ -4,7 +4,7 @@
 
 import { BaseComponent } from '../../../components/base/base.component'; // 繼承基底 BaseComponent 方便可以寫一些共用內容 import
 
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
 import { AfterViewInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -22,6 +22,8 @@ import { Router } from '@angular/router';
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentData, QueryFn } from '@angular/fire/firestore';
 
+import { EnumTableType } from '../../../shared/enum/enum-table-type';
+
 // export interface UserData {
 //   id: string;
 //   name: string;
@@ -30,11 +32,14 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument,
 // }
 
 @Component({
-  selector: 'app-process',
+  selector: 'app-process [TableType]',
   templateUrl: './process.component.html',
   styleUrls: ['./process.component.css']
 })
 export class ProcessComponent extends BaseComponent implements AfterViewInit, OnInit {
+
+  _EnumTableType = EnumTableType;
+  @Input() TableType: EnumTableType;
 
   GtdTasks = [] as GtdTask[];
 
@@ -53,34 +58,6 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
 
     super(); // 繼承基底 BaseComponent 方便可以寫一些共用內容 import
 
-    // let test = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', 'Tags', 'array-contains-any', ['未處理'], 'EndDate');
-
-
-    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Tags', 'array-contains-any', ['未處理'], 'EndDate']);
-
-    // 涉及 Rxjs 到時再研究，這段主要是由 snapshotChanges 這個服務取得 key 與 資料
-    let Data = _Collection.snapshotChanges().pipe(map((actions: DocumentChangeAction<GtdTask>[]) => {
-      return actions.map(a => {
-        const data = a.payload.doc.data() as GtdTask;
-        const id = a.payload.doc.id;
-        // 值得注意的是底下 ... es6 語法只能複製一層 obj ，無法複製 obj 內的 obj，可能到時要改
-        return { id, ...data };
-      });
-    })
-    );
-
-    // order by firebase https://stackoverflow.com/questions/45357920/sorting-in-descending-order-in-firebase-database
-    // https://firebase.google.com/docs/firestore/query-data/order-limit-data
-
-    Data.subscribe(ReturnData => {
-      this.GtdTasks = ReturnData;
-      // init datatable
-      this.dataSource = new MatTableDataSource(this.GtdTasks);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      // console.log(this.GtdTasks);
-    });
-
   }
 
   ngAfterViewInit() {
@@ -90,6 +67,11 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
   }
 
   ngOnInit(): void {
+    // @Input 必須在這個生命週期才會傳入
+    // console.log('TableType', this.TableType);
+
+    this.InitTitle();
+    this.InitData();
   }
 
   applyFilter(event: Event) {
@@ -116,5 +98,67 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
       this._MatDialogConfig.data = "success";
       this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
     });
+  }
+
+  InitData() {
+
+    let Query: any = [];
+
+    switch (this.TableType) {
+      case this._EnumTableType.Untreated:
+        Query = ['未處理'];
+        break;
+      case this._EnumTableType.Processed:
+        Query = ['已處理'];
+        break;
+      default:
+        console.log(`沒有此 Tag 的表單 ${this.TableType}.`);
+    }
+
+    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Tags', 'array-contains-any', Query, 'EndDate']);
+
+    // 涉及 Rxjs 到時再研究，這段主要是由 snapshotChanges 這個服務取得 key 與 資料
+    let Data = _Collection.snapshotChanges().pipe(map((actions: DocumentChangeAction<GtdTask>[]) => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as GtdTask;
+        const id = a.payload.doc.id;
+        // 值得注意的是底下 ... es6 語法只能複製一層 obj ，無法複製 obj 內的 obj，可能到時要改
+        return { id, ...data };
+      });
+    })
+    );
+
+    // order by firebase https://stackoverflow.com/questions/45357920/sorting-in-descending-order-in-firebase-database
+    // https://firebase.google.com/docs/firestore/query-data/order-limit-data
+
+    Data.subscribe(ReturnData => {
+      this.GtdTasks = ReturnData;
+      // init datatable
+      this.dataSource = new MatTableDataSource(this.GtdTasks);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      // console.log(this.GtdTasks);
+    });
+  }
+
+  MainTitle: string;
+  SubTitle: string;
+  ProcessBtn: string;
+
+  InitTitle() {
+    switch (this.TableType) {
+      case this._EnumTableType.Untreated:
+        this.MainTitle = '處理';
+        this.SubTitle = '從最上面開始，一次處理一項，不把任何東西放回收件箱，如果任何一項需要做（如果花的時間少於兩分鐘），委託別人完成，或者將它組織到代辦事項並給予 Deadline。';
+        this.ProcessBtn = '處理';
+        break;
+      case this._EnumTableType.Processed:
+        this.MainTitle = '檢查';
+        this.SubTitle = '隨時保持 Top 5 減少時隨時補上，避免拖延與只做容易的，請按照順序地做列表上的事情。';
+        this.ProcessBtn = '修改';
+        break;
+      default:
+        console.log(`沒有此 Tag 的表單 ${this.TableType}.`);
+    }
   }
 }
