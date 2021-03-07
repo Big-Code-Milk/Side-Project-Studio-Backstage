@@ -53,9 +53,10 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
 
     super(); // 繼承基底 BaseComponent 方便可以寫一些共用內容 import
 
-    // let _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', 'Tags', 'array-contains-any', ['未處理'], 'EndDate');
+    // let test = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', 'Tags', 'array-contains-any', ['未處理'], 'EndDate');
 
-    var _Collection = this._AngularFirestore.collection<GtdTask>('Task', ref => ref.where('Tags', 'array-contains-any', ['未處理']).orderBy('EndDate'));
+
+    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Tags', 'array-contains-any', ['未處理'], 'EndDate']);
 
     // 涉及 Rxjs 到時再研究，這段主要是由 snapshotChanges 這個服務取得 key 與 資料
     let Data = _Collection.snapshotChanges().pipe(map((actions: DocumentChangeAction<GtdTask>[]) => {
