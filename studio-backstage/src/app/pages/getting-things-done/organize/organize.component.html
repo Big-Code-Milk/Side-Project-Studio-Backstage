@@ -22,8 +22,8 @@
                     <mat-form-field class="example-form-field" appearance="fill">
                         <mat-label>預計期限</mat-label>
                         <mat-date-range-input [formGroup]="Term" [rangePicker]="TermPicker" [comparisonStart]="Term.value.start" [comparisonEnd]="Term.value.end">
-                            <input matStartDate placeholder="Start date" formControlName="start">
-                            <input matEndDate placeholder="End date" formControlName="end">
+                            <input matStartDate placeholder="Start date" formControlName="start" name="StartDate">
+                            <input matEndDate placeholder="End date" formControlName="end" name="EndDate">
                         </mat-date-range-input>
                         <mat-datepicker-toggle matSuffix [for]="TermPicker"></mat-datepicker-toggle>
                         <mat-date-range-picker #TermPicker></mat-date-range-picker>
@@ -37,7 +37,7 @@
                                 {{Tag}}
                                 <i style="color: red;" matChipRemove>X</i>
                             </mat-chip>
-                            <input placeholder="選擇或創建類別..." #TagInput [formControl]="_FormControl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
+                            <input placeholder="選擇或創建類別..." #TagInput [formControl]="_FormControl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" name="Tags">
                         </mat-chip-list>
                         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
                             <mat-option *ngFor="let Tag of _FilteredTags | async" [value]="Tag">
@@ -49,7 +49,7 @@
                 <td>
                     <mat-form-field class="example-margin">
                         <mat-label>工時</mat-label>
-                        <input matInput type="number" [(ngModel)]="GtdTask.DeadLine">
+                        <input matInput type="number" [(ngModel)]="GtdTask.DeadLine" name="DeadLine">
                     </mat-form-field>小時
                 </td>
             </tr>

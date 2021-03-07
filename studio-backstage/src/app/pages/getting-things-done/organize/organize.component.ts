@@ -176,7 +176,7 @@ export class OrganizeComponent implements OnInit {
     let Key = this._ActivatedRoute.snapshot.params['key'];
     var _Document = this._FireStorageHelper.GetFireDocument('Task/' + Key);
     _Document.valueChanges().subscribe((Param: any) => {
-      console.log('Param', Param);
+      // console.log('Param', Param);
       this.GtdTask.Content = Param.Content;
       this.GtdTask.Name = Param.Name;
       this.Term.value.start = Param.StartDate;
