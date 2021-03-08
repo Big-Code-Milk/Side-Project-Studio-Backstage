@@ -16,13 +16,6 @@
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort>
             <!-- Column -->
-            <ng-container matColumnDef="Top5">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Top5 </th>
-                <td mat-cell *matCellDef="let row">
-                    <mat-checkbox class="example-margin"> </mat-checkbox>
-                </td>
-            </ng-container>
-            <!-- Column -->
             <ng-container matColumnDef="Name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> 標題 </th>
                 <td mat-cell *matCellDef="let row"> {{row.Name}} </td>
@@ -56,6 +49,11 @@
             <ng-container matColumnDef="tool">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 50px;"> </th>
                 <td mat-cell *matCellDef="let row">
+                    <div>
+                        <button mat-icon-button *ngFor="let i of number">
+                            <i class="material-icons">looks_3</i>
+                        </button>
+                    </div>
                     <button mat-stroked-button color="primary" (click)='Process(row.id)'>{{ProcessBtn}}</button>
                     <button mat-stroked-button color="warn" (click)='Delete(row.id)'>刪除</button>
                 </td>

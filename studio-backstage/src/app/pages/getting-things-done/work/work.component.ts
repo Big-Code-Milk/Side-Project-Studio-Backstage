@@ -12,7 +12,7 @@ export class WorkComponent implements OnInit {
   @Input() ComponentType: EnumComponentType;
   @Input() Key: string;
 
-  number: number[];
+  number: number[] = [1, 2, 3, 4, 5];
 
   Versions: string[] = [
     'v1 Getting Things Done',
@@ -23,7 +23,6 @@ export class WorkComponent implements OnInit {
     private _Router: Router,
     private _ActivatedRoute: ActivatedRoute,
   ) {
-    this.number = [1, 2, 3, 4, 5];
   }
 
   ngOnInit(): void {
