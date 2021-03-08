@@ -2,26 +2,20 @@
 // 路由帶參數 https://ithelp.ithome.com.tw/articles/10209035
 // typescript 可選參數 https://ithelp.ithome.com.tw/articles/10220016
 
-import { BaseComponent } from '../../../components/base/base.component'; // 繼承基底 BaseComponent 方便可以寫一些共用內容 import
-
-import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
+import { BaseComponent } from '../../../components/base/base.component';
+import { Component, OnInit, Input } from '@angular/core';
 import { AfterViewInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-
 import GtdTask from '../../../shared/models/gtd-task';
 import { FireStorageHelperService } from '../../../shared/common/fire-storage-helper/fire-storage-helper.service';
 import { DocumentChangeAction } from '@angular/fire/firestore';
 import { map, startWith } from 'rxjs/operators';
-
 import { DialogHelperService } from '../../../shared/common/dialog-helper/dialog-helper.service';
 import { MatDialogConfig } from '@angular/material/dialog';
-
-import { Router } from '@angular/router';
-
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentData, QueryFn } from '@angular/fire/firestore';
-
+import { Router, ActivatedRoute } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { EnumComponentType } from '../../../shared/enum/enum-component-type';
 
 // export interface UserData {
@@ -52,7 +46,8 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
   constructor(
     private _FireStorageHelper: FireStorageHelperService,
     private _DialogHelper: DialogHelperService,
-    private _router: Router,
+    private _Router: Router,
+    private _ActivatedRoute: ActivatedRoute,
     private _AngularFirestore: AngularFirestore,
   ) {
 
@@ -84,7 +79,7 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
   }
 
   Process(TaskId: string) {
-    this._router.navigate(['dashboard/pages/organize', { key: TaskId }]);
+    this._Router.navigate(['dashboard/pages/organize', { key: TaskId, ComponentType: this.ComponentType }]);
   }
 
   _MatDialogConfig: MatDialogConfig = {} as MatDialogConfig;

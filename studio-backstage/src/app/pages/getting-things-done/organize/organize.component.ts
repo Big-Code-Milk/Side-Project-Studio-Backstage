@@ -1,26 +1,19 @@
 // 參考
 // router 取得參數 https://ithelp.ithome.com.tw/articles/10209035
-
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import GtdTask from '../../../shared/models/gtd-task';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import * as dayjs from 'dayjs';
-
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-
 import { DialogHelperService } from '../../../shared/common/dialog-helper/dialog-helper.service';
 import { MatDialogConfig } from '@angular/material/dialog';
-
 import { FireStorageHelperService } from '../../../shared/common/fire-storage-helper/fire-storage-helper.service';
-
 import { CKEditorComponent } from 'ng2-ckeditor';
-
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { EnumComponentType } from '../../../shared/enum/enum-component-type';
 
 @Component({
@@ -53,13 +46,16 @@ export class OrganizeComponent implements OnInit {
       startWith(null),
       map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
 
-
   }
+
+  ComponentType: EnumComponentType;
 
   ngOnInit(): void {
     this.InitCkeditor();
     // 讀取特定的 docutment
     this.DataInit();
+
+    this.ComponentType = this._ActivatedRoute.snapshot.params['ComponentType'];
   }
 
   // Chips Autocomplete 應用
@@ -115,14 +111,20 @@ export class OrganizeComponent implements OnInit {
 
   CheckFormThenSubmit() {
 
-    if (!confirm('注意，此選項會將未處理狀態改壓已處理!!')) {
-      return;
-    }
-    this.Tags.push('已處理');
-    // https://www.mdeditor.tw/pl/25m4/zh-tw
-    this.Tags = this.Tags.filter(function (Tag) { return Tag != "未處理" });
-    this.GtdTask.Tags = [... new Set(this.Tags)];
 
+
+    if (this.ComponentType == this._EnumComponentType.Untreated) {
+
+      if (!confirm('注意，此選項會將未處理狀態改壓已處理!!')) {
+        return;
+      }
+      this.Tags.push('已處理');
+      // https://www.mdeditor.tw/pl/25m4/zh-tw
+      this.Tags = this.Tags.filter(function (Tag) { return Tag != "未處理" });
+
+    }
+
+    this.GtdTask.Tags = [... new Set(this.Tags)];
     this.GtdTask.StartDate = this.Term.value.start;
     this.GtdTask.EndDate = this.Term.value.end;
     if (this.GtdTask.Content === undefined || this.GtdTask.Name === undefined) {

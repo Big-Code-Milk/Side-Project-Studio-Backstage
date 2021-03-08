@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EnumComponentType } from '../../../shared/enum/enum-component-type';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-work',
@@ -17,7 +18,10 @@ export class WorkComponent implements OnInit {
     'v2 GTD-TodoList',
   ];
 
-  constructor() {
+  constructor(
+    private _Router: Router,
+    private _ActivatedRoute: ActivatedRoute,
+  ) {
     this.number = [1, 2, 3, 4, 5];
   }
 

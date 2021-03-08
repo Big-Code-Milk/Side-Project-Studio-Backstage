@@ -2,17 +2,15 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import GtdTask from '../../../shared/models/gtd-task';
 import { FormGroup, FormControl } from '@angular/forms';
 import * as dayjs from 'dayjs';
-
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-
 import { DialogHelperService } from '../../../shared/common/dialog-helper/dialog-helper.service';
 import { MatDialogConfig } from '@angular/material/dialog';
-
 import { FireStorageHelperService } from '../../../shared/common/fire-storage-helper/fire-storage-helper.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-collect',
@@ -27,6 +25,8 @@ export class CollectComponent implements OnInit {
   constructor(
     private _DialogHelper: DialogHelperService,
     private _FireStorageHelper: FireStorageHelperService,
+    private _ActivatedRoute: ActivatedRoute,
+    private _Router: Router,
   ) {
     const Today = new Date();
     const TodayAdd7days = dayjs(Today).add(7, 'day').toDate();
