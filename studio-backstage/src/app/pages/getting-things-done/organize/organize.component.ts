@@ -49,13 +49,14 @@ export class OrganizeComponent implements OnInit {
   }
 
   ComponentType: EnumComponentType;
-
+  Key: string
   ngOnInit(): void {
     this.InitCkeditor();
     // 讀取特定的 docutment
     this.DataInit();
 
     this.ComponentType = this._ActivatedRoute.snapshot.params['ComponentType'];
+    this.Key = this._ActivatedRoute.snapshot.params['key'];
   }
 
   // Chips Autocomplete 應用
@@ -133,8 +134,8 @@ export class OrganizeComponent implements OnInit {
     } else {
       // 儲存至 FireStore 之後這裡要多做一層，因為 firebase 只吃無型別資料...
       // Function addDoc() called with invalid data. Data must be an object, but it was: a custom object
-      let Key = this._ActivatedRoute.snapshot.params['key'];
-      var _Document = this._FireStorageHelper.GetFireDocument('Task/' + Key);
+
+      var _Document = this._FireStorageHelper.GetFireDocument('Task/' + this.Key);
       let JSONString = JSON.stringify(this.GtdTask);
       let Obj = JSON.parse(JSONString);
       _Document.update(Obj).catch(error => {
@@ -175,8 +176,7 @@ export class OrganizeComponent implements OnInit {
 
   DataInit() {
     // https://blog.kevinyang.net/2018/04/30/angular-firebase/
-    let Key = this._ActivatedRoute.snapshot.params['key'];
-    var _Document = this._FireStorageHelper.GetFireDocument('Task/' + Key);
+    var _Document = this._FireStorageHelper.GetFireDocument('Task/' + this.Key);
     _Document.valueChanges().subscribe((Param: any) => {
       // console.log('Param', Param);
       this.GtdTask.Content = Param.Content;

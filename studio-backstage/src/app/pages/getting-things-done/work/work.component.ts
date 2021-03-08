@@ -3,13 +3,14 @@ import { EnumComponentType } from '../../../shared/enum/enum-component-type';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-work',
+  selector: 'app-work [ComponentType]',
   templateUrl: './work.component.html',
   styleUrls: ['./work.component.css']
 })
 export class WorkComponent implements OnInit {
 
   @Input() ComponentType: EnumComponentType;
+  @Input() Key: string;
 
   number: number[];
 

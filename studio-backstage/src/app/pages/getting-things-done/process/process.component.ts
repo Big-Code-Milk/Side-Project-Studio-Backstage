@@ -37,7 +37,7 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
 
   GtdTasks = [] as GtdTask[];
 
-  displayedColumns: string[] = ['Name', 'Content', 'StartDate', 'EndDate', 'Tags', 'tool'];
+  displayedColumns: string[] = ['Top5', 'Name', 'Content', 'StartDate', 'EndDate', 'Tags', 'tool'];
   dataSource: MatTableDataSource<GtdTask>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -63,7 +63,7 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
 
   ngOnInit(): void {
     // @Input 必須在這個生命週期才會傳入
-    // console.log('TableType', this.TableType);
+    console.log('ComponentType', this.ComponentType);
 
     this.InitTitle();
     this.InitData();
