@@ -22,7 +22,7 @@ import { Router } from '@angular/router';
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentData, QueryFn } from '@angular/fire/firestore';
 
-import { EnumTableType } from '../../../shared/enum/enum-table-type';
+import { EnumComponentType } from '../../../shared/enum/enum-component-type';
 
 // export interface UserData {
 //   id: string;
@@ -32,14 +32,14 @@ import { EnumTableType } from '../../../shared/enum/enum-table-type';
 // }
 
 @Component({
-  selector: 'app-process [TableType]',
+  selector: 'app-process [ComponentType]',
   templateUrl: './process.component.html',
   styleUrls: ['./process.component.css']
 })
 export class ProcessComponent extends BaseComponent implements AfterViewInit, OnInit {
 
-  _EnumTableType = EnumTableType;
-  @Input() TableType: EnumTableType;
+  _EnumComponentType = EnumComponentType;
+  @Input() ComponentType: EnumComponentType;
 
   GtdTasks = [] as GtdTask[];
 
@@ -104,15 +104,15 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
 
     let Query: any = [];
 
-    switch (this.TableType) {
-      case this._EnumTableType.Untreated:
+    switch (this.ComponentType) {
+      case this._EnumComponentType.Untreated:
         Query = ['未處理'];
         break;
-      case this._EnumTableType.Processed:
+      case this._EnumComponentType.Processed:
         Query = ['已處理'];
         break;
       default:
-        console.log(`沒有此 Tag 的表單 ${this.TableType}.`);
+        console.log(`沒有此 Tag 的表單 ${this.ComponentType}.`);
     }
 
     var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Tags', 'array-contains-any', Query, 'EndDate']);
@@ -146,19 +146,19 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
   ProcessBtn: string;
 
   InitTitle() {
-    switch (this.TableType) {
-      case this._EnumTableType.Untreated:
+    switch (this.ComponentType) {
+      case this._EnumComponentType.Untreated:
         this.MainTitle = '處理';
         this.SubTitle = '從最上面開始，一次處理一項，不把任何東西放回收件箱，如果任何一項需要做（如果花的時間少於兩分鐘），委託別人完成，或者將它組織到代辦事項並給予 Deadline。';
         this.ProcessBtn = '處理';
         break;
-      case this._EnumTableType.Processed:
+      case this._EnumComponentType.Processed:
         this.MainTitle = '檢查';
         this.SubTitle = '隨時保持 Top 5 減少時隨時補上，避免拖延與只做容易的，請按照順序地做列表上的事情。';
         this.ProcessBtn = '修改';
         break;
       default:
-        console.log(`沒有此 Tag 的表單 ${this.TableType}.`);
+        console.log(`沒有此 Tag 的表單 ${this.ComponentType}.`);
     }
   }
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { EnumComponentType } from '../../../shared/enum/enum-component-type';
 
 @Component({
   selector: 'app-work',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./work.component.css']
 })
 export class WorkComponent implements OnInit {
+
+  @Input() ComponentType: EnumComponentType;
 
   number: number[];
 

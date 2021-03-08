@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EnumTableType } from '../../shared/enum/enum-table-type';
+import { EnumComponentType } from '../../shared/enum/enum-component-type';
 
 @Component({
   selector: 'app-getting-things-done',
@@ -8,7 +8,7 @@ import { EnumTableType } from '../../shared/enum/enum-table-type';
 })
 export class GettingThingsDoneComponent implements OnInit {
 
-  _EnumTableType = EnumTableType;
+  _EnumComponentType = EnumComponentType;
 
   constructor(
 

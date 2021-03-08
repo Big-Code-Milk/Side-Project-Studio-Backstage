@@ -60,14 +60,14 @@
             <div *ngIf="myckeditor.invalid && myckeditor.touched" class="help-block">Required field.</div>
         </div>
         <hr>
-        <h4>預覽</h4>
+        <!-- <h4>預覽</h4>
         <div style="border-style:double;padding:0.3em" [innerHTML]="this.GtdTask.Content | html"></div>
-        <br>
+        <br> -->
         <div mat-dialog-actions align="end">
-            <button mat-raised-button color="primary" align="end" (click)="CheckFormThenSubmit()">送出</button>
+            <span style="color: red;margin-right: 1em;">預覽請使用上面套件按鈕</span> <button mat-raised-button color="primary" align="end" (click)="CheckFormThenSubmit()">送出</button>
         </div>
     </form>
 </mat-expansion-panel>
-<form>
-
-</form>
+<br>
+<app-collect></app-collect>
+<app-work></app-work>

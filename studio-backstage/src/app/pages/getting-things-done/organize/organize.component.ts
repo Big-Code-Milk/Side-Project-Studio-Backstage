@@ -21,7 +21,7 @@ import { CKEditorComponent } from 'ng2-ckeditor';
 
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { EnumTableType } from '../../../shared/enum/enum-table-type';
+import { EnumComponentType } from '../../../shared/enum/enum-component-type';
 
 @Component({
   selector: 'app-organize [TableType]',
@@ -111,7 +111,7 @@ export class OrganizeComponent implements OnInit {
   }
 
   _MatDialogConfig: MatDialogConfig = {} as MatDialogConfig;
-  _EnumTableType = EnumTableType;
+  _EnumComponentType = EnumComponentType;
 
   CheckFormThenSubmit() {
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EnumTableType } from '../../shared/enum/enum-table-type';
+import { EnumComponentType } from '../../shared/enum/enum-component-type';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +8,12 @@ import { EnumTableType } from '../../shared/enum/enum-table-type';
 })
 export class HomeComponent implements OnInit {
 
-  _EnumTableType = EnumTableType;
+  number: number[];
+
+  _EnumComponentType = EnumComponentType;
 
   constructor() {
-
+    this.number = [1, 2, 3, 4, 5];
   }
 
   ngOnInit(): void {
