@@ -55,7 +55,7 @@
             </tr>
         </table>
         <div class="form-group has-feedback" [ngClass]="{ 'has-error': myckeditor.invalid && myckeditor.touched }">
-            <ckeditor [(ngModel)]="this.GtdTask.Content" #myckeditor="ngModel" name="myckeditor" required [config]="ckeConfig" debounce="500" (paste)="onPaste($event)" (change)="onChange($event)">
+            <ckeditor style="height: 100vh;" [(ngModel)]="this.GtdTask.Content" #myckeditor="ngModel" name="myckeditor" required [config]="ckeConfig" debounce="500" (paste)="onPaste($event)" (change)="onChange($event)">
             </ckeditor>
             <div *ngIf="myckeditor.invalid && myckeditor.touched" class="help-block">Required field.</div>
         </div>

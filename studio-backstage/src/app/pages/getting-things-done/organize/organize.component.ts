@@ -51,12 +51,12 @@ export class OrganizeComponent implements OnInit {
   ComponentType: EnumComponentType;
   Key: string
   ngOnInit(): void {
+    this.ComponentType = this._ActivatedRoute.snapshot.params['ComponentType'];
+    this.Key = this._ActivatedRoute.snapshot.params['key'];
+
     this.InitCkeditor();
     // 讀取特定的 docutment
     this.DataInit();
-
-    this.ComponentType = this._ActivatedRoute.snapshot.params['ComponentType'];
-    this.Key = this._ActivatedRoute.snapshot.params['key'];
   }
 
   // Chips Autocomplete 應用
@@ -158,7 +158,8 @@ export class OrganizeComponent implements OnInit {
     this.ckeConfig = {
       allowedContent: false,
       extraPlugins: 'divarea',
-      forcePasteAsPlainText: true
+      forcePasteAsPlainText: true,
+      height: '45vh',
     };
     this.GtdTask.Content = `<p>My html content</p>`;
   }
