@@ -32,14 +32,14 @@ import { EnumComponentType } from '../../../shared/enum/enum-component-type';
 })
 export class ProcessComponent extends BaseComponent implements AfterViewInit, OnInit {
 
-  number: number[] = [1, 2, 3, 4, 5];
+  number: string[] = ['one', 'two', '3', '4', '5'];
 
   _EnumComponentType = EnumComponentType;
   @Input() ComponentType: EnumComponentType;
 
   GtdTasks = [] as GtdTask[];
 
-  displayedColumns: string[] = ['Name', 'Content', 'StartDate', 'EndDate', 'Tags', 'tool'];
+  displayedColumns: string[] = ['Name', 'Content', 'StartDate', 'EndDate', 'Tags', 'Tool'];
   dataSource: MatTableDataSource<GtdTask>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
