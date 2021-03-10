@@ -151,10 +151,48 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
       case this._EnumComponentType.Processed:
         this.MainTitle = '檢查';
         this.SubTitle = '隨時保持 Top 5 減少時隨時補上，避免拖延與只做容易的，請按照順序地做列表上的事情。';
-        this.ProcessBtn = '修改';
+        this.ProcessBtn = '詳細';
         break;
       default:
         console.log(`沒有此 Tag 的表單 ${this.ComponentType}.`);
     }
   }
+
+  Kanban(TopNum: string, NewTopId: string) {
+
+    if (TopNum == "one") {
+      TopNum = "1"
+    } else if ("two") {
+      TopNum = "2"
+    }
+    TopNum = "Top" + TopNum;
+    console.log('TopNum', TopNum);
+    // 將原本狀態為5的拿掉
+
+    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Status', '==', TopNum, 'EndDate']);
+    // console.log(_Collection);
+    // 取 id 的方式非常奇怪，改天再研究
+    var Data = _Collection.snapshotChanges().pipe(map((actions: DocumentChangeAction<GtdTask>[]) => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as GtdTask;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    })
+    );
+    Data.subscribe(parameter => {
+      parameter.forEach((element: any) => {
+        var _Document = this._FireStorageHelper.GetFireDocument('Task/' + element.id);
+        _Document.update({ Status: "" }).finally(() => {
+          var _NewTopDoc = this._FireStorageHelper.GetFireDocument('Task/' + NewTopId);
+          _NewTopDoc.update({ Status: TopNum });
+        });
+      });
+    });
+
+  }
+
+
+
+
 }
