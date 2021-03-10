@@ -50,7 +50,6 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
     private _DialogHelper: DialogHelperService,
     private _Router: Router,
     private _ActivatedRoute: ActivatedRoute,
-    private _AngularFirestore: AngularFirestore,
   ) {
 
     super(); // 繼承基底 BaseComponent 方便可以寫一些共用內容 import
@@ -65,7 +64,7 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
 
   ngOnInit(): void {
     // @Input 必須在這個生命週期才會傳入
-    console.log('ComponentType', this.ComponentType);
+    // console.log('ComponentType', this.ComponentType);
 
     this.InitTitle();
     this.InitData();
