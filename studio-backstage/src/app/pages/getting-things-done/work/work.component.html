@@ -1,20 +1,22 @@
-<mat-expansion-panel *ngFor="let i of number">
+<mat-expansion-panel hideToggle="false" expanded="true">
     <mat-expansion-panel-header>
         <mat-panel-title>
-            <h4>Task {{i}}</h4>
+            <h4>SubTasks</h4>
         </mat-panel-title>
         <mat-panel-description>
-            content 待補...
         </mat-panel-description>
     </mat-expansion-panel-header>
     <hr>
-    <mat-selection-list #selectlist>
-        <mat-list-option *ngFor="let Version of Versions">
-            {{Version}}
-        </mat-list-option>
-    </mat-selection-list>
-    <hr>
-    <p>
-        Options selected: {{selectlist.selectedOptions.selected.length}}
-    </p>
+    <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let row of _GtdTask">
+            <p>標題: {{row.Name}}</p>
+            <p>摘要: {{row.Content}}</p>
+            <p>期限: [ {{row.StartDate|date:'yyyy-MM-dd'}} ] - [ {{row.EndDate|date:'yyyy-MM-dd'}} ]</p>
+            <p>工時: {{row.DeadLine}}</p>
+            <p>類別: {{row.Tags}}</p>
+            <p>狀態: {{row.Status}} 待補 checkbox 直接更新狀態</p>
+            <button>詳細</button>
+        </mat-list-item>
+    </mat-list>
+    <p *ngIf="(_GtdTask.length == 0) && (ComponentType != _EnumComponentType.Top5)">目前沒有子任務</p>
 </mat-expansion-panel>

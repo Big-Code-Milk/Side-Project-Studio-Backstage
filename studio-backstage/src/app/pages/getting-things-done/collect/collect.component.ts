@@ -1,4 +1,5 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { BaseComponent } from 'src/app/components/base/base.component';
+import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import GtdTask from '../../../shared/models/gtd-task';
 import { FormGroup, FormControl } from '@angular/forms';
 import * as dayjs from 'dayjs';
@@ -11,13 +12,16 @@ import { DialogHelperService } from '../../../shared/common/dialog-helper/dialog
 import { MatDialogConfig } from '@angular/material/dialog';
 import { FireStorageHelperService } from '../../../shared/common/fire-storage-helper/fire-storage-helper.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { EnumComponentType } from 'src/app/shared/enum/enum-component-type';
 
 @Component({
   selector: 'app-collect',
   templateUrl: './collect.component.html',
   styleUrls: ['./collect.component.css']
 })
-export class CollectComponent implements OnInit {
+export class CollectComponent extends BaseComponent implements OnInit {
+
+  @Input() ComponentType: EnumComponentType;
 
   GtdTask: GtdTask = new GtdTask();
   Term: FormGroup;
@@ -28,6 +32,9 @@ export class CollectComponent implements OnInit {
     private _ActivatedRoute: ActivatedRoute,
     private _Router: Router,
   ) {
+
+    super();
+
     const Today = new Date();
     const TodayAdd7days = dayjs(Today).add(7, 'day').toDate();
 
@@ -40,11 +47,15 @@ export class CollectComponent implements OnInit {
     // 這段目的是藉由管道(pipe)排除輸入空白
     this._FilteredTags = this._FormControl.valueChanges.pipe(
       startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+      map((parameter: string | null) => parameter ? this._filter(parameter) : this.allFruits.slice()));
   }
 
+  Key: string = "";
   ngOnInit(): void {
-
+    this.Key = this._ActivatedRoute.snapshot.params['key'];
+    if (this.ComponentType == this._EnumComponentType.Untreated) {
+      // 不是蒐集而是未處理狀態時存檔時將主 Key 存入
+    }
   }
 
   // Chips Autocomplete 應用
@@ -100,8 +111,10 @@ export class CollectComponent implements OnInit {
   CheckFormThenSubmit() {
     this.GtdTask.StartDate = this.Term.value.start;
     this.GtdTask.EndDate = this.Term.value.end;
+    this.GtdTask.MainTaskId = this.Key;
     // 去掉重複陣列元素 https://gotraveltoworld.medium.com/js-array-%E5%88%AA%E9%99%A4%E9%87%8D%E8%A4%87%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%89%E7%A8%AE%E6%96%B9%E5%BC%8F-c79be2d270e6
     this.Tags.push('未處理');
+    this.GtdTask.Status = "";
     this.GtdTask.Tags = [... new Set(this.Tags)];
     if (this.GtdTask.Content === undefined || this.GtdTask.Name === undefined) {
       this._MatDialogConfig.data = "必填請務必填寫";

@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { EnumComponentType } from '../../shared/enum/enum-component-type';
+import { BaseComponent } from 'src/app/components/base/base.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent extends BaseComponent implements OnInit {
 
   number: number[];
 
-  _EnumComponentType = EnumComponentType;
-
   constructor() {
+
+    super();
+
     this.number = [1, 2, 3, 4, 5];
   }
 

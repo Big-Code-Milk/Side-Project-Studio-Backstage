@@ -7,9 +7,10 @@
         <mat-panel-description>
             定義專案內容 ( OKR 大拆小 KPI ) ，擬定下一步行動 ( 動詞 )，讓事情能夠直接走起去做。
         </mat-panel-description>
+
     </mat-expansion-panel-header>
     <hr>
-    <form class="example-form" role="form" #myForm="ngForm" accept-charset="UTF-8" novalidate>
+    <form *ngIf="IsEdit" class="example-form" role="form" #myForm="ngForm" accept-charset="UTF-8" novalidate>
         <table class="example-full-width" cellspacing="0">
             <tr class="table-td">
                 <td>
@@ -67,7 +68,19 @@
             <span style="color: red;margin-right: 1em;">預覽請使用上面套件按鈕</span> <button mat-raised-button color="primary" align="end" (click)="CheckFormThenSubmit()">送出</button>
         </div>
     </form>
+    <div *ngIf="!IsEdit">
+        <span>標題:</span> {{GtdTask.Name}}
+        <span>期限:</span> [ {{GtdTask.StartDate|date:'yyyy-MM-dd'}} ] - [ {{GtdTask.EndDate|date:'yyyy-MM-dd'}} ]
+        <span>工時:</span> {{GtdTask.DeadLine}}
+        <span>狀態:</span> {{GtdTask.Status}} 待補 checkbox 直接更新狀態
+        <span>類別:</span> {{GtdTask.Tags}}
+        <div style="border-style:double;padding:1em;margin:1em 0" [innerHTML]="GtdTask.Content | html"></div>
+        <div mat-dialog-actions align="end">
+            <button mat-raised-button color="primary" align="end" (click)="IsEdit=true">編輯</button>
+        </div>
+    </div>
+
 </mat-expansion-panel>
 <br>
-<app-collect></app-collect>
+<app-collect *ngIf="IsEdit"></app-collect>
 <app-work [ComponentType]="_EnumComponentType.Untreated" [Key]="Key"></app-work>

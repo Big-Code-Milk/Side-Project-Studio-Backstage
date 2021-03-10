@@ -23,6 +23,7 @@ import { EnumComponentType } from '../../../shared/enum/enum-component-type';
 })
 export class OrganizeComponent implements OnInit {
 
+  IsEdit: boolean = true;
   GtdTask: GtdTask = new GtdTask();
   Term: FormGroup;
 
@@ -53,6 +54,10 @@ export class OrganizeComponent implements OnInit {
   ngOnInit(): void {
     this.ComponentType = this._ActivatedRoute.snapshot.params['ComponentType'];
     this.Key = this._ActivatedRoute.snapshot.params['key'];
+
+    if (this.ComponentType == this._EnumComponentType.Processed) {
+      this.IsEdit = false;
+    }
 
     this.InitCkeditor();
     // 讀取特定的 docutment
@@ -183,9 +188,12 @@ export class OrganizeComponent implements OnInit {
       this.GtdTask.Content = Param.Content;
       this.GtdTask.Name = Param.Name;
       this.Term.value.start = Param.StartDate;
+      this.GtdTask.StartDate = Param.StartDate;
       this.Term.value.end = Param.EndDate;
+      this.GtdTask.EndDate = Param.EndDate;
       this.GtdTask.DeadLine = Param.DeadLine;
       this.Tags = Param.Tags;
+      this.GtdTask.Tags = Param.Tags;
     });
   }
 

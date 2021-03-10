@@ -12,9 +12,9 @@ import { JumpAwayGuardGuard } from './shared/Guards/jump-away-guard/jump-away-gu
 import { environment } from '../environments/environment';
 
 let routes: Routes = RouterHandler();
-// console.log(routes);
+// console.log(routes); environment.production
 function RouterHandler() {
-  if (environment.production) {
+  if (true) {
     return [{
       path: '',
       component: SignInComponent
