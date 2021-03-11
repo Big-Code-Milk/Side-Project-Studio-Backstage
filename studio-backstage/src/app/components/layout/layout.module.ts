@@ -12,13 +12,15 @@ import { DialogComponent } from './dialog/dialog.component';
 
 import { BaseSharedModule } from '../../shared/module/base-shared.module';
 import { MenuComponent } from './menu/menu.component';
+import { SnackBarComponent } from './snack-bar/snack-bar.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     SideNavComponent,
     DialogComponent,
-    MenuComponent
+    MenuComponent,
+    SnackBarComponent,
   ],
   providers: [
     FireStorageHelperService

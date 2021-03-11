@@ -17,6 +17,7 @@ import { MatDialogConfig } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { EnumComponentType } from '../../../shared/enum/enum-component-type';
+import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
 
 // export interface UserData {
 //   id: string;
@@ -50,6 +51,7 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
     private _DialogHelper: DialogHelperService,
     private _Router: Router,
     private _ActivatedRoute: ActivatedRoute,
+    private _SnackBarHelper: SnackBarHelperService,
   ) {
 
     super(); // 繼承基底 BaseComponent 方便可以寫一些共用內容 import
@@ -96,8 +98,9 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
       this._MatDialogConfig.data = error;
       this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
     }).then(success => {
-      this._MatDialogConfig.data = "success";
-      this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+      // this._MatDialogConfig.data = "success";
+      // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+      this._SnackBarHelper.OpenSnackBar('Success');
     });
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
 import { SharedService } from '../../../shared/services/shared.service';
 
 // 參考
@@ -15,7 +16,8 @@ export class ShareServiceComponent implements OnInit {
   _ShareDate: any;
 
   constructor(
-    private _SharedService: SharedService
+    private _SharedService: SharedService,
+    private _SnackBarHelper: SnackBarHelperService,
   ) {
     this._SharedService.SharedData.subscribe(x => {
       console.log('x', x);
@@ -41,5 +43,9 @@ export class ShareServiceComponent implements OnInit {
 
   bbtt() {
     this._SharedService.SetShareData(this._TestData);
+  }
+
+  snackbar() {
+    this._SnackBarHelper.OpenSnackBar('test');
   }
 }

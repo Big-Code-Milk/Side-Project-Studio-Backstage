@@ -1,3 +1,4 @@
+import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
 // 參考
 // router 取得參數 https://ithelp.ithome.com.tw/articles/10209035
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
@@ -32,6 +33,7 @@ export class OrganizeComponent implements OnInit {
     private _FireStorageHelper: FireStorageHelperService,
     private _ActivatedRoute: ActivatedRoute,
     private _Router: Router,
+    private _SnackBarHelper: SnackBarHelperService,
   ) {
     const Today = new Date();
     const TodayAdd7days = dayjs(Today).add(7, 'day').toDate();
@@ -117,8 +119,6 @@ export class OrganizeComponent implements OnInit {
 
   CheckFormThenSubmit() {
 
-
-
     if (this.ComponentType == this._EnumComponentType.Untreated) {
 
       if (!confirm('注意，此選項會將未處理狀態改壓已處理!!')) {
@@ -147,8 +147,10 @@ export class OrganizeComponent implements OnInit {
         this._MatDialogConfig.data = error;
         this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
       }).then(success => {
-        this._MatDialogConfig.data = "success";
-        this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+        // this._MatDialogConfig.data = "success";
+        // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+        this._SnackBarHelper.OpenSnackBar('Success');
+        this.IsEdit = false;
       });
     }
   }

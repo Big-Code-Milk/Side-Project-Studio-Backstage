@@ -1,3 +1,4 @@
+import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
 import { BaseComponent } from 'src/app/components/base/base.component';
 import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import GtdTask from '../../../shared/models/gtd-task';
@@ -31,6 +32,7 @@ export class CollectComponent extends BaseComponent implements OnInit {
     private _FireStorageHelper: FireStorageHelperService,
     private _ActivatedRoute: ActivatedRoute,
     private _Router: Router,
+    private _SnackBarHelper: SnackBarHelperService
   ) {
 
     super();
@@ -143,9 +145,10 @@ export class CollectComponent extends BaseComponent implements OnInit {
         this._MatDialogConfig.data = error;
         this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
       }).then(success => {
-        this._MatDialogConfig.data = "success";
-        this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+        // this._MatDialogConfig.data = "success";
+        // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
         // setTimeout(function () { window.location.reload(); }, 3000);
+        this._SnackBarHelper.OpenSnackBar('Success');
       });
     }
   }

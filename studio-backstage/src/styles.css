@@ -65,3 +65,7 @@ mat-sidenav-content {
 .mat-tab-label {
     background-color: white;
 }
+
+.SnackBarStyleClass{
+  background-color: darkseagreen;
+}
