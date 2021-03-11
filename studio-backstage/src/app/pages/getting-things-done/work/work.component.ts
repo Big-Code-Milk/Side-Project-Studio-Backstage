@@ -15,7 +15,7 @@ export class WorkComponent extends BaseComponent implements OnInit {
   @Input() ComponentType: EnumComponentType;
   @Input() Key: string;
 
-  _GtdTask: GtdTask[] = [];
+  _GtdTask: any[] = [];
 
   constructor(
     private _Router: Router,
@@ -36,6 +36,7 @@ export class WorkComponent extends BaseComponent implements OnInit {
       case this._EnumComponentType.Processed:
         break;
       case this._EnumComponentType.Top5:
+        this.Top5Init();
         break;
     }
 
@@ -43,7 +44,16 @@ export class WorkComponent extends BaseComponent implements OnInit {
 
   UntreatedInit() {
     var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['MainTaskId', '==', this.Key, 'EndDate']);
-    _Collection.valueChanges().subscribe(parameter => { this._GtdTask = parameter; })
+    _Collection.valueChanges().subscribe(parameter => { this._GtdTask = parameter; });
   }
 
+  Top5Init() {
+    console.log('Top5Init');
+    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Status', 'in', ['Top1', 'Top2', 'Top3', 'Top4', 'Top5'], 'EndDate']);
+    _Collection.valueChanges().subscribe(parameter => { this._GtdTask = parameter; });
+  }
+
+  Forwarding(Key: string) {
+    alert('Key' + Key);
+  }
 }

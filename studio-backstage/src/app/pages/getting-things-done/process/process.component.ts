@@ -158,15 +158,17 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
     }
   }
 
-  Kanban(TopNum: string, NewTopId: string) {
+  // 搞半天程式碼超醜，必須要研讀 Rxjs 來大改一番 https://yuugou727.github.io/blog/2019/06/22/when-to-unsubscribe/
+  // https://blog.bitsrc.io/6-ways-to-unsubscribe-from-observables-in-angular-ab912819a78f
+  async Kanban(TopNum: string, NewTopId: string) {
 
     if (TopNum == "one") {
       TopNum = "1"
-    } else if ("two") {
+    } else if (TopNum == "two") {
       TopNum = "2"
     }
     TopNum = "Top" + TopNum;
-    console.log('TopNum', TopNum);
+    // console.log('TopNum', TopNum);
     // 將原本狀態為5的拿掉
 
     var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Status', '==', TopNum, 'EndDate']);
@@ -176,23 +178,30 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
       return actions.map(a => {
         const data = a.payload.doc.data() as GtdTask;
         const id = a.payload.doc.id;
+        // console.log('a', a);
         return { id, ...data };
       });
     })
     );
-    Data.subscribe(parameter => {
+    var Subscriber = Data.subscribe(parameter => {
+      // console.log('parameter', parameter);
       parameter.forEach((element: any) => {
         var _Document = this._FireStorageHelper.GetFireDocument('Task/' + element.id);
         _Document.update({ Status: "" }).finally(() => {
-          var _NewTopDoc = this._FireStorageHelper.GetFireDocument('Task/' + NewTopId);
-          _NewTopDoc.update({ Status: TopNum });
+          // console.log('finall',);
+          this.Wait(Subscriber, TopNum, NewTopId);
         });
       });
+      this.Wait(Subscriber, TopNum, NewTopId);
     });
 
   }
 
-
-
+  Wait(Subscriber: any, TopNum: string, NewTopId: string) {
+    Subscriber.unsubscribe();
+    // console.log('unsubscribe');
+    var _NewTopDoc = this._FireStorageHelper.GetFireDocument('Task/' + NewTopId);
+    _NewTopDoc.update({ Status: TopNum });
+  }
 
 }
