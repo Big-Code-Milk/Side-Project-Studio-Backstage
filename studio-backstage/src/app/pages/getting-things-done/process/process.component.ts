@@ -86,6 +86,11 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
   _MatDialogConfig: MatDialogConfig = {} as MatDialogConfig;
 
   Delete(TaskId: string) {
+
+    if (!confirm('確定要刪除此 Task ?')) {
+      return;
+    }
+
     let _Document = this._FireStorageHelper.GetFireDocument<GtdTask>('Task/' + TaskId);
     _Document.delete().catch(error => {
       this._MatDialogConfig.data = error;

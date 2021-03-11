@@ -59,8 +59,11 @@ export class WorkComponent extends BaseComponent implements OnInit {
   }
 
   Forwarding(TaskId: string) {
-    alert('TaskId: ' + TaskId);
-    this._Router.navigate(['dashboard/pages/organize', { key: TaskId, ComponentType: this._EnumComponentType.Processed }]);
+    // alert('TaskId: ' + TaskId);
+    // 小技巧刷新相同頁面 https://forum.angular.tw/t/link-router/334/7
+    this._Router.navigateByUrl('/dashboard/template/home', { skipLocationChange: true }).then(() =>
+      this._Router.navigate(['dashboard/pages/organize', { key: TaskId, ComponentType: this._EnumComponentType.Processed }]));
+    // this._Router.navigate(['dashboard/pages/organize', { key: TaskId, ComponentType: this._EnumComponentType.Processed }]);
   }
 
   DataInin(_Collection: AngularFirestoreCollection<GtdTask>) {
