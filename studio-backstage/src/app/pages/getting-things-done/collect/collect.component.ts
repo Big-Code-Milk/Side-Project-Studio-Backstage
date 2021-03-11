@@ -15,7 +15,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { EnumComponentType } from 'src/app/shared/enum/enum-component-type';
 
 @Component({
-  selector: 'app-collect',
+  selector: 'app-collect [ComponentType]',
   templateUrl: './collect.component.html',
   styleUrls: ['./collect.component.css']
 })
@@ -49,12 +49,26 @@ export class CollectComponent extends BaseComponent implements OnInit {
       startWith(null),
       map((parameter: string | null) => parameter ? this._filter(parameter) : this.allFruits.slice()));
   }
-
+  MainTitle: string = "";
+  SubTitle: string = "";
+  ProcessBtn: string = "";
   Key: string = "";
   ngOnInit(): void {
     this.Key = this._ActivatedRoute.snapshot.params['key'];
-    if (this.ComponentType == this._EnumComponentType.Untreated) {
-      // 不是蒐集而是未處理狀態時存檔時將主 Key 存入
+
+    switch (this.ComponentType) {
+      case this._EnumComponentType.Untreated:
+        this.MainTitle = '蒐集';
+        this.SubTitle = '把任何你需要跟蹤或者記住或者做的事情記在一個收件箱。把你腦子裡的任何東西都拿出來放到你的搜集箱，準備好做下一步的處理。';
+        this.ProcessBtn = '處理';
+        break;
+      case this._EnumComponentType.Processed:
+        this.MainTitle = '子項目蒐集';
+        this.SubTitle = 'OKR 後確保此處都是能夠立即行動的 KPI 動作';
+        this.ProcessBtn = '詳細';
+        break;
+      default:
+        console.log(`沒有此 Tag 的表單 ${this.ComponentType}.`);
     }
   }
 
