@@ -199,7 +199,7 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
 
   Wait(Subscriber: any, TopNum: string, NewTopId: string) {
     Subscriber.unsubscribe();
-    // console.log('unsubscribe');
+    console.log('unsubscribe');
     var _NewTopDoc = this._FireStorageHelper.GetFireDocument('Task/' + NewTopId);
     _NewTopDoc.update({ Status: TopNum });
   }
