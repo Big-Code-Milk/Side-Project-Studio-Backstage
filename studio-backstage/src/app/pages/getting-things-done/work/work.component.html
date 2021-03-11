@@ -1,40 +1,38 @@
 <!-- 子項目清單顯示畫面 -->
 <mat-expansion-panel *ngIf="!IsWork" hideToggle="false" expanded="true">
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      <h4>子項目清單</h4>
-    </mat-panel-title>
-    <mat-panel-description>
-    </mat-panel-description>
-  </mat-expansion-panel-header>
-  <hr>
-  <mat-list role="list">
-    <mat-list-item role="listitem" *ngFor="let row of _GtdTask">
-      <h4>{{row.Status}}</h4>
-      <p>標題: </p>
-      <span>{{row.Name}}</span>
-      <p>摘要: </p> <span>{{row.Content.substr(0,10)}}</span>
-      <p>期限: </p> <span>[ {{row.StartDate|date:'yyyy-MM-dd'}} ] - [ {{row.EndDate|date:'yyyy-MM-dd'}} ]</span>
-      <p>工時: </p> <span>{{row.DeadLine}}</span>
-      <p>類別: </p> <span>{{row.Tags}}</span>
-      <button style="position: absolute; right: 2em;" mat-stroked-button color="primary" (click)='Forwarding(row.id)'
-        align="end">詳細</button>
-    </mat-list-item>
-  </mat-list>
-  <p *ngIf="_GtdTask.length == 0">目前沒有子任務</p>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            <h4>子項目清單</h4>
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <hr>
+    <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let row of _GtdTask">
+            <h4>{{row.Status}}</h4>
+            <p>標題: </p>
+            <span>{{row.Name}}</span>
+            <p>摘要: </p> <span>{{row.Content.substr(0,10)}} ...</span>
+            <p>期限: </p> <span>[ {{row.StartDate|date:'yyyy-MM-dd'}} ] - [ {{row.EndDate|date:'yyyy-MM-dd'}} ]</span>
+            <p>工時: </p> <span>{{row.DeadLine}} 小時</span>
+            <p>類別: </p> <span>{{row.Tags}}</span>
+            <button style="position: absolute; right: 2em;" mat-stroked-button color="primary" (click)='Forwarding(row.id)' align="end">詳細</button>
+        </mat-list-item>
+    </mat-list>
+    <p *ngIf="_GtdTask.length == 0">目前沒有子任務</p>
 </mat-expansion-panel>
 <!-- 做事元件顯示畫面 -->
 <mat-list *ngIf="IsWork" role="list">
-  <mat-list-item role="listitem" *ngFor="let row of _GtdTask">
-    <h4>{{row.Status}}</h4>
-    <p>標題: </p>
-    <span>{{row.Name}}</span>
-    <p>摘要: </p> <span>{{row.Content.substr(0,10)}}</span>
-    <p>期限: </p> <span>[ {{row.StartDate|date:'yyyy-MM-dd'}} ] - [ {{row.EndDate|date:'yyyy-MM-dd'}} ]</span>
-    <p>工時: </p> <span>{{row.DeadLine}}</span>
-    <p>類別: </p> <span>{{row.Tags}}</span>
-    <button style="position: absolute; right: 2em;" mat-stroked-button color="primary" (click)='Forwarding(row.id)'
-      align="end">詳細</button>
-  </mat-list-item>
-  <h2 *ngIf="_GtdTask.length == 0" style="color: red;">目前無可做之事，請確定目前任務!!!</h2>
+    <mat-list-item role="listitem" *ngFor="let row of _GtdTask">
+        <h4>{{row.Status}}</h4>
+        <p>標題: </p>
+        <span>{{row.Name}}</span>
+        <p>摘要: </p> <span>{{row.Content.substr(0,10)}} ...</span>
+        <p>期限: </p> <span>[ {{row.StartDate|date:'yyyy-MM-dd'}} ] - [ {{row.EndDate|date:'yyyy-MM-dd'}} ]</span>
+        <p>工時: </p> <span>{{row.DeadLine}} 小時</span>
+        <p>類別: </p> <span>{{row.Tags}}</span>
+        <button style="position: absolute; right: 2em;" mat-stroked-button color="primary" (click)='Forwarding(row.id)' align="end">詳細</button>
+    </mat-list-item>
+    <h2 *ngIf="_GtdTask.length == 0" style="color: red;">目前無可做之事，請確定目前任務!!!</h2>
 </mat-list>

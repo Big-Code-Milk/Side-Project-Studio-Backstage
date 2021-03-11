@@ -212,4 +212,9 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
     _NewTopDoc.update({ Status: TopNum });
   }
 
+  Archive(TaskId: string) {
+    if (!confirm('確定要封存此 Task ?')) {
+      return;
+    }
+  }
 }
