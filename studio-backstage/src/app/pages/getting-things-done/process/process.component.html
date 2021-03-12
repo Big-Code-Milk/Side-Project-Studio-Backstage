@@ -56,7 +56,7 @@
                         </button>
                     </div>
                     <button mat-stroked-button color="primary" (click)='Process(row.id)'>{{ProcessBtn}}</button>
-                    <button mat-stroked-button (click)='Archive(row.id)'>封存</button>
+                    <button mat-stroked-button (click)='Archive(row.id,row)'>封存</button>
                     <button mat-stroked-button color="warn" (click)='Delete(row.id)'>刪除</button>
                 </td>
             </ng-container>

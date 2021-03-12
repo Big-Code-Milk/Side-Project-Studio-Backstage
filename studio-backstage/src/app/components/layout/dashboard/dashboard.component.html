@@ -17,7 +17,7 @@
             <span *ngIf='_Email!=null' style="padding-left: 1em;">{{_Email}}</span>
             <span *ngIf='_Email==null' style="padding-left: 1em;color:red">目前為開發者模式，處於未登入狀態，可能無法寫入資料</span>
         </mat-toolbar>
-        <div style="padding: 2em 4em;">
+        <div style="padding: 2em 4em;" class="page-content">
             <router-outlet></router-outlet>
         </div>
     </mat-sidenav-content>

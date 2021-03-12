@@ -212,9 +212,24 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
     _NewTopDoc.update({ Status: TopNum });
   }
 
-  Archive(TaskId: string) {
-    if (!confirm('確定要封存此 Task ?')) {
+  Archive(TaskId: string, GtdTask: any) {
+    if (!confirm('確定要封存此 Task ' + TaskId + '?')) {
       return;
     }
+    // https://cythilya.github.io/2017/05/08/javascript-find-item-in-an-array/
+    // tag = this.Tags.filter(function (Tag) { return Tag != "未處理" });
+    var _Document = this._FireStorageHelper.GetFireDocument('Task/' + TaskId);
+    GtdTask.Tags = GtdTask.Tags.filter(function (Tag: any) { return (Tag != "已處理") && (Tag != "未處理") });
+    GtdTask.Tags.push('已封存');
+    let JSONString = JSON.stringify(GtdTask);
+    let Obj = JSON.parse(JSONString);
+    _Document.update(Obj).catch(error => {
+      this._MatDialogConfig.data = error;
+      this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+    }).then(success => {
+      // this._MatDialogConfig.data = "success";
+      // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+      this._SnackBarHelper.OpenSnackBar('Success');
+    });
   }
 }

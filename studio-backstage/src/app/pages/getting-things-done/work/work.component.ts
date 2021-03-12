@@ -40,6 +40,9 @@ export class WorkComponent extends BaseComponent implements OnInit {
       case this._EnumComponentType.Top5:
         this.Top5Init();
         break;
+      case this._EnumComponentType.Archived:
+        this.ArchivedInit();
+        break;
     }
 
   }
@@ -82,5 +85,12 @@ export class WorkComponent extends BaseComponent implements OnInit {
       console.log('parameter', parameter);
       this._GtdTask = parameter;
     });
+  }
+  ArchivedInit() {
+    console.log('ArchivedInit');
+    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Tags', 'array-contains-any', ['已封存'], 'EndDate']);
+    // _Collection.valueChanges().subscribe(parameter => { this._GtdTask = parameter; });
+    this.DataInin(_Collection);
+    this.IsWork = true;
   }
 }

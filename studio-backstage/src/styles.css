@@ -66,6 +66,41 @@ mat-sidenav-content {
     background-color: white;
 }
 
-.SnackBarStyleClass{
-  background-color: darkseagreen;
+.SnackBarStyleClass {
+    background-color: darkseagreen;
 }
+
+
+/* 手機板 */
+
+@media (max-width: 767px) {
+    mat-toolbar {
+        padding: 0 0 !important;
+    }
+    .page-content {
+        padding: 0 0.8em !important;
+    }
+    mat-panel-description {
+        display: none !important;
+    }
+    .mat-list-item-content>h4 {
+        padding: 0 0 !important;
+    }
+    .mat-list-item-content {
+        padding: 0 0 !important;
+    }
+    .mat-expansion-panel-body>h5 {
+        display: none !important;
+    }
+    .mat-expansion-panel-body>p {
+        padding-left: 0 !important;
+    }
+}
+
+@media (max-width: 480px) {}
+
+@media (min-width: 768px) and (max-width: 979px) {}
+
+@media (min-width: 980px) {}
+
+@media (min-width: 1200px) {}
