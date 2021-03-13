@@ -1,110 +1,108 @@
-/* You can add global styles to this file, and also import other style files */
-
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
-body {
-    margin: 0 !important;
-}
-
-
-/* 未連結 */
-
-.ButtonLink:link {
-    color: #000000;
-    text-decoration: none;
-}
-
-
-/* 已連結過 */
-
-.ButtonLink:visited {
-    color: #000000;
-    text-decoration: none;
-}
-
-
-/* 滑鼠移至連結 */
-
-.ButtonLink:hover {
-    color: #00FF00;
-}
-
-
-/* 選擇的連結 */
-
-.ButtonLink:active {
-    color: #0000FF;
-}
-
-.SideNavActived {
-    width: 80vw;
-    margin-left: 20vw !important;
-}
-
-.SideNavInactive {
-    width: 100vw;
-}
-
-
-/* 由子層控制畫面 */
-
-mat-dialog-container {
-    padding: 0 !important;
-    border-radius: 10px !important;
-}
-
-mat-dialog-content {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-mat-sidenav-content {
-    height: 100vh !important;
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.mat-tab-label {
-    background-color: white;
-}
-
-.SnackBarStyleClass {
-    background-color: darkseagreen;
-}
-
-
-/* 手機板 */
-
-@media (max-width: 767px) {
-    mat-toolbar {
-        padding: 0 0 !important;
-    }
-    .page-content {
-        padding: 0 0.8em !important;
-    }
-    mat-panel-description {
-        display: none !important;
-    }
-    .mat-list-item-content>h4 {
-        padding: 0 0 !important;
-    }
-    .mat-list-item-content {
-        padding: 0 0 !important;
-    }
-    .mat-expansion-panel-body>h5 {
-        display: none !important;
-    }
-    .mat-expansion-panel-body>p {
-        padding-left: 0 !important;
-    }
-    .SideNavActived {
-        width: 100vw !important;
-        margin-left: 0 !important;
-    }
-}
-
-@media (max-width: 480px) {}
-
-@media (min-width: 768px) and (max-width: 979px) {}
-
-@media (min-width: 980px) {}
-
-@media (min-width: 1200px) {}
+        /* You can add global styles to this file, and also import other style files */
+        
+        @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+        body {
+            margin: 0 !important;
+        }
+        /* 未連結 */
+        
+        .ButtonLink:link {
+            color: #000000;
+            text-decoration: none;
+        }
+        /* 已連結過 */
+        
+        .ButtonLink:visited {
+            color: #000000;
+            text-decoration: none;
+        }
+        /* 滑鼠移至連結 */
+        
+        .ButtonLink:hover {
+            color: #00FF00;
+        }
+        /* 選擇的連結 */
+        
+        .ButtonLink:active {
+            color: #0000FF;
+        }
+        
+        .SideNavActived {
+            width: 80vw;
+            margin-left: 20vw !important;
+        }
+        
+        .SideNavInactive {
+            width: 100vw;
+        }
+        /* 由子層控制畫面 */
+        
+        mat-dialog-container {
+            padding: 0 !important;
+            border-radius: 10px !important;
+        }
+        
+        mat-dialog-content {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        
+        mat-sidenav-content {
+            height: 100vh !important;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        .mat-tab-label {
+            background-color: white;
+        }
+        
+        .SnackBarStyleClass {
+            background-color: darkseagreen;
+        }
+        /* 手機板 */
+        
+        @media (max-width: 767px) {
+            mat-toolbar {
+                padding: 0 0 !important;
+            }
+            .page-content {
+                padding: 0 0.8em !important;
+            }
+            mat-panel-description {
+                display: none !important;
+            }
+            .mat-list-item-content>h4 {
+                padding: 0 0 !important;
+            }
+            .mat-list-item-content {
+                padding: 0 0 !important;
+            }
+            .mat-expansion-panel-body>h5 {
+                display: none !important;
+            }
+            .mat-expansion-panel-body>p {
+                padding-left: 0 !important;
+            }
+            .SideNavActived {
+                width: 100vw !important;
+                margin-left: 0 !important;
+            }
+            mat-card {
+                max-width: none !important;
+                position: absolute !important;
+                margin-top: 35vh !important;
+                left: 4vw !important;
+                width: 100vw !important;
+            }
+            mat-sidenav {
+                width: 50% !important;
+            }
+        }
+        
+        @media (max-width: 480px) {}
+        
+        @media (min-width: 768px) and (max-width: 979px) {}
+        
+        @media (min-width: 980px) {}
+        
+        @media (min-width: 1200px) {}
