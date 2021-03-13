@@ -95,6 +95,10 @@ mat-sidenav-content {
     .mat-expansion-panel-body>p {
         padding-left: 0 !important;
     }
+    .SideNavActived {
+        width: 100vw !important;
+        margin-left: 0 !important;
+    }
 }
 
 @media (max-width: 480px) {}

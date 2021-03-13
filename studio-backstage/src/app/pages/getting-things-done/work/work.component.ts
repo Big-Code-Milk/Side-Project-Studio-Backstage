@@ -54,7 +54,7 @@ export class WorkComponent extends BaseComponent implements OnInit {
   }
 
   Top5Init() {
-    console.log('Top5Init');
+    // console.log('Top5Init');
     var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Status', 'in', ['Top1', 'Top2', 'Top3', 'Top4', 'Top5'], 'EndDate']);
     // _Collection.valueChanges().subscribe(parameter => { this._GtdTask = parameter; });
     this.DataInin(_Collection);
@@ -75,19 +75,19 @@ export class WorkComponent extends BaseComponent implements OnInit {
       return actions.map(a => {
         const data = a.payload.doc.data() as GtdTask;
         const id = a.payload.doc.id;
-        console.log('id', id, 'data', data);
+        // console.log('id', id, 'data', data);
         return { id, ...data };
       });
     })
     );
     // console.log('Data', Data);
     Data.subscribe(parameter => {
-      console.log('parameter', parameter);
+      // console.log('parameter', parameter);
       this._GtdTask = parameter;
     });
   }
   ArchivedInit() {
-    console.log('ArchivedInit');
+    // console.log('ArchivedInit');
     var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Tags', 'array-contains-any', ['已封存'], 'EndDate']);
     // _Collection.valueChanges().subscribe(parameter => { this._GtdTask = parameter; });
     this.DataInin(_Collection);
