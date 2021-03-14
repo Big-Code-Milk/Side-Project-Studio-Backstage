@@ -60,6 +60,7 @@
             background-color: darkseagreen;
         }
         /* 手機板 */
+        /* https://blog.hinablue.me/css-media-query-tips/ */
 
         @media (max-width: 767px) {
             span {
