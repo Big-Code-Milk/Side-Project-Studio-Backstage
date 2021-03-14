@@ -150,7 +150,8 @@ export class OrganizeComponent implements OnInit {
         // this._MatDialogConfig.data = "success";
         // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
         this._SnackBarHelper.OpenSnackBar('Success');
-        this.IsEdit = false;
+        // this.IsEdit = false;
+        this._Router.navigate(['dashboard/']);
       });
     }
   }
@@ -196,6 +197,8 @@ export class OrganizeComponent implements OnInit {
       this.GtdTask.DeadLine = Param.DeadLine;
       this.Tags = Param.Tags;
       this.GtdTask.Tags = Param.Tags;
+      this.GtdTask.MainTaskId = Param.MainTaskId;
+      this.GtdTask.Status = Param.Status;
     });
   }
 
