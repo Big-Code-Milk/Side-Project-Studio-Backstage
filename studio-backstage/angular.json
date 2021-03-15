@@ -36,7 +36,7 @@
                         ],
                         "scripts": [
                             "node_modules/jquery/dist/jquery.js",
-                            "src/assets/library/editor-md/editormd.min.js"
+                            "src/assets/library/editor.md/editormd.min.js"
                         ]
                     },
                     "configurations": {
