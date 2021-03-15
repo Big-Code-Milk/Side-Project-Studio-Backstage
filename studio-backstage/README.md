@@ -138,7 +138,7 @@
 
 27. 20210314 - RWD & GTD 大致上完成
 
-28. [ng2-md-editor](npm install angular-markdown-editor)
+28. 富文本改為元件 [editor.md](https://github.com/pandao/editor.md)
 
 ## Angular Material
 
