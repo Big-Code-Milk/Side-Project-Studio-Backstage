@@ -136,6 +136,10 @@
 
 26. [ng2-ckeditor](https://www.npmjs.com/package/ng2-ckeditor)
 
+27. 20210314 - RWD & GTD 大致上完成
+
+28. 富文本改為元件 [editor.md](https://github.com/pandao/editor.md)
+
 ## Angular Material
 
 [AG Material 完全攻略](https://ithelp.ithome.com.tw/articles/10192517)

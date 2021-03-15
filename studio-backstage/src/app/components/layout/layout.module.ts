@@ -13,6 +13,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { BaseSharedModule } from '../../shared/module/base-shared.module';
 import { MenuComponent } from './menu/menu.component';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
+import { EditorComponent } from './editor/editor.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SnackBarComponent } from './snack-bar/snack-bar.component';
     DialogComponent,
     MenuComponent,
     SnackBarComponent,
+    EditorComponent,
   ],
   providers: [
     FireStorageHelperService
