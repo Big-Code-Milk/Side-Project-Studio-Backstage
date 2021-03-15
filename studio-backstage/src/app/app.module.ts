@@ -25,10 +25,12 @@ import { ExampleModule } from './components/example/example.module';
 import { ErrorLogHandler } from '../app/shared/common/error-log-handler/error-log-hanler';
 import { SharedService } from './shared/services/shared.service';
 import { TemplateModule } from './components/template/template.module';
+import { EditorMdDirective } from './shared/directive/editor-md.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
+    EditorMdDirective,
   ],
   imports: [
     BrowserModule,

@@ -31,9 +31,13 @@
                             "src/assets"
                         ],
                         "styles": [
-                            "src/styles.css"
+                            "assets/editor.md/css/editormd.css",
+                            "styles.css"
                         ],
-                        "scripts": []
+                        "scripts": [
+                            "../node_modules/jquery/dist/jquery.js",
+                            "assets/library/editor-md/editor.md-master/editormd.min.js"
+                        ]
                     },
                     "configurations": {
                         "production": {

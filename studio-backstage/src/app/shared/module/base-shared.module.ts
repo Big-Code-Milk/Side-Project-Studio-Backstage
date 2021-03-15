@@ -12,6 +12,8 @@ import 'dayjs/locale/zh-tw' // import locale
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CKEditorModule } from 'ng2-ckeditor';
+import { EditorMdDirective } from '../directive/editor-md/editor-md.directive';
+
 
 @NgModule({
   declarations: [],
@@ -20,12 +22,14 @@ import { CKEditorModule } from 'ng2-ckeditor';
     FormsModule,
     ReactiveFormsModule,
     CKEditorModule,
+    EditorMdDirective,
   ],
   exports: [
     PrettyJsonModule,
     FormsModule,
     ReactiveFormsModule,
     CKEditorModule,
+    EditorMdDirective,
   ]
 })
 export class BaseSharedModule {
