@@ -24,6 +24,7 @@ import { EditorMdDirective } from '../../shared/directive/editor-md/editor-md.di
     MenuComponent,
     SnackBarComponent,
     EditorComponent,
+    EditorMdDirective,
   ],
   providers: [
     FireStorageHelperService
@@ -33,7 +34,6 @@ import { EditorMdDirective } from '../../shared/directive/editor-md/editor-md.di
     SharedAngularMaterialModule,
     BaseSharedModule,
     LayoutRoutingModule,
-    // EditorMdDirective,
   ],
   exports: [
     DashboardComponent,

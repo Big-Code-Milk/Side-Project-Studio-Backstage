@@ -7,9 +7,9 @@
         </div>
     </mat-tab>
     <mat-tab label="Editor.md">
-        <!-- <div id="md" appEditorMd (onEditorChange)="syncModel($event)">
+        <div id="md" appEditorMd [editormdConfig]="conf" (onEditorChange)="syncModel($event)">
             <textarea style="display: block;" [(ngModel)]="markdown"></textarea>
-        </div> -->
+        </div>
     </mat-tab>
     <mat-tab label="Medium WYSIWYG">
         施工中

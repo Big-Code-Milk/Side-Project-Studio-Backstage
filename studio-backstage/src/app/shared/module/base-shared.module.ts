@@ -16,7 +16,8 @@ import { EditorMdDirective } from '../directive/editor-md/editor-md.directive';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     FormsModule,
