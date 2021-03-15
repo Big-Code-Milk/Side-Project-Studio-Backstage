@@ -3,9 +3,7 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CKEditorComponent } from 'ng2-ckeditor';
-
-declare var CKEDITOR: any;
-console.log('CKEDITOR', CKEDITOR);
+import { EditorConfig } from '../../../shared/directive/editor-md/editor-md-config';
 
 @Component({
   selector: 'app-editor',
@@ -50,4 +48,14 @@ export class EditorComponent implements OnInit {
   }
 
   // https://www.itread01.com/content/1547506459.html
+  // https://gitee.com/imlxp/ngx-editor.md-markdown/tree/master
+  // ngx-editor.md-markdown
+
+  conf = new EditorConfig();
+  markdown = '测试语句';
+
+  // 同步属性内容
+  syncModel(str: any): void {
+    this.markdown = str;
+  }
 }
