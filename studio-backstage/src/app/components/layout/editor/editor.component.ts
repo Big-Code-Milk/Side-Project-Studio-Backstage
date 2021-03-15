@@ -14,7 +14,6 @@ console.log('CKEDITOR', CKEDITOR);
 })
 export class EditorComponent implements OnInit {
 
-
   Content: string = "";
 
   constructor() { }
@@ -30,23 +29,11 @@ export class EditorComponent implements OnInit {
   @ViewChild("myckeditor") ckeditor: CKEditorComponent;
 
   InitCkeditor() {
-    console.log('InitCkeditor');
     this.ckeConfig = {
       allowedContent: false,
-      extraPlugins: 'markdown',
+      extraPlugins: 'divarea',
       forcePasteAsPlainText: true,
       height: '45vh',
-      removeButtons: 'Underline,Subscript,Superscript',
-      format_tags: 'p;h1;h2;h3;pre',
-      removeDialogTabs: 'image:advanced;link:advanced',
-      toolbarGroups: [
-        { name: 'tools' },
-        { name: 'links' },
-        { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
-        { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'] },
-        { name: 'styles' },
-        { name: 'others' }
-      ]
     };
     this.Content = `<p>My html content</p>`;
   }
@@ -61,4 +48,6 @@ export class EditorComponent implements OnInit {
     console.log("onPaste");
     //this.log += new Date() + "<br />";
   }
+
+  // https://www.itread01.com/content/1547506459.html
 }

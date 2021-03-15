@@ -138,7 +138,7 @@
 
 27. 20210314 - RWD & GTD 大致上完成
 
-28. 富文本改為元件 [editor.md](https://github.com/pandao/editor.md)
+28. 富文本改為元件 [editor.md](https://github.com/pandao/editor.md) 本來打算用 ck　編輯器的　ｍｋ　套件，但太難搞了後續再弄，先繼續弄這個後來找到的
 
 ## Angular Material
 
