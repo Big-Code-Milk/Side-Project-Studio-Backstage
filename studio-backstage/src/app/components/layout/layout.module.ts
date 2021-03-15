@@ -14,6 +14,7 @@ import { BaseSharedModule } from '../../shared/module/base-shared.module';
 import { MenuComponent } from './menu/menu.component';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { EditorComponent } from './editor/editor.component';
+import { EditorMdDirective } from '../../shared/directive/editor-md/editor-md.directive';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { EditorComponent } from './editor/editor.component';
     CommonModule,
     SharedAngularMaterialModule,
     BaseSharedModule,
-    LayoutRoutingModule
+    LayoutRoutingModule,
+    // EditorMdDirective,
   ],
   exports: [
     DashboardComponent,

@@ -22,14 +22,12 @@ import { EditorMdDirective } from '../directive/editor-md/editor-md.directive';
     FormsModule,
     ReactiveFormsModule,
     CKEditorModule,
-    EditorMdDirective,
   ],
   exports: [
     PrettyJsonModule,
     FormsModule,
     ReactiveFormsModule,
     CKEditorModule,
-    EditorMdDirective,
   ]
 })
 export class BaseSharedModule {
