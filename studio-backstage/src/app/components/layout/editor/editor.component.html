@@ -1,17 +1,21 @@
 <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
-    <mat-tab label="Ckeditor">
-        <div class="form-group has-feedback" [ngClass]="{ 'has-error': myckeditor.invalid && myckeditor.touched }">
-            <ckeditor style="height: 100vh;" [(ngModel)]="this.Content" #myckeditor="ngModel" name="myckeditor" required [config]="ckeConfig" debounce="500" (paste)="onPaste($event)" (change)="onChange($event)">
-            </ckeditor>
-            <div *ngIf="myckeditor.invalid && myckeditor.touched" class="help-block">Required field.</div>
-        </div>
-    </mat-tab>
-    <mat-tab label="Editor.md">
-        <div id="md" appEditorMd [editormdConfig]="conf" (onEditorChange)="syncModel($event)">
-            <textarea style="display: block;" [(ngModel)]="markdown"></textarea>
-        </div>
-    </mat-tab>
-    <mat-tab label="Medium WYSIWYG">
-        施工中
-    </mat-tab>
+  <mat-tab label="Ckeditor">
+    <div class="form-group has-feedback" [ngClass]="{ 'has-error': myckeditor.invalid && myckeditor.touched }">
+      <ckeditor style="height: 100vh;" [(ngModel)]="this.Content" #myckeditor="ngModel" name="myckeditor" required
+        [config]="ckeConfig" debounce="500" (paste)="onPaste($event)" (change)="onChange($event)">
+      </ckeditor>
+      <div *ngIf="myckeditor.invalid && myckeditor.touched" class="help-block">Required field.</div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Editor.md">
+    <div id="md" appEditorMd [editormdConfig]="conf" (onEditorChange)="syncModel($event)">
+      <textarea style="display: block;" [(ngModel)]="markdown"></textarea>
+    </div>
+    <hr>
+    <h2>Markdown内容:</h2>
+    <span>{{markdown}}</span>
+  </mat-tab>
+  <mat-tab label="Medium WYSIWYG">
+    施工中
+  </mat-tab>
 </mat-tab-group>

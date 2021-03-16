@@ -16,18 +16,31 @@ export class EditorMdDirective implements AfterViewInit {
   constructor(
     @Attribute('id') private id: string
   ) {
-
+    console.log('EditorMdDirective');
   }
 
   ngAfterViewInit(): void {
-    this.editor = editormd(this.id, this.editormdConfig); // 创建编辑器
 
+    // https://gitee.com/imlxp/ngx-editor.md-markdown/issues/IHX59
+    // https://github.com/pandao/editor.md/issues/553
+    //   if ($('#' + this.id).length > 0) {
+    //     var editor = editormd("editormd", {});
+    // }
+
+    console.log('editormd', editormd);
+
+    this.editor = editormd($('#' + this.id), this.editormdConfig); // 创建编辑器
     const out = this.onEditorChange;
     const textarea = $('#' + this.id + ' :first'); // 获取textarea元素
 
+    console.log('textarea', textarea.length);
+
+
     // 当编辑器内容改变时，触发textarea的change事件
     this.editor.on('change', function () {
-      out.emit(textarea.val());
+      if (textarea.length > 0) {
+        out.emit(textarea.val());
+      }
     });
   }
 }
