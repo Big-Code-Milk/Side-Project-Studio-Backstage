@@ -47,11 +47,6 @@ export class EditorComponent implements OnInit {
     //this.log += new Date() + "<br />";
   }
 
-  // https://www.itread01.com/content/1547506459.html
-  // https://gitee.com/imlxp/ngx-editor.md-markdown/tree/master
-  // ngx-editor.md-markdown // node_modules/editor.md/css/editormd.css // node_modules/editor.md/editormd.min.js
-  // src/assets/editor.md/editormd.min.js // src/assets/editor.md/css/editormd.css
-
   conf = new EditorConfig();
   markdown = '测试语句';
 

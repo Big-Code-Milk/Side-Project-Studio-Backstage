@@ -17,30 +17,36 @@ export class EditorMdDirective implements AfterViewInit {
     @Attribute('id') private id: string
   ) {
     console.log('EditorMdDirective');
+
+    console.log('editorlength', $('#' + this.id).length);
+    if ($('#' + this.id).length > 0) {
+      this.editor = editormd(this.id, this.editormdConfig); // 创建编辑器
+    }
+
+    console.log('editormd', editormd);
+
+    const out = this.onEditorChange;
+    const textarea = $('#' + this.id + ' :first'); // 获取textarea元素
+
+    console.log('textarea', textarea.length);
+
+    // 当编辑器内容改变时，触发textarea的change事件
+    this.editor.on('change', function () {
+      out.emit(textarea.val());
+    });
   }
 
   ngAfterViewInit(): void {
 
     // https://gitee.com/imlxp/ngx-editor.md-markdown/issues/IHX59
     // https://github.com/pandao/editor.md/issues/553
-    //   if ($('#' + this.id).length > 0) {
-    //     var editor = editormd("editormd", {});
-    // }
-
-    console.log('editormd', editormd);
-
-    this.editor = editormd($('#' + this.id), this.editormdConfig); // 创建编辑器
-    const out = this.onEditorChange;
-    const textarea = $('#' + this.id + ' :first'); // 获取textarea元素
-
-    console.log('textarea', textarea.length);
+    // https://www.itread01.com/content/1547506459.html
+    // https://gitee.com/imlxp/ngx-editor.md-markdown/tree/master
 
 
-    // 当编辑器内容改变时，触发textarea的change事件
-    this.editor.on('change', function () {
-      if (textarea.length > 0) {
-        out.emit(textarea.val());
-      }
-    });
+    // ngx-editor.md-markdown // node_modules/editor.md/css/editormd.css // node_modules/editor.md/editormd.min.js
+    // src/assets/editor.md/editormd.min.js // src/assets/editor.md/css/editormd.css
+
+
   }
 }
