@@ -31,12 +31,12 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/editor.md/css/editormd.css",
+              "node_modules/editor.md/css/editormd.css",
               "src/styles.css"
             ],
             "scripts": [
-              "./node_modules/jquery/dist/jquery.js",
-              "./node_modules/editor.md/editormd.min.js"
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/editor.md/editormd.min.js"
             ]
           },
           "configurations": {
@@ -98,7 +98,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "styles.css"
             ],
             "scripts": []
           }
