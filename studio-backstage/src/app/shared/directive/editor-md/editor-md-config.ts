@@ -1,7 +1,7 @@
 export class EditorConfig {
   public width = '100%';
   public height = '400';
-  // public path = 'assets/editor.md/lib/';
+  public path = 'assets/editor.md/lib/';
   public codeFold: true;
   public searchReplace = true;
   public toolbar = true;
@@ -20,7 +20,28 @@ export class EditorConfig {
   public imageUpload = true;
   public imageFormats = ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp'];
   public imageUploadURL = '';
-
-  constructor() {
-  }
 }
+
+// {
+//   width: '100%',
+//     height: '400',
+//       path: 'assets/editor.md/lib/',
+//         codeFold: true,
+//           searchReplace: true,
+//             toolbar: true,
+//               emoji: true,
+//                 taskList: true,
+//                   tex: true,
+//                     readOnly: false,
+//                       tocm: true,
+//                         watch: true,
+//                           previewCodeHighlight: true,
+//                             saveHTMLToTextarea: true,
+//                               markdown: '',
+//                                 flowChart: true,
+//                                   syncScrolling: true,
+//                                     sequenceDiagram: true,
+//                                       imageUpload: true,
+//                                         imageFormats: ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp'],
+//                                           imageUploadURL: ''
+// }

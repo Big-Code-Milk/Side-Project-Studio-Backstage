@@ -1,3 +1,4 @@
+import { EditorMdComponent } from './components/layout/editor-md/editor-md.component';
 // 參考
 // 路由帶參數 https://medium.com/chikuwa-tech-study/angular-%E7%AC%AC9%E8%AA%B2-%E8%B7%AF%E7%94%B1%E6%94%9C%E5%B8%B6%E5%8F%83%E6%95%B8-39a4d4f05448
 
@@ -11,7 +12,6 @@ import { AuthGuard } from './shared/Guards/auth-guard/auth.guard';
 import { JumpAwayGuardGuard } from './shared/Guards/jump-away-guard/jump-away-guard.guard';
 import { environment } from '../environments/environment';
 import { EditorComponent } from './components/layout/editor/editor.component';
-import { EditorMdComponent } from './components/layout/editor-md/editor-md.component';
 
 let routes: Routes = RouterHandler();
 // console.log(routes); environment.production
@@ -20,6 +20,10 @@ function RouterHandler() {
     return [{
       path: '',
       component: EditorMdComponent //SignInComponent
+    },
+    {
+      path: 'eedd',
+      component: EditorComponent
     },
     {
       path: 'dashboard',

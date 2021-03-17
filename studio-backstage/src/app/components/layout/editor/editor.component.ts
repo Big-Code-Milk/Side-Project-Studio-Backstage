@@ -5,6 +5,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CKEditorComponent } from 'ng2-ckeditor';
 import { EditorConfig } from '../../../shared/directive/editor-md/editor-md-config';
 
+declare var editormd: any;
+declare var $: any;
+
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
@@ -18,6 +21,7 @@ export class EditorComponent implements OnInit {
 
   ngOnInit(): void {
     this.InitCkeditor();
+    this.EditorMdInit();
   }
 
   // ng2-ckeditor
@@ -32,26 +36,28 @@ export class EditorComponent implements OnInit {
       extraPlugins: 'divarea',
       forcePasteAsPlainText: true,
       height: '45vh',
-    };
-    this.Content = `<p>My html content</p>`;
+    },
+      this.Content = `<p>My html content</p>`;
   }
 
   onChange($event: any): void {
-    console.log("onChange");
-    //this.log += new Date() + "<br />";
-    console.log('this.mycontent', this.Content)
+    console.log("onChange"),
+      //this.log += new Date() + "<br />" ,
+      console.log('this.mycontent', this.Content)
   }
 
   onPaste($event: any): void {
     console.log("onPaste");
-    //this.log += new Date() + "<br />";
+    //this.log += new Date() + "<br />" ;
   }
 
-  conf = new EditorConfig();
-  markdown = '测试语句';
-
-  // 同步属性内容
-  syncModel(str: string): void {
-    this.markdown = str;
+  // Editor.md
+  _EditorConfig = new EditorConfig;
+  _EditorMd: any;
+  markdown: any;
+  EditorMdInit() {
+    console.log('EditorMd.length', $('#EditorMd'));
+    console.log('_EditorConfig', this._EditorConfig);
+    this._EditorMd = editormd('EditorMd', this._EditorConfig);
   }
 }

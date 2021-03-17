@@ -11,7 +11,7 @@ declare var $: any;
 })
 export class EditorMdComponent implements OnInit {
 
-  _EditorConfig: EditorConfig;
+  _EditorConfig = new EditorConfig;
   _EditorMd: any;
 
   constructor() { }

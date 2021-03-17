@@ -15,7 +15,6 @@ import { MenuComponent } from './menu/menu.component';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { EditorComponent } from './editor/editor.component';
 import { EditorMdDirective } from '../../shared/directive/editor-md/editor-md.directive';
-import { EditorMdComponent } from './editor-md/editor-md.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,6 @@ import { EditorMdComponent } from './editor-md/editor-md.component';
     SnackBarComponent,
     EditorComponent,
     EditorMdDirective,
-    EditorMdComponent,
   ],
   providers: [
     FireStorageHelperService

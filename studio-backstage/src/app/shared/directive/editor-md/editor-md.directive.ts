@@ -1,9 +1,13 @@
+// 參考
+// 此為失敗案例待日後再來研究 directive 的寫法
+// <div id="md" appEditorMd[editormdConfig] = "conf"(onEditorChange) = "syncModel($event)" >
+// <textarea style="display: block;"[(ngModel)] = "markdown" > </textarea></div>
+
 import { AfterViewInit, Attribute, Directive, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { EditorConfig } from './editor-md-config';
 
 declare var editormd: any;
 declare var $: any;
-console.log('MdObj1', $('#md:first').val());
 @Directive({
   selector: '[appEditorMd]'
 })
@@ -16,22 +20,16 @@ export class EditorMdDirective implements AfterViewInit {
   constructor(
     @Attribute('id') private id: string
   ) {
-    console.log('MdObj2', $('#md:first').val());
   }
 
   OnInit(): void {
-    console.log('MdObj3', $('#md:first').val());
   }
 
   ngAfterViewInit(): void {
-
-    console.log('MdObj4', $('#md:first').val());
-
     // https://gitee.com/imlxp/ngx-editor.md-markdown/issues/IHX59
     // https://github.com/pandao/editor.md/issues/553
     // https://www.itread01.com/content/1547506459.html
     // https://gitee.com/imlxp/ngx-editor.md-markdown/tree/master
-
 
     // ngx-editor.md-markdown // node_modules/editor.md/css/editormd.css // node_modules/editor.md/editormd.min.js
     // src/assets/editor.md/editormd.min.js // src/assets/editor.md/css/editormd.css
