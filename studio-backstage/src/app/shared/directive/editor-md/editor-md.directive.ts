@@ -1,9 +1,9 @@
-import { AfterViewInit, Attribute, Directive, EventEmitter, Input, Output } from '@angular/core';
+import { AfterViewInit, Attribute, Directive, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { EditorConfig } from './editor-md-config';
 
 declare var editormd: any;
 declare var $: any;
-
+console.log('MdObj1', $('#md:first').val());
 @Directive({
   selector: '[appEditorMd]'
 })
@@ -16,10 +16,16 @@ export class EditorMdDirective implements AfterViewInit {
   constructor(
     @Attribute('id') private id: string
   ) {
+    console.log('MdObj2', $('#md:first').val());
+  }
 
+  OnInit(): void {
+    console.log('MdObj3', $('#md:first').val());
   }
 
   ngAfterViewInit(): void {
+
+    console.log('MdObj4', $('#md:first').val());
 
     // https://gitee.com/imlxp/ngx-editor.md-markdown/issues/IHX59
     // https://github.com/pandao/editor.md/issues/553

@@ -11,6 +11,7 @@ import { AuthGuard } from './shared/Guards/auth-guard/auth.guard';
 import { JumpAwayGuardGuard } from './shared/Guards/jump-away-guard/jump-away-guard.guard';
 import { environment } from '../environments/environment';
 import { EditorComponent } from './components/layout/editor/editor.component';
+import { EditorMdComponent } from './components/layout/editor-md/editor-md.component';
 
 let routes: Routes = RouterHandler();
 // console.log(routes); environment.production
@@ -18,7 +19,7 @@ function RouterHandler() {
   if (true) {
     return [{
       path: '',
-      component: EditorComponent //SignInComponent
+      component: EditorMdComponent //SignInComponent
     },
     {
       path: 'dashboard',
