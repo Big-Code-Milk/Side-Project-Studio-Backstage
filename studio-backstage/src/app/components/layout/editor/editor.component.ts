@@ -60,4 +60,9 @@ export class EditorComponent implements OnInit {
     console.log('_EditorConfig', this._EditorConfig);
     this._EditorMd = editormd('EditorMd', this._EditorConfig);
   }
+
+  SyncModel(Value: any): void {
+    console.log('Value', Value);
+    this.Content = Value;
+  }
 }

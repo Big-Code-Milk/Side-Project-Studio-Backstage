@@ -2,6 +2,10 @@
 // 此為失敗案例待日後再來研究 directive 的寫法
 // <div id="md" appEditorMd[editormdConfig] = "conf"(onEditorChange) = "syncModel($event)" >
 // <textarea style="display: block;"[(ngModel)] = "markdown" > </textarea></div>
+// 外層同步属性内容
+// syncModel(str): void {
+//   this.markdown = str;
+// }
 
 import { AfterViewInit, Attribute, Directive, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { EditorConfig } from './editor-md-config';
