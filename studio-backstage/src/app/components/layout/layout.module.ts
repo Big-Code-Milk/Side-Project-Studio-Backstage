@@ -1,3 +1,4 @@
+import { EditorMdComponent } from './editor/editor-md/editor-md.component';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -25,6 +26,7 @@ import { EditorMdDirective } from '../../shared/directive/editor-md/editor-md.di
     SnackBarComponent,
     EditorComponent,
     EditorMdDirective,
+    EditorMdComponent,
   ],
   providers: [
     FireStorageHelperService
