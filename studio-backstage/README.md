@@ -140,6 +140,9 @@
 
 28. 富文本改為元件 [editor.md](https://github.com/pandao/editor.md) 本來打算用 ck　編輯器的　ｍｋ　套件，但太難搞了後續再弄，先繼續弄這個後來找到的
 
+29. 手動串接套件坑太多了，後續引用的這個 efitor.md 首先是資源引入上的問題就卡了三天，後來搞定後又被渲染生命週期與 mat tab 衝到 ... 只好用手刻 tab 的方案，留下失敗的程式碼後續追蹤
+
+
 ## Angular Material
 
 [AG Material 完全攻略](https://ithelp.ithome.com.tw/articles/10192517)

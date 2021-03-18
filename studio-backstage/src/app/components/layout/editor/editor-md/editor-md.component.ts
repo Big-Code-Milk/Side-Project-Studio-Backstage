@@ -14,7 +14,6 @@ export class EditorMdComponent implements OnInit {
   @Output() onEditorMdChange: EventEmitter<string> = new EventEmitter<string>(); // 发射器
   _EditorConfig = new EditorConfig;
   _EditorMd: any;
-  Markdown: any;
 
   constructor() { }
 
@@ -23,10 +22,10 @@ export class EditorMdComponent implements OnInit {
     this._EditorMd = editormd('EditorMd', this._EditorConfig);
     // 当编辑器内容改变时，触发textarea的change事件
     let ChangeEvent = this.onEditorMdChange;
-    let ChangeValue = this.Markdown;
+    let EditorMd = this._EditorMd;
     this._EditorMd.on('change', function () {
-      console.log('debug', ChangeValue);
-      ChangeEvent.emit(ChangeValue);
+      // console.log('debug', EditorMd.htmlTextarea.val());
+      ChangeEvent.emit(EditorMd.htmlTextarea.val());
     });
   }
 

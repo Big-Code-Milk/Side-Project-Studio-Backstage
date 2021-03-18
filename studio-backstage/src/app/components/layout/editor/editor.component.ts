@@ -21,7 +21,7 @@ export class EditorComponent implements OnInit {
 
   ngOnInit(): void {
     this.InitCkeditor();
-    this.EditorMdInit();
+    // this.EditorMdInit();
   }
 
   // ng2-ckeditor
@@ -52,14 +52,15 @@ export class EditorComponent implements OnInit {
   }
 
   // Editor.md
-  _EditorConfig = new EditorConfig;
-  _EditorMd: any;
-  markdown: any;
-  EditorMdInit() {
-    console.log('EditorMd.length', $('#EditorMd'));
-    console.log('_EditorConfig', this._EditorConfig);
-    this._EditorMd = editormd('EditorMd', this._EditorConfig);
-  }
+  // _EditorConfig = new EditorConfig;
+  // _EditorMd: any;
+  TabIndex: any;
+
+  // EditorMdInit() {
+  //   console.log('EditorMd.length', $('#EditorMd'));
+  //   console.log('_EditorConfig', this._EditorConfig);
+  //   this._EditorMd = editormd('EditorMd', this._EditorConfig);
+  // }
 
   SyncModel(Value: any): void {
     console.log('Value', Value);
