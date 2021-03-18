@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EditorConfig } from '../../../shared/directive/editor-md/editor-md-config';
+import { EditorConfig } from '../../../../shared/directive/editor-md/editor-md-config';
 
 declare var editormd: any;
 declare var $: any;
