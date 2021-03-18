@@ -3,7 +3,7 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CKEditorComponent } from 'ng2-ckeditor';
-import { EditorConfig } from '../../../shared/directive/editor-md/editor-md-config';
+import { EditorConfig } from '../editor-md-directive-fail/editor-md-config';
 
 declare var editormd: any;
 declare var $: any;

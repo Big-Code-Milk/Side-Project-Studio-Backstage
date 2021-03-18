@@ -1,4 +1,4 @@
-import { EditorMdComponent } from './editor/editor-md/editor-md.component';
+import { EditorMdComponent } from './editor-md/editor-md.component';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -14,8 +14,8 @@ import { DialogComponent } from './dialog/dialog.component';
 import { BaseSharedModule } from '../../shared/module/base-shared.module';
 import { MenuComponent } from './menu/menu.component';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
-import { EditorComponent } from './editor/editor.component';
-import { EditorMdDirective } from '../../shared/directive/editor-md/editor-md.directive';
+import { EditorComponent } from '../example/editor-fail/editor.component';
+import { EditorMdDirective } from '../example/editor-md-directive-fail/editor-md.directive';
 
 @NgModule({
   declarations: [
