@@ -19,11 +19,7 @@ function RouterHandler() {
   if (true) {
     return [{
       path: '',
-      component: EditorMdComponent //SignInComponent
-    },
-    {
-      path: 'eedd',
-      component: EditorComponent
+      component: SignInComponent
     },
     {
       path: 'dashboard',
