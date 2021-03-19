@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'angularfirebase', component: AngularFirebaseComponent },
   { path: 'shareservice', component: ShareServiceComponent },
   { path: 'editorfail', component: EditorComponent },
-  { path: 'editormdfail', component: EditorMdComponent }
+  { path: 'editormd', component: EditorMdComponent }
 ];
 
 @NgModule({
