@@ -103,12 +103,24 @@ export class SignInComponent implements OnInit {
   //     }
   //   );
   // }
+
   RememberMe: boolean = false;
 
   AutoSignIn() {
+    // 打勾是 false 沒打勾是 true
+    // console.log('this.RememberMe', this.RememberMe);
 
-    console.log(this.RememberMe);
+    if (this.RememberMe) { // true 時將帳密清空
+      localStorage.removeItem("AutoSignIn");
+    } else { // false 時將帳號密碼存入
+      localStorage.setItem("AutoSignIn", JSON.stringify(this.SignInForm));
+    }
 
+    // localStorage.removeItem("AutoSignIn");
+    // let _AutoSignIn: any = localStorage.getItem("AutoSignIn") // 沒有的時候取到 null 會導致 JSON.parse 錯，所以擺 any 但要記得防呆
+    // console.log(_AutoSignIn);
+    // console.log(JSON.parse(_AutoSignIn));
+    // _AutoSignIn = JSON.parse(_AutoSignIn);
     // localStorage.setItem("AutoSignIn", JSON.stringify(this.SignInForm));
   }
 }

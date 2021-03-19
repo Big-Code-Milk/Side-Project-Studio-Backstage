@@ -22,7 +22,7 @@
         <p *ngIf='SignInForm.Verification!=""' style="color: red;">{{SignInForm.Verification}}</p>
       </mat-card-content>
       <mat-card-actions align="end">
-        <mat-checkbox (click)="AutoSignIn()" [(ngModel)]="RememberMe">記住我</mat-checkbox>
+        <mat-checkbox [(ngModel)]="RememberMe">記住我</mat-checkbox>
         <button mat-button disabled>Google</button>
         <button mat-button disabled>Github</button>
         <button mat-button (click)="CommonSignIn()">登入</button>
