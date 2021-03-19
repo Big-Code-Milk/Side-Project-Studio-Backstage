@@ -12,6 +12,7 @@ import { AuthGuard } from './shared/Guards/auth-guard/auth.guard';
 import { JumpAwayGuardGuard } from './shared/Guards/jump-away-guard/jump-away-guard.guard';
 import { environment } from '../environments/environment';
 import { EditorComponent } from './components/example/editor-fail/editor.component';
+import { EditorTabComponent } from './components/layout/editor-tab/editor-tab.component';
 
 let routes: Routes = RouterHandler();
 // console.log(routes); environment.production
@@ -19,7 +20,7 @@ function RouterHandler() {
   if (true) {
     return [{
       path: '',
-      component: SignInComponent
+      component: EditorTabComponent // SignInComponent
     },
     {
       path: 'dashboard',
