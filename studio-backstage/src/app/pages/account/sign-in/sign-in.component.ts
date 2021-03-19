@@ -103,5 +103,12 @@ export class SignInComponent implements OnInit {
   //     }
   //   );
   // }
+  RememberMe: boolean = false;
 
+  AutoSignIn() {
+
+    console.log(this.RememberMe);
+
+    // localStorage.setItem("AutoSignIn", JSON.stringify(this.SignInForm));
+  }
 }

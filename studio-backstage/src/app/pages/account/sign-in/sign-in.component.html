@@ -1,30 +1,33 @@
 <div [ngStyle]="{'background-color':RandomColor,'height':'100vh'}">
-    <div class="container" style="height: 100%;position:relative">
+  <div class="container" style="height: 100%;position:relative">
 
-        <mat-card class="row align-items-center justify-content-center" style="max-width: 30vw;  ;position: absolute;margin-top: 35vh;left: 16vw;;
+    <mat-card class="row align-items-center justify-content-center" style="max-width: 30vw;  ;position: absolute;margin-top: 35vh;left: 16vw;;
 ">
-            <mat-card-header>
-                <mat-card-title>登入</mat-card-title>
-            </mat-card-header>
-            <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
-            <mat-card-content style="margin:0.3em 2em;">
-                <mat-form-field>
-                    <input [(ngModel)]="SignInForm.Email" type="email" name="SignInForm.Email" matInput placeholder="信箱" required/>
-                </mat-form-field>
-                <span style="padding: 0 2em;"> </span>
-                <mat-form-field>
-                    <input [(ngModel)]="SignInForm.Password" type="password" name="SignInForm.Password" matInput placeholder="密碼" required (keyup.enter)="CommonSignIn()" />
-                    <!-- <mat-hint>簡單介紹一下你的興趣吧！</mat-hint>
+      <mat-card-header>
+        <mat-card-title>登入</mat-card-title>
+      </mat-card-header>
+      <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+      <mat-card-content style="margin:0.3em 2em;">
+        <mat-form-field>
+          <input [(ngModel)]="SignInForm.Email" type="email" name="SignInForm.Email" matInput placeholder="信箱"
+            required />
+        </mat-form-field>
+        <span style="padding: 0 2em;"> </span>
+        <mat-form-field>
+          <input [(ngModel)]="SignInForm.Password" type="password" name="SignInForm.Password" matInput placeholder="密碼"
+            required (keyup.enter)="CommonSignIn()" />
+          <!-- <mat-hint>簡單介紹一下你的興趣吧！</mat-hint>
                 <mat-error>請記得輸入自我介紹喔！</mat-error> -->
-                </mat-form-field>
-                <p *ngIf='SignInForm.Verification!=""' style="color: red;">{{SignInForm.Verification}}</p>
-            </mat-card-content>
-            <mat-card-actions align="end">
-                <button mat-button disabled>Google</button>
-                <button mat-button disabled>Github</button>
-                <button mat-button (click)="CommonSignIn()">Common</button>
-            </mat-card-actions>
-        </mat-card>
+        </mat-form-field>
+        <p *ngIf='SignInForm.Verification!=""' style="color: red;">{{SignInForm.Verification}}</p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <mat-checkbox (click)="AutoSignIn()" [(ngModel)]="RememberMe">記住我</mat-checkbox>
+        <button mat-button disabled>Google</button>
+        <button mat-button disabled>Github</button>
+        <button mat-button (click)="CommonSignIn()">登入</button>
+      </mat-card-actions>
+    </mat-card>
 
-    </div>
+  </div>
 </div>
