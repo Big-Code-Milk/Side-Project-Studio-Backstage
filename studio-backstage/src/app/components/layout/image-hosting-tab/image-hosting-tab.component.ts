@@ -14,6 +14,10 @@ export class ImageHostingTabComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // console.log('Title', this.Title);
+    if (this.Title == undefined) {
+      this.Title = '請注入此 Component Title';
+    }
   }
 
 
