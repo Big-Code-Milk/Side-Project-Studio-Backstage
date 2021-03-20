@@ -20,7 +20,7 @@ function RouterHandler() {
   if (true) {
     return [{
       path: '',
-      component: SignInComponent // EditorTabComponent
+      component: EditorTabComponent // SignInComponent //
     },
     {
       path: 'dashboard',
