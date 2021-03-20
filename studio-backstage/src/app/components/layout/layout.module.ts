@@ -17,6 +17,7 @@ import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { EditorComponent } from '../example/editor-fail/editor.component';
 import { EditorMdDirective } from '../example/editor-md-directive-fail/editor-md.directive';
 import { EditorTabComponent } from './editor-tab/editor-tab.component';
+import { ImageHostingTabComponent } from './image-hosting-tab/image-hosting-tab.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { EditorTabComponent } from './editor-tab/editor-tab.component';
     EditorMdDirective,
     EditorMdComponent,
     EditorTabComponent,
+    ImageHostingTabComponent,
   ],
   providers: [
     FireStorageHelperService
