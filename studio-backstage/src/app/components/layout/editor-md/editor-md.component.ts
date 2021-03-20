@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EditorConfig } from '../../example/editor-md-directive-fail/editor-md-config';
 
 declare var editormd: any;
@@ -15,16 +15,26 @@ export class EditorMdComponent implements OnInit {
   _EditorConfig = new EditorConfig;
   _EditorMd: any;
 
-  constructor() { }
+  @Input() ContentText: string;
+
+  constructor() {
+
+  }
 
   ngOnInit(): void {
     // 初始化
     this._EditorMd = editormd('EditorMd', this._EditorConfig);
+
+    // https://codertw.com/ios/21968/
+    $('.editormd-markdown-textarea').val(this.ContentText); // 左邊輸入框內的 HTML
+    $('.markdown-body').html(this.ContentText);// 右邊顯示編譯好的 HTML
+    this._EditorMd.htmlTextarea.val() // EditorMd 物件內編譯好的 HTML
+
     // 当编辑器内容改变时，触发textarea的change事件
     let ChangeEvent = this.onEditorMdChange;
     let EditorMd = this._EditorMd;
     this._EditorMd.on('change', function () {
-      // console.log('debug', EditorMd.htmlTextarea.val());
+      console.log('innerHtml', $('.markdown-body').html());
       ChangeEvent.emit(EditorMd.htmlTextarea.val());
     });
   }

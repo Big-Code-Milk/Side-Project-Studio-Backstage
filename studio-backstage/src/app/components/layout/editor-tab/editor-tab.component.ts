@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { CKEditorComponent } from 'ng2-ckeditor';
+
+declare var $: any;
 
 @Component({
   selector: 'app-editor-tab',
@@ -9,16 +11,32 @@ import { CKEditorComponent } from 'ng2-ckeditor';
 export class EditorTabComponent implements OnInit {
 
   EditorMode: string = "";
-  Content: string = "";
+  ContentHTML: string = "";
+  ContentText: string = "";
 
-  constructor() { }
+  constructor(
+    private _ChangeDetectorRef: ChangeDetectorRef // 當有cd發生時觸發
+  ) {
+    this.ContentHTML = `<p>My html content</p>`;
+    this.ContentText = `My html content    `;
+  }
 
   ngOnInit(): void {
-    this.InitCkeditor();
   }
 
   EditorModeChange() {
     console.log('EditorMode', this.EditorMode);
+    switch (this.EditorMode) {
+      case 'Ckeditor':
+        this.InitCkeditor();
+        break;
+      case 'Editor.md':
+        break;
+      case 'Medium':
+        break;
+      default:
+        console.log(`this.EditorMode`, this.EditorMode);
+    }
   }
 
   // ng2-ckeditor
@@ -34,13 +52,18 @@ export class EditorTabComponent implements OnInit {
       forcePasteAsPlainText: true,
       height: '45vh',
     },
-      this.Content = `<p>My html content</p>`;
+
+      this._ChangeDetectorRef.detectChanges(); // 觸發 AG 變更檢測
+    // console.log('ckeditor', this.ckeditor);
   }
 
   onChange($event: any): void {
-    console.log("onChange"),
-      //this.log += new Date() + "<br />" ,
-      console.log('this.mycontent', this.Content)
+    console.log("onChange");
+    //this.log += new Date() + "<br />" ,
+    // console.log('this.mycontent', this.ContentHTML)
+    let CkText = $('.cke_wysiwyg_div').text();
+    console.log('CkText', CkText);
+    this.ContentText = CkText;
   }
 
   onPaste($event: any): void {
@@ -51,6 +74,6 @@ export class EditorTabComponent implements OnInit {
   // editor.md
   SyncModel(Value: any): void {
     console.log('Value', Value);
-    this.Content = Value;
+    this.ContentHTML = Value;
   }
 }
