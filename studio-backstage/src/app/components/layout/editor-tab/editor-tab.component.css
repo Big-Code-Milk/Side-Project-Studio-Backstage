@@ -1,0 +1,15 @@
+#FakeMatExpansionPanel {
+    width: 100%;
+    background-color: white;
+    height: 100%;
+    border-radius: 5px;
+}
+
+#FakeMatExpansionPanel>section {
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+
+#FakeMatExpansionPanel>main>section {
+    padding: 0.5em 1em;
+}

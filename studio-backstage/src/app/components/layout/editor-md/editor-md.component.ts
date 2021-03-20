@@ -34,7 +34,7 @@ export class EditorMdComponent implements OnInit {
     let ChangeEvent = this.onEditorMdChange;
     let EditorMd = this._EditorMd;
     this._EditorMd.on('change', function () {
-      console.log('innerHtml', $('.markdown-body').html());
+      // console.log('innerHtml', $('.markdown-body').html());
       ChangeEvent.emit(EditorMd.htmlTextarea.val());
     });
   }

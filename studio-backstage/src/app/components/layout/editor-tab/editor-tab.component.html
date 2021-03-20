@@ -1,26 +1,35 @@
-<section>
-    <select [(ngModel)]="EditorMode" (change)="EditorModeChange()">
-    <option value="Ckeditor">Ckeditor</option>
-    <option value="Editor.md">Editor.md</option>
-    <option value="Medium">Medium</option>
-  </select>
-</section>
-
-<main>
-
-    <section *ngIf="EditorMode == 'Ckeditor'">
-        <ckeditor style="height: 100vh;" [(ngModel)]="ContentHTML" #myckeditor="ngModel" name="myckeditor" required [config]="ckeConfig" debounce="500" (paste)="onPaste($event)" (change)="onChange($event)">
-        </ckeditor>
-        <div *ngIf="myckeditor.invalid && myckeditor.touched" class="help-block">Required field.</div>
+<main id="FakeMatExpansionPanel">
+    <section (click)="DisplayMode == 'Open' ? DisplayMode = 'Close':DisplayMode = 'Open' ">
+        <span *ngIf="DisplayMode=='Open'" style="padding-right: 1em;" class="material-icons">border_color</span>
+        <span *ngIf="DisplayMode!='Open'" style="padding-right: 1em;" class="material-icons">format_align_justify</span> {{Title}}
     </section>
+    <main *ngIf="DisplayMode=='Open'">
+        <hr>
+        <section>
+            <label>編輯器模式：</label>
+            <select [(ngModel)]="EditorMode" (change)="EditorModeChange()">
+                <option value="Ckeditor">Ckeditor</option>
+                <option value="Editor.md">Editor.md</option>
+                <option value="Medium">Medium</option>
+            </select>
+        </section>
+        <main>
 
-    <section *ngIf="EditorMode == 'Editor.md'">
-        <!-- 不能 input HTML 會爆版，改丟 Text -->
-        <app-editor-md [ContentText]="ContentText" (onEditorMdChange)="SyncModel($event)"></app-editor-md>
-    </section>
+            <section *ngIf="EditorMode == 'Ckeditor'">
+                <ckeditor style="height: 100vh;" [(ngModel)]="ContentHTML" #myckeditor="ngModel" name="myckeditor" required [config]="ckeConfig" debounce="500" (paste)="onPaste($event)" (change)="onChange($event)">
+                </ckeditor>
+                <div *ngIf="myckeditor.invalid && myckeditor.touched" class="help-block">Required field.</div>
+            </section>
 
-    <section *ngIf="EditorMode == 'Medium'">
-        施工中...
-    </section>
+            <section *ngIf="EditorMode == 'Editor.md'">
+                <!-- 不能 input HTML 會爆版，改丟 Text -->
+                <app-editor-md [ContentText]="ContentText" (onEditorMdChange)="SyncModel($event)"></app-editor-md>
+            </section>
 
+            <section *ngIf="EditorMode == 'Medium'">
+                施工中...
+            </section>
+
+        </main>
+    </main>
 </main>

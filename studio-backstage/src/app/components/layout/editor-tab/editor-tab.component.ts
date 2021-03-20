@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { CKEditorComponent } from 'ng2-ckeditor';
 
 declare var $: any;
@@ -10,6 +10,10 @@ declare var $: any;
 })
 export class EditorTabComponent implements OnInit {
 
+  @Input() Title: string;
+  DisplayMode: string = 'Close';
+
+
   EditorMode: string = "";
   ContentHTML: string = "";
   ContentText: string = "";
@@ -18,14 +22,18 @@ export class EditorTabComponent implements OnInit {
     private _ChangeDetectorRef: ChangeDetectorRef // 當有cd發生時觸發
   ) {
     this.ContentHTML = `<p>My html content</p>`;
-    this.ContentText = `My html content    `;
+    this.ContentText = `My html content`;
   }
 
   ngOnInit(): void {
+    // console.log('Title', this.Title);
+    if (this.Title == undefined) {
+      this.Title = '請注入此 Component Title';
+    }
   }
 
   EditorModeChange() {
-    console.log('EditorMode', this.EditorMode);
+    // console.log('EditorMode', this.EditorMode);
     switch (this.EditorMode) {
       case 'Ckeditor':
         this.InitCkeditor();
@@ -58,22 +66,22 @@ export class EditorTabComponent implements OnInit {
   }
 
   onChange($event: any): void {
-    console.log("onChange");
+    // console.log("onChange");
     //this.log += new Date() + "<br />" ,
     // console.log('this.mycontent', this.ContentHTML)
     let CkText = $('.cke_wysiwyg_div').text();
-    console.log('CkText', CkText);
+    // console.log('CkText', CkText);
     this.ContentText = CkText;
   }
 
   onPaste($event: any): void {
-    console.log("onPaste");
+    // console.log("onPaste");
     //this.log += new Date() + "<br />" ;
   }
 
   // editor.md
   SyncModel(Value: any): void {
-    console.log('Value', Value);
+    // console.log('Value', Value);
     this.ContentHTML = Value;
   }
 }
