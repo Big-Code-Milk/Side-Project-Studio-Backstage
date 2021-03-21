@@ -48,11 +48,12 @@ export class SignInComponent implements OnInit {
 
     this.RandomColor = this.getRandomColor();
     this._FireAuthHelper.CheckStorage();
+    this.AutoSignIn();
 
   }
 
   // 帳號密碼登錄
-  CommonSignIn() {
+  CommonSignIn(SignModel: string) {
     this._FireAuthHelper.CommonSignIn(this.SignInForm)
       .then((value: any) => {
         console.log('Success!', value);
@@ -71,8 +72,13 @@ export class SignInComponent implements OnInit {
         sessionStorage.setItem('AuthToken', value.user.a.c);
         sessionStorage.setItem('AuthTokenId', Reference.path.pieces_[1]);
 
+        // 將資料儲存到localStorage
+        if (SignModel != 'ButtonSignIn') {
+          this.CheckRememberMe();
+        }
+
         // 轉移網址
-        this._Router.navigate(['/dashboard/']);
+        // this._Router.navigate(['/dashboard/']);
       })
       .catch(err => {
         console.log('Something went wrong:', err.message);
@@ -106,21 +112,28 @@ export class SignInComponent implements OnInit {
 
   RememberMe: boolean = false;
 
-  AutoSignIn() {
-    // 打勾是 false 沒打勾是 true
-    // console.log('this.RememberMe', this.RememberMe);
+  CheckRememberMe() {
+    // 打勾是 true 沒打勾是 false
+    console.log('this.RememberMe', this.RememberMe);
 
-    if (this.RememberMe) { // true 時將帳密清空
-      localStorage.removeItem("AutoSignIn");
-    } else { // false 時將帳號密碼存入
+    if (this.RememberMe) { // true 時將帳號密碼存入
       localStorage.setItem("AutoSignIn", JSON.stringify(this.SignInForm));
+    } else { // false 時將帳密清空
+      localStorage.removeItem("AutoSignIn");
     }
 
-    // localStorage.removeItem("AutoSignIn");
-    // let _AutoSignIn: any = localStorage.getItem("AutoSignIn") // 沒有的時候取到 null 會導致 JSON.parse 錯，所以擺 any 但要記得防呆
-    // console.log(_AutoSignIn);
-    // console.log(JSON.parse(_AutoSignIn));
-    // _AutoSignIn = JSON.parse(_AutoSignIn);
-    // localStorage.setItem("AutoSignIn", JSON.stringify(this.SignInForm));
+  }
+
+  AutoSignIn() {
+    // 如果 localStorage 有值，將值塞入信箱與密碼並執行登入
+    let _AutoSignIn: any = localStorage.getItem("AutoSignIn");
+    console.log(_AutoSignIn);
+    // 沒有的時候取到 null 會導致 JSON.parse 錯，所以擺 any 但要記得防呆
+    if (_AutoSignIn != null) {
+      _AutoSignIn = JSON.parse(_AutoSignIn);
+      console.log(_AutoSignIn);
+      // this.CommonSignIn('AutoSignIn');
+    }
+
   }
 }

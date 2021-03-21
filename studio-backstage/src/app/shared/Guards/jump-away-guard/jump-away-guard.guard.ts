@@ -33,7 +33,7 @@ export class JumpAwayGuardGuard implements CanDeactivate<unknown> {
 
     let Email = sessionStorage.getItem('Email');
 
-    console.log('Email', Email);
+    // console.log('Email', Email);
 
     if (Email != null) {
       this._UserInfoLog.Email = Email;
@@ -42,6 +42,7 @@ export class JumpAwayGuardGuard implements CanDeactivate<unknown> {
       this._UserInfoLog.State = this._EnumSignInInfoState.SignOut;
       let Reference: any = this._FireStorageHelper.GetFireList('UserInfoLog').push(this._UserInfoLog);
       sessionStorage.clear();
+      localStorage.clear();
       this._AngularFireAuth.signOut();
     }
     return true;
