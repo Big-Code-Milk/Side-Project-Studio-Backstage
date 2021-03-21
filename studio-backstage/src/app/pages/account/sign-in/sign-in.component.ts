@@ -73,12 +73,13 @@ export class SignInComponent implements OnInit {
         sessionStorage.setItem('AuthTokenId', Reference.path.pieces_[1]);
 
         // 將資料儲存到localStorage
-        if (SignModel != 'ButtonSignIn') {
+        console.log('SignModel', SignModel);
+        if (SignModel == 'ButtonSignIn') {
           this.CheckRememberMe();
         }
 
         // 轉移網址
-        // this._Router.navigate(['/dashboard/']);
+        this._Router.navigate(['/dashboard/']);
       })
       .catch(err => {
         console.log('Something went wrong:', err.message);
@@ -131,8 +132,10 @@ export class SignInComponent implements OnInit {
     // 沒有的時候取到 null 會導致 JSON.parse 錯，所以擺 any 但要記得防呆
     if (_AutoSignIn != null) {
       _AutoSignIn = JSON.parse(_AutoSignIn);
+      this.SignInForm.Email = _AutoSignIn.Email;
+      this.SignInForm.Password = _AutoSignIn.Password;
       console.log(_AutoSignIn);
-      // this.CommonSignIn('AutoSignIn');
+      this.CommonSignIn('AutoSignIn');
     }
 
   }
