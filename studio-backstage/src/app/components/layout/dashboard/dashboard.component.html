@@ -4,12 +4,18 @@
     </mat-sidenav>
     <mat-sidenav-content [ngClass]="NowSideNavState">
         <mat-toolbar style="height: 8vh;">
-            <button mat-button (click)="sideNav.toggle();GetNowSideNavState();vvcc(sideNav)"><i
-          class="material-icons">format_list_bulleted</i></button>
-            <span><a [routerLink]="'/dashboard'" class="ButtonLink">Studio Backstage</a></span>
+            <button mat-button (click)="sideNav.toggle();GetNowSideNavState();GetSideNavObject(sideNav)">
+                <i class="material-icons">format_list_bulleted</i>
+            </button>
+            <span>
+              <a [routerLink]="'/dashboard'" class="ButtonLink">Studio Backstage</a>
+            </span>
             <button [matMenuTriggerFor]="menu" mat-icon-button class="example-icon header-img" aria-label="Example icon-button with share icon">
-        <i class="material-icons">face</i>
-      </button>
+                <i class="material-icons">face</i>
+            </button>
+            <button (click)='_DialogHelper.ShowGetStartedStep()' mat-icon-button class="example-icon header-img" aria-label="Example icon-button with share icon">
+                <i class="material-icons">help</i>
+            </button>
             <mat-menu #menu="matMenu">
                 <app-menu></app-menu>
             </mat-menu>

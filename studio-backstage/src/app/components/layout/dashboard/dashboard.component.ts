@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { DialogHelperService } from 'src/app/shared/common/dialog-helper/dialog-helper.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,10 +17,11 @@ export class DashboardComponent implements OnInit {
   constructor(
     // ViewChild 生命週期問題導致抓不到 https://dotblogs.com.tw/Leo_CodeSpace/2019/05/08/145634
     // https://ithelp.ithome.com.tw/articles/10213494
-    private _ChangeDetectorRef: ChangeDetectorRef // 當有cd發生時觸發
+    private _ChangeDetectorRef: ChangeDetectorRef, // 當有cd發生時觸發
     // ChangeDetectionStrategy.Default @Input值有變就觸發
     // by value: 文字、數字
     // by reference: Object // OnPush時，同Object視為沒異動
+    public _DialogHelper: DialogHelperService,
   ) {
     // console.log('_MatSidenav', this._MatSidenav);
   }
@@ -46,7 +48,8 @@ export class DashboardComponent implements OnInit {
       this.NowSideNavState = "SideNavActived";
     }
   }
-  vvcc(sideNav: MatSidenav) {
+  GetSideNavObject(sideNav: MatSidenav) {
     console.log(sideNav);
   }
+
 }

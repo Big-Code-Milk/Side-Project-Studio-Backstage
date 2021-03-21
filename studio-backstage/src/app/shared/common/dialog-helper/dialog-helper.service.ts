@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
+import { GetStartedComponent } from 'src/app/components/layout/get-started/get-started.component';
 import { DialogComponent } from '../../../components/layout/dialog/dialog.component';
 
 @Injectable({
@@ -15,5 +16,11 @@ export class DialogHelperService {
     DialogConfig.height = DialogConfig.height ?? "30vh";
     DialogConfig.width = DialogConfig.width ?? "30vw";
     return this._MatDialog.open(DialogComponent, DialogConfig);
+  }
+
+  _DialogConfig: MatDialogConfig = {} as MatDialogConfig;
+
+  ShowGetStartedStep() {
+    this._MatDialog.open(GetStartedComponent, this._DialogConfig);
   }
 }
