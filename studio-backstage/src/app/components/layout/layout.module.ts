@@ -18,6 +18,7 @@ import { EditorComponent } from '../example/editor-fail/editor.component';
 import { EditorMdDirective } from '../example/editor-md-directive-fail/editor-md.directive';
 import { EditorTabComponent } from './editor-tab/editor-tab.component';
 import { ImageHostingTabComponent } from './image-hosting-tab/image-hosting-tab.component';
+import { GetStartedComponent } from './get-started/get-started.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ImageHostingTabComponent } from './image-hosting-tab/image-hosting-tab.
     EditorMdComponent,
     EditorTabComponent,
     ImageHostingTabComponent,
+    GetStartedComponent,
   ],
   providers: [
     FireStorageHelperService
