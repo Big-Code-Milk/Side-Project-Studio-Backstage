@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-imgur',
@@ -8,7 +9,13 @@ import { Observable } from 'rxjs';
 })
 export class ImgurComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    protected http: HttpClient,
+  ) { }
+
+  protected httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   ngOnInit(): void {
   }
