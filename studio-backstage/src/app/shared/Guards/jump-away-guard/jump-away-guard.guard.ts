@@ -41,8 +41,8 @@ export class JumpAwayGuardGuard implements CanDeactivate<unknown> {
       this._UserInfoLog.Token = sessionStorage.getItem('AuthToken');
       this._UserInfoLog.State = this._EnumSignInInfoState.SignOut;
       let Reference: any = this._FireStorageHelper.GetFireList('UserInfoLog').push(this._UserInfoLog);
-      sessionStorage.clear();
-      localStorage.clear();
+      // sessionStorage.clear();
+      // localStorage.clear();
       this._AngularFireAuth.signOut();
     }
     return true;
