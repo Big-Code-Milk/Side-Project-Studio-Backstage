@@ -26,7 +26,7 @@ function RouterHandler() {
       path: 'dashboard',
       canActivate: [AuthGuard],
       canActivateChild: [AuthGuard],
-      canDeactivate: [JumpAwayGuardGuard],
+      canDeactivate: [JumpAwayGuardGuard], // 跳出時
       component: DashboardComponent,
       children: [
         { path: '', component: HomeComponent },
