@@ -13,6 +13,9 @@ export class ImgurComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // 參考
+  // https://www.letswrite.tw/imgur-api-upload-load/
+
   ImgFileChange(Event: any) {
     console.log(Event);
     let ImgFile = Event.target.files[0]; // input type="file" 的值
