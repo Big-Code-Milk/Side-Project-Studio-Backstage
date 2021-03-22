@@ -20,6 +20,7 @@ import { FireStorageHelperService } from '../../../shared/common/fire-storage-he
 import UserInfoLog from '../../../shared/models/user-info-log';
 import { EnumSignInInfoState } from '../../../shared/enum/enum-user-info-log-state';
 import * as dayjs from 'dayjs';
+import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -37,9 +38,10 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private _FireAuthHelper: FireAuthHelperService,
-    private _DialogHelperService: DialogHelperService,
+    private _DialogHelper: DialogHelperService,
     private _Router: Router,
-    private _FireStorageHelper: FireStorageHelperService
+    private _FireStorageHelper: FireStorageHelperService,
+    private _SnackBarHelper: SnackBarHelperService
   ) {
 
   }
@@ -125,12 +127,16 @@ export class SignInComponent implements OnInit {
 
   }
 
+  _MatDialogConfig: MatDialogConfig = {} as MatDialogConfig;
+
   AutoSignIn() {
     // 如果 localStorage 有值，將值塞入信箱與密碼並執行登入
     let _AutoSignIn: any = localStorage.getItem("AutoSignIn");
-    console.log(_AutoSignIn);
+    // console.log(_AutoSignIn);
     // 沒有的時候取到 null 會導致 JSON.parse 錯，所以擺 any 但要記得防呆
     if (_AutoSignIn != null) {
+      this.RememberMe = true;
+      this._SnackBarHelper.OpenSnackBar('自動登入中，請稍後!!');
       _AutoSignIn = JSON.parse(_AutoSignIn);
       this.SignInForm.Email = _AutoSignIn.Email;
       this.SignInForm.Password = _AutoSignIn.Password;

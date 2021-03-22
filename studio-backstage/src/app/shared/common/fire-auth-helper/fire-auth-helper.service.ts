@@ -64,6 +64,7 @@ export class FireAuthHelperService {
     this._UserInfoLog.State = this._EnumSignInInfoState.SignOut;
     let Reference: any = this._FireStorageHelper.GetFireList('UserInfoLog').push(this._UserInfoLog).then(
       () => {
+        localStorage.clear();
         sessionStorage.clear();
         this._Router.navigate(['/SignIn']);
         this._AngularFireAuth.signOut();
