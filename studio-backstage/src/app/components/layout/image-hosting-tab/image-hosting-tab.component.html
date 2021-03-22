@@ -25,7 +25,21 @@
         <main>
 
             <section *ngIf="EditorMode == 'Imgur'">
+                <div id="uplaod-wrap">
 
+                    <!-- 選取圖片的 input -->
+                    <input id="upload" type="file" accept="image/*" [(ngModel)]="ImgFile" (change)="ImgFileChange($event)">
+
+                    <!-- 圖片標題 -->
+                    <input id="title" type="text" required>
+
+                    <!-- 圖片描述 -->
+                    <input id="des" type="text" required>
+
+                    <!-- 上傳按鈕 -->
+                    <button type="button">上傳</button>
+
+                </div>
             </section>
 
             <section *ngIf="EditorMode == 'GoogleCloud'">

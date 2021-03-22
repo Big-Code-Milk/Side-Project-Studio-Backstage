@@ -20,7 +20,6 @@ export class ImageHostingTabComponent implements OnInit {
     }
   }
 
-
   EditorModeChange() {
     // console.log('EditorMode', this.EditorMode);
     switch (this.EditorMode) {
@@ -33,5 +32,10 @@ export class ImageHostingTabComponent implements OnInit {
       default:
         console.log(`this.EditorMode`, this.EditorMode);
     }
+  }
+
+  ImgFile: any;
+  ImgFileChange(e: any) {
+    console.log(e);
   }
 }
