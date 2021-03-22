@@ -34,8 +34,4 @@ export class ImageHostingTabComponent implements OnInit {
     }
   }
 
-  ImgFile: any;
-  ImgFileChange(e: any) {
-    console.log(e);
-  }
 }

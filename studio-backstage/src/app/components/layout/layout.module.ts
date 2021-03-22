@@ -19,6 +19,7 @@ import { EditorMdDirective } from '../example/editor-md-directive-fail/editor-md
 import { EditorTabComponent } from './editor-tab/editor-tab.component';
 import { ImageHostingTabComponent } from './image-hosting-tab/image-hosting-tab.component';
 import { GetStartedComponent } from './get-started/get-started.component';
+import { ImgurComponent } from './imgur/imgur.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { GetStartedComponent } from './get-started/get-started.component';
     EditorTabComponent,
     ImageHostingTabComponent,
     GetStartedComponent,
+    ImgurComponent,
   ],
   providers: [
     FireStorageHelperService

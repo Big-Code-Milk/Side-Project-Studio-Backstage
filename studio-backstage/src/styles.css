@@ -59,6 +59,10 @@
         .SnackBarStyleClass {
             background-color: darkseagreen;
         }
+        
+        .mat-calendar {
+            height: 100% !important;
+        }
         /* 手機板 */
         /* https://blog.hinablue.me/css-media-query-tips/ */
         
