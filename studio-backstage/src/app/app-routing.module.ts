@@ -13,6 +13,7 @@ import { JumpAwayGuardGuard } from './shared/Guards/jump-away-guard/jump-away-gu
 import { environment } from '../environments/environment';
 import { EditorComponent } from './components/example/editor-fail/editor.component';
 import { EditorTabComponent } from './components/layout/editor-tab/editor-tab.component';
+import { UsefulLinksTreeComponent } from './components/layout/useful-links-tree/useful-links-tree.component';
 
 let routes: Routes = RouterHandler();
 // console.log(routes); environment.production
@@ -20,7 +21,7 @@ function RouterHandler() {
   if (true) {
     return [{
       path: '',
-      component: SignInComponent
+      component: UsefulLinksTreeComponent// SignInComponent
     },
     {
       path: 'dashboard',

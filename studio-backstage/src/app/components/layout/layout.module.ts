@@ -20,6 +20,7 @@ import { EditorTabComponent } from './editor-tab/editor-tab.component';
 import { ImageHostingTabComponent } from './image-hosting-tab/image-hosting-tab.component';
 import { GetStartedComponent } from './get-started/get-started.component';
 import { ImgurComponent } from './imgur/imgur.component';
+import { UsefulLinksTreeComponent } from './useful-links-tree/useful-links-tree.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ImgurComponent } from './imgur/imgur.component';
     ImageHostingTabComponent,
     GetStartedComponent,
     ImgurComponent,
+    UsefulLinksTreeComponent,
   ],
   providers: [
     FireStorageHelperService
