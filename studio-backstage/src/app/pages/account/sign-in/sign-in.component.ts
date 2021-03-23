@@ -114,6 +114,7 @@ export class SignInComponent implements OnInit {
   // }
 
   RememberMe: boolean = false;
+  Disabled: boolean = false;
 
   CheckRememberMe() {
     // 打勾是 true 沒打勾是 false
@@ -135,6 +136,7 @@ export class SignInComponent implements OnInit {
     // console.log(_AutoSignIn);
     // 沒有的時候取到 null 會導致 JSON.parse 錯，所以擺 any 但要記得防呆
     if (_AutoSignIn != null) {
+      this.Disabled = true;
       this.RememberMe = true;
       this._SnackBarHelper.OpenSnackBar('自動登入中，請稍後!!');
       _AutoSignIn = JSON.parse(_AutoSignIn);

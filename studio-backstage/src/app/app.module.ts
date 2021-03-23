@@ -26,6 +26,8 @@ import { ErrorLogHandler } from '../app/shared/common/error-log-handler/error-lo
 import { SharedService } from './shared/services/shared.service';
 import { TemplateModule } from './components/template/template.module';
 
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,10 +43,13 @@ import { TemplateModule } from './components/template/template.module';
     PagesModule,
     ExampleModule,
     TemplateModule,
+    HttpClientModule,
   ],
   providers: [
     { provide: ErrorLogHandler, useFactory: ErrorLogHandler },
     SharedService,
+    HttpClientModule,
+    HttpClient,
   ],
   bootstrap: [AppComponent]
 })
