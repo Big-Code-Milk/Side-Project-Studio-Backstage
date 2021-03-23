@@ -10,12 +10,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class ImgurComponent implements OnInit {
 
   constructor(
-    protected http: HttpClient,
+    protected _HttpClient: HttpClient, // https://stackoverflow.com/questions/47236963/no-provider-for-httpclient
   ) { }
-
-  protected httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
 
   ngOnInit(): void {
   }
@@ -23,29 +19,64 @@ export class ImgurComponent implements OnInit {
   // 參考
   // https://www.letswrite.tw/imgur-api-upload-load/
 
+  ImgObject: any = {};
+
   ImgFileChange(Event: any) {
     console.log(Event);
-    let ImgFile = Event.target.files[0]; // input type="file" 的值
-    let ImgFileName = ImgFile.name // input的圖檔名稱
-    let ImgFileSize = Math.floor(ImgFile.size * 0.001) + 'KB'; // input的圖片大小
-    let ImgFileThumbnail = window.URL.createObjectURL(ImgFile); // input的圖片縮圖
+    this.ImgObject.ImgFile = Event.target.files[0]; // input type="file" 的值
+    this.ImgObject.ImgFile.name; // input的圖檔名稱
+    this.ImgObject.ImgFileSize = Math.floor(this.ImgObject.ImgFile.size * 0.001) + 'KB'; // input的圖片大小
+    this.ImgObject.ImgFileThumbnail = window.URL.createObjectURL(this.ImgObject.ImgFile); // input的圖片縮圖
+    console.log(this.ImgObject);
   }
 
   GetImgurHostingList() {
-    const Id = '04cb77bd45f2a98'; // 填入 App 的 Client ID
-    const Token = '34a5425de4479346cdd5eefa7ec1b69c203fcbcb'; // 填入 token
-    const Album = 'XXXX'; // 相簿的 ID
+
+  }
+
+  protected _HttpOptions: any;
+
+  SetHeader() {
+
+    const ClientId = '2320545a1d64607';
+    const Token = 'c06ba04a68118964490e0f88d54c118de5dfed9c';
+    const Album = 'XXXX'; // 相簿 ID
     const Url = "https://api.imgur.com/3/album/" + Album + "/images";
-    const Headers = { "Authorization": 'Bearer ' + Token }
+    const Headers = { "Authorization": 'Bearer ' + Token };
+
+    this._HttpOptions = {
+      headers: new HttpHeaders(
+        {
+          "authorization": 'Bearer ' + Token
+        }
+      )
+    };
   }
 
   UploadImgur() {
-    const Url = "https://api.imgur.com/3/image";
-    let Form = new FormData();
-    // Form.append('image', this.file);
-    // Form.append('title', this.title);
-    // Form.append('description', this.des);
-    // Form.append('album', album); // 有要指定的相簿就加這行
+
+    this.SetHeader();
+
+    console.log('this.ImgObject', this.ImgObject);
+    if (this.ImgObject.ImgFile != undefined) {
+
+      const Url = "https://api.imgur.com/3/image";
+      let Form = new FormData();
+      Form.append('image', this.ImgObject.ImgFile, this.ImgObject.ImgFile.name);
+      // Form.append('title', this.ImgObject.ImgFile.name);
+      // Form.append('description', this.des);
+      // Form.append('album', album); // 指定相簿
+      // https://apidocs.imgur.com/
+      var _Observable = this._HttpClient.post<any>(
+        Url,
+        Form,
+        this._HttpOptions,
+      );
+      _Observable.subscribe(res => {
+        console.log('_Observable', res)
+      }
+      )
+    }
   }
 
   // Update(formDate: any): Observable<any> {
@@ -56,4 +87,5 @@ export class ImgurComponent implements OnInit {
   //       formDate,
   //       this.httpOptions);
   // }
+
 }
