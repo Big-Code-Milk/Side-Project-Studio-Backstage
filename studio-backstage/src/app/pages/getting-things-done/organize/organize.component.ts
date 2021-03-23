@@ -130,10 +130,17 @@ export class OrganizeComponent implements OnInit {
 
     }
 
-    this.UploadData();
+    if (this.UploadData()) {
+      this._Router.navigate(['dashboard/']);
+      this._SnackBarHelper.OpenSnackBar('Success');
+    }
+
   }
 
   UploadData() {
+
+    let UploadDataState = false;
+
     this.GtdTask.Tags = [... new Set(this.Tags)];
     this.GtdTask.StartDate = this.Term.value.start;
     this.GtdTask.EndDate = this.Term.value.end;
@@ -153,11 +160,12 @@ export class OrganizeComponent implements OnInit {
       }).then(success => {
         // this._MatDialogConfig.data = "success";
         // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
-        this._SnackBarHelper.OpenSnackBar('Success');
         // this.IsEdit = false;
-        this._Router.navigate(['dashboard/']);
+        UploadDataState = true;
       });
     }
+
+    return UploadDataState;
   }
 
   // ng2-ckeditor
