@@ -130,6 +130,10 @@ export class OrganizeComponent implements OnInit {
 
     }
 
+    this.UploadData();
+  }
+
+  UploadData() {
     this.GtdTask.Tags = [... new Set(this.Tags)];
     this.GtdTask.StartDate = this.Term.value.start;
     this.GtdTask.EndDate = this.Term.value.end;
@@ -175,7 +179,8 @@ export class OrganizeComponent implements OnInit {
   onChange($event: any): void {
     console.log("onChange");
     //this.log += new Date() + "<br />";
-    console.log('this.mycontent', this.GtdTask.Content)
+    console.log('this.mycontent', this.GtdTask.Content);
+    this.UploadData();
   }
 
   onPaste($event: any): void {

@@ -1,7 +1,7 @@
 <div id="uplaod-wrap">
 
     <!-- 選取圖片的 input -->
-    <input id="upload" type="file" accept="image/*" [(ngModel)]="ImgFile" (change)="ImgFileChange($event)">
+    <input id="upload" type="file" accept="image/*" (change)="ImgFileChange($event)">
 
     <!-- 圖片標題 -->
     <input id="title" type="text" required>
