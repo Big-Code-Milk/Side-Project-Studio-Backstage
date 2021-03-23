@@ -130,16 +130,11 @@ export class OrganizeComponent implements OnInit {
 
     }
 
-    if (this.UploadData()) {
-      this._Router.navigate(['dashboard/']);
-      this._SnackBarHelper.OpenSnackBar('Success');
-    }
+    this.UploadData('Button');
 
   }
 
-  UploadData() {
-
-    let UploadDataState = false;
+  UploadData(UploadType: string) {
 
     this.GtdTask.Tags = [... new Set(this.Tags)];
     this.GtdTask.StartDate = this.Term.value.start;
@@ -161,11 +156,15 @@ export class OrganizeComponent implements OnInit {
         // this._MatDialogConfig.data = "success";
         // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
         // this.IsEdit = false;
-        UploadDataState = true;
+
+        if (UploadType == 'Button') {
+          this._Router.navigate(['dashboard/']);
+          this._SnackBarHelper.OpenSnackBar('Success');
+        }
+
       });
     }
 
-    return UploadDataState;
   }
 
   // ng2-ckeditor
@@ -188,7 +187,7 @@ export class OrganizeComponent implements OnInit {
     console.log("onChange");
     //this.log += new Date() + "<br />";
     console.log('this.mycontent', this.GtdTask.Content);
-    this.UploadData();
+    this.UploadData('OnChange');
   }
 
   onPaste($event: any): void {

@@ -21,7 +21,7 @@ function RouterHandler() {
   if (true) {
     return [{
       path: '',
-      component: UsefulLinksTreeComponent// SignInComponent
+      component: SignInComponent// SignInComponent // UsefulLinksTreeComponent
     },
     {
       path: 'dashboard',
