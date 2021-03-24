@@ -55,7 +55,8 @@ export class WorkComponent extends BaseComponent implements OnInit {
 
   Top5Init() {
     // console.log('Top5Init');
-    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Status', 'in', ['Top1', 'Top2', 'Top3', 'Top4', 'Top5'], 'EndDate']);
+    // var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Status', 'in', ['Top1', 'Top2', 'Top3', 'Top4', 'Top5'], 'EndDate']);
+    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Tags', 'array-contains-any', ['Top1', 'Top2', 'Top3', 'Top4', 'Top5'], 'EndDate']);
     // _Collection.valueChanges().subscribe(parameter => { this._GtdTask = parameter; });
     this.DataInin(_Collection);
     this.IsWork = true;

@@ -182,7 +182,8 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
     // console.log('TopNum', TopNum);
     // 將原本狀態為5的拿掉
 
-    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Status', '==', TopNum, 'EndDate']);
+    // var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Status', '==', TopNum, 'EndDate']);
+    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Tags', 'array-contains-any', [TopNum], 'EndDate']);
     // console.log(_Collection);
     // 取 id 的方式非常奇怪，改天再研究
     var Data = _Collection.snapshotChanges().pipe(map((actions: DocumentChangeAction<GtdTask>[]) => {
@@ -194,26 +195,45 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
       });
     })
     );
-    var Subscriber = Data.subscribe(parameter => {
-      // console.log('parameter', parameter);
-      parameter.forEach((element: any) => {
-        var _Document = this._FireStorageHelper.GetFireDocument('Task/' + element.id);
-        _Document.update({ Status: "" }).finally(() => {
-          // console.log('finall',);
-          this.Wait(Subscriber, TopNum, NewTopId);
+    var Subscriber = Data.subscribe((Responce: any) => {
+      console.log('Responce.length', Responce.length);
+      // 取消訂閱避免無線迴圈
+      Subscriber.unsubscribe();
+
+      if (Responce.length != 0) {
+        // 刪除原先在看板上的 TopN
+        Responce[0].Tags = Responce[0].Tags.filter((element: any) => { return element != TopNum });
+        var _Document = this._FireStorageHelper.GetFireDocument('Task/' + Responce[0].id);
+        _Document.update(Responce[0]).finally(() => {
+          console.log('Delete finall');
         });
-      });
-      this.Wait(Subscriber, TopNum, NewTopId);
+      }
+
+      // 增加 TopN Tag
+      let _NewTopDoc = this._FireStorageHelper.GetFireDocument('Task/' + NewTopId);
+      // 塞選掉此任務裡面的其他 TopN 只能同時有一個
+      const TopN = ['Top1', 'Top2', 'Top3', 'Top4', 'Top5'];
+      let NewTopDocValue = _NewTopDoc.valueChanges().subscribe(
+        (Responce: any) => {
+          // 取消訂閱避免無線迴圈
+          NewTopDocValue.unsubscribe();
+          Responce.Tags = Responce.Tags.filter((element: any) => {
+            // indexOf 若不存在於陣列中則回傳 -1
+            return TopN.indexOf(element) == -1
+          });
+          // 刪完最後才增加
+          Responce.Tags.push(TopNum);
+          console.log('Responce', Responce);
+          _NewTopDoc.update(Responce).finally(() => {
+            console.log('Update finall');
+          });
+        }
+      );
     });
 
   }
 
-  Wait(Subscriber: any, TopNum: string, NewTopId: string) {
-    Subscriber.unsubscribe();
-    console.log('unsubscribe');
-    var _NewTopDoc = this._FireStorageHelper.GetFireDocument('Task/' + NewTopId);
-    _NewTopDoc.update({ Status: TopNum });
-  }
+
 
   Archive(TaskId: string, GtdTask: any) {
     if (!confirm('確定要封存此 Task ' + TaskId + '?')) {
