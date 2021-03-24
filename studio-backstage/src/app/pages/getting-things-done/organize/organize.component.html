@@ -75,7 +75,7 @@
         <div style="border-style:double;padding:0.3em" [innerHTML]="this.GtdTask.Content | html"></div>
         <br> -->
     <div mat-dialog-actions align="end">
-      <!-- <mat-slide-toggle [checked]='false' (change)="CoEditing()">共同編輯模式</mat-slide-toggle> -->
+      <mat-slide-toggle [checked]='false' (change)="CoEditing()">共同編輯模式</mat-slide-toggle>
       <span style="color: red;margin-right: 1em;">預覽請使用上面套件按鈕</span> <button mat-raised-button color="primary"
         align="end" (click)="CheckFormThenSubmit()">送出</button>
     </div>
