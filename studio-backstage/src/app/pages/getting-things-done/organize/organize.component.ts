@@ -47,7 +47,7 @@ export class OrganizeComponent implements OnInit {
     // 這段目的是藉由管道(pipe)排除輸入空白
     this._FilteredTags = this._FormControl.valueChanges.pipe(
       startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+      map((Tag: string | null) => Tag ? this._filter(Tag) : this.allTags.slice()));
 
   }
 
@@ -56,10 +56,6 @@ export class OrganizeComponent implements OnInit {
   ngOnInit(): void {
     this.ComponentType = this._ActivatedRoute.snapshot.params['ComponentType'];
     this.Key = this._ActivatedRoute.snapshot.params['key'];
-
-    if (this.ComponentType == this._EnumComponentType.Processed) {
-      this.IsEdit = false;
-    }
 
     this.InitCkeditor();
     // 讀取特定的 docutment
@@ -72,7 +68,7 @@ export class OrganizeComponent implements OnInit {
   _FormControl = new FormControl();
   _FilteredTags: Observable<string[]>;
   Tags: string[] = [];
-  allFruits: string[] = ['工作室', '行銷', '架構', '技術', '業務'];
+  allTags: string[] = ['工作室', '行銷', '架構', '技術', '業務'];
 
   // ViewChild 應用參考 https://www.itread01.com/content/1544339826.html
   @ViewChild('TagInput') TagInput: ElementRef<HTMLInputElement>;
@@ -111,7 +107,7 @@ export class OrganizeComponent implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
+    return this.allTags.filter(Tag => Tag.toLowerCase().indexOf(filterValue) === 0);
   }
 
   _MatDialogConfig: MatDialogConfig = {} as MatDialogConfig;
@@ -212,6 +208,13 @@ export class OrganizeComponent implements OnInit {
       this.GtdTask.MainTaskId = Param.MainTaskId;
       this.GtdTask.Status = Param.Status;
     });
+
+    // 如果是從檢察頁面進入的不直接開啟編輯模式
+    if (this.ComponentType == this._EnumComponentType.Processed) {
+      this.IsEdit = false;
+    }
+    // 2021-0324 Issue 有人先進入任務詳細頁則用狀態編輯中鎖住頁面不給編輯，除非開啟共同編輯狀態，防止 Firebase 存取爆表
+    // 首次進入時將狀態改為編輯中，銷毀元件時移除狀態
   }
 
 }
