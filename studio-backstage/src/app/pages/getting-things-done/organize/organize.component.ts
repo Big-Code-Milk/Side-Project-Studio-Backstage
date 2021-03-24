@@ -209,6 +209,11 @@ export class OrganizeComponent implements OnInit {
       this.GtdTask.Tags = Param.Tags;
       this.GtdTask.MainTaskId = Param.MainTaskId;
       this.GtdTask.Status = Param.Status;
+      if (Param.Status == '共同編輯中') {
+        this.IsCoEditing = true;
+      } else {
+        this.IsCoEditing = false;
+      }
     });
 
     // 如果是從檢察頁面進入的不直接開啟編輯模式 2021-0324 Issue 直接全部都先進觀看畫面
@@ -229,10 +234,13 @@ export class OrganizeComponent implements OnInit {
   TurnOnEditMode() {
     // 2021-0324 Issue 有人先進入任務詳細頁則用狀態編輯中鎖住頁面不給編輯，除非開啟共同編輯狀態，防止 Firebase 存取爆表
     // 首次進入時確認狀態不是編輯中，否則將狀態改為編輯中，銷毀元件時移除狀態
-    if (this.GtdTask.Status != '編輯中') {
-      this.IsEdit = true
+    if (this.GtdTask.Status != '編輯中' && this.GtdTask.Status != '共同編輯中') {
+      this.IsEdit = true;
       this.GtdTask.Status = '編輯中';
       this.UploadData('TurnOnEditModeButton');
+    }
+    if (this.GtdTask.Status == '共同編輯中') {
+      this.IsEdit = true;
     }
   }
 
@@ -240,16 +248,12 @@ export class OrganizeComponent implements OnInit {
 
   CoEditing() {
 
-    console.log('IsCoEditing', this.IsCoEditing);
-
-    if (this.IsCoEditing) {
+    if (this.GtdTask.Status == '編輯中') {
       this.GtdTask.Status = '共同編輯中';
       this.UploadData('TurnOnEditModeButton');
-      this.IsCoEditing = false;
     } else {
       this.GtdTask.Status = '編輯中';
       this.UploadData('TurnOnEditModeButton');
-      this.IsCoEditing = true;
     }
 
   }
