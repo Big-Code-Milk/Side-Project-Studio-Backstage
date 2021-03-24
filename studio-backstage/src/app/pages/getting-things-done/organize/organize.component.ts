@@ -24,7 +24,7 @@ import { EnumComponentType } from '../../../shared/enum/enum-component-type';
 })
 export class OrganizeComponent implements OnInit {
 
-  IsEdit: boolean = true;
+  IsEdit: boolean = false;
   GtdTask: GtdTask = new GtdTask();
   Term: FormGroup;
 
@@ -125,13 +125,12 @@ export class OrganizeComponent implements OnInit {
       this.Tags = this.Tags.filter(function (Tag) { return Tag != "未處理" });
 
     }
-
-    this.UploadData('Button');
+    this.GtdTask.Status = ''; // 編輯完成清空狀態
+    this.UploadData('SubmitButton');
 
   }
 
   UploadData(UploadType: string) {
-
     this.GtdTask.Tags = [... new Set(this.Tags)];
     this.GtdTask.StartDate = this.Term.value.start;
     this.GtdTask.EndDate = this.Term.value.end;
@@ -153,7 +152,7 @@ export class OrganizeComponent implements OnInit {
         // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
         // this.IsEdit = false;
 
-        if (UploadType == 'Button') {
+        if (UploadType == 'SubmitButton') {
           this._Router.navigate(['dashboard/']);
           this._SnackBarHelper.OpenSnackBar('Success');
         }
@@ -183,7 +182,10 @@ export class OrganizeComponent implements OnInit {
     console.log("onChange");
     //this.log += new Date() + "<br />";
     console.log('this.mycontent', this.GtdTask.Content);
-    this.UploadData('OnChange');
+    // 打開共同編輯模式才儲存
+    if (this.GtdTask.Status == '共同編輯中') {
+      this.UploadData('OnChange');
+    }
   }
 
   onPaste($event: any): void {
@@ -209,12 +211,46 @@ export class OrganizeComponent implements OnInit {
       this.GtdTask.Status = Param.Status;
     });
 
-    // 如果是從檢察頁面進入的不直接開啟編輯模式
-    if (this.ComponentType == this._EnumComponentType.Processed) {
-      this.IsEdit = false;
-    }
-    // 2021-0324 Issue 有人先進入任務詳細頁則用狀態編輯中鎖住頁面不給編輯，除非開啟共同編輯狀態，防止 Firebase 存取爆表
-    // 首次進入時將狀態改為編輯中，銷毀元件時移除狀態
+    // 如果是從檢察頁面進入的不直接開啟編輯模式 2021-0324 Issue 直接全部都先進觀看畫面
+    // if (this.ComponentType == this._EnumComponentType.Processed) {
+    //   this.IsEdit = false;
+    // }
   }
 
+  // 銷毀元件
+  ngOnDestroy() {
+    console.log('ngOnDestroy');
+    if (this.GtdTask.Status == '編輯中') {
+      this.GtdTask.Status = '';
+      this.UploadData('TurnOnEditModeButton');
+    }
+  }
+
+  TurnOnEditMode() {
+    // 2021-0324 Issue 有人先進入任務詳細頁則用狀態編輯中鎖住頁面不給編輯，除非開啟共同編輯狀態，防止 Firebase 存取爆表
+    // 首次進入時確認狀態不是編輯中，否則將狀態改為編輯中，銷毀元件時移除狀態
+    if (this.GtdTask.Status != '編輯中') {
+      this.IsEdit = true
+      this.GtdTask.Status = '編輯中';
+      this.UploadData('TurnOnEditModeButton');
+    }
+  }
+
+  IsCoEditing: boolean = false;
+
+  CoEditing() {
+
+    console.log('IsCoEditing', this.IsCoEditing);
+
+    if (this.IsCoEditing) {
+      this.GtdTask.Status = '共同編輯中';
+      this.UploadData('TurnOnEditModeButton');
+      this.IsCoEditing = false;
+    } else {
+      this.GtdTask.Status = '編輯中';
+      this.UploadData('TurnOnEditModeButton');
+      this.IsCoEditing = true;
+    }
+
+  }
 }

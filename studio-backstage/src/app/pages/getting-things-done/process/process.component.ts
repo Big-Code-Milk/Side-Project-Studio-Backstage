@@ -40,7 +40,7 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
 
   GtdTasks = [] as GtdTask[];
 
-  displayedColumns: string[] = ['Name', 'Content', 'StartDate', 'EndDate', 'Tags', 'Tool'];
+  displayedColumns: string[] = ['Name', 'Content', 'StartDate', 'EndDate', 'Tags', 'Status', 'Tool'];
   dataSource: MatTableDataSource<GtdTask>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -106,6 +106,8 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
 
   InitData() {
 
+    console.log('InitData');
+
     let Query: any = [];
 
     switch (this.ComponentType) {
@@ -141,6 +143,7 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
       this.dataSource = new MatTableDataSource(this.GtdTasks);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      // 目前這個都會幾筆資料就跑幾次... 效能異常...
       // console.log(this.GtdTasks);
     });
   }

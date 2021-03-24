@@ -21,6 +21,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [],
@@ -47,6 +48,7 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatCheckboxModule,
     MatSnackBarModule,
     MatStepperModule,
+    MatSlideToggleModule,
   ]
 })
 export class SharedAngularMaterialModule { }
