@@ -2,7 +2,7 @@ import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/sn
 // 參考
 // router 取得參數 https://ithelp.ithome.com.tw/articles/10209035
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import GtdTask from '../../../shared/models/gtd-task';
+import GtdTask from '../../../../shared/models/gtd-task';
 import { FormGroup, FormControl } from '@angular/forms';
 import * as dayjs from 'dayjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -10,12 +10,12 @@ import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { DialogHelperService } from '../../../shared/common/dialog-helper/dialog-helper.service';
+import { DialogHelperService } from '../../../../shared/common/dialog-helper/dialog-helper.service';
 import { MatDialogConfig } from '@angular/material/dialog';
-import { FireStorageHelperService } from '../../../shared/common/fire-storage-helper/fire-storage-helper.service';
+import { FireStorageHelperService } from '../../../../shared/common/fire-storage-helper/fire-storage-helper.service';
 import { CKEditorComponent } from 'ng2-ckeditor';
 import { Router, ActivatedRoute } from '@angular/router';
-import { EnumComponentType } from '../../../shared/enum/enum-component-type';
+import { EnumComponentType } from '../../../../shared/enum/enum-component-type';
 
 @Component({
   selector: 'app-organize [TableType]',

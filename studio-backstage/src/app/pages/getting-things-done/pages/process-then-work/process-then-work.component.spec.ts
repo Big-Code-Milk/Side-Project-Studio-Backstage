@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GettingThingsDoneComponent } from './getting-things-done.component';
+import { ProcessThenWorkComponent } from './process-then-work.component';
 
-describe('GettingThingsDoneComponent', () => {
-  let component: GettingThingsDoneComponent;
-  let fixture: ComponentFixture<GettingThingsDoneComponent>;
+describe('ProcessThenWorkComponent', () => {
+  let component: ProcessThenWorkComponent;
+  let fixture: ComponentFixture<ProcessThenWorkComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GettingThingsDoneComponent ]
+      declarations: [ ProcessThenWorkComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GettingThingsDoneComponent);
+    fixture = TestBed.createComponent(ProcessThenWorkComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

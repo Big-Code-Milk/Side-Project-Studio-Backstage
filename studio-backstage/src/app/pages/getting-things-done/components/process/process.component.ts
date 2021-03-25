@@ -2,21 +2,21 @@
 // 路由帶參數 https://ithelp.ithome.com.tw/articles/10209035
 // typescript 可選參數 https://ithelp.ithome.com.tw/articles/10220016
 
-import { BaseComponent } from '../../../components/base/base.component';
+import { BaseComponent } from '../../../../components/base/base.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { AfterViewInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import GtdTask from '../../../shared/models/gtd-task';
-import { FireStorageHelperService } from '../../../shared/common/fire-storage-helper/fire-storage-helper.service';
+import GtdTask from '../../../../shared/models/gtd-task';
+import { FireStorageHelperService } from '../../../../shared/common/fire-storage-helper/fire-storage-helper.service';
 import { DocumentChangeAction } from '@angular/fire/firestore';
 import { map, startWith } from 'rxjs/operators';
-import { DialogHelperService } from '../../../shared/common/dialog-helper/dialog-helper.service';
+import { DialogHelperService } from '../../../../shared/common/dialog-helper/dialog-helper.service';
 import { MatDialogConfig } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { EnumComponentType } from '../../../shared/enum/enum-component-type';
+import { EnumComponentType } from '../../../../shared/enum/enum-component-type';
 import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
 
 // export interface UserData {

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { EnumComponentType } from '../../../shared/enum/enum-component-type';
+import { EnumComponentType } from '../../../../shared/enum/enum-component-type';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FireStorageHelperService } from 'src/app/shared/common/fire-storage-helper/fire-storage-helper.service';
 import GtdTask from 'src/app/shared/models/gtd-task';
