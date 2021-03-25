@@ -15,7 +15,6 @@ import { OrganizeComponent } from './getting-things-done/components/organize/org
 
 import { InnerHtmlPipe } from '../shared/pipe/inner-html.pipe';
 import { WorkComponent } from './getting-things-done/components/work/work.component';
-import { ContentMgmtSystemComponent } from './content-mgmt-system/content-mgmt-system.component';
 import { CollectThenOrganizeComponent } from './getting-things-done/pages/collect-then-organize/collect-then-organize.component';
 import { ProcessThenWorkComponent } from './getting-things-done/pages/process-then-work/process-then-work.component';
 
@@ -28,7 +27,6 @@ import { ProcessThenWorkComponent } from './getting-things-done/pages/process-th
     OrganizeComponent,
     InnerHtmlPipe,
     WorkComponent,
-    ContentMgmtSystemComponent,
     CollectThenOrganizeComponent,
     ProcessThenWorkComponent,
   ],
