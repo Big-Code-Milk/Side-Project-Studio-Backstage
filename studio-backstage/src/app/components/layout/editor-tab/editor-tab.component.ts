@@ -11,7 +11,7 @@ declare var $: any;
 export class EditorTabComponent implements OnInit {
 
   @Input() Title: string;
-  DisplayMode: string = 'Close';
+  DisplayMode: string = 'Open';
 
 
   EditorMode: string = "";
@@ -30,6 +30,15 @@ export class EditorTabComponent implements OnInit {
     if (this.Title == undefined) {
       this.Title = '請注入此 Component Title';
     }
+    this.EditorModeInit();
+  }
+
+  EditorModeInit() {
+    let LocalStorageEditorMode = localStorage.getItem('EditorMode');
+    // console.log('LocalStorageEditorMode', LocalStorageEditorMode);
+    if (LocalStorageEditorMode != null) {
+      this.EditorMode = LocalStorageEditorMode;
+    }
   }
 
   EditorModeChange() {
@@ -45,6 +54,8 @@ export class EditorTabComponent implements OnInit {
       default:
         console.log(`this.EditorMode`, this.EditorMode);
     }
+    // 存至 LocalStorage 記錄使用狀態
+    localStorage.setItem('EditorMode', this.EditorMode);
   }
 
   // ng2-ckeditor
@@ -66,12 +77,13 @@ export class EditorTabComponent implements OnInit {
   }
 
   onChange($event: any): void {
-    // console.log("onChange");
+    console.log("onChange");
     //this.log += new Date() + "<br />" ,
     // console.log('this.mycontent', this.ContentHTML)
     let CkText = $('.cke_wysiwyg_div').text();
     // console.log('CkText', CkText);
     this.ContentText = CkText;
+    this.ContentEmitter();
   }
 
   onPaste($event: any): void {
@@ -83,12 +95,14 @@ export class EditorTabComponent implements OnInit {
   SyncModel(Value: any): void {
     // console.log('Value', Value);
     this.ContentHTML = Value;
+    this.ContentEmitter();
   }
 
   // 真的使用時
   @Input() Content: string;
   @Output() onCotentChange: EventEmitter<string> = new EventEmitter<string>(); // 发射器
   ContentEmitter() {
+    console.log("ContentEmitter", this.ContentHTML);
     this.onCotentChange.emit(this.ContentHTML);
   }
 }

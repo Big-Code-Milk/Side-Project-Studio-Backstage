@@ -17,3 +17,7 @@
 #FakeMatExpansionPanel>main>main>section>p {
     padding: 0.5em 1em;
 }
+
+h4{
+  display: inline-block;
+}
