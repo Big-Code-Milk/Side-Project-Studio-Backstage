@@ -226,10 +226,11 @@ export class OrganizeComponent implements OnInit {
   ngOnDestroy() {
     // console.log('ngOnDestroy');
     var _SessionStorage = sessionStorage.getItem('Editing');
-    console.log('_SessionStorage', _SessionStorage);
+    // console.log('_SessionStorage', _SessionStorage);
     if (this.GtdTask.Status == '編輯中' && _SessionStorage == this.Key) {
       this.GtdTask.Status = '';
       this.UploadData('TurnOnEditModeButton');
+      sessionStorage.removeItem('Editing');
     }
   }
 
