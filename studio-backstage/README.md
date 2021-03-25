@@ -2,6 +2,26 @@
 
 * 2021-0224 此處改為紀錄大章節，細節內容直接紀錄於程式碼內，從無到有的後台專案
 
+## 架構
+
+### 打開 VSCode 搭配左邊資料格式觀看 :
+
+其餘 > 多為設定檔，需要時才修改。
+
+src > : 主要 AG app 檔案，包含測試、SPA 唯一那頁、etc...
+
+src > assets : 放置靜態檔案 e.g. 別人的 lib、圖片、etc...
+
+src > env... : 環境變數，供給設定檔之類的使用。
+
+src > app : 程序都在這裡面，首先看到的是 app 開頭的檔案，這些是這個 app 的根元件、根模組、根路由。
+
+src > app > components > : 整個 app 可能會共用的原件、範例都放置於此，而個別系統會用到的元件則放置在個別資料夾內層。
+
+src > app > shared > : 整個 app 可能會共用的函式或引用的庫資源，都會放置於此方便共用，這裡比較特殊需要中階 angular 懂 service、pipe、etc... 才知道怎麼用。
+
+src > app > pages > : 個別元件皆以系統或頁面分類，所有的更改多發生在此資料夾內。
+
 ## 參考
 
 [Angular Firebase 入門與實做](https://ithelp.ithome.com.tw/m/users/20104952/ironman/1554) => 結合 firebase
