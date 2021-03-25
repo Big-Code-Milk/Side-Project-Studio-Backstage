@@ -224,8 +224,10 @@ export class OrganizeComponent implements OnInit {
 
   // 銷毀元件
   ngOnDestroy() {
-    console.log('ngOnDestroy');
-    if (this.GtdTask.Status == '編輯中') {
+    // console.log('ngOnDestroy');
+    var _SessionStorage = sessionStorage.getItem('Editing');
+    console.log('_SessionStorage', _SessionStorage);
+    if (this.GtdTask.Status == '編輯中' && _SessionStorage == this.Key) {
       this.GtdTask.Status = '';
       this.UploadData('TurnOnEditModeButton');
     }
@@ -238,6 +240,8 @@ export class OrganizeComponent implements OnInit {
       this.IsEdit = true;
       this.GtdTask.Status = '編輯中';
       this.UploadData('TurnOnEditModeButton');
+      // 同時增加一筆 Session 用來防呆跳出銷毀元件時判別是按下按鈕的人跳開才回復任務狀態
+      sessionStorage.setItem('Editing', this.Key);
     }
     if (this.GtdTask.Status == '共同編輯中') {
       this.IsEdit = true;

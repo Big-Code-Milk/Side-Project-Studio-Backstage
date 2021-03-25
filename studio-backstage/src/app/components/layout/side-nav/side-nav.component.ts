@@ -35,9 +35,9 @@ export class SideNavComponent implements OnInit {
     let _SideNavTemp = localStorage.getItem('SideNavTemp');
     if (_SideNavTemp != null) {
       this.SideNavLocalStorage = JSON.parse(_SideNavTemp);
-      console.log('this.SideNavLocalStorage', this.SideNavLocalStorage);
+      // console.log('this.SideNavLocalStorage', this.SideNavLocalStorage);
       this.SideNavLocalStorage = this.SideNavLocalStorage.splice(0, 3);
-      console.log('this.SideNavLocalStorage', this.SideNavLocalStorage);
+      // console.log('this.SideNavLocalStorage', this.SideNavLocalStorage);
     }
   }
 
