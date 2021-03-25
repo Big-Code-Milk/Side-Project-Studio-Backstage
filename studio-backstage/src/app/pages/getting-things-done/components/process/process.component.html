@@ -61,8 +61,7 @@
               <i class="material-icons">looks_{{i}}</i>
             </button>
           </div>
-          <button mat-stroked-button color="primary" (click)='Process(row.id)'
-            [disabled]="row.Status == '編輯中'">{{ProcessBtn}}</button>
+          <button mat-stroked-button color="primary" (click)='Process(row.id)'>{{ProcessBtn}}</button>
           <button mat-stroked-button (click)='Archive(row.id,row)'>封存</button>
           <button mat-stroked-button color="warn" (click)='Delete(row.id)'>刪除</button>
         </td>
