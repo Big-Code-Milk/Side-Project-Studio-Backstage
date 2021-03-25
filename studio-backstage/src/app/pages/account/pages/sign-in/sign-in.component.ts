@@ -11,14 +11,14 @@
 // 按鈕觸發 https://www.itread01.com/content/1549474753.html
 
 import { Component, OnInit } from '@angular/core';
-import { FireAuthHelperService } from '../../../shared/common/fire-auth-helper/fire-auth-helper.service';
-import { DialogHelperService } from '../../../shared/common/dialog-helper/dialog-helper.service';
+import { FireAuthHelperService } from '../../../../shared/common/fire-auth-helper/fire-auth-helper.service';
+import { DialogHelperService } from '../../../../shared/common/dialog-helper/dialog-helper.service';
 import { MatDialogConfig } from '@angular/material/dialog';
-import SignIn from '../../../shared/models/sign-in';
+import SignIn from '../../../../shared/models/sign-in';
 import { Router } from '@angular/router';
-import { FireStorageHelperService } from '../../../shared/common/fire-storage-helper/fire-storage-helper.service';
-import UserInfoLog from '../../../shared/models/user-info-log';
-import { EnumSignInInfoState } from '../../../shared/enum/enum-user-info-log-state';
+import { FireStorageHelperService } from '../../../../shared/common/fire-storage-helper/fire-storage-helper.service';
+import UserInfoLog from '../../../../shared/models/user-info-log';
+import { EnumSignInInfoState } from '../../../../shared/enum/enum-user-info-log-state';
 import * as dayjs from 'dayjs';
 import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
 

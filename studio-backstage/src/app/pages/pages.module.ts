@@ -5,7 +5,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { HomeComponent } from './home/home.component';
 
 import { SharedAngularMaterialModule } from '../shared/module/angular-material.module';
-import { SignInComponent } from './account/sign-in/sign-in.component'
+import { SignInComponent } from './account/pages/sign-in/sign-in.component'
 
 import { CollectComponent } from './getting-things-done/components/collect/collect.component';
 import { ProcessComponent } from './getting-things-done/components/process/process.component';

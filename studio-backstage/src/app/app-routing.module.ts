@@ -5,7 +5,7 @@ import { EditorMdComponent } from './components/layout/editor-md/editor-md.compo
 import { OrganizeComponent } from './pages/getting-things-done/components/organize/organize.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SignInComponent } from './pages/account/sign-in/sign-in.component';
+import { SignInComponent } from './pages/account/pages/sign-in/sign-in.component';
 import { DashboardComponent } from './components/layout/dashboard/dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './shared/Guards/auth-guard/auth.guard';
