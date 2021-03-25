@@ -49,7 +49,18 @@ import { UsefulLinksTreeComponent } from './useful-links-tree/useful-links-tree.
   ],
   exports: [
     DashboardComponent,
-    SideNavComponent
+    SideNavComponent,
+    DialogComponent,
+    MenuComponent,
+    SnackBarComponent,
+    EditorComponent,
+    EditorMdDirective,
+    EditorMdComponent,
+    EditorTabComponent,
+    ImageHostingTabComponent,
+    GetStartedComponent,
+    ImgurComponent,
+    UsefulLinksTreeComponent,
   ]
 })
 export class LayoutModule {

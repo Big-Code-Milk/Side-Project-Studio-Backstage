@@ -18,6 +18,8 @@ import { WorkComponent } from './getting-things-done/components/work/work.compon
 import { CollectThenOrganizeComponent } from './getting-things-done/pages/collect-then-organize/collect-then-organize.component';
 import { ProcessThenWorkComponent } from './getting-things-done/pages/process-then-work/process-then-work.component';
 import { CreateContentComponent } from './content-mgmt-system/pages/create-content/create-content.component';
+import { ContentMgmtComponent } from './content-mgmt-system/pages/content-mgmt/content-mgmt.component';
+import { LayoutModule } from '../components/layout/layout.module';
 
 @NgModule({
   declarations: [
@@ -31,12 +33,14 @@ import { CreateContentComponent } from './content-mgmt-system/pages/create-conte
     CollectThenOrganizeComponent,
     ProcessThenWorkComponent,
     CreateContentComponent,
+    ContentMgmtComponent,
   ],
   imports: [
     CommonModule,
     PagesRoutingModule,
     SharedAngularMaterialModule,
     BaseSharedModule,
+    LayoutModule,
   ]
 })
 export class PagesModule { }

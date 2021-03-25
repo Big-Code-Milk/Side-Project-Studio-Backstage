@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { CKEditorComponent } from 'ng2-ckeditor';
 
 declare var $: any;
@@ -83,5 +83,12 @@ export class EditorTabComponent implements OnInit {
   SyncModel(Value: any): void {
     // console.log('Value', Value);
     this.ContentHTML = Value;
+  }
+
+  // 真的使用時
+  @Input() Content: string;
+  @Output() onCotentChange: EventEmitter<string> = new EventEmitter<string>(); // 发射器
+  ContentEmitter() {
+    this.onCotentChange.emit(this.ContentHTML);
   }
 }
