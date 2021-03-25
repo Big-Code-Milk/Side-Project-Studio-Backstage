@@ -77,7 +77,7 @@ export class EditorTabComponent implements OnInit {
   }
 
   onChange($event: any): void {
-    console.log("onChange");
+    // console.log("onChange");
     //this.log += new Date() + "<br />" ,
     // console.log('this.mycontent', this.ContentHTML)
     let CkText = $('.cke_wysiwyg_div').text();
@@ -102,7 +102,7 @@ export class EditorTabComponent implements OnInit {
   @Input() Content: string;
   @Output() onCotentChange: EventEmitter<string> = new EventEmitter<string>(); // 发射器
   ContentEmitter() {
-    console.log("ContentEmitter", this.ContentHTML);
+    // console.log("ContentEmitter", this.ContentHTML);
     this.onCotentChange.emit(this.ContentHTML);
   }
 }

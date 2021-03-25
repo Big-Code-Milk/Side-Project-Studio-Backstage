@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit {
     }
   }
   GetSideNavObject(sideNav: MatSidenav) {
-    console.log(sideNav);
+    // console.log(sideNav);
   }
 
 }

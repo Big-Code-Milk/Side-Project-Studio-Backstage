@@ -15,6 +15,6 @@ export class EditContentComponent implements OnInit {
   }
 
   SyncModel(Event: any) {
-    console.log('Event', Event);
+    // console.log('Event', Event);
   }
 }

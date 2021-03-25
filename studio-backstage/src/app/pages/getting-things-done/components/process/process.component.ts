@@ -106,7 +106,7 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
 
   InitData() {
 
-    console.log('InitData');
+    // console.log('InitData');
 
     let Query: any = [];
 
