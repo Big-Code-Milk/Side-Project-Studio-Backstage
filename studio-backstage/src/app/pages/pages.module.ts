@@ -17,9 +17,9 @@ import { InnerHtmlPipe } from '../shared/pipe/inner-html.pipe';
 import { WorkComponent } from './getting-things-done/components/work/work.component';
 import { CollectThenOrganizeComponent } from './getting-things-done/pages/collect-then-organize/collect-then-organize.component';
 import { ProcessThenWorkComponent } from './getting-things-done/pages/process-then-work/process-then-work.component';
-import { CreateContentComponent } from './content-mgmt-system/pages/create-content/create-content.component';
 import { ContentMgmtComponent } from './content-mgmt-system/pages/content-mgmt/content-mgmt.component';
 import { LayoutModule } from '../components/layout/layout.module';
+import { EditContentComponent } from './content-mgmt-system/pages/edit-content/edit-content.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +32,8 @@ import { LayoutModule } from '../components/layout/layout.module';
     WorkComponent,
     CollectThenOrganizeComponent,
     ProcessThenWorkComponent,
-    CreateContentComponent,
     ContentMgmtComponent,
+    EditContentComponent,
   ],
   imports: [
     CommonModule,

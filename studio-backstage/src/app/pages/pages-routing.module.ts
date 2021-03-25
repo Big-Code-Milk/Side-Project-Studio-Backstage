@@ -1,13 +1,17 @@
+import { ProcessThenWorkComponent } from './getting-things-done/pages/process-then-work/process-then-work.component';
+import { ContentMgmtComponent } from './content-mgmt-system/pages/content-mgmt/content-mgmt.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { OrganizeComponent } from './getting-things-done/components/organize/organize.component';
 import { CollectThenOrganizeComponent } from './getting-things-done/pages/collect-then-organize/collect-then-organize.component';
+import { EditContentComponent } from './content-mgmt-system/pages/edit-content/edit-content.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'gettingthingsdone', component: CollectThenOrganizeComponent },
-  { path: 'organize', component: OrganizeComponent },
+  { path: 'processthenwork', component: ProcessThenWorkComponent },
+  { path: 'collectthenorganize', component: CollectThenOrganizeComponent },
+  { path: 'contentmgmt', component: ContentMgmtComponent },
+  { path: 'editcontent', component: EditContentComponent },
 ];
 
 @NgModule({
