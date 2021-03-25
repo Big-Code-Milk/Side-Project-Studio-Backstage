@@ -16,6 +16,7 @@ import { OrganizeComponent } from './getting-things-done/organize/organize.compo
 
 import { InnerHtmlPipe } from '../shared/pipe/inner-html.pipe';
 import { WorkComponent } from './getting-things-done/work/work.component';
+import { ContentMgmtSystemComponent } from './content-mgmt-system/content-mgmt-system.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { WorkComponent } from './getting-things-done/work/work.component';
     OrganizeComponent,
     InnerHtmlPipe,
     WorkComponent,
+    ContentMgmtSystemComponent,
   ],
   imports: [
     CommonModule,
