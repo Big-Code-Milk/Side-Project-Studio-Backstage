@@ -7,4 +7,5 @@ export default class GtdTask {
   StartDate: Date | null = null;
   Status?: string;
   Tags?: Array<string> = [];
+  Wage: number = 0;
 }

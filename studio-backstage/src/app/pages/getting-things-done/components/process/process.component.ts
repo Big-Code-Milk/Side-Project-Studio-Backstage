@@ -40,7 +40,7 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
 
   GtdTasks = [] as GtdTask[];
 
-  displayedColumns: string[] = ['Name', 'Content', 'StartDate', 'EndDate', 'Tags', 'Status', 'Tool'];
+  displayedColumns: string[] = ['Status', 'Price', 'Name', 'Content', 'StartDate', 'EndDate', 'Tags', 'Tool'];
   dataSource: MatTableDataSource<GtdTask>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
