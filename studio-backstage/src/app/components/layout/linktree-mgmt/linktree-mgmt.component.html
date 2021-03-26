@@ -42,18 +42,18 @@
       <button mat-stroked-button (click)="Create($event)">新增</button>
     </div>
   </li>
-  <ng-container *ngTemplateOutlet="tree; context: { $implicit: TreeDate, another: 1,idx:[1] }">
+  <ng-container *ngTemplateOutlet="tree; context: { $implicit: TreeDate, another: [1],idx:[1] }">
   </ng-container>
 </ul>
 
 <ng-template #tree let-AllItems let-another="another" let-idx="idx">
   <ul>
     <li *ngFor="let Item of AllItems;let _index = index;">
-      idx:{{idx}}
-      another:{{another}}
-      _index:{{_index}}
-      Item.NickName:{{Item.NickName}}
-      <ng-container *ngTemplateOutlet="tree; context: { $implicit: Item.Children, another:_index }">
+      idx:{{idx}} <br>
+      another:{{another}} <br>
+      _index:{{_index}} <br>
+      Item.NickName:{{Item.NickName}} <br>
+      <ng-container *ngTemplateOutlet="tree; context: { $implicit: Item.Children, another:_index,idx:idx }">
       </ng-container>
     </li>
   </ul>
