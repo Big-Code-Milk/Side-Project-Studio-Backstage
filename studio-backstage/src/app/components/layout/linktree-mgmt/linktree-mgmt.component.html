@@ -48,9 +48,8 @@
 
 <ng-template #tree let-AllItems let-another="another" let-idx="idx">
     <ul>
-
-        <li *ngFor="let Item of AllItems;let _index = index">
-            {{Item.NickName}} - {{another.push(_index)}}
+        <li *ngFor="let Item of AllItems;let _index = index;">
+            {{Item.NickName}} -{{another}} {{another.push(_index)}}
             <ng-container *ngTemplateOutlet="tree; context: { $implicit: Item.Children, another:another }">
             </ng-container>
         </li>
