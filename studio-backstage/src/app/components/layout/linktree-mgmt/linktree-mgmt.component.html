@@ -30,12 +30,16 @@
   </ul>
 </ng-template> -->
 
+<button mat-stroked-button (click)="IsEdited?IsEdited = false:IsEdited = true">編輯模式</button>
+
 <ul>
   <li>常用連結(根目錄)
-    <input type="text" placeholder="名稱" />
-    <input type="text" placeholder="網址(資料夾不用填)" />
-    <button mat-stroked-button>修改</button>
-    <button mat-stroked-button>新增</button>
+    <div *ngIf="IsEdited">
+      <input type="text" placeholder="名稱" />
+      <input type="text" placeholder="網址(資料夾不用填)" />
+      <button mat-stroked-button>修改</button>
+      <button mat-stroked-button>新增</button>
+    </div>
   </li>
   <ng-container *ngTemplateOutlet="tree; context: { $implicit: TreeDate }">
   </ng-container>
@@ -45,6 +49,12 @@
   <ul>
     <li *ngFor="let Item of AllItems">
       {{Item.NickName}}
+      <div *ngIf="IsEdited">
+        <input type="text" placeholder="名稱" />
+        <input type="text" placeholder="網址(資料夾不用填)" />
+        <button mat-stroked-button>修改</button>
+        <button mat-stroked-button>新增</button>
+      </div>
       <ng-container *ngTemplateOutlet="tree; context: { $implicit: Item.Children }">
       </ng-container>
     </li>

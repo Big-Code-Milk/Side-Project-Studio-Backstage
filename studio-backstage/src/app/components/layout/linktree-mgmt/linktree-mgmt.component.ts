@@ -47,6 +47,8 @@ export class LinktreeMgmtComponent implements OnInit {
     console.log('TreeDate', this.TreeDate);
   }
 
+  IsEdited: boolean = false;
+
   ngOnInit(): void {
     this.DataInit();
   }
@@ -66,4 +68,5 @@ export class LinktreeMgmtComponent implements OnInit {
   Delete() {
 
   }
+
 }
