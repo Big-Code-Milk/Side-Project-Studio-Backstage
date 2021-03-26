@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CollectThenOrganizeComponent } from './getting-things-done/pages/collect-then-organize/collect-then-organize.component';
 import { EditContentComponent } from './content-mgmt-system/pages/edit-content/edit-content.component';
+import { LinktreeMgmtComponent } from '../components/layout/linktree-mgmt/linktree-mgmt.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'contentmgmt', component: ContentMgmtComponent },
   { path: 'editcontent', component: EditContentComponent },
   { path: 'organize', component: OrganizeComponent }, // 點擊進入任務編輯
+  { path: 'linktreemgmt', component: LinktreeMgmtComponent }, // 友站連結管理
 ];
 
 @NgModule({

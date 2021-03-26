@@ -21,6 +21,7 @@ import { ImageHostingTabComponent } from './image-hosting-tab/image-hosting-tab.
 import { GetStartedComponent } from './get-started/get-started.component';
 import { ImgurComponent } from './imgur/imgur.component';
 import { UsefulLinksTreeComponent } from './useful-links-tree/useful-links-tree.component';
+import { LinktreeMgmtComponent } from './linktree-mgmt/linktree-mgmt.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { UsefulLinksTreeComponent } from './useful-links-tree/useful-links-tree.
     GetStartedComponent,
     ImgurComponent,
     UsefulLinksTreeComponent,
+    LinktreeMgmtComponent,
   ],
   providers: [
     FireStorageHelperService
