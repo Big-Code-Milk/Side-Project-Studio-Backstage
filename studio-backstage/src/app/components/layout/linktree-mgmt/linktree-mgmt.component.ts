@@ -57,8 +57,8 @@ export class LinktreeMgmtComponent implements OnInit {
 
   }
 
-  Create() {
-
+  Create(Event: any) {
+    console.log('Event', Event);
   }
 
   Update() {

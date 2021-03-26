@@ -1,5 +1,6 @@
 <!-- 參考外國人寫的 -->
 <!-- https://stackoverflow.com/questions/50706638/angular-toggle-child-with-unlimited-nesting/50781767 -->
+<!-- https://ithelp.ithome.com.tw/m/articles/10205829 -->
 
 <!-- <ul>
   <li *ngFor="let item of myArray; let i = index">
@@ -38,24 +39,25 @@
       <input type="text" placeholder="名稱" />
       <input type="text" placeholder="網址(資料夾不用填)" />
       <button mat-stroked-button>修改</button>
-      <button mat-stroked-button>新增</button>
+      <button mat-stroked-button (click)="Create($event)">新增</button>
     </div>
   </li>
-  <ng-container *ngTemplateOutlet="tree; context: { $implicit: TreeDate }">
+  <ng-container *ngTemplateOutlet="tree; context: { $implicit: TreeDate, another: 1 }">
   </ng-container>
 </ul>
 
-<ng-template #tree let-AllItems let-idx="idx">
+<ng-template #tree let-AllItems let-another="another" let-idx="idx">
   <ul>
-    <li *ngFor="let Item of AllItems">
+    {{another}}
+    <li *ngFor="let Item of AllItems;let _index = index">
       {{Item.NickName}}
       <div *ngIf="IsEdited">
         <input type="text" placeholder="名稱" />
         <input type="text" placeholder="網址(資料夾不用填)" />
         <button mat-stroked-button>修改</button>
-        <button mat-stroked-button>新增</button>
+        <button mat-stroked-button (click)="Create(_index)">新增</button>
       </div>
-      <ng-container *ngTemplateOutlet="tree; context: { $implicit: Item.Children }">
+      <ng-container *ngTemplateOutlet="tree; context: { $implicit: Item.Children, another:_index }">
       </ng-container>
     </li>
   </ul>
