@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LinktreeMgmtComponent implements OnInit {
 
+  TempIndex = [];
+
   TreeDate = [
     {
       NickName: '程式', Url: '', Children: [
