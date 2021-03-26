@@ -48,9 +48,9 @@
 
 <ng-template #tree let-AllItems let-another="another" let-idx="idx">
   <ul>
-    {{another}}
+
     <li *ngFor="let Item of AllItems;let _index = index">
-      {{Item.NickName}}
+      {{Item.NickName}} - [ {{another}} , {{_index}} ]
       <div *ngIf="IsEdited">
         <input type="text" placeholder="名稱" />
         <input type="text" placeholder="網址(資料夾不用填)" />
