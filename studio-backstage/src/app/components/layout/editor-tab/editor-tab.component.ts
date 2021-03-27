@@ -13,16 +13,16 @@ export class EditorTabComponent implements OnInit {
   @Input() Title: string;
   DisplayMode: string = 'Open';
 
-
-  EditorMode: string = "";
-  ContentHTML: string = "";
-  ContentText: string = "";
+  MackdownContent: string;
+  EditorMode: string;
+  HTMLContent: string;
+  TextContent: string;
 
   constructor(
     private _ChangeDetectorRef: ChangeDetectorRef // 當有cd發生時觸發
   ) {
-    this.ContentHTML = `<p>My html content</p>`;
-    this.ContentText = `My html content`;
+    this.HTMLContent = `<p>My html content</p>`;
+    this.TextContent = `My html content`;
   }
 
   ngOnInit(): void {
@@ -82,7 +82,7 @@ export class EditorTabComponent implements OnInit {
     // console.log('this.mycontent', this.ContentHTML)
     let CkText = $('.cke_wysiwyg_div').text();
     // console.log('CkText', CkText);
-    this.ContentText = CkText;
+    this.TextContent = CkText;
     this.ContentEmitter();
   }
 
@@ -94,15 +94,16 @@ export class EditorTabComponent implements OnInit {
   // editor.md
   SyncModel(Value: any): void {
     // console.log('Value', Value);
-    this.ContentHTML = Value;
+    this.HTMLContent = Value.HTMLContent;
+    this.MackdownContent = Value.MarckContent;
     this.ContentEmitter();
   }
 
   // 真的使用時
   @Input() Content: string;
-  @Output() onCotentChange: EventEmitter<string> = new EventEmitter<string>(); // 发射器
+  @Output() onCotentChange: EventEmitter<any> = new EventEmitter<any>(); // 发射器
   ContentEmitter() {
     // console.log("ContentEmitter", this.ContentHTML);
-    this.onCotentChange.emit(this.ContentHTML);
+    this.onCotentChange.emit({ HTMLContent: this.HTMLContent, MarckContent: this.MackdownContent });
   }
 }

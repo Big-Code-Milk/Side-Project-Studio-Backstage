@@ -11,11 +11,12 @@ declare var $: any;
 })
 export class EditorMdComponent implements OnInit {
 
-  @Output() onEditorMdChange: EventEmitter<string> = new EventEmitter<string>(); // 发射器
+  @Output() onEditorMdChange: EventEmitter<any> = new EventEmitter<any>(); // 发射器
   _EditorConfig = new EditorConfig;
   _EditorMd: any;
 
   @Input() ContentText: string;
+  @Input() MackdownContent: string;
 
   constructor() {
 
@@ -26,16 +27,27 @@ export class EditorMdComponent implements OnInit {
     this._EditorMd = editormd('EditorMd', this._EditorConfig);
 
     // https://codertw.com/ios/21968/
-    $('.editormd-markdown-textarea').val(this.ContentText); // 左邊輸入框內的 HTML
-    $('.markdown-body').html(this.ContentText);// 右邊顯示編譯好的 HTML
-    this._EditorMd.htmlTextarea.val() // EditorMd 物件內編譯好的 HTML
+    // console.log('MackdownContent', this.MackdownContent);
+    // console.log('this.ContentText', this.ContentText);
+
+    // 如果有 MackdownContent 就壓過去
+    $('.editormd-markdown-textarea').val(this.ContentText);
+    if (this.MackdownContent != undefined) {
+      $('.editormd-markdown-textarea').val(this.MackdownContent);
+    }
+
+    // $('.editormd-markdown-textarea').val(this.ContentText); // 左邊輸入框內的 HTML
+    // $('.markdown-body').html(this.ContentText);// 右邊顯示編譯好的 HTML
+    // this._EditorMd.htmlTextarea.val() // EditorMd 物件內編譯好的 HTML
 
     // 当编辑器内容改变时，触发textarea的change事件
     let ChangeEvent = this.onEditorMdChange;
     let EditorMd = this._EditorMd;
     this._EditorMd.on('change', function () {
       // console.log('innerHtml', $('.markdown-body').html());
-      ChangeEvent.emit(EditorMd.htmlTextarea.val());
+      ChangeEvent.emit(
+        { HTMLContent: EditorMd.htmlTextarea.val(), MarckContent: $('.editormd-markdown-textarea').val() }
+      );
     });
   }
 

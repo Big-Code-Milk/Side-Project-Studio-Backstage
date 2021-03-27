@@ -14,7 +14,7 @@ export class EditContentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  SyncModel(Event: any) {
-    // console.log('Event', Event);
+  SyncModel(Value: any) {
+    console.log('最外層 Value', Value);
   }
 }
