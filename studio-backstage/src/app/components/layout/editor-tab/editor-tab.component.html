@@ -9,10 +9,10 @@
         <section>
             <label>編輯器模式：</label>
             <select [(ngModel)]="EditorMode" (change)="EditorModeChange()">
-        <option value="Ckeditor">Ckeditor</option>
-        <option value="Editor.md">Editor.md</option>
-        <option value="Medium">Medium</option>
-      </select>
+              <option value="Ckeditor">Ckeditor</option>
+              <option value="Editor.md">Editor.md</option>
+              <option value="Medium">Medium</option>
+            </select>
             <details style="display: inline;padding-left: 1em;">
                 <summary>注意事項：更新日期 2021-0321</summary>
                 <ul style="padding-top: 1em;">
@@ -24,22 +24,18 @@
             </details>
         </section>
         <main>
-
             <section *ngIf="EditorMode == 'Ckeditor'">
                 <ckeditor style="height: 100vh;" [(ngModel)]="HTMLContent" #myckeditor="ngModel" name="myckeditor" required [config]="ckeConfig" debounce="500" (paste)="onPaste($event)" (change)="onChange($event)">
                 </ckeditor>
                 <div *ngIf="myckeditor.invalid && myckeditor.touched" class="help-block">Required field.</div>
             </section>
-
             <section *ngIf="EditorMode == 'Editor.md'">
                 <!-- 不能 input HTML 會爆版，改丟 Text -->
                 <app-editor-md [MackdownContent]="MarkdownContent" [ContentText]="TextContent" (onEditorMdChange)="SyncModel($event)"></app-editor-md>
             </section>
-
             <section *ngIf="EditorMode == 'Medium'">
                 施工中...
             </section>
-
         </main>
     </main>
 </main>

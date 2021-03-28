@@ -20,6 +20,7 @@ import { ProcessThenWorkComponent } from './getting-things-done/pages/process-th
 import { ContentMgmtComponent } from './content-mgmt-system/pages/content-mgmt/content-mgmt.component';
 import { LayoutModule } from '../components/layout/layout.module';
 import { EditContentComponent } from './content-mgmt-system/pages/edit-content/edit-content.component';
+import { GoalTextComponent } from './content-mgmt-system/components/goal-text/goal-text.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { EditContentComponent } from './content-mgmt-system/pages/edit-content/e
     ProcessThenWorkComponent,
     ContentMgmtComponent,
     EditContentComponent,
+    GoalTextComponent,
   ],
   imports: [
     CommonModule,

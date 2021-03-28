@@ -16,8 +16,7 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class EditContentComponent implements OnInit {
 
-  DisplayMode1: boolean;
-  DisplayMode2: boolean;
+  DisplayMode: boolean;
   HTMLContent: string;
   MarkdownContent: string;
   GtdTask: GtdTask = new GtdTask();
