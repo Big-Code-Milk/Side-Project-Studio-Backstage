@@ -31,13 +31,13 @@
                 <td>
                     <mat-form-field class="example-full-width">
                         <mat-label>摘要</mat-label>
-                        <textarea matInput required></textarea>
+                        <textarea matInput required [(ngModel)]="GtdTask.Content" name="Content"></textarea>
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field appearance="fill" class="example-form-field">
                         <mat-label>日期</mat-label>
-                        <input matInput [matDatepicker]="datepicker">
+                        <input matInput [matDatepicker]="datepicker" [(ngModel)]="GtdTask.StartDate" name="StartDate">
                         <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                         <mat-datepicker #datepicker>
                             <mat-datepicker-actions>

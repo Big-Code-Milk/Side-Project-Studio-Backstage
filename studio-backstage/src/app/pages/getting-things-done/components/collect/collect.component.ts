@@ -148,6 +148,14 @@ export class CollectComponent extends BaseComponent implements OnInit {
         // this._MatDialogConfig.data = "success";
         // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
         // setTimeout(function () { window.location.reload(); }, 3000);
+        this.GtdTask = new GtdTask();
+        this.Tags = [];
+        const Today = new Date();
+        const TodayAdd7days = dayjs(Today).add(7, 'day').toDate();
+        this.Term = new FormGroup({
+          start: new FormControl(Today),
+          end: new FormControl(TodayAdd7days)
+        });
         this._SnackBarHelper.OpenSnackBar('Success');
       });
     }

@@ -31,6 +31,7 @@ export class EditContentComponent implements OnInit {
     this._FilteredTags = this._FormControl.valueChanges.pipe(
       startWith(null),
       map((Tag: string | null) => Tag ? this._filter(Tag) : this.allTags.slice()));
+    this.GtdTask.StartDate = new Date();
   }
 
   ngOnInit(): void {
@@ -83,5 +84,6 @@ export class EditContentComponent implements OnInit {
     if (!confirm('確定要存為草稿嗎?')) {
       return;
     }
+    console.log('this.GtdTask', this.GtdTask);
   }
 }
