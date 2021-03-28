@@ -7,7 +7,6 @@
         <mat-panel-description>
             定義專案內容 ( OKR 大拆小 KPI ) ，擬定下一步行動 ( 動詞 )，讓事情能夠直接走起去做。
         </mat-panel-description>
-
     </mat-expansion-panel-header>
     <hr>
     <form *ngIf="IsEdit" class="example-form" role="form" #myForm="ngForm" accept-charset="UTF-8" novalidate>
@@ -65,7 +64,6 @@
                         </mat-autocomplete>
                     </mat-form-field>
                 </td>
-
             </tr>
         </table>
         <div class="form-group has-feedback" [ngClass]="{ 'has-error': myckeditor.invalid && myckeditor.touched }">
