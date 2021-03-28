@@ -1,5 +1,4 @@
 <app-goal-text></app-goal-text>
-<br>
 <form class="example-form" role="form" #myForm="ngForm" accept-charset="UTF-8" novalidate>
     <mat-expansion-panel hideToggle="false" expanded="true">
         <mat-expansion-panel-header (click)="DisplayMode?DisplayMode=false:DisplayMode=true">
@@ -67,7 +66,11 @@
                 </td>
             </tr>
         </table>
+        <div mat-dialog-actions align="end">
+            <!-- <mat-slide-toggle [checked]='IsCoEditing' (change)="CoEditing()">共同編輯模式</mat-slide-toggle> -->
+            <span style="color: red;margin-right: 1em;">預覽請使用上面套件按鈕</span>
+            <button mat-raised-button color="warn" align="end" (click)="CheckFormThenSubmit()">存為草稿</button>
+        </div>
     </mat-expansion-panel>
-    <br>
     <app-editor-tab [Title]="'內文編輯'" (onCotentChange)="SyncModel($event)"></app-editor-tab>
 </form>

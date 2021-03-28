@@ -78,4 +78,10 @@ export class EditContentComponent implements OnInit {
     const filterValue = value.toLowerCase();
     return this.allTags.filter(Tag => Tag.toLowerCase().indexOf(filterValue) === 0);
   }
+
+  CheckFormThenSubmit() {
+    if (!confirm('確定要存為草稿嗎?')) {
+      return;
+    }
+  }
 }
