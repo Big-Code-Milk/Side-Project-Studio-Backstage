@@ -13,7 +13,7 @@ export class EditorTabComponent implements OnInit {
   @Input() Title: string;
   DisplayMode: string = 'Open';
 
-  MackdownContent: string;
+  MarkdownContent: string;
   EditorMode: string;
   HTMLContent: string;
   TextContent: string;
@@ -95,7 +95,7 @@ export class EditorTabComponent implements OnInit {
   SyncModel(Value: any): void {
     // console.log('Value', Value);
     this.HTMLContent = Value.HTMLContent;
-    this.MackdownContent = Value.MarckContent;
+    this.MarkdownContent = Value.MarckContent;
     this.ContentEmitter();
   }
 
@@ -104,6 +104,6 @@ export class EditorTabComponent implements OnInit {
   @Output() onCotentChange: EventEmitter<any> = new EventEmitter<any>(); // 发射器
   ContentEmitter() {
     // console.log("ContentEmitter", this.ContentHTML);
-    this.onCotentChange.emit({ HTMLContent: this.HTMLContent, MarckContent: this.MackdownContent });
+    this.onCotentChange.emit({ HTMLContent: this.HTMLContent, MarkdownContent: this.MarkdownContent });
   }
 }

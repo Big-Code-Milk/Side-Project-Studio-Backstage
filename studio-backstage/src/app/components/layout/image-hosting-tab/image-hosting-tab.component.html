@@ -1,4 +1,4 @@
-<main id="FakeMatExpansionPanel">
+<main id="FakeMatExpansionPanel" class="boxshadow">
     <section (click)="DisplayMode == 'Open' ? DisplayMode = 'Close':DisplayMode = 'Open' ">
         <span *ngIf="DisplayMode=='Open'" style="padding-right: 1em;" class="material-icons">border_color</span>
         <span *ngIf="DisplayMode!='Open'" style="padding-right: 1em;" class="material-icons">format_align_justify</span> {{Title}}

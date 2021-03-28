@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditContentComponent implements OnInit {
 
-  Content: string;
+  HTMLContent: string;
+  MarkdownContent: string;
 
   constructor() { }
 
@@ -16,5 +17,7 @@ export class EditContentComponent implements OnInit {
 
   SyncModel(Value: any) {
     console.log('最外層 Value', Value);
+    this.HTMLContent = Value.HTMLContent;
+    this.MarkdownContent = Value.MarkdownContent;
   }
 }

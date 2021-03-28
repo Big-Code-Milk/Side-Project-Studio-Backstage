@@ -1,4 +1,4 @@
-<main id="FakeMatExpansionPanel">
+<main id="FakeMatExpansionPanel" class="boxshadow">
     <section (click)="DisplayMode == 'Open' ? DisplayMode = 'Close':DisplayMode = 'Open' ">
         <span *ngIf="DisplayMode=='Open'" style="padding-right: 1em;" class="material-icons">border_color</span>
         <span *ngIf="DisplayMode!='Open'" style="padding-right: 1em;" class="material-icons">format_align_justify</span>
@@ -33,7 +33,7 @@
 
             <section *ngIf="EditorMode == 'Editor.md'">
                 <!-- 不能 input HTML 會爆版，改丟 Text -->
-                <app-editor-md [MackdownContent]="MackdownContent" [ContentText]="TextContent" (onEditorMdChange)="SyncModel($event)"></app-editor-md>
+                <app-editor-md [MackdownContent]="MarkdownContent" [ContentText]="TextContent" (onEditorMdChange)="SyncModel($event)"></app-editor-md>
             </section>
 
             <section *ngIf="EditorMode == 'Medium'">
