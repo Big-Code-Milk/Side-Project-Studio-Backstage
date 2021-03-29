@@ -25,11 +25,11 @@ function RouterHandler() {
   // 之前還沒 AutoSignIn時可以寫 if 判斷 return 不同 router
   return [
     {
-      path: '',
+      path: 'article',
       component: AppleTemplateComponent,
       children: [
         {
-          path: '', component: ArticleCatalogComponent // OnstageHomeComponent
+          path: 'articlecatalog', component: ArticleCatalogComponent // OnstageHomeComponent
         },
         {
           // https://stackoverflow.com/questions/36260839/angular-2-how-to-redirect-to-404-or-other-path-if-the-path-does-not-exist
@@ -69,7 +69,7 @@ function RouterHandler() {
     },
     {
       path: '**',
-      redirectTo: '404',
+      redirectTo: 'article/articlecatalog',
       pathMatch: 'full'
     }
   ];
