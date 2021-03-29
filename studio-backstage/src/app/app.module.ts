@@ -14,7 +14,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'; // 
 import 'hammerjs'; // 手勢套件
 
 import { LayoutModule } from './components/layout/layout.module';
-import { PagesModule } from './pages/pages.module';
+import { PagesModule } from './backstage-pages/pages.module';
 
 import { AngularFireModule } from '@angular/fire'; // Firebase 套件
 import { SharedAngularFireModule } from './shared/module/angular-fire.module';
