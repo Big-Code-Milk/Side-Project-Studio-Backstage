@@ -13,18 +13,18 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'; // 
 
 import 'hammerjs'; // 手勢套件
 
-import { LayoutModule } from './components/layout/layout.module';
+import { LayoutModule } from './shared/components/layout/layout.module';
 import { PagesModule } from './backstage-pages/pages.module';
 
 import { AngularFireModule } from '@angular/fire'; // Firebase 套件
 import { SharedAngularFireModule } from './shared/module/angular-fire.module';
 
 import { BaseSharedModule } from './shared/module/base-shared.module';
-import { ExampleModule } from './components/example/example.module';
+import { ExampleModule } from './backstage-pages/example/example.module';
 
 import { ErrorLogHandler } from '../app/shared/common/error-log-handler/error-log-hanler';
 import { SharedService } from './shared/services/shared.service';
-import { TemplateModule } from './components/template/template.module';
+import { TemplateModule } from './backstage-pages/template/template.module';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { EditorConfig } from '../../example/editor-md-directive-fail/editor-md-config';
+import { EditorConfig } from '../../../../backstage-pages/example/editor-md-directive-fail/editor-md-config';
 
 declare var editormd: any;
 declare var $: any;

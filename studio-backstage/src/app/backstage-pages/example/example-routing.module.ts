@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EditorMdComponent } from '../layout/editor-md/editor-md.component';
-import { EditorTabComponent } from '../layout/editor-tab/editor-tab.component';
-import { GetStartedComponent } from '../layout/get-started/get-started.component';
-import { ImageHostingTabComponent } from '../layout/image-hosting-tab/image-hosting-tab.component';
+import { EditorMdComponent } from '../../shared/components/layout/editor-md/editor-md.component';
+import { EditorTabComponent } from '../../shared/components/layout/editor-tab/editor-tab.component';
+import { GetStartedComponent } from '../../shared/components/layout/get-started/get-started.component';
+import { ImageHostingTabComponent } from '../../shared/components/layout/image-hosting-tab/image-hosting-tab.component';
 import { AngularFirebaseComponent } from './angular-fire-base/angular-firebase.component';
 import { EditorComponent } from './editor-fail/editor.component';
 import { ShareServiceComponent } from './share-service/share-service.component';

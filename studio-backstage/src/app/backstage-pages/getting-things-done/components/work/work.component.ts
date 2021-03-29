@@ -3,7 +3,7 @@ import { EnumComponentType } from '../../../../shared/enum/enum-component-type';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FireStorageHelperService } from 'src/app/shared/common/fire-storage-helper/fire-storage-helper.service';
 import GtdTask from 'src/app/shared/models/gtd-task';
-import { BaseComponent } from 'src/app/components/base/base.component';
+import { BaseComponent } from 'src/app/shared/components/base/base.component';
 import { AngularFirestoreCollection, DocumentChangeAction } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 

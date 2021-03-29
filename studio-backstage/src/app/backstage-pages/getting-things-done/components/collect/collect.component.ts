@@ -1,5 +1,5 @@
 import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
-import { BaseComponent } from 'src/app/components/base/base.component';
+import { BaseComponent } from 'src/app/shared/components/base/base.component';
 import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import GtdTask from '../../../../shared/models/gtd-task';
 import { FormGroup, FormControl } from '@angular/forms';

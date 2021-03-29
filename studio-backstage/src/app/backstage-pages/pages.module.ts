@@ -18,7 +18,7 @@ import { WorkComponent } from './getting-things-done/components/work/work.compon
 import { CollectThenOrganizeComponent } from './getting-things-done/pages/collect-then-organize/collect-then-organize.component';
 import { ProcessThenWorkComponent } from './getting-things-done/pages/process-then-work/process-then-work.component';
 import { ContentMgmtComponent } from './content-mgmt-system/pages/content-mgmt/content-mgmt.component';
-import { LayoutModule } from '../components/layout/layout.module';
+import { LayoutModule } from '../shared/components/layout/layout.module';
 import { EditContentComponent } from './content-mgmt-system/pages/edit-content/edit-content.component';
 import { GoalTextComponent } from './content-mgmt-system/components/goal-text/goal-text.component';
 import { ContentTableComponent } from './content-mgmt-system/components/content-table/content-table.component';
