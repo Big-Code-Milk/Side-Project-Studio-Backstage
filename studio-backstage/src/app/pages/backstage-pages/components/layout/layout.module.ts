@@ -65,9 +65,9 @@ import { LinktreeMgmtComponent } from './linktree-mgmt/linktree-mgmt.component';
     UsefulLinksTreeComponent,
   ]
 })
-export class LayoutModule {
+export class BackStageLayoutModule {
   constructor(
-    @Optional() @SkipSelf() parentModule: LayoutModule
+    @Optional() @SkipSelf() parentModule: BackStageLayoutModule
   ) {
     // 可將這段拉出去建立一個ts檔案，未來需要指注入一次的module都可以使用
     if (parentModule) {

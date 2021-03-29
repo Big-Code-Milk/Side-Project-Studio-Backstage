@@ -13,7 +13,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'; // 
 
 import 'hammerjs'; // 手勢套件
 
-import { LayoutModule } from './pages/backstage-pages/components/layout/layout.module';
 import { PagesModule } from './pages/pages.module';
 
 import { AngularFireModule } from '@angular/fire'; // Firebase 套件
@@ -27,6 +26,8 @@ import { SharedService } from './shared/services/shared.service';
 import { TemplateModule } from './pages/backstage-pages/template/template.module';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { OnStageLayoutModule } from './pages/onstage-pages/components/layout/layout.module';
+import { BackStageLayoutModule } from './pages/backstage-pages/components/layout/layout.module';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     SharedAngularFireModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    LayoutModule,
+    OnStageLayoutModule,
+    BackStageLayoutModule,
     PagesModule,
     ExampleModule,
     TemplateModule,
