@@ -1,15 +1,15 @@
+import { BackstageHomeComponent } from './backstage-pages/backstage-home/backstage-home.component';
 import { OrganizeComponent } from './backstage-pages/getting-things-done/components/organize/organize.component';
 import { ProcessThenWorkComponent } from './backstage-pages/getting-things-done/pages/process-then-work/process-then-work.component';
 import { ContentMgmtComponent } from './backstage-pages/content-mgmt-system/pages/content-mgmt/content-mgmt.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './backstage-pages/home/home.component';
 import { CollectThenOrganizeComponent } from './backstage-pages/getting-things-done/pages/collect-then-organize/collect-then-organize.component';
 import { EditContentComponent } from './backstage-pages/content-mgmt-system/pages/edit-content/edit-content.component';
 import { LinktreeMgmtComponent } from './backstage-pages/components/layout/linktree-mgmt/linktree-mgmt.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: BackstageHomeComponent },
   { path: 'processthenwork', component: ProcessThenWorkComponent },
   { path: 'collectthenorganize', component: CollectThenOrganizeComponent },
   { path: 'contentmgmt', component: ContentMgmtComponent },
