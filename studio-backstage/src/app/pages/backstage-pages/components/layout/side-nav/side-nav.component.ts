@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FireStorageHelperService } from '../../../common/fire-storage-helper/fire-storage-helper.service'
-import UserInfoLog from '../../../models/user-info-log'
+import { FireStorageHelperService } from '../../../../../shared/common/fire-storage-helper/fire-storage-helper.service'
+import UserInfoLog from '../../../../../shared/models/user-info-log'
 
 @Component({
   selector: 'app-side-nav',

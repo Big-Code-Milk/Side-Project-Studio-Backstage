@@ -6,16 +6,16 @@ import { LayoutRoutingModule } from './layout-routing.module';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
-import { SharedAngularMaterialModule } from '../../module/angular-material.module';
+import { SharedAngularMaterialModule } from '../../../../shared/module/angular-material.module';
 
-import { FireStorageHelperService } from '../../common/fire-storage-helper/fire-storage-helper.service';
+import { FireStorageHelperService } from '../../../../shared/common/fire-storage-helper/fire-storage-helper.service';
 import { DialogComponent } from './dialog/dialog.component';
 
-import { BaseSharedModule } from '../../module/base-shared.module';
+import { BaseSharedModule } from '../../../../shared/module/base-shared.module';
 import { MenuComponent } from './menu/menu.component';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
-import { EditorComponent } from '../../../pages/backstage-pages/example/editor-fail/editor.component';
-import { EditorMdDirective } from '../../../pages/backstage-pages/example/editor-md-directive-fail/editor-md.directive';
+import { EditorComponent } from '../../example/editor-fail/editor.component';
+import { EditorMdDirective } from '../../example/editor-md-directive-fail/editor-md.directive';
 import { EditorTabComponent } from './editor-tab/editor-tab.component';
 import { ImageHostingTabComponent } from './image-hosting-tab/image-hosting-tab.component';
 import { GetStartedComponent } from './get-started/get-started.component';

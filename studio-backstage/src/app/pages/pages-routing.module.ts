@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './backstage-pages/home/home.component';
 import { CollectThenOrganizeComponent } from './backstage-pages/getting-things-done/pages/collect-then-organize/collect-then-organize.component';
 import { EditContentComponent } from './backstage-pages/content-mgmt-system/pages/edit-content/edit-content.component';
-import { LinktreeMgmtComponent } from '../shared/components/layout/linktree-mgmt/linktree-mgmt.component';
+import { LinktreeMgmtComponent } from './backstage-pages/components/layout/linktree-mgmt/linktree-mgmt.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },

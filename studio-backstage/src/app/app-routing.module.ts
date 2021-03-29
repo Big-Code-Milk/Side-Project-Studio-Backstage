@@ -1,4 +1,4 @@
-import { EditorMdComponent } from './shared/components/layout/editor-md/editor-md.component';
+import { EditorMdComponent } from './pages/backstage-pages/components/layout/editor-md/editor-md.component';
 // 參考
 // 路由帶參數 https://medium.com/chikuwa-tech-study/angular-%E7%AC%AC9%E8%AA%B2-%E8%B7%AF%E7%94%B1%E6%94%9C%E5%B8%B6%E5%8F%83%E6%95%B8-39a4d4f05448
 
@@ -6,14 +6,14 @@ import { OrganizeComponent } from './pages/backstage-pages/getting-things-done/c
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignInComponent } from './pages/backstage-pages/account/pages/sign-in/sign-in.component';
-import { DashboardComponent } from './shared/components/layout/dashboard/dashboard.component';
+import { DashboardComponent } from './pages/backstage-pages/components/layout/dashboard/dashboard.component';
 import { HomeComponent } from './pages/backstage-pages/home/home.component';
 import { AuthGuard } from './shared/Guards/auth-guard/auth.guard';
 import { JumpAwayGuardGuard } from './shared/Guards/jump-away-guard/jump-away-guard.guard';
 import { environment } from '../environments/environment';
 import { EditorComponent } from './pages/backstage-pages/example/editor-fail/editor.component';
-import { EditorTabComponent } from './shared/components/layout/editor-tab/editor-tab.component';
-import { UsefulLinksTreeComponent } from './shared/components/layout/useful-links-tree/useful-links-tree.component';
+import { EditorTabComponent } from './pages/backstage-pages/components/layout/editor-tab/editor-tab.component';
+import { UsefulLinksTreeComponent } from './pages/backstage-pages/components/layout/useful-links-tree/useful-links-tree.component';
 
 let routes: Routes = RouterHandler();
 // console.log(routes); environment.production

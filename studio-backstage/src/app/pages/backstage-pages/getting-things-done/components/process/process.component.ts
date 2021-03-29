@@ -2,7 +2,7 @@
 // 路由帶參數 https://ithelp.ithome.com.tw/articles/10209035
 // typescript 可選參數 https://ithelp.ithome.com.tw/articles/10220016
 
-import { BaseComponent } from '../../../../../shared/components/base/base.component';
+import { BaseComponent } from '../../../components/base/base.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { AfterViewInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';

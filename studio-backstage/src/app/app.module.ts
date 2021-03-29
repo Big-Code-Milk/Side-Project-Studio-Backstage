@@ -13,7 +13,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'; // 
 
 import 'hammerjs'; // 手勢套件
 
-import { LayoutModule } from './shared/components/layout/layout.module';
+import { LayoutModule } from './pages/backstage-pages/components/layout/layout.module';
 import { PagesModule } from './pages/pages.module';
 
 import { AngularFireModule } from '@angular/fire'; // Firebase 套件

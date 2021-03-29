@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
-import { GetStartedComponent } from 'src/app/shared/components/layout/get-started/get-started.component';
-import { DialogComponent } from '../../components/layout/dialog/dialog.component';
+import { GetStartedComponent } from 'src/app/pages/backstage-pages/components/layout/get-started/get-started.component';
+import { DialogComponent } from '../../../pages/backstage-pages/components/layout/dialog/dialog.component';
 
 @Injectable({
   providedIn: 'root'

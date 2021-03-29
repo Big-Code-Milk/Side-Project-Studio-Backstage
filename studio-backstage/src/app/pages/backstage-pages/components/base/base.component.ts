@@ -1,4 +1,4 @@
-import { EnumComponentType } from '../../enum/enum-component-type';
+import { EnumComponentType } from '../../../../shared/enum/enum-component-type';
 export class BaseComponent {
 
   _EnumComponentType = EnumComponentType;
