@@ -1,13 +1,13 @@
 export default class GtdTask {
   Content?: string;
-  DeadLine?: number;
+  DeadLine: number = 0;
   EndDate?: Date | null;
   MainTaskId?: string;
   Name?: string;
   StartDate?: Date | null;
   Status?: string;
   Tags?: Array<string>;
-  Wage?: number;
+  Wage: number = 0;
   SubTitle?: string;
   Summary?: string;
   MarkdownContent?: string;
