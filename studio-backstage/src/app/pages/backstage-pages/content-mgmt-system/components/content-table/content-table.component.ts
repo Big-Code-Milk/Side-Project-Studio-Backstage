@@ -66,14 +66,16 @@ export class ContentTableComponent implements OnInit {
         console.log(`沒有此 Tag 的表單 ${this.ComponentType}.`);
     }
 
-    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Article', ['Status', 'in', Query, 'EndDate']);
-
+    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Article', ['Status', 'in', Query, 'StartDate']);
+    // console.log('_Collection', _Collection);
     // 涉及 Rxjs 到時再研究，這段主要是由 snapshotChanges 這個服務取得 key 與 資料
     let Data = _Collection.snapshotChanges().pipe(map((actions: DocumentChangeAction<GtdTask>[]) => {
+      // console.log('actions', actions);
       return actions.map(a => {
         const data = a.payload.doc.data() as GtdTask;
         const id = a.payload.doc.id;
         // 值得注意的是底下 ... es6 語法只能複製一層 obj ，無法複製 obj 內的 obj，可能到時要改
+        // console.log('data', data);
         return { id, ...data };
       });
     })
@@ -82,14 +84,15 @@ export class ContentTableComponent implements OnInit {
     // order by firebase https://stackoverflow.com/questions/45357920/sorting-in-descending-order-in-firebase-database
     // https://firebase.google.com/docs/firestore/query-data/order-limit-data
 
-    Data.subscribe(ReturnData => {
+    var _Subscribe = Data.subscribe(ReturnData => {
+
       this.GtdTasks = ReturnData;
       // init datatable
       this.dataSource = new MatTableDataSource(this.GtdTasks);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       // 目前這個都會幾筆資料就跑幾次... 效能異常...
-      // console.log(this.GtdTasks);
+      console.log('this.GtdTasks', this.GtdTasks);
     });
   }
 

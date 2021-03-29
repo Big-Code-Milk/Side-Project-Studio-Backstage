@@ -1,0 +1,21 @@
+<ng-container *ngFor="let GtdTask of GtdTasks">
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar></div>
+            <mat-card-title>{{GtdTask.Name}}</mat-card-title>
+            <mat-card-subtitle>{{GtdTask.SubTitle}}</mat-card-subtitle>
+        </mat-card-header>
+        <div mat-card-image></div>
+        <mat-card-content style="padding: 0 4em;">
+            <p>
+                {{GtdTask.Content|html}}
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+
+        </mat-card-actions>
+    </mat-card>
+    <br>
+    <br>
+    <br>
+</ng-container>
