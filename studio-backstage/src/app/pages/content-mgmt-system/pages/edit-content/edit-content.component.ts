@@ -33,6 +33,7 @@ export class EditContentComponent implements OnInit {
   _FilteredTags: Observable<string[]>;
   allTags: string[] = ['工作室', '行銷', '架構', '技術', '業務'];
 
+  Key: string
   constructor(
     private _DialogHelper: DialogHelperService,
     private _FireStorageHelper: FireStorageHelperService,
@@ -40,6 +41,7 @@ export class EditContentComponent implements OnInit {
     private _Router: Router,
     private _SnackBarHelper: SnackBarHelperService,
   ) {
+    this.Key = this._ActivatedRoute.snapshot.params['key'];
     this._FilteredTags = this._FormControl.valueChanges.pipe(
       startWith(null),
       map((Tag: string | null) => Tag ? this._filter(Tag) : this.allTags.slice()));
@@ -47,7 +49,10 @@ export class EditContentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.DataInit();
+    console.log('this.Key', this.Key);
+    if (this.Key != undefined) {
+      this.DataInit();
+    }
   }
 
   SyncModel(Value: any) {
@@ -125,6 +130,9 @@ export class EditContentComponent implements OnInit {
   }
 
   DataInit() {
-
+    var _Document = this._FireStorageHelper.GetFireDocument('Article/' + this.Key);
+    _Document.valueChanges().subscribe((Param: any) => {
+      this.GtdTask = Param;
+    });
   }
 }

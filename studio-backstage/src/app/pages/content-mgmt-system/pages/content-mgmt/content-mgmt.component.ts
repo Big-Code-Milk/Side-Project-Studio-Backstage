@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EnumComponentType } from 'src/app/shared/enum/enum-component-type';
 
 @Component({
   selector: 'app-content-mgmt',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./content-mgmt.component.css']
 })
 export class ContentMgmtComponent implements OnInit {
+
+  _EnumComponentType = EnumComponentType;
 
   constructor() { }
 

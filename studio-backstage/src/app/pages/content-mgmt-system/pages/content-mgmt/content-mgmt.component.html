@@ -8,10 +8,10 @@
     <mat-tab-group mat-align-tabs="start">
         <!-- http://hk.uwenku.com/question/p-ngdxwddt-od.html -->
         <mat-tab label="草稿">
-            <app-content-table></app-content-table>
+            <app-content-table [ComponentType]="_EnumComponentType.Draft"></app-content-table>
         </mat-tab>
         <mat-tab label="發佈">
-
+            <app-content-table [ComponentType]="_EnumComponentType.Publish"></app-content-table>
         </mat-tab>
         <mat-tab label="某種 Tags">
             <!-- <app-work [ComponentType]="_EnumComponentType.Top5"></app-work> -->
