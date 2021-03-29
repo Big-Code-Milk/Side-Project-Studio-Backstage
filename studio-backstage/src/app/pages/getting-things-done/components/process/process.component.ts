@@ -100,7 +100,7 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
     }).then(success => {
       // this._MatDialogConfig.data = "success";
       // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
-      this._SnackBarHelper.OpenSnackBar('Success');
+      this._SnackBarHelper.OpenSnackBar('操作成功!');
     });
   }
 
@@ -252,7 +252,7 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
     }).then(success => {
       // this._MatDialogConfig.data = "success";
       // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
-      this._SnackBarHelper.OpenSnackBar('Success');
+      this._SnackBarHelper.OpenSnackBar('操作成功!');
     });
   }
 }

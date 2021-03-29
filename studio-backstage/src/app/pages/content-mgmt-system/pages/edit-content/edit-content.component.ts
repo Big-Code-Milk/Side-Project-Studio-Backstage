@@ -8,6 +8,12 @@ import { ViewChild } from '@angular/core';
 import { ElementRef } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { map, startWith } from 'rxjs/operators';
+import { DialogHelperService } from 'src/app/shared/common/dialog-helper/dialog-helper.service';
+import { FireStorageHelperService } from 'src/app/shared/common/fire-storage-helper/fire-storage-helper.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
+import { MatDialogConfig } from '@angular/material/dialog';
+import * as dayjs from 'dayjs';
 
 @Component({
   selector: 'app-edit-content',
@@ -27,7 +33,13 @@ export class EditContentComponent implements OnInit {
   _FilteredTags: Observable<string[]>;
   allTags: string[] = ['工作室', '行銷', '架構', '技術', '業務'];
 
-  constructor() {
+  constructor(
+    private _DialogHelper: DialogHelperService,
+    private _FireStorageHelper: FireStorageHelperService,
+    private _ActivatedRoute: ActivatedRoute,
+    private _Router: Router,
+    private _SnackBarHelper: SnackBarHelperService,
+  ) {
     this._FilteredTags = this._FormControl.valueChanges.pipe(
       startWith(null),
       map((Tag: string | null) => Tag ? this._filter(Tag) : this.allTags.slice()));
@@ -35,10 +47,11 @@ export class EditContentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.DataInit();
   }
 
   SyncModel(Value: any) {
-    console.log('最外層 Value', Value);
+    // console.log('最外層 Value', Value);
     this.HTMLContent = Value.HTMLContent;
     this.MarkdownContent = Value.MarkdownContent;
   }
@@ -80,10 +93,38 @@ export class EditContentComponent implements OnInit {
     return this.allTags.filter(Tag => Tag.toLowerCase().indexOf(filterValue) === 0);
   }
 
+  _MatDialogConfig: MatDialogConfig = {} as MatDialogConfig;
+
   CheckFormThenSubmit() {
     if (!confirm('確定要存為草稿嗎?')) {
       return;
     }
-    console.log('this.GtdTask', this.GtdTask);
+    this.GtdTask.Content = this.HTMLContent;
+    if (this.GtdTask.Content === undefined || this.GtdTask.Name === undefined) {
+      this._MatDialogConfig.data = "必填請務必填寫";
+      this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+    } else {
+      this.GtdTask.Status = "草稿";
+      this.GtdTask.Content = this.HTMLContent;
+      this.GtdTask.MarkdownContent = this.MarkdownContent;
+      this.GtdTask.Tags = [... new Set(this.Tags)];
+      let _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Article');
+      let JSONString = JSON.stringify(this.GtdTask);
+      let Obj = JSON.parse(JSONString);
+      // console.log('Obj', Obj);
+      var HttpRequest = _Collection.add(Obj).catch(error => {
+        this._MatDialogConfig.data = error;
+        this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+      }).then(success => {
+        this.GtdTask = new GtdTask();
+        this.Tags = [];
+        this.GtdTask.StartDate = new Date();
+        this._SnackBarHelper.OpenSnackBar('操作成功!');
+      });
+    }
+  }
+
+  DataInit() {
+
   }
 }

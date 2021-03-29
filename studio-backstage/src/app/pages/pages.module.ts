@@ -21,6 +21,7 @@ import { ContentMgmtComponent } from './content-mgmt-system/pages/content-mgmt/c
 import { LayoutModule } from '../components/layout/layout.module';
 import { EditContentComponent } from './content-mgmt-system/pages/edit-content/edit-content.component';
 import { GoalTextComponent } from './content-mgmt-system/components/goal-text/goal-text.component';
+import { ContentTableComponent } from './content-mgmt-system/components/content-table/content-table.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { GoalTextComponent } from './content-mgmt-system/components/goal-text/go
     ContentMgmtComponent,
     EditContentComponent,
     GoalTextComponent,
+    ContentTableComponent,
   ],
   imports: [
     CommonModule,

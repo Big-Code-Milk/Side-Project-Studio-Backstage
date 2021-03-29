@@ -13,16 +13,15 @@ export class EditorTabComponent implements OnInit {
   @Input() Title: string;
   DisplayMode: string = 'Open';
 
-  MarkdownContent: string;
+  @Input() MarkdownContent: string;
   EditorMode: string;
-  HTMLContent: string;
-  TextContent: string;
+  @Input() HTMLContent: string;
+  @Input() TextContent: string;
 
   constructor(
     private _ChangeDetectorRef: ChangeDetectorRef // 當有cd發生時觸發
   ) {
-    this.HTMLContent = `<p>My html content</p>`;
-    this.TextContent = `My html content`;
+
   }
 
   ngOnInit(): void {

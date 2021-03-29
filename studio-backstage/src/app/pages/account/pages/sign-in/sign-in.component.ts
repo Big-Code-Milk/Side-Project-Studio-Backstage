@@ -58,8 +58,8 @@ export class SignInComponent implements OnInit {
   CommonSignIn(SignModel: string) {
     this._FireAuthHelper.CommonSignIn(this.SignInForm)
       .then((value: any) => {
-        console.log('Success!', value);
-        this.SignInForm.Verification = 'Success!' + value;
+        // console.log('Success!', value);
+        this.SignInForm.Verification = '操作成功!' + value;
 
         // 將上線資訊新增到 _RealtimeDatabase 用於 Auth Guard 認證
         this._UserInfoLog.Email = value.user.email;
@@ -75,7 +75,7 @@ export class SignInComponent implements OnInit {
         sessionStorage.setItem('AuthTokenId', Reference.path.pieces_[1]);
 
         // 將資料儲存到localStorage
-        console.log('SignModel', SignModel);
+        // console.log('SignModel', SignModel);
         if (SignModel == 'ButtonSignIn') {
           this.CheckRememberMe();
         }
@@ -118,7 +118,7 @@ export class SignInComponent implements OnInit {
 
   CheckRememberMe() {
     // 打勾是 true 沒打勾是 false
-    console.log('this.RememberMe', this.RememberMe);
+    // console.log('this.RememberMe', this.RememberMe);
 
     if (this.RememberMe) { // true 時將帳號密碼存入
       localStorage.setItem("AutoSignIn", JSON.stringify(this.SignInForm));
@@ -142,7 +142,7 @@ export class SignInComponent implements OnInit {
       _AutoSignIn = JSON.parse(_AutoSignIn);
       this.SignInForm.Email = _AutoSignIn.Email;
       this.SignInForm.Password = _AutoSignIn.Password;
-      console.log(_AutoSignIn);
+      // console.log(_AutoSignIn);
       this.CommonSignIn('AutoSignIn');
     }
 

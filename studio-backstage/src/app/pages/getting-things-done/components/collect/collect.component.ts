@@ -32,7 +32,7 @@ export class CollectComponent extends BaseComponent implements OnInit {
     private _FireStorageHelper: FireStorageHelperService,
     private _ActivatedRoute: ActivatedRoute,
     private _Router: Router,
-    private _SnackBarHelper: SnackBarHelperService
+    private _SnackBarHelper: SnackBarHelperService,
   ) {
 
     super();
@@ -156,7 +156,7 @@ export class CollectComponent extends BaseComponent implements OnInit {
           start: new FormControl(Today),
           end: new FormControl(TodayAdd7days)
         });
-        this._SnackBarHelper.OpenSnackBar('Success');
+        this._SnackBarHelper.OpenSnackBar('操作成功!');
       });
     }
   }

@@ -154,7 +154,7 @@ export class OrganizeComponent implements OnInit {
 
         if (UploadType == 'SubmitButton') {
           this._Router.navigate(['dashboard/']);
-          this._SnackBarHelper.OpenSnackBar('Success');
+          this._SnackBarHelper.OpenSnackBar('操作成功!');
         }
 
       });
