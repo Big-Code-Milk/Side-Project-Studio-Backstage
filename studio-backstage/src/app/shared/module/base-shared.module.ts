@@ -12,7 +12,7 @@ import 'dayjs/locale/zh-tw' // import locale
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CKEditorModule } from 'ng2-ckeditor';
-import { EditorMdDirective } from '../../backstage-pages/example/editor-md-directive-fail/editor-md.directive';
+import { EditorMdDirective } from '../../pages/backstage-pages/example/editor-md-directive-fail/editor-md.directive';
 
 
 @NgModule({
