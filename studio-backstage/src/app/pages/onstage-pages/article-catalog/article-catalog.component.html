@@ -7,8 +7,9 @@
         </mat-card-header>
         <div mat-card-image></div>
         <mat-card-content style="padding: 0 4em;">
-            <p>
-                {{GtdTask.Content|html}}
+            <p [innerHTML]="GtdTask.Content">
+                <!-- https://stackoverflow.com/questions/45351434/safe-value-must-use-property-binding-after-bypass-security-with-domsanitizer -->
+                <!-- {{GtdTask.Content|html}} -->
             </p>
         </mat-card-content>
         <mat-card-actions>

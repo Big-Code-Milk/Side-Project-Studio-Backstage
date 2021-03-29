@@ -1,5 +1,5 @@
 export default class GtdTask {
-  Content?: string;
+  Content: any;
   DeadLine: number = 0;
   EndDate?: Date | null;
   MainTaskId?: string;

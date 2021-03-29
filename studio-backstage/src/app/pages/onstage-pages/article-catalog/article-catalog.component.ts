@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DocumentChangeAction } from '@angular/fire/firestore';
 import { MatTableDataSource } from '@angular/material/table';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { DialogHelperService } from 'src/app/shared/common/dialog-helper/dialog-helper.service';
@@ -21,6 +22,7 @@ export class ArticleCatalogComponent implements OnInit {
     private _Router: Router,
     private _ActivatedRoute: ActivatedRoute,
     private _SnackBarHelper: SnackBarHelperService,
+    public _DomSanitizer: DomSanitizer,
   ) { }
 
   ngOnInit(): void {
@@ -36,6 +38,7 @@ export class ArticleCatalogComponent implements OnInit {
       return actions.map(a => {
         const data = a.payload.doc.data() as GtdTask;
         const id = a.payload.doc.id;
+        data.Content = this._DomSanitizer.bypassSecurityTrustHtml(data.Content);
         return { id, ...data };
       });
     })
@@ -51,6 +54,7 @@ export class ArticleCatalogComponent implements OnInit {
       // this.dataSource.sort = this.sort;
       // 目前這個都會幾筆資料就跑幾次... 效能異常...
       console.log(this.GtdTasks);
+
     });
   }
 }
