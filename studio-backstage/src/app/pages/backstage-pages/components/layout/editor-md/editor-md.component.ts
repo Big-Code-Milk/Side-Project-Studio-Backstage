@@ -16,10 +16,21 @@ export class EditorMdComponent implements OnInit {
   _EditorMd: any;
 
   @Input() ContentText: string;
-  @Input() MackdownContent: string;
+  @Input() MarkdownContent: string;
 
   constructor() {
+  }
 
+  ngOnChanges() {
+    // if (this.ContentText != undefined) {
+    //   $('.editormd-markdown-textarea').val(this.ContentText);
+    // }
+    console.log('this.MarkdownContent', this.MarkdownContent);
+    if (this.MarkdownContent != undefined) {
+      console.log('進去');
+      console.log('this.MarkdownContent',);
+      $('.editormd-markdown-textarea').val(this.MarkdownContent)
+    }
   }
 
   ngOnInit(): void {
@@ -31,9 +42,11 @@ export class EditorMdComponent implements OnInit {
     // console.log('this.ContentText', this.ContentText);
 
     // 如果有 MackdownContent 就壓過去
-    $('.editormd-markdown-textarea').val(this.ContentText);
-    if (this.MackdownContent != undefined) {
-      $('.editormd-markdown-textarea').val(this.MackdownContent);
+    if (this.ContentText != undefined) {
+      $('.editormd-markdown-textarea').val(this.ContentText);
+    }
+    if (this.MarkdownContent != undefined) {
+      $('.editormd-markdown-textarea').val(this.MarkdownContent);
     }
 
     // $('.editormd-markdown-textarea').val(this.ContentText); // 左邊輸入框內的 HTML
@@ -50,6 +63,5 @@ export class EditorMdComponent implements OnInit {
       );
     });
   }
-
 
 }

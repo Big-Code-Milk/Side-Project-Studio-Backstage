@@ -144,7 +144,7 @@ export class OrganizeComponent implements OnInit {
       var _Document = this._FireStorageHelper.GetFireDocument('Task/' + this.Key);
       let JSONString = JSON.stringify(this.GtdTask);
       let Obj = JSON.parse(JSONString);
-      _Document.update(Obj).catch(error => {
+      var _Update = _Document.update(Obj).catch(error => {
         this._MatDialogConfig.data = error;
         this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
       }).then(success => {

@@ -31,7 +31,7 @@
             </section>
             <section *ngIf="EditorMode == 'Editor.md'">
                 <!-- 不能 input HTML 會爆版，改丟 Text -->
-                <app-editor-md [MackdownContent]="MarkdownContent" [ContentText]="TextContent" (onEditorMdChange)="SyncModel($event)"></app-editor-md>
+                <app-editor-md [MarkdownContent]="MarkdownContent" [ContentText]="TextContent" (onEditorMdChange)="SyncModel($event)"></app-editor-md>
             </section>
             <section *ngIf="EditorMode == 'Medium'">
                 施工中...

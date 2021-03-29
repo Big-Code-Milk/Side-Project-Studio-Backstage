@@ -49,7 +49,7 @@ export class EditContentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('this.Key', this.Key);
+    // console.log('this.Key', this.Key);
     if (this.Key != undefined) {
       this.DataInit();
     }
@@ -101,31 +101,25 @@ export class EditContentComponent implements OnInit {
   _MatDialogConfig: MatDialogConfig = {} as MatDialogConfig;
 
   CheckFormThenSubmit() {
-    if (!confirm('確定要存為草稿嗎?')) {
+
+    if (!confirm('確定要儲存草稿嗎?')) {
       return;
     }
+
+    this.GtdTask.Status = "草稿";
     this.GtdTask.Content = this.HTMLContent;
+    this.GtdTask.MarkdownContent = this.MarkdownContent;
+    this.GtdTask.Tags = [... new Set(this.Tags)];
+
     if (this.GtdTask.Content === undefined || this.GtdTask.Name === undefined) {
       this._MatDialogConfig.data = "必填請務必填寫";
       this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
     } else {
-      this.GtdTask.Status = "草稿";
-      this.GtdTask.Content = this.HTMLContent;
-      this.GtdTask.MarkdownContent = this.MarkdownContent;
-      this.GtdTask.Tags = [... new Set(this.Tags)];
-      let _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Article');
-      let JSONString = JSON.stringify(this.GtdTask);
-      let Obj = JSON.parse(JSONString);
-      // console.log('Obj', Obj);
-      var HttpRequest = _Collection.add(Obj).catch(error => {
-        this._MatDialogConfig.data = error;
-        this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
-      }).then(success => {
-        this.GtdTask = new GtdTask();
-        this.Tags = [];
-        this.GtdTask.StartDate = new Date();
-        this._SnackBarHelper.OpenSnackBar('操作成功!');
-      });
+      if (this.Key != undefined) {
+        this.Update();
+      } else {
+        this.Add();
+      }
     }
   }
 
@@ -133,6 +127,50 @@ export class EditContentComponent implements OnInit {
     var _Document = this._FireStorageHelper.GetFireDocument('Article/' + this.Key);
     _Document.valueChanges().subscribe((Param: any) => {
       this.GtdTask = Param;
+      this.HTMLContent = Param.Content;
+      this.MarkdownContent = Param.MarkdownContent;
+      // console.log('Param', Param);
+      // console.log('Param.HTMLContent', Param.Content);
+      // console.log('this.HTMLContent', this.HTMLContent);
+      // console.log('this.MarkdownContent', this.MarkdownContent);
+    });
+  }
+
+  Add() {
+    // 新增一筆
+    let _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Article');
+    let JSONString = JSON.stringify(this.GtdTask);
+    let Obj = JSON.parse(JSONString);
+    // console.log('Obj', Obj);
+    var HttpRequest = _Collection.add(Obj).catch(error => {
+      this._MatDialogConfig.data = error;
+      this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+    }).then(success => {
+      this.GtdTask = new GtdTask();
+      this.Tags = [];
+      this.GtdTask.StartDate = new Date();
+      this._SnackBarHelper.OpenSnackBar('操作成功!');
+      this._Router.navigate(['dashboard/pages/contentmgmt']);
+    });
+  }
+
+  Update() {
+    // 更新
+    var _Document = this._FireStorageHelper.GetFireDocument('Article/' + this.Key);
+    let JSONStringUpdate = JSON.stringify(this.GtdTask);
+    let ObjUpdate = JSON.parse(JSONStringUpdate);
+    var _Update = _Document.update(ObjUpdate).catch(error => {
+      this._MatDialogConfig.data = error;
+      this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+    }).then(success => {
+      // this._MatDialogConfig.data = "success";
+      // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+      // this.IsEdit = false;
+
+      this._Router.navigate(['dashboard/']);
+      this._SnackBarHelper.OpenSnackBar('操作成功!');
+      this._Router.navigate(['dashboard/pages/contentmgmt']);
+
     });
   }
 }

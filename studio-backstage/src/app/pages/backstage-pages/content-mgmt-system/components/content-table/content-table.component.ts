@@ -92,7 +92,9 @@ export class ContentTableComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       // 目前這個都會幾筆資料就跑幾次... 效能異常...
-      console.log('this.GtdTasks', this.GtdTasks);
+      // console.log('this.GtdTasks', this.GtdTasks);
+
+      _Subscribe.unsubscribe();
     });
   }
 

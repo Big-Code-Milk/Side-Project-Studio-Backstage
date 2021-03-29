@@ -21,11 +21,12 @@ export class EditorTabComponent implements OnInit {
   constructor(
     private _ChangeDetectorRef: ChangeDetectorRef // 當有cd發生時觸發
   ) {
-
+    // console.log('EditorTabComponent-HTMLContent', this.HTMLContent);
+    // console.log('EditorTabComponent-MarkdownContent', this.MarkdownContent);
   }
 
   ngOnInit(): void {
-    // console.log('Title', this.Title);
+
     if (this.Title == undefined) {
       this.Title = '請注入此 Component Title';
     }
