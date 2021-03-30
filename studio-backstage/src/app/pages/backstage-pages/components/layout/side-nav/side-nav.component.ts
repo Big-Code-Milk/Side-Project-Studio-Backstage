@@ -60,6 +60,9 @@ export class SideNavComponent implements OnInit {
           return ArrayText.indexOf(element.NickName) == -1
         });
       }
+
+      _href = this.GetUrlRelativePath(_href);
+
       // console.log('SideNavTemp', SideNavTemp);
       SideNavTemp.unshift({ NickName: _innerText, Url: _href });
 
@@ -69,5 +72,19 @@ export class SideNavComponent implements OnInit {
       // console.log('_SideNavTemp', _SideNavTemp);
     }
     this.CommonlyUsedInit();
+  }
+
+  // 擷取相對路徑
+  // https://www.itread01.com/p/1439796.html
+  GetUrlRelativePath(url: string) {
+    var arrUrl = url.split("//");
+
+    var start = arrUrl[1].indexOf("/");
+    var relUrl = arrUrl[1].substring(start);//stop省略,擷取從start開始到結尾的所有字元
+
+    if (relUrl.indexOf("?") != -1) {
+      relUrl = relUrl.split("?")[0];
+    }
+    return relUrl;
   }
 }
