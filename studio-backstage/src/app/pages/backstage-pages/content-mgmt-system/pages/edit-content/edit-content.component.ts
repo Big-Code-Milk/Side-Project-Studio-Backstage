@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import GtdTask from 'src/app/shared/models/gtd-task';
+import FirebaseModel from 'src/app/shared/models/firebase-model';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
@@ -25,7 +25,7 @@ export class EditContentComponent implements OnInit {
   DisplayMode: boolean;
   HTMLContent: string;
   MarkdownContent: string;
-  GtdTask: GtdTask = new GtdTask();
+  FirebaseModel: FirebaseModel = new FirebaseModel();
   Term: FormGroup;
   Tags: string[] = [];
   _FormControl = new FormControl();
@@ -45,7 +45,7 @@ export class EditContentComponent implements OnInit {
     this._FilteredTags = this._FormControl.valueChanges.pipe(
       startWith(null),
       map((Tag: string | null) => Tag ? this._filter(Tag) : this.allTags.slice()));
-    this.GtdTask.StartDate = new Date();
+    this.FirebaseModel.StartDate = new Date();
   }
 
   ngOnInit(): void {
@@ -106,12 +106,12 @@ export class EditContentComponent implements OnInit {
       return;
     }
 
-    this.GtdTask.Status = "草稿";
-    this.GtdTask.Content = this.HTMLContent;
-    this.GtdTask.MarkdownContent = this.MarkdownContent;
-    this.GtdTask.Tags = [... new Set(this.Tags)];
+    this.FirebaseModel.Status = "草稿";
+    this.FirebaseModel.Content = this.HTMLContent;
+    this.FirebaseModel.MarkdownContent = this.MarkdownContent;
+    this.FirebaseModel.Tags = [... new Set(this.Tags)];
 
-    if (this.GtdTask.Content === undefined || this.GtdTask.Name === undefined) {
+    if (this.FirebaseModel.Content === undefined || this.FirebaseModel.Name === undefined) {
       this._MatDialogConfig.data = "必填請務必填寫";
       this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
     } else {
@@ -126,7 +126,7 @@ export class EditContentComponent implements OnInit {
   DataInit() {
     var _Document = this._FireStorageHelper.GetFireDocument('Article/' + this.Key);
     _Document.valueChanges().subscribe((Param: any) => {
-      this.GtdTask = Param;
+      this.FirebaseModel = Param;
       this.HTMLContent = Param.Content;
       this.MarkdownContent = Param.MarkdownContent;
       // console.log('Param', Param);
@@ -138,17 +138,17 @@ export class EditContentComponent implements OnInit {
 
   Add() {
     // 新增一筆
-    let _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Article');
-    let JSONString = JSON.stringify(this.GtdTask);
+    let _Collection = this._FireStorageHelper.GetFireCollection<FirebaseModel>('Article');
+    let JSONString = JSON.stringify(this.FirebaseModel);
     let Obj = JSON.parse(JSONString);
     // console.log('Obj', Obj);
     var HttpRequest = _Collection.add(Obj).catch(error => {
       this._MatDialogConfig.data = error;
       this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
     }).then(success => {
-      this.GtdTask = new GtdTask();
+      this.FirebaseModel = new FirebaseModel();
       this.Tags = [];
-      this.GtdTask.StartDate = new Date();
+      this.FirebaseModel.StartDate = new Date();
       this._SnackBarHelper.OpenSnackBar('操作成功!');
       this._Router.navigate(['dashboard/pages/contentmgmt']);
     });
@@ -157,7 +157,7 @@ export class EditContentComponent implements OnInit {
   Update() {
     // 更新
     var _Document = this._FireStorageHelper.GetFireDocument('Article/' + this.Key);
-    let JSONStringUpdate = JSON.stringify(this.GtdTask);
+    let JSONStringUpdate = JSON.stringify(this.FirebaseModel);
     let ObjUpdate = JSON.parse(JSONStringUpdate);
     var _Update = _Document.update(ObjUpdate).catch(error => {
       this._MatDialogConfig.data = error;

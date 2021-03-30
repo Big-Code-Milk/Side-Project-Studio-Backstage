@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { EnumComponentType } from '../../../../../shared/enum/enum-component-type';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FireStorageHelperService } from 'src/app/shared/common/fire-storage-helper/fire-storage-helper.service';
-import GtdTask from 'src/app/shared/models/gtd-task';
+import FirebaseModel from 'src/app/shared/models/firebase-model';
 import { BaseComponent } from 'src/app/pages/backstage-pages/components/base/base.component';
 import { AngularFirestoreCollection, DocumentChangeAction } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
@@ -17,7 +17,7 @@ export class WorkComponent extends BaseComponent implements OnInit {
   @Input() ComponentType: EnumComponentType;
   @Input() Key: string;
 
-  _GtdTask: any[] = [];
+  _FirebaseModel: any[] = [];
   IsWork: boolean = false;
 
   constructor(
@@ -48,7 +48,7 @@ export class WorkComponent extends BaseComponent implements OnInit {
   }
 
   UntreatedInit() {
-    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['MainTaskId', '==', this.Key, 'EndDate']);
+    var _Collection = this._FireStorageHelper.GetFireCollection<FirebaseModel>('Task', ['MainTaskId', '==', this.Key, 'EndDate']);
     // _Collection.valueChanges().subscribe(parameter => { this._GtdTask = parameter; });
     this.DataInin(_Collection);
   }
@@ -56,7 +56,7 @@ export class WorkComponent extends BaseComponent implements OnInit {
   Top5Init() {
     // console.log('Top5Init');
     // var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Status', 'in', ['Top1', 'Top2', 'Top3', 'Top4', 'Top5'], 'EndDate']);
-    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Tags', 'array-contains-any', ['Top1', 'Top2', 'Top3', 'Top4', 'Top5'], 'EndDate']);
+    var _Collection = this._FireStorageHelper.GetFireCollection<FirebaseModel>('Task', ['Tags', 'array-contains-any', ['Top1', 'Top2', 'Top3', 'Top4', 'Top5'], 'EndDate']);
     // _Collection.valueChanges().subscribe(parameter => { this._GtdTask = parameter; });
     this.DataInin(_Collection);
     this.IsWork = true;
@@ -70,11 +70,11 @@ export class WorkComponent extends BaseComponent implements OnInit {
     // this._Router.navigate(['dashboard/pages/organize', { key: TaskId, ComponentType: this._EnumComponentType.Processed }]);
   }
 
-  DataInin(_Collection: AngularFirestoreCollection<GtdTask>) {
+  DataInin(_Collection: AngularFirestoreCollection<FirebaseModel>) {
     // console.log('DataInin');
-    var Data = _Collection.snapshotChanges().pipe(map((actions: DocumentChangeAction<GtdTask>[]) => {
+    var Data = _Collection.snapshotChanges().pipe(map((actions: DocumentChangeAction<FirebaseModel>[]) => {
       return actions.map(a => {
-        const data = a.payload.doc.data() as GtdTask;
+        const data = a.payload.doc.data() as FirebaseModel;
         const id = a.payload.doc.id;
         // console.log('id', id, 'data', data);
         return { id, ...data };
@@ -84,12 +84,12 @@ export class WorkComponent extends BaseComponent implements OnInit {
     // console.log('Data', Data);
     Data.subscribe(parameter => {
       // console.log('parameter', parameter);
-      this._GtdTask = parameter;
+      this._FirebaseModel = parameter;
     });
   }
   ArchivedInit() {
     // console.log('ArchivedInit');
-    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Tags', 'array-contains-any', ['已封存'], 'EndDate']);
+    var _Collection = this._FireStorageHelper.GetFireCollection<FirebaseModel>('Task', ['Tags', 'array-contains-any', ['已封存'], 'EndDate']);
     // _Collection.valueChanges().subscribe(parameter => { this._GtdTask = parameter; });
     this.DataInin(_Collection);
     this.IsWork = true;

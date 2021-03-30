@@ -25,16 +25,14 @@ function RouterHandler() {
   // 之前還沒 AutoSignIn時可以寫 if 判斷 return 不同 router
   return [
     {
-      path: 'article',
+      path: '',
       component: AppleTemplateComponent,
       children: [
         {
-          path: 'articlecatalog', component: ArticleCatalogComponent // OnstageHomeComponent
+          path: '', component: ArticleCatalogComponent // OnstageHomeComponent
         },
         {
-          // https://stackoverflow.com/questions/36260839/angular-2-how-to-redirect-to-404-or-other-path-if-the-path-does-not-exist
-          path: '404',
-          component: NotFoundComponent
+          path: 'articlecatalog', component: ArticleCatalogComponent // OnstageHomeComponent
         }
       ]
     },
@@ -68,8 +66,13 @@ function RouterHandler() {
       ]
     },
     {
+      // https://stackoverflow.com/questions/36260839/angular-2-how-to-redirect-to-404-or-other-path-if-the-path-does-not-exist
+      path: '404',
+      component: NotFoundComponent
+    },
+    {
       path: '**',
-      redirectTo: 'article/articlecatalog',
+      redirectTo: '404',
       pathMatch: 'full'
     }
   ];

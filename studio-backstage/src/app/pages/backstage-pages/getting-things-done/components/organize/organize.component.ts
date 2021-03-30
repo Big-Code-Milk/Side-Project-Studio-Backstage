@@ -2,7 +2,7 @@ import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/sn
 // 參考
 // router 取得參數 https://ithelp.ithome.com.tw/articles/10209035
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import GtdTask from '../../../../../shared/models/gtd-task';
+import FirebaseModel from '../../../../../shared/models/firebase-model';
 import { FormGroup, FormControl } from '@angular/forms';
 import * as dayjs from 'dayjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -25,7 +25,7 @@ import { EnumComponentType } from '../../../../../shared/enum/enum-component-typ
 export class OrganizeComponent implements OnInit {
 
   IsEdit: boolean = false;
-  GtdTask: GtdTask = new GtdTask();
+  FirebaseModel: FirebaseModel = new FirebaseModel();
   Term: FormGroup;
 
   constructor(
@@ -125,16 +125,16 @@ export class OrganizeComponent implements OnInit {
       this.Tags = this.Tags.filter(function (Tag) { return Tag != "未處理" });
 
     }
-    this.GtdTask.Status = ''; // 編輯完成清空狀態
+    this.FirebaseModel.Status = ''; // 編輯完成清空狀態
     this.UploadData('SubmitButton');
 
   }
 
   UploadData(UploadType: string) {
-    this.GtdTask.Tags = [... new Set(this.Tags)];
-    this.GtdTask.StartDate = this.Term.value.start;
-    this.GtdTask.EndDate = this.Term.value.end;
-    if (this.GtdTask.Content === undefined || this.GtdTask.Name === undefined) {
+    this.FirebaseModel.Tags = [... new Set(this.Tags)];
+    this.FirebaseModel.StartDate = this.Term.value.start;
+    this.FirebaseModel.EndDate = this.Term.value.end;
+    if (this.FirebaseModel.Content === undefined || this.FirebaseModel.Name === undefined) {
       this._MatDialogConfig.data = "必填請務必填寫";
       this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
     } else {
@@ -142,7 +142,7 @@ export class OrganizeComponent implements OnInit {
       // Function addDoc() called with invalid data. Data must be an object, but it was: a custom object
 
       var _Document = this._FireStorageHelper.GetFireDocument('Task/' + this.Key);
-      let JSONString = JSON.stringify(this.GtdTask);
+      let JSONString = JSON.stringify(this.FirebaseModel);
       let Obj = JSON.parse(JSONString);
       var _Update = _Document.update(Obj).catch(error => {
         this._MatDialogConfig.data = error;
@@ -175,15 +175,15 @@ export class OrganizeComponent implements OnInit {
       forcePasteAsPlainText: true,
       height: '45vh',
     };
-    this.GtdTask.Content = `<p>My html content</p>`;
+    this.FirebaseModel.Content = `<p>My html content</p>`;
   }
 
   onChange($event: any): void {
     console.log("onChange");
     //this.log += new Date() + "<br />";
-    console.log('this.mycontent', this.GtdTask.Content);
+    console.log('this.mycontent', this.FirebaseModel.Content);
     // 打開共同編輯模式才儲存
-    if (this.GtdTask.Status == '共同編輯中') {
+    if (this.FirebaseModel.Status == '共同編輯中') {
       this.UploadData('OnChange');
     }
   }
@@ -198,17 +198,17 @@ export class OrganizeComponent implements OnInit {
     var _Document = this._FireStorageHelper.GetFireDocument('Task/' + this.Key);
     _Document.valueChanges().subscribe((Param: any) => {
       // console.log('Param', Param);
-      this.GtdTask.Content = Param.Content;
-      this.GtdTask.Name = Param.Name;
+      this.FirebaseModel.Content = Param.Content;
+      this.FirebaseModel.Name = Param.Name;
       this.Term.value.start = Param.StartDate;
-      this.GtdTask.StartDate = Param.StartDate;
+      this.FirebaseModel.StartDate = Param.StartDate;
       this.Term.value.end = Param.EndDate;
-      this.GtdTask.EndDate = Param.EndDate;
-      this.GtdTask.DeadLine = Param.DeadLine;
+      this.FirebaseModel.EndDate = Param.EndDate;
+      this.FirebaseModel.DeadLine = Param.DeadLine;
       this.Tags = Param.Tags;
-      this.GtdTask.Tags = Param.Tags;
-      this.GtdTask.MainTaskId = Param.MainTaskId;
-      this.GtdTask.Status = Param.Status;
+      this.FirebaseModel.Tags = Param.Tags;
+      this.FirebaseModel.MainTaskId = Param.MainTaskId;
+      this.FirebaseModel.Status = Param.Status;
       if (Param.Status == '共同編輯中') {
         this.IsCoEditing = true;
       } else {
@@ -227,8 +227,8 @@ export class OrganizeComponent implements OnInit {
     // console.log('ngOnDestroy');
     var _SessionStorage = sessionStorage.getItem('Editing');
     // console.log('_SessionStorage', _SessionStorage);
-    if (this.GtdTask.Status == '編輯中' && _SessionStorage == this.Key) {
-      this.GtdTask.Status = '';
+    if (this.FirebaseModel.Status == '編輯中' && _SessionStorage == this.Key) {
+      this.FirebaseModel.Status = '';
       this.UploadData('TurnOnEditModeButton');
       sessionStorage.removeItem('Editing');
     }
@@ -237,14 +237,14 @@ export class OrganizeComponent implements OnInit {
   TurnOnEditMode() {
     // 2021-0324 Issue 有人先進入任務詳細頁則用狀態編輯中鎖住頁面不給編輯，除非開啟共同編輯狀態，防止 Firebase 存取爆表
     // 首次進入時確認狀態不是編輯中，否則將狀態改為編輯中，銷毀元件時移除狀態
-    if (this.GtdTask.Status != '編輯中' && this.GtdTask.Status != '共同編輯中') {
+    if (this.FirebaseModel.Status != '編輯中' && this.FirebaseModel.Status != '共同編輯中') {
       this.IsEdit = true;
-      this.GtdTask.Status = '編輯中';
+      this.FirebaseModel.Status = '編輯中';
       this.UploadData('TurnOnEditModeButton');
       // 同時增加一筆 Session 用來防呆跳出銷毀元件時判別是按下按鈕的人跳開才回復任務狀態
       sessionStorage.setItem('Editing', this.Key);
     }
-    if (this.GtdTask.Status == '共同編輯中') {
+    if (this.FirebaseModel.Status == '共同編輯中') {
       this.IsEdit = true;
     }
   }
@@ -253,11 +253,11 @@ export class OrganizeComponent implements OnInit {
 
   CoEditing() {
 
-    if (this.GtdTask.Status == '編輯中') {
-      this.GtdTask.Status = '共同編輯中';
+    if (this.FirebaseModel.Status == '編輯中') {
+      this.FirebaseModel.Status = '共同編輯中';
       this.UploadData('TurnOnEditModeButton');
     } else {
-      this.GtdTask.Status = '編輯中';
+      this.FirebaseModel.Status = '編輯中';
       this.UploadData('TurnOnEditModeButton');
     }
 

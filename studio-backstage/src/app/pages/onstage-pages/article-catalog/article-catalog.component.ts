@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 import { DialogHelperService } from 'src/app/shared/common/dialog-helper/dialog-helper.service';
 import { FireStorageHelperService } from 'src/app/shared/common/fire-storage-helper/fire-storage-helper.service';
 import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
-import GtdTask from 'src/app/shared/models/gtd-task';
+import FirebaseModel from 'src/app/shared/models/firebase-model';
 
 @Component({
   selector: 'app-article-catalog',
@@ -29,16 +29,16 @@ export class ArticleCatalogComponent implements OnInit {
     this.DataInit();
   }
 
-  GtdTasks = [] as GtdTask[];
+  FirebaseModels = [] as FirebaseModel[];
 
   DataInit() {
-    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Article', ['Status', 'in', ['發佈'], 'StartDate']);
+    var _Collection = this._FireStorageHelper.GetFireCollection<FirebaseModel>('Article', ['Status', 'in', ['發佈'], 'StartDate']);
 
-    let Data = _Collection.snapshotChanges().pipe(map((actions: DocumentChangeAction<GtdTask>[]) => {
+    let Data = _Collection.snapshotChanges().pipe(map((actions: DocumentChangeAction<FirebaseModel>[]) => {
       return actions.map(a => {
-        const data = a.payload.doc.data() as GtdTask;
+        const data = a.payload.doc.data() as FirebaseModel;
         const id = a.payload.doc.id;
-        data.Content = this._DomSanitizer.bypassSecurityTrustHtml(data.Content);
+        // data.Content = this._DomSanitizer.bypassSecurityTrustHtml(data.Content);
         return { id, ...data };
       });
     })
@@ -46,14 +46,14 @@ export class ArticleCatalogComponent implements OnInit {
 
     var _Subscribe = Data.subscribe(ReturnData => {
       _Subscribe.unsubscribe();
-      this.GtdTasks = ReturnData;
+      this.FirebaseModels = ReturnData;
       // init datatable
-      let dataSource = new MatTableDataSource(this.GtdTasks);
+      let dataSource = new MatTableDataSource(this.FirebaseModels);
       // https://stackoverflow.com/questions/54367152/how-to-add-mat-paginator-for-mat-cards
       // this.dataSource.paginator = this.paginator;
       // this.dataSource.sort = this.sort;
       // 目前這個都會幾筆資料就跑幾次... 效能異常...
-      console.log(this.GtdTasks);
+      console.log(this.FirebaseModels);
 
     });
   }

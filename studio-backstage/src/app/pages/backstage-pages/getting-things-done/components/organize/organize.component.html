@@ -15,25 +15,25 @@
                 <td>
                     <mat-form-field class="example-full-width">
                         <mat-label>狀態</mat-label>
-                        <input matInput [(ngModel)]="GtdTask.Status" name="Status" required>
+                        <input matInput [(ngModel)]="FirebaseModel.Status" name="Status" required>
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field class="example-margin">
                         <mat-label>工時</mat-label>
-                        <input matInput type="number" [(ngModel)]="GtdTask.DeadLine" name="DeadLine">
+                        <input matInput type="number" [(ngModel)]="FirebaseModel.DeadLine" name="DeadLine">
                     </mat-form-field>小時
                 </td>
                 <td>
                     <mat-form-field class="example-margin">
                         <mat-label>時薪</mat-label>
-                        <input matInput type="number" [(ngModel)]="GtdTask.Wage" name="Wage">
+                        <input matInput type="number" [(ngModel)]="FirebaseModel.Wage" name="Wage">
                     </mat-form-field>小時
                 </td>
                 <td>
                     <mat-form-field class="example-full-width">
                         <mat-label>標題</mat-label>
-                        <input matInput [(ngModel)]="GtdTask.Name" name="Name" required>
+                        <input matInput [(ngModel)]="FirebaseModel.Name" name="Name" required>
                     </mat-form-field>
                 </td>
                 <td>
@@ -67,7 +67,7 @@
             </tr>
         </table>
         <div class="form-group has-feedback" [ngClass]="{ 'has-error': myckeditor.invalid && myckeditor.touched }">
-            <ckeditor style="height: 100vh;" [(ngModel)]="this.GtdTask.Content" #myckeditor="ngModel" name="myckeditor" required [config]="ckeConfig" debounce="500" (paste)="onPaste($event)" (change)="onChange($event)">
+            <ckeditor style="height: 100vh;" [(ngModel)]="FirebaseModel.Content" #myckeditor="ngModel" name="myckeditor" required [config]="ckeConfig" debounce="500" (paste)="onPaste($event)" (change)="onChange($event)">
             </ckeditor>
             <div *ngIf="myckeditor.invalid && myckeditor.touched" class="help-block">Required field.</div>
         </div>
@@ -81,14 +81,14 @@
         </div>
     </form>
     <div *ngIf="!IsEdit">
-        <span>狀態:</span> {{GtdTask.Status}}
-        <span>價值:</span> {{GtdTask.DeadLine}} * {{GtdTask.Wage}} = {{GtdTask.DeadLine * GtdTask.Wage}} (HR/TWD)
-        <span>標題:</span> {{GtdTask.Name}}
-        <span>期限:</span> [ {{GtdTask.StartDate|date:'yyyy-MM-dd'}} ] - [ {{GtdTask.EndDate|date:'yyyy-MM-dd'}} ]
-        <span>類別:</span> {{GtdTask.Tags}}
-        <div style="border-style:double;padding:1em;margin:1em 0" [innerHTML]="GtdTask.Content | html"></div>
+        <span>狀態:</span> {{FirebaseModel.Status}}
+        <span>價值:</span> {{FirebaseModel.DeadLine}} * {{FirebaseModel.Wage}} = {{FirebaseModel.DeadLine * FirebaseModel.Wage}} (HR/TWD)
+        <span>標題:</span> {{FirebaseModel.Name}}
+        <span>期限:</span> [ {{FirebaseModel.StartDate|date:'yyyy-MM-dd'}} ] - [ {{FirebaseModel.EndDate|date:'yyyy-MM-dd'}} ]
+        <span>類別:</span> {{FirebaseModel.Tags}}
+        <div style="border-style:double;padding:1em;margin:1em 0" [innerHTML]="FirebaseModel.Content | html"></div>
         <div mat-dialog-actions align="end">
-            <button [disabled]="GtdTask.Status == '編輯中'" mat-raised-button color="primary" align="end" (click)="TurnOnEditMode()">編輯</button>
+            <button [disabled]="FirebaseModel.Status == '編輯中'" mat-raised-button color="primary" align="end" (click)="TurnOnEditMode()">編輯</button>
         </div>
     </div>
 

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DialogHelperService } from 'src/app/shared/common/dialog-helper/dialog-helper.service';
 import { FireStorageHelperService } from 'src/app/shared/common/fire-storage-helper/fire-storage-helper.service';
 import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
-import GtdTask from 'src/app/shared/models/gtd-task';
+import FirebaseModel from 'src/app/shared/models/firebase-model';
 import { map, startWith } from 'rxjs/operators';
 import { DocumentChangeAction } from '@angular/fire/firestore';
 import { MatPaginator } from '@angular/material/paginator';
@@ -19,8 +19,8 @@ import { EnumComponentType } from 'src/app/shared/enum/enum-component-type';
 })
 export class ContentTableComponent implements OnInit {
 
-  dataSource: MatTableDataSource<GtdTask>;
-  GtdTasks = [] as GtdTask[];
+  dataSource: MatTableDataSource<FirebaseModel>;
+  FirebaseModels = [] as FirebaseModel[];
   displayedColumns: string[] = ['Status', 'Name', 'Tags', 'SubTitle', 'StartDate', 'StartDate', 'Templet', 'Summary', 'Tool'];
   _EnumComponentType = EnumComponentType;
 
@@ -66,13 +66,13 @@ export class ContentTableComponent implements OnInit {
         console.log(`沒有此 Tag 的表單 ${this.ComponentType}.`);
     }
 
-    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Article', ['Status', 'in', Query, 'StartDate']);
+    var _Collection = this._FireStorageHelper.GetFireCollection<FirebaseModel>('Article', ['Status', 'in', Query, 'StartDate']);
     // console.log('_Collection', _Collection);
     // 涉及 Rxjs 到時再研究，這段主要是由 snapshotChanges 這個服務取得 key 與 資料
-    let Data = _Collection.snapshotChanges().pipe(map((actions: DocumentChangeAction<GtdTask>[]) => {
+    let Data = _Collection.snapshotChanges().pipe(map((actions: DocumentChangeAction<FirebaseModel>[]) => {
       // console.log('actions', actions);
       return actions.map(a => {
-        const data = a.payload.doc.data() as GtdTask;
+        const data = a.payload.doc.data() as FirebaseModel;
         const id = a.payload.doc.id;
         // 值得注意的是底下 ... es6 語法只能複製一層 obj ，無法複製 obj 內的 obj，可能到時要改
         // console.log('data', data);
@@ -86,9 +86,9 @@ export class ContentTableComponent implements OnInit {
 
     var _Subscribe = Data.subscribe(ReturnData => {
 
-      this.GtdTasks = ReturnData;
+      this.FirebaseModels = ReturnData;
       // init datatable
-      this.dataSource = new MatTableDataSource(this.GtdTasks);
+      this.dataSource = new MatTableDataSource(this.FirebaseModels);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       // 目前這個都會幾筆資料就跑幾次... 效能異常...
@@ -106,7 +106,7 @@ export class ContentTableComponent implements OnInit {
       return;
     }
 
-    let _Document = this._FireStorageHelper.GetFireDocument<GtdTask>('Article/' + TaskId);
+    let _Document = this._FireStorageHelper.GetFireDocument<FirebaseModel>('Article/' + TaskId);
     _Document.delete().catch(error => {
       this._MatDialogConfig.data = error;
       this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);

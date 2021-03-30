@@ -1,4 +1,4 @@
-export default class GtdTask {
+export default class FirebaseModel {
   Content: any;
   DeadLine: number = 0;
   EndDate?: Date | null;

@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let row of _GtdTask">
+            <tr *ngFor="let row of _FirebaseModel">
                 <td>{{row.Status}}</td>
                 <td>{{row.DeadLine}} * {{row.Wage}} = {{row.DeadLine * row.Wage}} (HR/TWD)</td>
                 <td>{{row.Name}}</td>
@@ -31,7 +31,7 @@
             </tr>
         </tbody>
     </table>
-    <p *ngIf="_GtdTask.length == 0">目前沒有子任務</p>
+    <p *ngIf="_FirebaseModel.length == 0">目前沒有子任務</p>
 </mat-expansion-panel>
 <!--  -->
 <table class="responsive-table" *ngIf="IsWork">
@@ -47,7 +47,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let row of _GtdTask">
+        <tr *ngFor="let row of _FirebaseModel">
             <td>{{row.Status}}</td>
             <td>{{row.DeadLine}} * {{row.Wage}} = {{row.DeadLine * row.Wage}} (HR/TWD)</td>
             <td>{{row.Name}}</td>
@@ -58,7 +58,7 @@
                 <button mat-stroked-button color="primary" (click)='Forwarding(row.id)' align="end">詳細</button>
             </td>
         </tr>
-        <tr *ngIf="_GtdTask.length == 0">
+        <tr *ngIf="_FirebaseModel.length == 0">
             <td colspan="7">
                 <h2 style="color: red;">目前無可做之事，請確定目前任務!!!</h2>
             </td>

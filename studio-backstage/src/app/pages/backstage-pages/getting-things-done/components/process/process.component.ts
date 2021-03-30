@@ -8,7 +8,7 @@ import { AfterViewInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import GtdTask from '../../../../../shared/models/gtd-task';
+import FirebaseModel from '../../../../../shared/models/firebase-model';
 import { FireStorageHelperService } from '../../../../../shared/common/fire-storage-helper/fire-storage-helper.service';
 import { DocumentChangeAction } from '@angular/fire/firestore';
 import { map, startWith } from 'rxjs/operators';
@@ -38,10 +38,10 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
   _EnumComponentType = EnumComponentType;
   @Input() ComponentType: EnumComponentType;
 
-  GtdTasks = [] as GtdTask[];
+  FirebaseModels = [] as FirebaseModel[];
 
   displayedColumns: string[] = ['Status', 'Price', 'Name', 'Content', 'StartDate', 'EndDate', 'Tags', 'Tool'];
-  dataSource: MatTableDataSource<GtdTask>;
+  dataSource: MatTableDataSource<FirebaseModel>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -93,7 +93,7 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
       return;
     }
 
-    let _Document = this._FireStorageHelper.GetFireDocument<GtdTask>('Task/' + TaskId);
+    let _Document = this._FireStorageHelper.GetFireDocument<FirebaseModel>('Task/' + TaskId);
     _Document.delete().catch(error => {
       this._MatDialogConfig.data = error;
       this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
@@ -121,12 +121,12 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
         console.log(`沒有此 Tag 的表單 ${this.ComponentType}.`);
     }
 
-    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Tags', 'array-contains-any', Query, 'EndDate']);
+    var _Collection = this._FireStorageHelper.GetFireCollection<FirebaseModel>('Task', ['Tags', 'array-contains-any', Query, 'EndDate']);
 
     // 涉及 Rxjs 到時再研究，這段主要是由 snapshotChanges 這個服務取得 key 與 資料
-    let Data = _Collection.snapshotChanges().pipe(map((actions: DocumentChangeAction<GtdTask>[]) => {
+    let Data = _Collection.snapshotChanges().pipe(map((actions: DocumentChangeAction<FirebaseModel>[]) => {
       return actions.map(a => {
-        const data = a.payload.doc.data() as GtdTask;
+        const data = a.payload.doc.data() as FirebaseModel;
         const id = a.payload.doc.id;
         // 值得注意的是底下 ... es6 語法只能複製一層 obj ，無法複製 obj 內的 obj，可能到時要改
         return { id, ...data };
@@ -138,9 +138,9 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
     // https://firebase.google.com/docs/firestore/query-data/order-limit-data
 
     Data.subscribe(ReturnData => {
-      this.GtdTasks = ReturnData;
+      this.FirebaseModels = ReturnData;
       // init datatable
-      this.dataSource = new MatTableDataSource(this.GtdTasks);
+      this.dataSource = new MatTableDataSource(this.FirebaseModels);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       // 目前這個都會幾筆資料就跑幾次... 效能異常...
@@ -183,12 +183,12 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
     // 將原本狀態為5的拿掉
 
     // var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Status', '==', TopNum, 'EndDate']);
-    var _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task', ['Tags', 'array-contains-any', [TopNum], 'EndDate']);
+    var _Collection = this._FireStorageHelper.GetFireCollection<FirebaseModel>('Task', ['Tags', 'array-contains-any', [TopNum], 'EndDate']);
     // console.log(_Collection);
     // 取 id 的方式非常奇怪，改天再研究
-    var Data = _Collection.snapshotChanges().pipe(map((actions: DocumentChangeAction<GtdTask>[]) => {
+    var Data = _Collection.snapshotChanges().pipe(map((actions: DocumentChangeAction<FirebaseModel>[]) => {
       return actions.map(a => {
-        const data = a.payload.doc.data() as GtdTask;
+        const data = a.payload.doc.data() as FirebaseModel;
         const id = a.payload.doc.id;
         // console.log('a', a);
         return { id, ...data };

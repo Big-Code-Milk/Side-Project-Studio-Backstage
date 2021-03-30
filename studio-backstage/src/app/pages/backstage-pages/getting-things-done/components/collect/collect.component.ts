@@ -1,7 +1,7 @@
 import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
 import { BaseComponent } from 'src/app/pages/backstage-pages/components/base/base.component';
 import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
-import GtdTask from '../../../../../shared/models/gtd-task';
+import FirebaseModel from '../../../../../shared/models/firebase-model';
 import { FormGroup, FormControl } from '@angular/forms';
 import * as dayjs from 'dayjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -24,7 +24,7 @@ export class CollectComponent extends BaseComponent implements OnInit {
 
   @Input() ComponentType: EnumComponentType;
 
-  GtdTask: GtdTask = new GtdTask();
+  FirebaseModel: FirebaseModel = new FirebaseModel();
   Term: FormGroup;
 
   constructor(
@@ -125,21 +125,21 @@ export class CollectComponent extends BaseComponent implements OnInit {
   _MatDialogConfig: MatDialogConfig = {} as MatDialogConfig;
 
   CheckFormThenSubmit() {
-    this.GtdTask.StartDate = this.Term.value.start;
-    this.GtdTask.EndDate = this.Term.value.end;
-    this.GtdTask.MainTaskId = this.Key;
+    this.FirebaseModel.StartDate = this.Term.value.start;
+    this.FirebaseModel.EndDate = this.Term.value.end;
+    this.FirebaseModel.MainTaskId = this.Key;
     // 去掉重複陣列元素 https://gotraveltoworld.medium.com/js-array-%E5%88%AA%E9%99%A4%E9%87%8D%E8%A4%87%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%89%E7%A8%AE%E6%96%B9%E5%BC%8F-c79be2d270e6
     this.Tags.push('未處理');
-    this.GtdTask.Status = "";
-    this.GtdTask.Tags = [... new Set(this.Tags)];
-    if (this.GtdTask.Content === undefined || this.GtdTask.Name === undefined) {
+    this.FirebaseModel.Status = "";
+    this.FirebaseModel.Tags = [... new Set(this.Tags)];
+    if (this.FirebaseModel.Content === undefined || this.FirebaseModel.Name === undefined) {
       this._MatDialogConfig.data = "必填請務必填寫";
       this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
     } else {
       // 儲存至 FireStore 之後這裡要多做一層，因為 firebase 只吃無型別資料...
       // Function addDoc() called with invalid data. Data must be an object, but it was: a custom object
-      let _Collection = this._FireStorageHelper.GetFireCollection<GtdTask>('Task');
-      let JSONString = JSON.stringify(this.GtdTask);
+      let _Collection = this._FireStorageHelper.GetFireCollection<FirebaseModel>('Task');
+      let JSONString = JSON.stringify(this.FirebaseModel);
       let Obj = JSON.parse(JSONString);
       _Collection.add(Obj).catch(error => {
         this._MatDialogConfig.data = error;
@@ -148,7 +148,7 @@ export class CollectComponent extends BaseComponent implements OnInit {
         // this._MatDialogConfig.data = "success";
         // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
         // setTimeout(function () { window.location.reload(); }, 3000);
-        this.GtdTask = new GtdTask();
+        this.FirebaseModel = new FirebaseModel();
         this.Tags = [];
         const Today = new Date();
         const TodayAdd7days = dayjs(Today).add(7, 'day').toDate();

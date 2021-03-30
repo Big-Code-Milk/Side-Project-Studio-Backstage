@@ -1,16 +1,17 @@
-<ng-container *ngFor="let GtdTask of GtdTasks">
+<ng-container *ngFor="let FirebaseModel of FirebaseModels">
     <mat-card>
         <mat-card-header>
             <div mat-card-avatar></div>
-            <mat-card-title>{{GtdTask.Name}}</mat-card-title>
-            <mat-card-subtitle>{{GtdTask.SubTitle}}</mat-card-subtitle>
+            <mat-card-title>{{FirebaseModel.Name}}</mat-card-title>
+            <mat-card-subtitle>{{FirebaseModel.SubTitle}}</mat-card-subtitle>
         </mat-card-header>
         <div mat-card-image></div>
         <mat-card-content style="padding: 0 4em;">
-            <p [innerHTML]="GtdTask.Content">
-                <!-- https://stackoverflow.com/questions/45351434/safe-value-must-use-property-binding-after-bypass-security-with-domsanitizer -->
-                <!-- {{GtdTask.Content|html}} -->
-            </p>
+            <!-- <p [innerHTML]="GtdTask.Content">
+                https://stackoverflow.com/questions/45351434/safe-value-must-use-property-binding-after-bypass-security-with-domsanitizer
+                {{GtdTask.Content|html}}
+            </p> -->
+            <p>{{FirebaseModel.Summary}}</p>
         </mat-card-content>
         <mat-card-actions>
 
