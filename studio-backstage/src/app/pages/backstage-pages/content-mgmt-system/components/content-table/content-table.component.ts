@@ -75,7 +75,7 @@ export class ContentTableComponent implements OnInit {
         const data = a.payload.doc.data() as FirebaseModel;
         const id = a.payload.doc.id;
         // 值得注意的是底下 ... es6 語法只能複製一層 obj ，無法複製 obj 內的 obj，可能到時要改
-        // console.log('data', data);
+        console.log('data', data);
         return { id, ...data };
       });
     })
