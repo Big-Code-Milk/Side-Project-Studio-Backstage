@@ -39,6 +39,8 @@ export class DashboardComponent implements OnInit {
       this._MatSidenav.close();
     }
     // console.log('this.NotMobile', this.NotMobile);
+
+    // localstage 紀錄 dashboard side nav 開關
   }
 
   GetNowSideNavState() {
@@ -52,4 +54,8 @@ export class DashboardComponent implements OnInit {
     // console.log(sideNav);
   }
 
+  test() {
+    this._MatSidenav.close();
+    this.GetNowSideNavState();
+  }
 }
