@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit {
     // console.log(sideNav);
   }
 
-  test() {
+  fold() {
     this._MatSidenav.close();
     this.GetNowSideNavState();
   }
