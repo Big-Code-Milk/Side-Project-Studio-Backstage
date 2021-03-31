@@ -30,6 +30,20 @@ export class DashboardComponent implements OnInit {
 
     this._ChangeDetectorRef.detectChanges(); // 觸發 AG 變更檢測
 
+    // localstage 紀錄 dashboard side nav 開關
+    let SideNavFold = localStorage.getItem('SideNavFold');
+    if (SideNavFold != null) {
+      let SideNavLocalStorage = JSON.parse(SideNavFold);
+      if (SideNavLocalStorage) {
+        this._MatSidenav.open();
+        this.NowSideNavState = "SideNavActived";
+      } else {
+        this._MatSidenav.close();
+        this.NowSideNavState = "SideNavInactive";
+      }
+    }
+
+
     this._Email = sessionStorage.getItem('Email');
     // 手機板 Init
     // 取畫面大小 https://dotblogs.com.tw/jenny_ming/2013/06/06/105333
@@ -40,7 +54,7 @@ export class DashboardComponent implements OnInit {
     }
     // console.log('this.NotMobile', this.NotMobile);
 
-    // localstage 紀錄 dashboard side nav 開關
+
   }
 
   GetNowSideNavState() {
@@ -54,8 +68,22 @@ export class DashboardComponent implements OnInit {
     // console.log(sideNav);
   }
 
-  fold() {
-    this._MatSidenav.close();
+  Fold() {
+    this._MatSidenav.toggle();
     this.GetNowSideNavState();
+
+    let SideNavFold = localStorage.getItem('SideNavFold');
+    if (SideNavFold != null) {
+      let SideNavLocalStorage = JSON.parse(SideNavFold);
+      if (SideNavLocalStorage) {
+        localStorage.setItem('SideNavFold', 'false');
+      } else {
+        localStorage.setItem('SideNavFold', 'true');
+      }
+    } else {
+      localStorage.setItem('SideNavFold', 'false');
+    }
   }
+
+
 }
