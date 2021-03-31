@@ -57,7 +57,7 @@ export class ContentTableComponent implements OnInit {
 
     switch (this.ComponentType) {
       case this._EnumComponentType.Draft:
-        Query = ['草稿'];
+        Query = ['草稿', '編輯中'];
         break;
       case this._EnumComponentType.Publish:
         Query = ['發佈'];
@@ -75,7 +75,7 @@ export class ContentTableComponent implements OnInit {
         const data = a.payload.doc.data() as FirebaseModel;
         const id = a.payload.doc.id;
         // 值得注意的是底下 ... es6 語法只能複製一層 obj ，無法複製 obj 內的 obj，可能到時要改
-        console.log('data', data);
+        // console.log('data', data);
         return { id, ...data };
       });
     })
@@ -94,7 +94,7 @@ export class ContentTableComponent implements OnInit {
       // 目前這個都會幾筆資料就跑幾次... 效能異常...
       // console.log('this.GtdTasks', this.GtdTasks);
 
-      _Subscribe.unsubscribe();
+      // _Subscribe.unsubscribe();
     });
   }
 
@@ -137,7 +137,19 @@ export class ContentTableComponent implements OnInit {
     });
   }
 
-  Edit(TaskId: string) {
-    this._Router.navigate(['dashboard/pages/editcontent', { key: TaskId }]);
+  Edit(TaskId: string, GtdTask: any) {
+    var _Document = this._FireStorageHelper.GetFireDocument('Article/' + TaskId);
+    GtdTask.Status = "編輯中";
+    let JSONString = JSON.stringify(GtdTask);
+    let Obj = JSON.parse(JSONString);
+    _Document.update(Obj).catch(error => {
+      this._MatDialogConfig.data = error;
+      this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+    }).then(success => {
+      // this._MatDialogConfig.data = "success";
+      // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+      // this._SnackBarHelper.OpenSnackBar('操作成功!');
+      this._Router.navigate(['dashboard/pages/editcontent', { key: TaskId }]);
+    });
   }
 }

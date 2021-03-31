@@ -125,7 +125,7 @@ export class EditContentComponent implements OnInit {
 
   DataInit() {
     var _Document = this._FireStorageHelper.GetFireDocument('Article/' + this.Key);
-    _Document.valueChanges().subscribe((Param: any) => {
+    var Subscribe = _Document.valueChanges().subscribe((Param: any) => {
       this.FirebaseModel = Param;
       this.HTMLContent = Param.Content;
       this.MarkdownContent = Param.MarkdownContent;
@@ -133,6 +133,7 @@ export class EditContentComponent implements OnInit {
       // console.log('Param.HTMLContent', Param.Content);
       // console.log('this.HTMLContent', this.HTMLContent);
       // console.log('this.MarkdownContent', this.MarkdownContent);
+      Subscribe.unsubscribe();
     });
   }
 
@@ -172,5 +173,17 @@ export class EditContentComponent implements OnInit {
       this._Router.navigate(['dashboard/pages/contentmgmt']);
 
     });
+  }
+
+  // 銷毀元件
+  ngOnDestroy() {
+    // console.log('ngOnDestroy');
+    // var _SessionStorage = sessionStorage.getItem('Editing');
+    // console.log('_SessionStorage', _SessionStorage);
+    if (this.FirebaseModel.Status == '編輯中') {
+      this.FirebaseModel.Status = '草稿';
+      this.Update();
+      // sessionStorage.removeItem('Editing');
+    }
   }
 }
