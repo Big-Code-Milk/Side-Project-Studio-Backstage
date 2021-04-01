@@ -1,7 +1,7 @@
 import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
 // 參考
 // router 取得參數 https://ithelp.ithome.com.tw/articles/10209035
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, HostListener } from '@angular/core';
 import FirebaseModel from '../../../../../shared/models/firebase-model';
 import { FormGroup, FormControl } from '@angular/forms';
 import * as dayjs from 'dayjs';
@@ -126,39 +126,40 @@ export class OrganizeComponent implements OnInit {
 
     }
     this.FirebaseModel.Status = ''; // 編輯完成清空狀態
-    this.UploadData('SubmitButton');
-
+    if (this.FirebaseModel.Content === undefined || this.FirebaseModel.Name === undefined) {
+      this._MatDialogConfig.data = "必填請務必填寫";
+      this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+    } else {
+      this.UploadData('SubmitButton');
+    }
   }
 
   UploadData(UploadType: string) {
     this.FirebaseModel.Tags = [... new Set(this.Tags)];
     this.FirebaseModel.StartDate = this.Term.value.start;
     this.FirebaseModel.EndDate = this.Term.value.end;
-    if (this.FirebaseModel.Content === undefined || this.FirebaseModel.Name === undefined) {
-      this._MatDialogConfig.data = "必填請務必填寫";
+
+    // 儲存至 FireStore 之後這裡要多做一層，因為 firebase 只吃無型別資料...
+    // Function addDoc() called with invalid data. Data must be an object, but it was: a custom object
+
+    var _Document = this._FireStorageHelper.GetFireDocument('Task/' + this.Key);
+    let JSONString = JSON.stringify(this.FirebaseModel);
+    let Obj = JSON.parse(JSONString);
+    var _Update = _Document.update(Obj).catch(error => {
+      this._MatDialogConfig.data = error;
       this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
-    } else {
-      // 儲存至 FireStore 之後這裡要多做一層，因為 firebase 只吃無型別資料...
-      // Function addDoc() called with invalid data. Data must be an object, but it was: a custom object
+    }).then(success => {
+      // this._MatDialogConfig.data = "success";
+      // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+      // this.IsEdit = false;
 
-      var _Document = this._FireStorageHelper.GetFireDocument('Task/' + this.Key);
-      let JSONString = JSON.stringify(this.FirebaseModel);
-      let Obj = JSON.parse(JSONString);
-      var _Update = _Document.update(Obj).catch(error => {
-        this._MatDialogConfig.data = error;
-        this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
-      }).then(success => {
-        // this._MatDialogConfig.data = "success";
-        // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
-        // this.IsEdit = false;
+      if (UploadType == 'SubmitButton') {
+        this._Router.navigate(['dashboard/']);
+        this._SnackBarHelper.OpenSnackBar('操作成功!');
+      }
 
-        if (UploadType == 'SubmitButton') {
-          this._Router.navigate(['dashboard/']);
-          this._SnackBarHelper.OpenSnackBar('操作成功!');
-        }
+    });
 
-      });
-    }
 
   }
 
@@ -261,5 +262,14 @@ export class OrganizeComponent implements OnInit {
       this.UploadData('TurnOnEditModeButton');
     }
 
+  }
+
+  @HostListener('window:beforeunload') BeforeunloadHandler(event: any) {
+
+    // https://segmentfault.com/a/1190000022905212
+    (event || window.event).returnValue = "";
+    // 这里写关闭时需要处理的时间，刷新也会执行这里的方法
+    this.FirebaseModel.Status = '';
+    this.UploadData('ShutDownAutoSave');
   }
 }

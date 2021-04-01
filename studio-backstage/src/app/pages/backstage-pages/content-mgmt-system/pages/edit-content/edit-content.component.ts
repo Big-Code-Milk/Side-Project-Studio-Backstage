@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import FirebaseModel from 'src/app/shared/models/firebase-model';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -105,12 +105,6 @@ export class EditContentComponent implements OnInit {
     if (!confirm('確定要儲存草稿嗎?')) {
       return;
     }
-
-    this.FirebaseModel.Status = "草稿";
-    this.FirebaseModel.Content = this.HTMLContent;
-    this.FirebaseModel.MarkdownContent = this.MarkdownContent;
-    this.FirebaseModel.Tags = [... new Set(this.Tags)];
-
     if (this.FirebaseModel.Content === undefined || this.FirebaseModel.Name === undefined) {
       this._MatDialogConfig.data = "必填請務必填寫";
       this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
@@ -138,6 +132,10 @@ export class EditContentComponent implements OnInit {
   }
 
   Add() {
+    this.FirebaseModel.Status = "草稿";
+    this.FirebaseModel.Content = this.HTMLContent;
+    this.FirebaseModel.MarkdownContent = this.MarkdownContent;
+    this.FirebaseModel.Tags = [... new Set(this.Tags)];
     // 新增一筆
     let _Collection = this._FireStorageHelper.GetFireCollection<FirebaseModel>('Article');
     let JSONString = JSON.stringify(this.FirebaseModel);
@@ -156,6 +154,10 @@ export class EditContentComponent implements OnInit {
   }
 
   Update() {
+    this.FirebaseModel.Status = "草稿";
+    this.FirebaseModel.Content = this.HTMLContent;
+    this.FirebaseModel.MarkdownContent = this.MarkdownContent;
+    this.FirebaseModel.Tags = [... new Set(this.Tags)];
     // 更新
     var _Document = this._FireStorageHelper.GetFireDocument('Article/' + this.Key);
     let JSONStringUpdate = JSON.stringify(this.FirebaseModel);
@@ -185,5 +187,13 @@ export class EditContentComponent implements OnInit {
       this.Update();
       // sessionStorage.removeItem('Editing');
     }
+  }
+
+  @HostListener('window:beforeunload') BeforeunloadHandler(event: any) {
+
+    // https://segmentfault.com/a/1190000022905212
+    (event || window.event).returnValue = "";
+    // 这里写关闭时需要处理的时间，刷新也会执行这里的方法
+    this.Update();
   }
 }
