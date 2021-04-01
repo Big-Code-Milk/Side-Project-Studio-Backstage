@@ -193,9 +193,9 @@ export class EditContentComponent implements OnInit {
   // https://blog.cwlove.idv.tw/js-event-close-tab-browser-beacon-api/
   @HostListener('window:beforeunload') BeforeunloadHandler(event: any) {
 
-    this.Update();
     (event || window.event).returnValue = "";
     (event || window.event).preventDefault();
+    this.Update();
     return '';
     // 这里写关闭时需要处理的时间，刷新也会执行这里的方法
 
@@ -203,18 +203,18 @@ export class EditContentComponent implements OnInit {
 
   @HostListener('window:onbeforeunload') onBeforeunloadHandler(event: any) {
 
-    this.Update();
     (event || window.event).returnValue = "";
     (event || window.event).preventDefault();
+    this.Update();
     return '';
 
   }
 
   @HostListener('document:visibilitychange') visibilitychange(event: any) {
 
-    this.Update();
     (event || window.event).returnValue = "";
     (event || window.event).preventDefault();
+    this.Update();
     return '';
 
   }

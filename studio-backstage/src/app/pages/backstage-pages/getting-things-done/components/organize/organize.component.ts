@@ -269,30 +269,30 @@ export class OrganizeComponent implements OnInit {
   // 这里写关闭时需要处理的时间，刷新也会执行这里的方法
   @HostListener('window:beforeunload') BeforeunloadHandler(event: any) {
 
-    this.FirebaseModel.Status = '';
-    this.UploadData('ShutDownAutoSave');
     (event || window.event).returnValue = "";
     (event || window.event).preventDefault();
+    this.FirebaseModel.Status = '';
+    this.UploadData('ShutDownAutoSave');
     return '';
 
   }
 
   @HostListener('window:onbeforeunload') onBeforeunloadHandler(event: any) {
 
-    this.FirebaseModel.Status = '';
-    this.UploadData('ShutDownAutoSave');
     (event || window.event).returnValue = "";
     (event || window.event).preventDefault();
+    this.FirebaseModel.Status = '';
+    this.UploadData('ShutDownAutoSave');
     return '';
 
   }
 
   @HostListener('document:visibilitychange') visibilitychange(event: any) {
 
-    this.FirebaseModel.Status = '';
-    this.UploadData('ShutDownAutoSave');
     (event || window.event).returnValue = "";
     (event || window.event).preventDefault();
+    this.FirebaseModel.Status = '';
+    this.UploadData('ShutDownAutoSave');
     return '';
 
   }
