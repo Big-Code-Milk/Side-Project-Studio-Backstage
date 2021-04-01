@@ -5,6 +5,7 @@ import { EditorTabComponent } from '../components/layout/editor-tab/editor-tab.c
 import { GetStartedComponent } from '../components/layout/get-started/get-started.component';
 import { ImageHostingTabComponent } from '../components/layout/image-hosting-tab/image-hosting-tab.component';
 import { AngularFirebaseComponent } from './angular-fire-base/angular-firebase.component';
+import { DataTableComponent } from './data-table/data-table.component';
 import { EditorComponent } from './editor-fail/editor.component';
 import { ShareServiceComponent } from './share-service/share-service.component';
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'editortab', component: EditorTabComponent },
   { path: 'imagehostingtab', component: ImageHostingTabComponent },
   { path: 'getstarted', component: GetStartedComponent },
+  { path: 'datatable', component: DataTableComponent },
 ];
 
 @NgModule({

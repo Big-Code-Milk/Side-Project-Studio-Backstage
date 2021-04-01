@@ -21,7 +21,7 @@ export class ContentTableComponent implements OnInit {
 
   dataSource: MatTableDataSource<FirebaseModel>;
   FirebaseModels = [] as FirebaseModel[];
-  displayedColumns: string[] = ['Status', 'Name', 'Tags', 'SubTitle', 'StartDate', 'StartDate', 'Templet', 'Summary', 'Tool'];
+  displayedColumns: string[] = ['Status', 'Name', 'Tags', 'SubTitle', 'StartDate', 'Templet', 'Summary', 'Tool'];
   _EnumComponentType = EnumComponentType;
 
   constructor(

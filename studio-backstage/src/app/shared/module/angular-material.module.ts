@@ -23,6 +23,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [],
@@ -51,6 +53,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatStepperModule,
     MatSlideToggleModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
   ]
 })
 export class SharedAngularMaterialModule { }
