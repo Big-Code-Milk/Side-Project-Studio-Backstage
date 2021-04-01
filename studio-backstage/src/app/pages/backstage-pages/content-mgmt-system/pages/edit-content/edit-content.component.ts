@@ -189,11 +189,39 @@ export class EditContentComponent implements OnInit {
     }
   }
 
+  // https://segmentfault.com/a/1190000022905212
+  // https://blog.cwlove.idv.tw/js-event-close-tab-browser-beacon-api/
   @HostListener('window:beforeunload') BeforeunloadHandler(event: any) {
 
-    // https://segmentfault.com/a/1190000022905212
-    (event || window.event).returnValue = "";
-    // 这里写关闭时需要处理的时间，刷新也会执行这里的方法
     this.Update();
+    (event || window.event).returnValue = "";
+    (event || window.event).preventDefault();
+    return '';
+    // 这里写关闭时需要处理的时间，刷新也会执行这里的方法
+
+  }
+
+  @HostListener('window:onbeforeunload') onBeforeunloadHandler(event: any) {
+
+    this.Update();
+    (event || window.event).returnValue = "";
+    (event || window.event).preventDefault();
+    return '';
+
+  }
+
+  @HostListener('document:visibilitychange') visibilitychange(event: any) {
+
+    this.Update();
+    (event || window.event).returnValue = "";
+    (event || window.event).preventDefault();
+    return '';
+
+  }
+
+  @HostListener('window:unload') unload(event: any) {
+
+    this.Update();
+
   }
 }
