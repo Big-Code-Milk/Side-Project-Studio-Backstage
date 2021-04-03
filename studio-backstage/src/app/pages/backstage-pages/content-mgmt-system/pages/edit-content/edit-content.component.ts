@@ -156,8 +156,8 @@ export class EditContentComponent implements OnInit {
       this.FirebaseModel = new FirebaseModel();
       this.Tags = [];
       this.FirebaseModel.StartDate = new Date();
+      this._SnackBarHelper.OpenSnackBar('操作成功!');
       if (UploadType == 'SubmitButton') {
-        this._SnackBarHelper.OpenSnackBar('操作成功!');
         this._Router.navigate(['dashboard/pages/contentmgmt']);
       }
     });
@@ -180,8 +180,8 @@ export class EditContentComponent implements OnInit {
       // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
       // this.IsEdit = false;
 
+      this._SnackBarHelper.OpenSnackBar('操作成功!');
       if (UploadType == 'SubmitButton') {
-        this._SnackBarHelper.OpenSnackBar('操作成功!');
         this._Router.navigate(['dashboard/pages/contentmgmt']);
       }
 
@@ -203,6 +203,7 @@ export class EditContentComponent implements OnInit {
   // https://segmentfault.com/a/1190000022905212
   // https://blog.cwlove.idv.tw/js-event-close-tab-browser-beacon-api/
   // 不管在事件函式的哪都會觸發 ...
+
   @HostListener('window:beforeunload') BeforeunloadHandler(event: any) {
 
     console.log('beforeunload');
@@ -215,6 +216,7 @@ export class EditContentComponent implements OnInit {
     } else {
       this.Add('AutoActive');
     }
+
     return '必須給值才會彈窗';
 
   }

@@ -153,9 +153,10 @@ export class OrganizeComponent implements OnInit {
       // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
       // this.IsEdit = false;
 
+      this._SnackBarHelper.OpenSnackBar('操作成功!');
+
       if (UploadType == 'SubmitButton') {
         this._Router.navigate(['dashboard/']);
-        this._SnackBarHelper.OpenSnackBar('操作成功!');
       }
 
     });
