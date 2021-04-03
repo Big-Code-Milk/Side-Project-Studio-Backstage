@@ -34,6 +34,10 @@ function RouterHandler() {
         {
           path: 'articlecatalog', component: ArticleCatalogComponent // OnstageHomeComponent
         }
+        ,
+        {
+          path: '404', component: NotFoundComponent // https://stackoverflow.com/questions/36260839/angular-2-how-to-redirect-to-404-or-other-path-if-the-path-does-not-exist
+        }
       ]
     },
     {
@@ -64,11 +68,6 @@ function RouterHandler() {
             .then(mod => mod.TemplateRoutingModule)
         }
       ]
-    },
-    {
-      // https://stackoverflow.com/questions/36260839/angular-2-how-to-redirect-to-404-or-other-path-if-the-path-does-not-exist
-      path: '404',
-      component: NotFoundComponent
     },
     {
       path: '**',

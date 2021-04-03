@@ -25,10 +25,9 @@ export class EditorMdComponent implements OnInit {
     // if (this.ContentText != undefined) {
     //   $('.editormd-markdown-textarea').val(this.ContentText);
     // }
-    console.log('this.MarkdownContent', this.MarkdownContent);
+    // console.log('this.MarkdownContent', this.MarkdownContent);
     if (this.MarkdownContent != undefined) {
-      console.log('進去');
-      console.log('this.MarkdownContent',);
+      // console.log('this.MarkdownContent',);
       $('.editormd-markdown-textarea').val(this.MarkdownContent)
     }
   }

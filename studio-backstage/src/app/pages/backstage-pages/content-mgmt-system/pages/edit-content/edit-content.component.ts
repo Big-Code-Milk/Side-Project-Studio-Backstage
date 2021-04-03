@@ -187,7 +187,7 @@ export class EditContentComponent implements OnInit {
 
   // 銷毀元件
   ngOnDestroy() {
-    // console.log('ngOnDestroy');
+    console.log('ngOnDestroy');
     // var _SessionStorage = sessionStorage.getItem('Editing');
     // console.log('_SessionStorage', _SessionStorage);
     if (this.FirebaseModel.Status == '編輯中') {
@@ -201,44 +201,44 @@ export class EditContentComponent implements OnInit {
   // https://blog.cwlove.idv.tw/js-event-close-tab-browser-beacon-api/
   @HostListener('window:beforeunload') BeforeunloadHandler(event: any) {
 
-    if (this.Key != undefined) {
-      this.Update();
-    } else {
-      this.Add();
-    }
+    console.log('beforeunload');
 
     (event || window.event).returnValue = "";
     (event || window.event).preventDefault();
     // 这里写关闭时需要处理的时间，刷新也会执行这里的方法
-    return '';
-
-
-  }
-
-  @HostListener('window:onbeforeunload') onBeforeunloadHandler(event: any) {
-
     if (this.Key != undefined) {
       this.Update();
     } else {
       this.Add();
     }
+    return '';
 
+  }
+
+  @HostListener('window:onbeforeunload') onBeforeunloadHandler(event: any) {
+    console.log('onbeforeunload');
     (event || window.event).returnValue = "";
     (event || window.event).preventDefault();
+    if (this.Key != undefined) {
+      this.Update();
+    } else {
+      this.Add();
+    }
     return '';
 
   }
 
   @HostListener('document:visibilitychange') visibilitychange(event: any) {
 
+    console.log('visibilitychange');
+
+    (event || window.event).returnValue = "";
+    (event || window.event).preventDefault();
     if (this.Key != undefined) {
       this.Update();
     } else {
       this.Add();
     }
-
-    (event || window.event).returnValue = "";
-    (event || window.event).preventDefault();
     return '';
 
   }
