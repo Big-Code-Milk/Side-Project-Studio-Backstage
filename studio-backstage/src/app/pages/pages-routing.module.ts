@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CollectThenOrganizeComponent } from './backstage-pages/getting-things-done/pages/collect-then-organize/collect-then-organize.component';
 import { EditContentComponent } from './backstage-pages/content-mgmt-system/pages/edit-content/edit-content.component';
 import { LinktreeMgmtComponent } from './backstage-pages/components/layout/linktree-mgmt/linktree-mgmt.component';
+import { TagsHelperComponent } from '../shared/common/tags-helper/tags-helper.component';
 
 const routes: Routes = [
   { path: 'home', component: BackstageHomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'editcontent', component: EditContentComponent },
   { path: 'organize', component: OrganizeComponent }, // 點擊進入任務編輯
   { path: 'linktreemgmt', component: LinktreeMgmtComponent }, // 友站連結管理
+  { path: 'tagshelper', component: TagsHelperComponent }
 ];
 
 @NgModule({

@@ -28,10 +28,12 @@ import { TemplateModule } from './pages/backstage-pages/template/template.module
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { OnStageLayoutModule } from './pages/onstage-pages/components/layout/layout.module';
 import { BackStageLayoutModule } from './pages/backstage-pages/components/layout/layout.module';
+import { TagsHelperComponent } from './shared/common/tags-helper/tags-helper.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    TagsHelperComponent,
   ],
   imports: [
     BrowserModule,

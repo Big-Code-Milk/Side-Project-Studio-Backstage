@@ -29,10 +29,10 @@ function RouterHandler() {
       component: AppleTemplateComponent,
       children: [
         {
-          path: '', component: ArticleCatalogComponent // OnstageHomeComponent
+          path: '', component: OnstageHomeComponent
         },
         {
-          path: 'articlecatalog', component: ArticleCatalogComponent // OnstageHomeComponent
+          path: 'articlecatalog', component: ArticleCatalogComponent
         }
         ,
         {
