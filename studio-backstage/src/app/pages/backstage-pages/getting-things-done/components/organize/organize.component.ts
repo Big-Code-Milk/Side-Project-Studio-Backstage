@@ -266,33 +266,36 @@ export class OrganizeComponent implements OnInit {
 
   // https://segmentfault.com/a/1190000022905212
   // https://blog.cwlove.idv.tw/js-event-close-tab-browser-beacon-api/
-  // 这里写关闭时需要处理的时间，刷新也会执行这里的方法
   @HostListener('window:beforeunload') BeforeunloadHandler(event: any) {
+
+    this.FirebaseModel.Status = '';
+    this.UploadData('ShutDownAutoSave');
 
     (event || window.event).returnValue = "";
     (event || window.event).preventDefault();
-    this.FirebaseModel.Status = '';
-    this.UploadData('ShutDownAutoSave');
+    // 这里写关闭时需要处理的时间，刷新也会执行这里的方法
     return '';
 
   }
 
   @HostListener('window:onbeforeunload') onBeforeunloadHandler(event: any) {
 
-    (event || window.event).returnValue = "";
-    (event || window.event).preventDefault();
     this.FirebaseModel.Status = '';
     this.UploadData('ShutDownAutoSave');
+
+    (event || window.event).returnValue = "";
+    (event || window.event).preventDefault();
     return '';
 
   }
 
   @HostListener('document:visibilitychange') visibilitychange(event: any) {
 
-    (event || window.event).returnValue = "";
-    (event || window.event).preventDefault();
     this.FirebaseModel.Status = '';
     this.UploadData('ShutDownAutoSave');
+
+    (event || window.event).returnValue = "";
+    (event || window.event).preventDefault();
     return '';
 
   }

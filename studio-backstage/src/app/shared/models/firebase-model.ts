@@ -12,4 +12,5 @@ export default class FirebaseModel {
   Summary?: string;
   MarkdownContent?: string;
   Templet?: string;
+  KeyVision?: string;
 }

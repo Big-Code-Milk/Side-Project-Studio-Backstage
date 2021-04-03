@@ -70,10 +70,16 @@
                         </mat-select>
                     </mat-form-field>
                 </td>
-                <td colspan="2">
+                <td colspan="1">
                     <mat-form-field class="example-full-width">
                         <mat-label>摘要</mat-label>
                         <textarea matInput required [(ngModel)]="FirebaseModel.Summary" name="Content"></textarea>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>主視覺</mat-label>
+                        <input matInput placeholder="請填入網址" [(ngModel)]="FirebaseModel.KeyVision" name="KeyVision" required>
                     </mat-form-field>
                 </td>
             </tr>
