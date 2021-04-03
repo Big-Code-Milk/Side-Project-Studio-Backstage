@@ -29,15 +29,15 @@ export class TagsHelperComponent implements OnInit {
     // });
 
     var Subscribe = this._TagsHelperService.GetTagsSubscribe().subscribe((x: any) => {
-      this.Tags = JSON.parse(x);
+      this.Tags = x;
       // console.log('this.Tags', this.Tags);
-      Subscribe.unsubscribe();
+      // Subscribe.unsubscribe();
     });
 
   }
 
   Update() {
-    this._TagsHelperService.ReSetTags(this.Tags);
+    this._TagsHelperService.ReSetTags(JSON.parse(this.Tags));
   }
 
 }

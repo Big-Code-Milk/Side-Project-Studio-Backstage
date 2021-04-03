@@ -12,18 +12,21 @@ export class TagsHelperService {
     private _SnackBarHelper: SnackBarHelperService,
   ) { }
 
-  ReSetTags(NewAddTags: string[]) {
+  ReSetTags(NewAddTags: any) {
+    // console.log('NewAddTags', NewAddTags);
     if (NewAddTags.length > 0) {
-      let NewTags;
       let ResponseTags = this._FireStorageHelper.GetFireObject('SystemInfo');
       let _Subscribe: any = ResponseTags.valueChanges().subscribe((elements: any) => {
         // console.log('elements', elements);
         let JSONParse = JSON.parse(elements);
-        NewTags = JSONParse.filter((element: any) => { return (NewAddTags.indexOf(element) == -1) });
-        NewTags = [...NewTags, ...NewAddTags];
-        console.log('NewTags', NewTags);
+        let FilterTags = JSONParse.filter((element: any) => { return (NewAddTags.indexOf(element) == -1) });
+        // console.log('FilterTags', FilterTags);
+        NewAddTags.forEach((x: any) => {
+          FilterTags.push(x);
+        });
+        // console.log('LastTags', FilterTags);
         _Subscribe.unsubscribe();
-        ResponseTags.set(JSON.stringify(NewTags));
+        ResponseTags.set(JSON.stringify(FilterTags));
         this._SnackBarHelper.OpenSnackBar('操作成功!');
       });
     }
