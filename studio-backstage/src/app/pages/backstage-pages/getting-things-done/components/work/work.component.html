@@ -24,7 +24,7 @@
                 <td>{{row.Status}}</td>
                 <td>{{row.DeadLine}} * {{row.Wage}} = {{row.DeadLine * row.Wage}} (HR/TWD)</td>
                 <td>{{row.Name}}</td>
-                <td>{{row.Content.substr(0,10)}} ...</td>
+                <td>{{row.Content}}</td>
                 <td>[ {{row.StartDate|date:'yyyy-MM-dd'}} ] - [ {{row.EndDate|date:'yyyy-MM-dd'}} ]</td>
                 <td>{{row.Tags}}</td>
                 <td><button mat-stroked-button color="primary" (click)='Forwarding(row.id)' align="end">詳細</button></td>
@@ -51,7 +51,7 @@
             <td>{{row.Status}}</td>
             <td>{{row.DeadLine}} * {{row.Wage}} = {{row.DeadLine * row.Wage}} (HR/TWD)</td>
             <td>{{row.Name}}</td>
-            <td>{{row.Content.substr(0,10)}} ...</td>
+            <td>{{row.Content}}</td>
             <td>[ {{row.StartDate|date:'yyyy-MM-dd'}} ] - [ {{row.EndDate|date:'yyyy-MM-dd'}} ]</td>
             <td>{{row.Tags}}</td>
             <td>

@@ -87,4 +87,8 @@ export class SideNavComponent implements OnInit {
     }
     return relUrl;
   }
+
+  toggle(event: any) {
+    console.log('event', event);
+  }
 }

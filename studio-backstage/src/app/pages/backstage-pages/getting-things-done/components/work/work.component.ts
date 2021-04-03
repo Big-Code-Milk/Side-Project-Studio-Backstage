@@ -77,6 +77,9 @@ export class WorkComponent extends BaseComponent implements OnInit {
         const data = a.payload.doc.data() as FirebaseModel;
         const id = a.payload.doc.id;
         // console.log('id', id, 'data', data);
+        if (data.Content != undefined) {
+          data.Content = data.Content.substr(0, 10) + "...";
+        }
         return { id, ...data };
       });
     })

@@ -27,23 +27,26 @@
                 Just Do It
             </mat-panel-description> -->
         </mat-expansion-panel-header>
-        <h5>任務管理</h5>
-        <hr>
-        <p><a class="ButtonLink" [routerLink]="'/dashboard/pages/processthenwork'">做事 & 處理</a></p>
-        <hr>
-        <p><a class="ButtonLink" [routerLink]="'/dashboard/pages/collectthenorganize'">蒐集 & 組織</a></p>
-        <hr>
-        <h5>內容管理</h5>
-        <hr>
-        <p><a class="ButtonLink" [routerLink]="'/dashboard/pages/editcontent'">新增文章</a></p>
-        <hr>
-        <p><a class="ButtonLink" [routerLink]="'/dashboard/pages/contentmgmt'">文章管理</a></p>
-        <hr>
-        <p><a class="ButtonLink" [routerLink]="'#'">GA 分析(施工中)</a></p>
-        <hr>
-        <h5>其他</h5>
-        <hr>
-        <p><a class="ButtonLink" target="_blank" href="https://console.firebase.google.com/u/1/project/justdo-1165/usage">Firebase 額度查詢</a></p>
+        <mat-nav-list>
+            <!-- mat list active 應用 https://stackoverflow.com/questions/52593815/how-to-set-color-of-active-item-in-mat-nav-list-in-angular-6 -->
+            <h5>任務管理</h5>
+            <hr>
+            <p><a routerLinkActive="active-list-item" routerLink="/dashboard/pages/processthenwork">做事 & 處理</a></p>
+            <hr>
+            <p><a routerLinkActive="active-list-item" routerLink="/dashboard/pages/collectthenorganize">蒐集 & 組織</a></p>
+            <hr>
+            <h5>內容管理</h5>
+            <hr>
+            <p><a routerLinkActive="active-list-item" routerLink="/dashboard/pages/editcontent">新增文章</a></p>
+            <hr>
+            <p><a routerLinkActive="active-list-item" class="ButtonLink" [routerLink]="'/dashboard/pages/contentmgmt'">文章管理</a></p>
+            <hr>
+            <p><a routerLinkActive="active-list-item" class="ButtonLink" [routerLink]="'#'">GA 分析(施工中)</a></p>
+            <hr>
+            <h5>其他</h5>
+            <hr>
+            <p><a routerLinkActive="active-list-item" class="ButtonLink" target="_blank" href="https://console.firebase.google.com/u/1/project/justdo-1165/usage">Firebase 額度查詢</a></p>
+        </mat-nav-list>
     </mat-expansion-panel>
     <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -54,25 +57,27 @@
                 Under construction
             </mat-panel-description> -->
         </mat-expansion-panel-header>
-        <h5>功能範本</h5>
-        <hr>
-        <p><a class="ButtonLink" [routerLink]="'/dashboard/example/angularfirebase'">AngularFirebase</a></p>
-        <hr>
-        <p><a class="ButtonLink" [routerLink]="'/dashboard/example/shareservice'">ShareService</a></p>
-        <hr>
-        <p><a class="ButtonLink" [routerLink]="'/dashboard/example/editormd'">EditorMd</a></p>
-        <hr>
-        <p><a class="ButtonLink" [routerLink]="'/dashboard/example/editortab'">EditorTab</a></p>
-        <hr>
-        <p><a class="ButtonLink" [routerLink]="'/dashboard/example/imagehostingtab'">ImageHostingTab(施工中)</a></p>
-        <hr>
-        <p><a class="ButtonLink" [routerLink]="'/dashboard/example/getstarted'">GetStartedStep</a></p>
-        <hr>
-        <p><a class="ButtonLink" [routerLink]="'/dashboard/example/datatable'">DataTable</a></p>
-        <hr>
-        <h5>版型範本</h5>
-        <hr>
-        <p><a class="ButtonLink" [routerLink]="'/dashboard/template/home'">Panel & Tab</a></p>
+        <mat-nav-list>
+            <h5>功能範本</h5>
+            <hr>
+            <p><a routerLinkActive="active-list-item" class="ButtonLink" [routerLink]="'/dashboard/example/angularfirebase'">AngularFirebase</a></p>
+            <hr>
+            <p><a routerLinkActive="active-list-item" class="ButtonLink" [routerLink]="'/dashboard/example/shareservice'">ShareService</a></p>
+            <hr>
+            <p><a routerLinkActive="active-list-item" class="ButtonLink" [routerLink]="'/dashboard/example/editormd'">EditorMd</a></p>
+            <hr>
+            <p><a routerLinkActive="active-list-item" class="ButtonLink" [routerLink]="'/dashboard/example/editortab'">EditorTab</a></p>
+            <hr>
+            <p><a routerLinkActive="active-list-item" class="ButtonLink" [routerLink]="'/dashboard/example/imagehostingtab'">ImageHostingTab(施工中)</a></p>
+            <hr>
+            <p><a routerLinkActive="active-list-item" class="ButtonLink" [routerLink]="'/dashboard/example/getstarted'">GetStartedStep</a></p>
+            <hr>
+            <p><a routerLinkActive="active-list-item" class="ButtonLink" [routerLink]="'/dashboard/example/datatable'">DataTable</a></p>
+            <hr>
+            <h5>版型範本</h5>
+            <hr>
+            <p><a routerLinkActive="active-list-item" class="ButtonLink" [routerLink]="'/dashboard/template/home'">Panel & Tab</a></p>
+        </mat-nav-list>
     </mat-expansion-panel>
     <!-- <mat-expansion-panel hideToggle="false" expanded="true">
         <mat-expansion-panel-header>

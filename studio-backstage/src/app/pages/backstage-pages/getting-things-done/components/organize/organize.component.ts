@@ -297,10 +297,10 @@ export class OrganizeComponent implements OnInit {
 
   }
 
-  @HostListener('window:unload') unload(event: any) {
+  // @HostListener('window:unload') unload(event: any) {
 
-    this.FirebaseModel.Status = '';
-    this.UploadData('ShutDownAutoSave');
+  //   this.FirebaseModel.Status = '';
+  //   this.UploadData('ShutDownAutoSave');
 
-  }
+  // }
 }

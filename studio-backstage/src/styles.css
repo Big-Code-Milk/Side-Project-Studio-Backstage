@@ -32,6 +32,10 @@
             color: #0000FF;
         }
         
+        .active-list-item {
+            color: #00FF00 !important;
+        }
+        
         .SideNavActived {
             width: 80vw;
             margin-left: 13vw !important;

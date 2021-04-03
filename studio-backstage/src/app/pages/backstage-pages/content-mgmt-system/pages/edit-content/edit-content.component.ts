@@ -105,15 +105,23 @@ export class EditContentComponent implements OnInit {
     if (!confirm('確定要儲存草稿嗎?')) {
       return;
     }
-    if (this.FirebaseModel.Content === undefined || this.FirebaseModel.Name === undefined) {
-      this._MatDialogConfig.data = "必填請務必填寫";
-      this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+
+    // 最後決定不卡驗證
+    // if (this.FirebaseModel.Content === undefined || this.FirebaseModel.Name === undefined) {
+    //   this._MatDialogConfig.data = "必填請務必填寫";
+    //   this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+    // } else {
+    //   if (this.Key != undefined) {
+    //     this.Update();
+    //   } else {
+    //     this.Add();
+    //   }
+    // }
+
+    if (this.Key != undefined) {
+      this.Update();
     } else {
-      if (this.Key != undefined) {
-        this.Update();
-      } else {
-        this.Add();
-      }
+      this.Add();
     }
   }
 
@@ -219,9 +227,9 @@ export class EditContentComponent implements OnInit {
 
   }
 
-  @HostListener('window:unload') unload(event: any) {
+  // @HostListener('window:unload') unload(event: any) {
 
-    this.Update();
+  //   this.Update();
 
-  }
+  // }
 }

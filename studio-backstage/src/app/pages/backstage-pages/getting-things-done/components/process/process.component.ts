@@ -128,6 +128,9 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
       return actions.map(a => {
         const data = a.payload.doc.data() as FirebaseModel;
         const id = a.payload.doc.id;
+        if (data.Content != undefined) {
+          data.Content = data.Content.substr(0, 10) + "...";
+        }
         // 值得注意的是底下 ... es6 語法只能複製一層 obj ，無法複製 obj 內的 obj，可能到時要改
         return { id, ...data };
       });

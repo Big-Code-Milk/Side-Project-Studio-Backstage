@@ -132,33 +132,35 @@ export class CollectComponent extends BaseComponent implements OnInit {
     this.Tags.push('未處理');
     this.FirebaseModel.Status = "";
     this.FirebaseModel.Tags = [... new Set(this.Tags)];
-    if (this.FirebaseModel.Content === undefined || this.FirebaseModel.Name === undefined) {
-      this._MatDialogConfig.data = "必填請務必填寫";
+
+    // 不卡驗證可填空單
+    // if (this.FirebaseModel.Content === undefined || this.FirebaseModel.Name === undefined) {
+    //   this._MatDialogConfig.data = "必填請務必填寫";
+    //   this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+    // } else {
+    // 儲存至 FireStore 之後這裡要多做一層，因為 firebase 只吃無型別資料...
+    // Function addDoc() called with invalid data. Data must be an object, but it was: a custom object
+    let _Collection = this._FireStorageHelper.GetFireCollection<FirebaseModel>('Task');
+    let JSONString = JSON.stringify(this.FirebaseModel);
+    let Obj = JSON.parse(JSONString);
+    _Collection.add(Obj).catch(error => {
+      this._MatDialogConfig.data = error;
       this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
-    } else {
-      // 儲存至 FireStore 之後這裡要多做一層，因為 firebase 只吃無型別資料...
-      // Function addDoc() called with invalid data. Data must be an object, but it was: a custom object
-      let _Collection = this._FireStorageHelper.GetFireCollection<FirebaseModel>('Task');
-      let JSONString = JSON.stringify(this.FirebaseModel);
-      let Obj = JSON.parse(JSONString);
-      _Collection.add(Obj).catch(error => {
-        this._MatDialogConfig.data = error;
-        this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
-      }).then(success => {
-        // this._MatDialogConfig.data = "success";
-        // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
-        // setTimeout(function () { window.location.reload(); }, 3000);
-        this.FirebaseModel = new FirebaseModel();
-        this.Tags = [];
-        const Today = new Date();
-        const TodayAdd7days = dayjs(Today).add(7, 'day').toDate();
-        this.Term = new FormGroup({
-          start: new FormControl(Today),
-          end: new FormControl(TodayAdd7days)
-        });
-        this._SnackBarHelper.OpenSnackBar('操作成功!');
+    }).then(success => {
+      // this._MatDialogConfig.data = "success";
+      // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+      // setTimeout(function () { window.location.reload(); }, 3000);
+      this.FirebaseModel = new FirebaseModel();
+      this.Tags = [];
+      const Today = new Date();
+      const TodayAdd7days = dayjs(Today).add(7, 'day').toDate();
+      this.Term = new FormGroup({
+        start: new FormControl(Today),
+        end: new FormControl(TodayAdd7days)
       });
-    }
+      this._SnackBarHelper.OpenSnackBar('操作成功!');
+    });
+    // }
   }
 
 }
