@@ -266,6 +266,7 @@ export class OrganizeComponent implements OnInit {
 
   // https://segmentfault.com/a/1190000022905212
   // https://blog.cwlove.idv.tw/js-event-close-tab-browser-beacon-api/
+  // 不管在事件函式的哪都會觸發 ...
   @HostListener('window:beforeunload') BeforeunloadHandler(event: any) {
 
     this.FirebaseModel.Status = '';
