@@ -269,34 +269,34 @@ export class OrganizeComponent implements OnInit {
   @HostListener('window:beforeunload') BeforeunloadHandler(event: any) {
 
     this.FirebaseModel.Status = '';
-    this.UploadData('ShutDownAutoSave');
+    this.UploadData('AutoActive');
 
-    (event || window.event).returnValue = "";
+    (event || window.event).returnValue = "必須給值才會彈窗";
     (event || window.event).preventDefault();
     // 这里写关闭时需要处理的时间，刷新也会执行这里的方法
-    return '';
+    return '必須給值才會彈窗';
 
   }
 
   @HostListener('window:onbeforeunload') onBeforeunloadHandler(event: any) {
 
     this.FirebaseModel.Status = '';
-    this.UploadData('ShutDownAutoSave');
+    this.UploadData('AutoActive');
 
-    (event || window.event).returnValue = "";
+    (event || window.event).returnValue = "必須給值才會彈窗";
     (event || window.event).preventDefault();
-    return '';
+    return '必須給值才會彈窗';
 
   }
 
   @HostListener('document:visibilitychange') visibilitychange(event: any) {
 
     this.FirebaseModel.Status = '';
-    this.UploadData('ShutDownAutoSave');
+    this.UploadData('AutoActive');
 
-    (event || window.event).returnValue = "";
+    (event || window.event).returnValue = "必須給值才會彈窗";
     (event || window.event).preventDefault();
-    return '';
+    return '必須給值才會彈窗';
 
   }
 

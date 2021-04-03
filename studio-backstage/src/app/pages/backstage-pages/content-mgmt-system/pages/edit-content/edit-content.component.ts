@@ -119,9 +119,9 @@ export class EditContentComponent implements OnInit {
     // }
 
     if (this.Key != undefined) {
-      this.Update();
+      this.Update('SubmitButton');
     } else {
-      this.Add();
+      this.Add('SubmitButton');
     }
   }
 
@@ -139,7 +139,7 @@ export class EditContentComponent implements OnInit {
     });
   }
 
-  Add() {
+  Add(UploadType: string) {
     this.FirebaseModel.Status = "草稿";
     this.FirebaseModel.Content = this.HTMLContent;
     this.FirebaseModel.MarkdownContent = this.MarkdownContent;
@@ -156,12 +156,14 @@ export class EditContentComponent implements OnInit {
       this.FirebaseModel = new FirebaseModel();
       this.Tags = [];
       this.FirebaseModel.StartDate = new Date();
-      this._SnackBarHelper.OpenSnackBar('操作成功!');
-      this._Router.navigate(['dashboard/pages/contentmgmt']);
+      if (UploadType == 'SubmitButton') {
+        this._SnackBarHelper.OpenSnackBar('操作成功!');
+        this._Router.navigate(['dashboard/pages/contentmgmt']);
+      }
     });
   }
 
-  Update() {
+  Update(UploadType: string) {
     this.FirebaseModel.Status = "草稿";
     this.FirebaseModel.Content = this.HTMLContent;
     this.FirebaseModel.MarkdownContent = this.MarkdownContent;
@@ -178,9 +180,10 @@ export class EditContentComponent implements OnInit {
       // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
       // this.IsEdit = false;
 
-      this._Router.navigate(['dashboard/']);
-      this._SnackBarHelper.OpenSnackBar('操作成功!');
-      this._Router.navigate(['dashboard/pages/contentmgmt']);
+      if (UploadType == 'SubmitButton') {
+        this._SnackBarHelper.OpenSnackBar('操作成功!');
+        this._Router.navigate(['dashboard/pages/contentmgmt']);
+      }
 
     });
   }
@@ -192,7 +195,7 @@ export class EditContentComponent implements OnInit {
     // console.log('_SessionStorage', _SessionStorage);
     if (this.FirebaseModel.Status == '編輯中') {
       this.FirebaseModel.Status = '草稿';
-      this.Update();
+      this.Update('AutoActive');
       // sessionStorage.removeItem('Editing');
     }
   }
@@ -203,28 +206,28 @@ export class EditContentComponent implements OnInit {
 
     console.log('beforeunload');
 
-    (event || window.event).returnValue = "";
+    (event || window.event).returnValue = "必須給值才會彈窗";
     (event || window.event).preventDefault();
     // 这里写关闭时需要处理的时间，刷新也会执行这里的方法
     if (this.Key != undefined) {
-      this.Update();
+      this.Update('AutoActive');
     } else {
-      this.Add();
+      this.Add('AutoActive');
     }
-    return '';
+    return '必須給值才會彈窗';
 
   }
 
   @HostListener('window:onbeforeunload') onBeforeunloadHandler(event: any) {
     console.log('onbeforeunload');
-    (event || window.event).returnValue = "";
+    (event || window.event).returnValue = "必須給值才會彈窗";
     (event || window.event).preventDefault();
     if (this.Key != undefined) {
-      this.Update();
+      this.Update('AutoActive');
     } else {
-      this.Add();
+      this.Add('AutoActive');
     }
-    return '';
+    return '必須給值才會彈窗';
 
   }
 
@@ -232,14 +235,14 @@ export class EditContentComponent implements OnInit {
 
     console.log('visibilitychange');
 
-    (event || window.event).returnValue = "";
+    (event || window.event).returnValue = "必須給值才會彈窗";
     (event || window.event).preventDefault();
     if (this.Key != undefined) {
-      this.Update();
+      this.Update('AutoActive');
     } else {
-      this.Add();
+      this.Add('AutoActive');
     }
-    return '';
+    return '必須給值才會彈窗';
 
   }
 
