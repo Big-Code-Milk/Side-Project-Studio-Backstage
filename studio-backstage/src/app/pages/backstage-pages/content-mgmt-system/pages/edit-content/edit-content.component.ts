@@ -160,6 +160,12 @@ export class EditContentComponent implements OnInit {
       this.FirebaseModel = new FirebaseModel();
       this.Tags = [];
       this.FirebaseModel.StartDate = new Date();
+
+      let Tags: any = this.FirebaseModel.Tags;
+      if (Tags.length > 0) {
+        this._TagsHelper.ReSetTags(Tags);
+      }
+
       this._SnackBarHelper.OpenSnackBar('操作成功!');
       if (UploadType == 'SubmitButton') {
         this._Router.navigate(['dashboard/pages/contentmgmt']);
@@ -183,6 +189,11 @@ export class EditContentComponent implements OnInit {
       // this._MatDialogConfig.data = "success";
       // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
       // this.IsEdit = false;
+
+      let Tags: any = this.FirebaseModel.Tags;
+      if (Tags.length > 0) {
+        this._TagsHelper.ReSetTags(Tags);
+      }
 
       this._SnackBarHelper.OpenSnackBar('操作成功!');
       if (UploadType == 'SubmitButton') {

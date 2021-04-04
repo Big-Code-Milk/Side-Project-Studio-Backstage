@@ -159,6 +159,12 @@ export class CollectComponent extends BaseComponent implements OnInit {
       // this._MatDialogConfig.data = "success";
       // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
       // setTimeout(function () { window.location.reload(); }, 3000);
+
+      let Tags: any = this.FirebaseModel.Tags;
+      if (Tags.length > 0) {
+        this._TagsHelper.ReSetTags(Tags);
+      }
+
       this.FirebaseModel = new FirebaseModel();
       this.Tags = [];
       const Today = new Date();
@@ -167,6 +173,7 @@ export class CollectComponent extends BaseComponent implements OnInit {
         start: new FormControl(Today),
         end: new FormControl(TodayAdd7days)
       });
+
       this._SnackBarHelper.OpenSnackBar('操作成功!');
     });
     // }

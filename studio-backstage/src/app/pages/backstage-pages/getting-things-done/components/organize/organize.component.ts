@@ -158,6 +158,11 @@ export class OrganizeComponent implements OnInit {
       // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
       // this.IsEdit = false;
 
+      let Tags: any = this.FirebaseModel.Tags;
+      if (Tags.length > 0) {
+        this._TagsHelper.ReSetTags(Tags);
+      }
+
       this._SnackBarHelper.OpenSnackBar('操作成功!');
 
       if (UploadType == 'SubmitButton') {
