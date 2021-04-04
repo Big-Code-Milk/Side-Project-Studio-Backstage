@@ -25,7 +25,7 @@ export class TagsHelperService {
         );
         // 不重複的
         NewAddTags.forEach((x: any) => {
-          FilterTags.push(x);
+          FilterTags.unshift(x);
         });
         _Subscribe.unsubscribe();
         // console.log('FilterTags', FilterTags);

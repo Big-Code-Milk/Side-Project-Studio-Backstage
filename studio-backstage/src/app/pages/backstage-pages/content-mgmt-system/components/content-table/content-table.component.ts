@@ -76,6 +76,9 @@ export class ContentTableComponent implements OnInit {
         const id = a.payload.doc.id;
         // 值得注意的是底下 ... es6 語法只能複製一層 obj ，無法複製 obj 內的 obj，可能到時要改
         // console.log('data', data);
+        if (data.Summary != undefined) {
+          data.Summary = data.Summary.substr(0, 10);
+        }
         return { id, ...data };
       });
     })
