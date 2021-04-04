@@ -229,18 +229,6 @@ export class OrganizeComponent implements OnInit {
     // }
   }
 
-  // 銷毀元件
-  ngOnDestroy() {
-    // console.log('ngOnDestroy');
-    var _SessionStorage = sessionStorage.getItem('Editing');
-    // console.log('_SessionStorage', _SessionStorage);
-    if (this.FirebaseModel.Status == '編輯中' && _SessionStorage == this.Key) {
-      this.FirebaseModel.Status = '';
-      this.UploadData('TurnOnEditModeButton');
-      sessionStorage.removeItem('Editing');
-    }
-  }
-
   TurnOnEditMode() {
     // 2021-0324 Issue 有人先進入任務詳細頁則用狀態編輯中鎖住頁面不給編輯，除非開啟共同編輯狀態，防止 Firebase 存取爆表
     // 首次進入時確認狀態不是編輯中，否則將狀態改為編輯中，銷毀元件時移除狀態
@@ -270,12 +258,24 @@ export class OrganizeComponent implements OnInit {
 
   }
 
+  // 銷毀元件
+  ngOnDestroy() {
+    // console.log('ngOnDestroy');
+    var _SessionStorage = sessionStorage.getItem('Editing');
+    // console.log('_SessionStorage', _SessionStorage);
+    if (this.FirebaseModel.Status == '編輯中' && _SessionStorage == this.Key) {
+      this.FirebaseModel.Status = '';
+      this.UploadData('TurnOnEditModeButton');
+      sessionStorage.removeItem('Editing');
+    }
+  }
+
   // https://segmentfault.com/a/1190000022905212
   // https://blog.cwlove.idv.tw/js-event-close-tab-browser-beacon-api/
   // 不管在事件函式的哪都會觸發 ...
   @HostListener('window:beforeunload') BeforeunloadHandler(event: any) {
-
-    if (this.FirebaseModel.Status == '編輯中') {
+    var _SessionStorage = sessionStorage.getItem('Editing');
+    if (this.FirebaseModel.Status == '編輯中' && _SessionStorage == this.Key) {
       this.FirebaseModel.Status = '';
       this.UploadData('AutoActive');
     }
@@ -287,8 +287,8 @@ export class OrganizeComponent implements OnInit {
   }
 
   @HostListener('window:onbeforeunload') onBeforeunloadHandler(event: any) {
-
-    if (this.FirebaseModel.Status == '編輯中') {
+    var _SessionStorage = sessionStorage.getItem('Editing');
+    if (this.FirebaseModel.Status == '編輯中' && _SessionStorage == this.Key) {
       this.FirebaseModel.Status = '';
       this.UploadData('AutoActive');
     }
@@ -299,8 +299,8 @@ export class OrganizeComponent implements OnInit {
   }
 
   @HostListener('document:visibilitychange') visibilitychange(event: any) {
-
-    if (this.FirebaseModel.Status == '編輯中') {
+    var _SessionStorage = sessionStorage.getItem('Editing');
+    if (this.FirebaseModel.Status == '編輯中' && _SessionStorage == this.Key) {
       this.FirebaseModel.Status = '';
       this.UploadData('AutoActive');
     }
