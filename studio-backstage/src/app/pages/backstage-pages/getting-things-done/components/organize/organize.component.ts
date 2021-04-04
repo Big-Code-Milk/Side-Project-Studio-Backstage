@@ -213,11 +213,15 @@ export class OrganizeComponent implements OnInit {
     var _Document = this._FireStorageHelper.GetFireDocument('Task/' + this.Key);
     _Document.valueChanges().subscribe((Param: any) => {
       // console.log('Param', Param);
+
+      this.Term = new FormGroup({
+        start: new FormControl(Param.StartDate),
+        end: new FormControl(Param.EndDate)
+      });
+
       this.FirebaseModel.Content = Param.Content;
       this.FirebaseModel.Name = Param.Name;
-      this.Term.value.start = Param.StartDate;
       this.FirebaseModel.StartDate = Param.StartDate;
-      this.Term.value.end = Param.EndDate;
       this.FirebaseModel.EndDate = Param.EndDate;
       this.FirebaseModel.DeadLine = Param.DeadLine;
       this.Tags = Param.Tags;

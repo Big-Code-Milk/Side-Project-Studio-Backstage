@@ -17,7 +17,7 @@ export class TagsHelperService {
     if (NewAddTags.length > 0) {
       let ResponseTags = this._FireStorageHelper.GetFireObject('SystemInfo');
       let _Subscribe: any = ResponseTags.valueChanges().subscribe((elements: any) => {
-        let NowTags = JSON.parse(elements);
+        let NowTags = JSON.parse(elements) || [];
         let FilterTags = NowTags.filter(
           (element: any) => {
             return (NewAddTags.indexOf(element) == -1);

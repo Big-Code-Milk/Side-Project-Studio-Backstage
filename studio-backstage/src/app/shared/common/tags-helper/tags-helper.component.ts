@@ -31,7 +31,7 @@ export class TagsHelperComponent implements OnInit {
     var Subscribe = this._TagsHelper.GetTagsSubscribe().subscribe((x: any) => {
       this.Tags = JSON.parse(x);
       // console.log('this.Tags', this.Tags);
-      // Subscribe.unsubscribe();
+      Subscribe.unsubscribe();
     });
 
   }

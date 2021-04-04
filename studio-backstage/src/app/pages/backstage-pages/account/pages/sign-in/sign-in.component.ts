@@ -21,6 +21,7 @@ import UserInfoLog from '../../../../../shared/models/user-info-log';
 import { EnumSignInInfoState } from '../../../../../shared/enum/enum-user-info-log-state';
 import * as dayjs from 'dayjs';
 import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
+import { SignInImgStickerHelperService } from 'src/app/shared/common/sign-in-img-sticker-helper/sign-in-img-sticker-helper.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -41,7 +42,8 @@ export class SignInComponent implements OnInit {
     private _DialogHelper: DialogHelperService,
     private _Router: Router,
     private _FireStorageHelper: FireStorageHelperService,
-    private _SnackBarHelper: SnackBarHelperService
+    private _SnackBarHelper: SnackBarHelperService,
+    private _SignInImgStickerHelper: SignInImgStickerHelperService,
   ) {
 
   }
@@ -79,6 +81,9 @@ export class SignInComponent implements OnInit {
         if (SignModel == 'ButtonSignIn') {
           this.CheckRememberMe();
         }
+
+        // 在線使用者
+        this._SignInImgStickerHelper.Online([value.user.email]);
 
         // 轉移網址
         this._Router.navigate(['/dashboard/']);

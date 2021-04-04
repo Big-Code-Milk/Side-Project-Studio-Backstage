@@ -43,8 +43,8 @@ export class SideNavComponent implements OnInit {
 
   // 存常用功能
   MatAccordionOnClick(Event: any) {
-    console.log('Event', Event);
-    console.log('Event', Event.path[1].href);
+    // console.log('Event', Event);
+    // console.log('Event', Event.path[1].href);
     // console.log('Event', Event.target.innerText);
     let _href = Event.path[1].href;
     let _innerText = Event.path[1].innerText;
@@ -54,7 +54,7 @@ export class SideNavComponent implements OnInit {
       let _SideNavTemp = localStorage.getItem('SideNavTemp');
       // console.log('_SideNavTemp', _SideNavTemp);
       if (_SideNavTemp != null) {
-        SideNavTemp = JSON.parse(_SideNavTemp);
+        SideNavTemp = JSON.parse(_SideNavTemp) || [];
         let ArrayText = [_innerText];
         SideNavTemp = SideNavTemp.filter((element: any) => {
           return ArrayText.indexOf(element.NickName) == -1
