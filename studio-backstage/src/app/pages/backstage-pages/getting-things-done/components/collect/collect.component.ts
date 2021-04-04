@@ -14,6 +14,7 @@ import { MatDialogConfig } from '@angular/material/dialog';
 import { FireStorageHelperService } from '../../../../../shared/common/fire-storage-helper/fire-storage-helper.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EnumComponentType } from 'src/app/shared/enum/enum-component-type';
+import { TagsHelperService } from 'src/app/shared/common/tags-helper/tags-helper.service';
 
 @Component({
   selector: 'app-collect [ComponentType]',
@@ -33,9 +34,12 @@ export class CollectComponent extends BaseComponent implements OnInit {
     private _ActivatedRoute: ActivatedRoute,
     private _Router: Router,
     private _SnackBarHelper: SnackBarHelperService,
+    private _TagsHelper: TagsHelperService,
   ) {
 
     super();
+
+    this.TagsInit();
 
     const Today = new Date();
     const TodayAdd7days = dayjs(Today).add(7, 'day').toDate();
@@ -47,6 +51,7 @@ export class CollectComponent extends BaseComponent implements OnInit {
 
     // Rxjs 應用 (這裡已經到進階應用了寫完 GTD 再來詳細看) KeyWord AG大師 & Rxjs
     // 這段目的是藉由管道(pipe)排除輸入空白
+    // 20210404 後來實作真正的動態 Tag 發現這裡有一段非同步利用到 pipe 的方式，大概是在判斷及時輸入時同步輸入的內容...
     this._FilteredTags = this._FormControl.valueChanges.pipe(
       startWith(null),
       map((parameter: string | null) => parameter ? this._filter(parameter) : this.allFruits.slice()));
@@ -56,6 +61,7 @@ export class CollectComponent extends BaseComponent implements OnInit {
   ProcessBtn: string = "";
   Key: string = "";
   ngOnInit(): void {
+
     this.Key = this._ActivatedRoute.snapshot.params['key'];
 
     switch (this.ComponentType) {
@@ -78,9 +84,12 @@ export class CollectComponent extends BaseComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   // FormControl 應用 https://angular.tw/api/forms/FormControl
   _FormControl = new FormControl();
+  // 20210404 後來實作真正的動態 Tag 發現這裡有一段非同步利用到 pipe 的方式，大概是在判斷及時輸入時同步輸入的內容...
+  // _FilteredTags: Observable<string[]>; 前端為 mat-option *ngFor="let Tag of _FilteredTags|async" [value]="Tag"
   _FilteredTags: Observable<string[]>;
   Tags: string[] = [];
-  allFruits: string[] = ['工作室', '行銷', '架構', '技術', '業務'];
+  // allFruits: string[] = ['工作室',etc...];
+  allFruits: string[] = [];
 
   // ViewChild 應用參考 https://www.itread01.com/content/1544339826.html
   @ViewChild('TagInput') TagInput: ElementRef<HTMLInputElement>;
@@ -163,5 +172,11 @@ export class CollectComponent extends BaseComponent implements OnInit {
     // }
   }
 
+  TagsInit() {
+    var Subscribe = this._TagsHelper.GetTagsSubscribe().subscribe((x: any) => {
+      this.allFruits = JSON.parse(x);
+      Subscribe.unsubscribe();
+    });
+  }
 }
 

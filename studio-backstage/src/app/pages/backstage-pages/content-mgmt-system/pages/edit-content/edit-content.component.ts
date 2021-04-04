@@ -14,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
 import { MatDialogConfig } from '@angular/material/dialog';
 import * as dayjs from 'dayjs';
+import { TagsHelperService } from 'src/app/shared/common/tags-helper/tags-helper.service';
 
 @Component({
   selector: 'app-edit-content',
@@ -31,7 +32,8 @@ export class EditContentComponent implements OnInit {
   _FormControl = new FormControl();
   separatorKeysCodes: number[] = [ENTER, COMMA];
   _FilteredTags: Observable<string[]>;
-  allTags: string[] = ['工作室', '行銷', '架構', '技術', '業務'];
+  // allTags: string[] = ['工作室', etc...];
+  allTags: string[] = [];
 
   Key: string
   constructor(
@@ -40,6 +42,7 @@ export class EditContentComponent implements OnInit {
     private _ActivatedRoute: ActivatedRoute,
     private _Router: Router,
     private _SnackBarHelper: SnackBarHelperService,
+    private _TagsHelper: TagsHelperService,
   ) {
     this.Key = this._ActivatedRoute.snapshot.params['key'];
     this._FilteredTags = this._FormControl.valueChanges.pipe(
@@ -49,6 +52,7 @@ export class EditContentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.TagsInit();
     // console.log('this.Key', this.Key);
     if (this.Key != undefined) {
       this.DataInit();
@@ -254,4 +258,11 @@ export class EditContentComponent implements OnInit {
   //   this.Update();
 
   // }
+
+  TagsInit() {
+    var Subscribe = this._TagsHelper.GetTagsSubscribe().subscribe((x: any) => {
+      this.allTags = JSON.parse(x);
+      Subscribe.unsubscribe();
+    });
+  }
 }

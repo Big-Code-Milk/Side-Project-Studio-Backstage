@@ -46,7 +46,7 @@
                             <input placeholder="選擇或創建類別..." #TagInput [formControl]="_FormControl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
                         </mat-chip-list>
                         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                            <mat-option *ngFor="let Tag of _FilteredTags | async" [value]="Tag">
+                            <mat-option *ngFor="let Tag of _FilteredTags|async" [value]="Tag">
                                 {{Tag}}
                             </mat-option>
                         </mat-autocomplete>

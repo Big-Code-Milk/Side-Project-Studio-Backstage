@@ -9,7 +9,7 @@ import { TagsHelperService } from './tags-helper.service';
 export class TagsHelperComponent implements OnInit {
 
   constructor(
-    public _TagsHelperService: TagsHelperService,
+    public _TagsHelper: TagsHelperService,
   ) {
 
   }
@@ -28,7 +28,7 @@ export class TagsHelperComponent implements OnInit {
     //   Subscribe.unsubscribe();
     // });
 
-    var Subscribe = this._TagsHelperService.GetTagsSubscribe().subscribe((x: any) => {
+    var Subscribe = this._TagsHelper.GetTagsSubscribe().subscribe((x: any) => {
       this.Tags = JSON.parse(x);
       // console.log('this.Tags', this.Tags);
       // Subscribe.unsubscribe();
@@ -41,7 +41,7 @@ export class TagsHelperComponent implements OnInit {
   Add() {
     // console.log('NewTag', this.NewTag);
     if (this.NewTag != undefined, this.NewTag.length > 0) {
-      this._TagsHelperService.ReSetTags([this.NewTag]);
+      this._TagsHelper.ReSetTags([this.NewTag]);
     }
   }
 

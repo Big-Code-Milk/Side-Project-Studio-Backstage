@@ -16,6 +16,7 @@ import { FireStorageHelperService } from '../../../../../shared/common/fire-stor
 import { CKEditorComponent } from 'ng2-ckeditor';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EnumComponentType } from '../../../../../shared/enum/enum-component-type';
+import { TagsHelperService } from 'src/app/shared/common/tags-helper/tags-helper.service';
 
 @Component({
   selector: 'app-organize [TableType]',
@@ -34,6 +35,7 @@ export class OrganizeComponent implements OnInit {
     private _ActivatedRoute: ActivatedRoute,
     private _Router: Router,
     private _SnackBarHelper: SnackBarHelperService,
+    private _TagsHelper: TagsHelperService,
   ) {
     const Today = new Date();
     const TodayAdd7days = dayjs(Today).add(7, 'day').toDate();
@@ -54,6 +56,8 @@ export class OrganizeComponent implements OnInit {
   ComponentType: EnumComponentType;
   Key: string
   ngOnInit(): void {
+    this.TagsInit();
+
     this.ComponentType = this._ActivatedRoute.snapshot.params['ComponentType'];
     this.Key = this._ActivatedRoute.snapshot.params['key'];
 
@@ -68,7 +72,8 @@ export class OrganizeComponent implements OnInit {
   _FormControl = new FormControl();
   _FilteredTags: Observable<string[]>;
   Tags: string[] = [];
-  allTags: string[] = ['工作室', '行銷', '架構', '技術', '業務'];
+  // allTags: string[] = ['工作室',etc...];
+  allTags: string[] = [];
 
   // ViewChild 應用參考 https://www.itread01.com/content/1544339826.html
   @ViewChild('TagInput') TagInput: ElementRef<HTMLInputElement>;
@@ -308,4 +313,11 @@ export class OrganizeComponent implements OnInit {
   //   this.UploadData('ShutDownAutoSave');
 
   // }
+
+  TagsInit() {
+    var Subscribe = this._TagsHelper.GetTagsSubscribe().subscribe((x: any) => {
+      this.allTags = JSON.parse(x);
+      Subscribe.unsubscribe();
+    });
+  }
 }
