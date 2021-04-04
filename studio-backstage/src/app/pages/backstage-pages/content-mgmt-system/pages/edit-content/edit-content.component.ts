@@ -255,9 +255,7 @@ export class EditContentComponent implements OnInit {
     console.log('this.FirebaseModel.Name', this.FirebaseModel.Name);
     if (this.FirebaseModel.Name != undefined) {// 必須要有值才能去存不然會存一堆怪異的空文章
       if (this.Key != undefined) {
-        this.Update('AutoActive');
-      } else {
-        this.Add('AutoActive');
+        this.UpdateStatus();
       }
     }
 
@@ -280,4 +278,27 @@ export class EditContentComponent implements OnInit {
       Subscribe.unsubscribe();
     });
   }
+
+  UpdateStatus() {
+
+    this.FirebaseModel.Status = "草稿";
+    var _Document = this._FireStorageHelper.GetFireDocument('Article/' + this.Key);
+    let JSONStringUpdate = JSON.stringify(this.FirebaseModel);
+    let ObjUpdate = JSON.parse(JSONStringUpdate);
+    var _Update = _Document.update(ObjUpdate).catch(error => {
+      this._MatDialogConfig.data = error;
+      this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+    }).then(success => {
+
+      let Tags: any = this.FirebaseModel.Tags;
+      if (Tags.length > 0) {
+        this._TagsHelper.ReSetTags(Tags);
+      }
+
+      this._SnackBarHelper.OpenSnackBar('操作成功!');
+      this._Router.navigate(['dashboard/pages/contentmgmt']);
+
+    });
+  }
+
 }
