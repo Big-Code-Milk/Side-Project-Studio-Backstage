@@ -1,1 +1,8 @@
-<p>sign-in-img-sticker-helper works!</p>
+<ng-container *ngFor="let User of OnlineUsers">
+    <!-- https://stackoverflow.com/questions/37686772/angular-2-hover-event -->
+    <button (mouseenter)="mouseEnter('div a') " (mouseleave)="mouseLeave('div a')" mat-icon-button class="example-icon header-img" aria-label="Example icon-button with share icon">
+    <i class="material-icons">face</i>
+    <!-- [ngStyle]="{'color':getRandomColor()}" -->
+  </button>
+    <div [class]="FakeAlt">{{User}}</div>
+</ng-container>

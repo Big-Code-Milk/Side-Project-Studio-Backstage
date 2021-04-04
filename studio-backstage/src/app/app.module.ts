@@ -29,13 +29,11 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { OnStageLayoutModule } from './pages/onstage-pages/components/layout/layout.module';
 import { BackStageLayoutModule } from './pages/backstage-pages/components/layout/layout.module';
 import { TagsHelperComponent } from './shared/common/tags-helper/tags-helper.component';
-import { SignInImgStickerHelperComponent } from './shared/common/sign-in-img-sticker-helper/sign-in-img-sticker-helper.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TagsHelperComponent,
-    SignInImgStickerHelperComponent,
   ],
   imports: [
     BrowserModule,

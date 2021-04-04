@@ -15,11 +15,29 @@ export class SignInImgStickerHelperComponent implements OnInit {
   OnlineUsers: any;
 
   ngOnInit(): void {
-    let Subscribe = this._FireStorageHelper.GetFireObject('SystemInfo').valueChanges().subscribe((x: any) => {
+    let Subscribe = this._FireStorageHelper.GetFireObject('OnlineUsers').valueChanges().subscribe((x: any) => {
       this.OnlineUsers = JSON.parse(x);
       console.log('this.OnlineUsers', this.OnlineUsers);
       Subscribe.unsubscribe();
     });
   }
 
+  FakeAlt: string = "Hided";
+
+  mouseEnter(div: string) {
+    // console.log("mouse enter : " + div);
+    this.FakeAlt = "Actived";
+  }
+
+  mouseLeave(div: string) {
+    // console.log('mouse leave :' + div);
+    this.FakeAlt = "Hided";
+  }
+
+  // 隨機取 rgb 字串
+  getRandomColor() {
+    var rgb = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ')';
+    // console.log(rgb);
+    return rgb;
+  }
 }

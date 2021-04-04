@@ -22,6 +22,7 @@ import { GetStartedComponent } from './get-started/get-started.component';
 import { ImgurComponent } from './imgur/imgur.component';
 import { UsefulLinksTreeComponent } from './useful-links-tree/useful-links-tree.component';
 import { LinktreeMgmtComponent } from './linktree-mgmt/linktree-mgmt.component';
+import { SignInImgStickerHelperComponent } from 'src/app/shared/common/sign-in-img-sticker-helper/sign-in-img-sticker-helper.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { LinktreeMgmtComponent } from './linktree-mgmt/linktree-mgmt.component';
     ImgurComponent,
     UsefulLinksTreeComponent,
     LinktreeMgmtComponent,
+    SignInImgStickerHelperComponent,
   ],
   providers: [
     FireStorageHelperService
@@ -63,6 +65,7 @@ import { LinktreeMgmtComponent } from './linktree-mgmt/linktree-mgmt.component';
     GetStartedComponent,
     ImgurComponent,
     UsefulLinksTreeComponent,
+    SignInImgStickerHelperComponent,
   ]
 })
 export class BackStageLayoutModule {
