@@ -275,9 +275,10 @@ export class OrganizeComponent implements OnInit {
   // 不管在事件函式的哪都會觸發 ...
   @HostListener('window:beforeunload') BeforeunloadHandler(event: any) {
 
-    this.FirebaseModel.Status = '';
-    this.UploadData('AutoActive');
-
+    if (this.FirebaseModel.Status == '編輯中') {
+      this.FirebaseModel.Status = '';
+      this.UploadData('AutoActive');
+    }
     (event || window.event).returnValue = "必須給值才會彈窗";
     (event || window.event).preventDefault();
     // 这里写关闭时需要处理的时间，刷新也会执行这里的方法
@@ -287,9 +288,10 @@ export class OrganizeComponent implements OnInit {
 
   @HostListener('window:onbeforeunload') onBeforeunloadHandler(event: any) {
 
-    this.FirebaseModel.Status = '';
-    this.UploadData('AutoActive');
-
+    if (this.FirebaseModel.Status == '編輯中') {
+      this.FirebaseModel.Status = '';
+      this.UploadData('AutoActive');
+    }
     (event || window.event).returnValue = "必須給值才會彈窗";
     (event || window.event).preventDefault();
     return '必須給值才會彈窗';
@@ -298,9 +300,10 @@ export class OrganizeComponent implements OnInit {
 
   @HostListener('document:visibilitychange') visibilitychange(event: any) {
 
-    this.FirebaseModel.Status = '';
-    this.UploadData('AutoActive');
-
+    if (this.FirebaseModel.Status == '編輯中') {
+      this.FirebaseModel.Status = '';
+      this.UploadData('AutoActive');
+    }
     (event || window.event).returnValue = "必須給值才會彈窗";
     (event || window.event).preventDefault();
     return '必須給值才會彈窗';
