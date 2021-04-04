@@ -158,14 +158,16 @@ export class OrganizeComponent implements OnInit {
       // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
       // this.IsEdit = false;
 
-      let Tags: any = this.FirebaseModel.Tags;
-      if (Tags.length > 0) {
-        this._TagsHelper.ReSetTags(Tags);
-      }
-
-      this._SnackBarHelper.OpenSnackBar('操作成功!');
+      console.log('UploadType', UploadType);
 
       if (UploadType == 'SubmitButton') {
+
+        let Tags: any = this.FirebaseModel.Tags;
+        if (Tags.length > 0) {
+          this._TagsHelper.ReSetTags(Tags);
+        }
+
+        this._SnackBarHelper.OpenSnackBar('操作成功!');
         this._Router.navigate(['dashboard/']);
       }
 
@@ -206,6 +208,7 @@ export class OrganizeComponent implements OnInit {
   }
 
   DataInit() {
+
     // https://blog.kevinyang.net/2018/04/30/angular-firebase/
     var _Document = this._FireStorageHelper.GetFireDocument('Task/' + this.Key);
     _Document.valueChanges().subscribe((Param: any) => {
@@ -265,7 +268,9 @@ export class OrganizeComponent implements OnInit {
 
   // 銷毀元件
   ngOnDestroy() {
-    // console.log('ngOnDestroy');
+
+    console.log('ngOnDestroy');
+
     var _SessionStorage = sessionStorage.getItem('Editing');
     // console.log('_SessionStorage', _SessionStorage);
     if (this.FirebaseModel.Status == '編輯中' && _SessionStorage == this.Key) {
@@ -279,6 +284,9 @@ export class OrganizeComponent implements OnInit {
   // https://blog.cwlove.idv.tw/js-event-close-tab-browser-beacon-api/
   // 不管在事件函式的哪都會觸發 ...
   @HostListener('window:beforeunload') BeforeunloadHandler(event: any) {
+
+    console.log('beforeunload');
+
     var _SessionStorage = sessionStorage.getItem('Editing');
     if (this.FirebaseModel.Status == '編輯中' && _SessionStorage == this.Key) {
       this.FirebaseModel.Status = '';
@@ -292,6 +300,9 @@ export class OrganizeComponent implements OnInit {
   }
 
   @HostListener('window:onbeforeunload') onBeforeunloadHandler(event: any) {
+
+    console.log('onbeforeunload');
+
     var _SessionStorage = sessionStorage.getItem('Editing');
     if (this.FirebaseModel.Status == '編輯中' && _SessionStorage == this.Key) {
       this.FirebaseModel.Status = '';
@@ -304,6 +315,9 @@ export class OrganizeComponent implements OnInit {
   }
 
   @HostListener('document:visibilitychange') visibilitychange(event: any) {
+
+    console.log('visibilitychange');
+
     var _SessionStorage = sessionStorage.getItem('Editing');
     if (this.FirebaseModel.Status == '編輯中' && _SessionStorage == this.Key) {
       this.FirebaseModel.Status = '';
@@ -311,6 +325,7 @@ export class OrganizeComponent implements OnInit {
     }
     (event || window.event).returnValue = "必須給值才會彈窗";
     (event || window.event).preventDefault();
+
     return '必須給值才會彈窗';
 
   }

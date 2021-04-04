@@ -43,11 +43,11 @@ export class SideNavComponent implements OnInit {
 
   // 存常用功能
   MatAccordionOnClick(Event: any) {
-    // console.log('Event', Event);
-    // console.log('Event', Event.target.href);
+    console.log('Event', Event);
+    console.log('Event', Event.path[1].href);
     // console.log('Event', Event.target.innerText);
-    let _href = Event.target.href;
-    let _innerText = Event.target.innerText;
+    let _href = Event.path[1].href;
+    let _innerText = Event.path[1].innerText;
     if (_href != undefined && _innerText != undefined) {
       // 取出來篩選掉重複的再存進去
       let SideNavTemp = [];

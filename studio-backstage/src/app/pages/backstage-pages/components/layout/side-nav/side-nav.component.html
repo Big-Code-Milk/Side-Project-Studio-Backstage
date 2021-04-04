@@ -5,18 +5,22 @@
                 <i class="material-icons">insights</i> 常用
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <h5>常用服務(壞掉了)</h5>
+        <h5>常用服務</h5>
         <hr>
         <!-- https://stackoverflow.com/questions/43177742/ngfor-on-ng-template-outputs-nothing-angular2 -->
         <!-- https://dotblogs.com.tw/wellwind/2017/01/01/angular2-ngfor-vars -->
         <ng-container *ngFor="let item of SideNavLocalStorage;let RecordIndex = index;">
             <hr *ngIf="RecordIndex!=0">
-            <p><a class="ButtonLink" [href]="item.Url">{{item.NickName}}</a></p>
+            <a class="ButtonLink" [href]="item.Url">
+                <p>{{item.NickName}}</p>
+            </a>
         </ng-container>
         <hr>
         <h5>友站連結(施工中)</h5>
         <hr>
-        <p><a class="ButtonLink" [routerLink]="'/dashboard/pages/linktreemgmt'">連結管理</a></p>
+        <a class="ButtonLink" [routerLink]="'/dashboard/pages/linktreemgmt'">
+            <p>連結管理</p>
+        </a>
     </mat-expansion-panel>
     <mat-expansion-panel>
         <mat-expansion-panel-header>

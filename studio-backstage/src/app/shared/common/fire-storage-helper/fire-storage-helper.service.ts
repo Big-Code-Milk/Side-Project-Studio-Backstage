@@ -31,7 +31,6 @@ export class FireStorageHelperService {
     private _CloudFirestore: AngularFirestore
   ) {
     // 建構此 service 時就會執行
-
   }
 
   // 方法名稱< 型別 >( 參數:型別 ) : 回傳值型別 { 方法實作 return 回傳值; }
@@ -43,15 +42,18 @@ export class FireStorageHelperService {
   // T 泛型 傳啥進來就啥型別
 
   GetFireObject<T>(QueryPath: any): AngularFireObject<T> {
+    // console.log('GetFireObject');
     return this._RealtimeDatabase.object(QueryPath);
   }
 
   GetFireList<T>(QueryPath: any): AngularFireList<T> {
+    // console.log('GetFireList');
     return this._RealtimeDatabase.list(QueryPath);
   }
 
   // Demo 用的 感覺要再多做一層
   GetKeys(QueryPath: string) {
+    // console.log('GetKeys');
     let _Responce: AngularFireList<any> = this._RealtimeDatabase.list(QueryPath)
     return _Responce.snapshotChanges().pipe(
       map(changes =>
@@ -66,6 +68,7 @@ export class FireStorageHelperService {
   // this._AngularFirestore.collection('Task', ref => ref.where('Tags', 'array-contains-any', ['未處理']).orderBy('EndDate')
 
   GetFireCollection<T>(QueryPath: string, ...queries: any[]): AngularFirestoreCollection<T> {
+    // console.log('GetFireCollection');
     // console.log('QueryPath', QueryPath, 'queries', queries);
     const collection = this._CloudFirestore.collection<T>(QueryPath, ref => {
       // reduce() https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
@@ -83,6 +86,7 @@ export class FireStorageHelperService {
   // return this._CloudFirestore.collection<T>(QueryPath, _QueryFn);
 
   GetFireDocument<T>(QueryPath: string): AngularFirestoreDocument<T> {
+    // console.log('GetFireDocument');
     return this._CloudFirestore.doc<T>(QueryPath);
   }
 }

@@ -30,7 +30,7 @@ export class TagsHelperService {
         _Subscribe.unsubscribe();
         // console.log('FilterTags', FilterTags);
         ResponseTags.set(JSON.stringify(FilterTags));
-        this._SnackBarHelper.OpenSnackBar('操作成功!');
+        // this._SnackBarHelper.OpenSnackBar('操作成功!');
       });
     }
   }
