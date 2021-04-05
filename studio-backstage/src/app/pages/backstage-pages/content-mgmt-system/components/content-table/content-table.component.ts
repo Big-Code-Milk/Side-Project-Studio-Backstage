@@ -79,6 +79,7 @@ export class ContentTableComponent implements OnInit {
         if (data.Summary != undefined) {
           data.Summary = data.Summary.substr(0, 10);
         }
+
         return { id, ...data };
       });
     })
@@ -127,17 +128,24 @@ export class ContentTableComponent implements OnInit {
     // https://cythilya.github.io/2017/05/08/javascript-find-item-in-an-array/
     // tag = this.Tags.filter(function (Tag) { return Tag != "未處理" });
     var _Document = this._FireStorageHelper.GetFireDocument('Article/' + TaskId);
-    GtdTask.Status = '發佈';
-    let JSONString = JSON.stringify(GtdTask);
-    let Obj = JSON.parse(JSONString);
-    _Document.update(Obj).catch(error => {
-      this._MatDialogConfig.data = error;
-      this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
-    }).then(success => {
-      // this._MatDialogConfig.data = "success";
-      // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
-      this._SnackBarHelper.OpenSnackBar('操作成功!');
+    let NowData: any;
+    var Subscribe = _Document.valueChanges().subscribe((NowData: any) => {
+      Subscribe.unsubscribe();
+
+      NowData.Status = '發佈';
+      let JSONString = JSON.stringify(NowData);
+      let Obj = JSON.parse(JSONString);
+      _Document.update(Obj).catch(error => {
+        this._MatDialogConfig.data = error;
+        this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+      }).then(success => {
+        // this._MatDialogConfig.data = "success";
+        // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+        this._SnackBarHelper.OpenSnackBar('操作成功!');
+      });
     });
+
+
   }
 
   Edit(TaskId: string, GtdTask: any) {

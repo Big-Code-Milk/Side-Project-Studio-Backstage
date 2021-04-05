@@ -1,34 +1,28 @@
 <mat-toolbar style="padding: 5vh 20vw; background-color:rgba(0,0,0,0.6);color:white">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <i class="material-icons">menu</i>
   </button>
-  <span>育愷新天地</span>
-  <span style="padding: 0 1em;"> </span>
-  <div style="width: 100%;">
-    <button mat-button [matMenuTriggerFor]="menu">關於</button>|
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item><a class="ButtonLink" [routerLink]="'/SignIn'">Item 1</a></button>
-      <button mat-menu-item>Item 2</button>
-    </mat-menu>
-    <button mat-button [matMenuTriggerFor]="menu">文章</button>|
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
-    </mat-menu>
-    <button mat-button [matMenuTriggerFor]="menu">類別</button>|
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
-    </mat-menu>
-    <button mat-button [matMenuTriggerFor]="menu">案例</button>|
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
-    </mat-menu>
-    <button mat-button [matMenuTriggerFor]="menu">查詢</button>
+    <span>
+      <a style="color: white !important;" class="ButtonLink" [routerLink]="'/'">育愷新天地</a>
+    </span>
+    <span style="padding: 0 1em;"> </span>
+    <div style="width: 100%;">
+        <button mat-button>
+          <a style="color: white !important;" class="ButtonLink" [routerLink]="'/SignIn'">關於</a>
+        </button>|
+        <button mat-button>案例</button>|
+        <div></div>
+        <button mat-button>
+          <a style="color: white !important;" class="ButtonLink" [routerLink]="'/articlecatalog'">文章</a>
+        </button>|
+        <ng-container *ngFor="let Tag of allTags;let i=index">
+            <span style="font-size: 0.5em !important;" *ngIf="i!=0">、</span>
+            <a style="font-size: 0.5em !important;">{{Tag}}</a>
+        </ng-container>
+        <!-- <button mat-button [matMenuTriggerFor]="menu">查詢</button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>Item 1</button>
       <button mat-menu-item>Item 2</button>
-    </mat-menu>
-  </div>
+    </mat-menu> -->
+    </div>
 </mat-toolbar>

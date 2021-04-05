@@ -157,14 +157,15 @@ export class EditContentComponent implements OnInit {
       this._MatDialogConfig.data = error;
       this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
     }).then(success => {
-      this.FirebaseModel = new FirebaseModel();
-      this.Tags = [];
-      this.FirebaseModel.StartDate = new Date();
 
       let Tags: any = this.FirebaseModel.Tags;
       if (Tags.length > 0) {
         this._TagsHelper.ReSetTags(Tags);
       }
+
+      this.FirebaseModel = new FirebaseModel();
+      this.Tags = [];
+      this.FirebaseModel.StartDate = new Date();
 
       this._SnackBarHelper.OpenSnackBar('操作成功!');
       if (UploadType == 'SubmitButton') {
@@ -210,7 +211,8 @@ export class EditContentComponent implements OnInit {
     // console.log('_SessionStorage', _SessionStorage);
     if (this.FirebaseModel.Status == '編輯中') {
       this.FirebaseModel.Status = '草稿';
-      this.Update('AutoActive');
+      // this.Update('AutoActive');
+      this.UpdateStatus();
       // sessionStorage.removeItem('Editing');
     }
   }

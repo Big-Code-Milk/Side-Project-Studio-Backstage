@@ -245,17 +245,23 @@ export class ProcessComponent extends BaseComponent implements AfterViewInit, On
     // https://cythilya.github.io/2017/05/08/javascript-find-item-in-an-array/
     // tag = this.Tags.filter(function (Tag) { return Tag != "未處理" });
     var _Document = this._FireStorageHelper.GetFireDocument('Task/' + TaskId);
-    GtdTask.Tags = GtdTask.Tags.filter(function (Tag: any) { return (Tag != "已處理") && (Tag != "未處理") });
-    GtdTask.Tags.push('已封存');
-    let JSONString = JSON.stringify(GtdTask);
-    let Obj = JSON.parse(JSONString);
-    _Document.update(Obj).catch(error => {
-      this._MatDialogConfig.data = error;
-      this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
-    }).then(success => {
-      // this._MatDialogConfig.data = "success";
-      // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
-      this._SnackBarHelper.OpenSnackBar('操作成功!');
+
+    var Subscribe = _Document.valueChanges().subscribe((NowData: any) => {
+      Subscribe.unsubscribe();
+
+      NowData.Tags = NowData.Tags.filter(function (Tag: any) { return (Tag != "已處理") && (Tag != "未處理") });
+      NowData.Tags.push('已封存');
+      let JSONString = JSON.stringify(NowData);
+      let Obj = JSON.parse(JSONString);
+      _Document.update(Obj).catch(error => {
+        this._MatDialogConfig.data = error;
+        this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+      }).then(success => {
+        // this._MatDialogConfig.data = "success";
+        // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+        this._SnackBarHelper.OpenSnackBar('操作成功!');
+      });
     });
+
   }
 }

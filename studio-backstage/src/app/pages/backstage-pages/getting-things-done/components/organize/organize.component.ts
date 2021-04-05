@@ -280,8 +280,9 @@ export class OrganizeComponent implements OnInit {
     var _SessionStorage = sessionStorage.getItem('Editing');
     // console.log('_SessionStorage', _SessionStorage);
     if (this.FirebaseModel.Status == '編輯中' && _SessionStorage == this.Key) {
-      this.FirebaseModel.Status = '';
-      this.UploadData('TurnOnEditModeButton');
+      // this.FirebaseModel.Status = '';
+      // this.UploadData('TurnOnEditModeButton');
+      this.UpdateStatus();
       sessionStorage.removeItem('Editing');
     }
   }
@@ -348,6 +349,28 @@ export class OrganizeComponent implements OnInit {
     var Subscribe = this._TagsHelper.GetTagsSubscribe().subscribe((x: any) => {
       this.allTags = JSON.parse(x);
       Subscribe.unsubscribe();
+    });
+  }
+
+  UpdateStatus() {
+
+    this.FirebaseModel.Status = "";
+    var _Document = this._FireStorageHelper.GetFireDocument('Task/' + this.Key);
+    let JSONStringUpdate = JSON.stringify(this.FirebaseModel);
+    let ObjUpdate = JSON.parse(JSONStringUpdate);
+    var _Update = _Document.update(ObjUpdate).catch(error => {
+      this._MatDialogConfig.data = error;
+      this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
+    }).then(success => {
+
+      let Tags: any = this.FirebaseModel.Tags;
+      if (Tags.length > 0) {
+        this._TagsHelper.ReSetTags(Tags);
+      }
+
+      this._SnackBarHelper.OpenSnackBar('操作成功!');
+      this._Router.navigate(['dashboard/pages/contentmgmt']);
+
     });
   }
 }
