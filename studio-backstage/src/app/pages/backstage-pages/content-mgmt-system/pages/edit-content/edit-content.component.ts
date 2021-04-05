@@ -250,19 +250,20 @@ export class EditContentComponent implements OnInit {
   }
 
   @HostListener('document:visibilitychange') visibilitychange(event: any) {
+    // 給手機板用的日後再搞
 
     console.log('visibilitychange');
 
-    if (this.FirebaseModel.Name != undefined) {// 必須要有值才能去存不然會存一堆怪異的空文章
-      if (this.Key != undefined) {
-        this.UpdateStatus();
-      }
-    }
+    // if (this.FirebaseModel.Name != undefined) {// 必須要有值才能去存不然會存一堆怪異的空文章
+    //   if (this.Key != undefined) {
+    //     this.UpdateStatus();
+    //   }
+    // }
 
-    (event || window.event).returnValue = "必須給值才會彈窗";
-    (event || window.event).preventDefault();
+    // (event || window.event).returnValue = "必須給值才會彈窗";
+    // (event || window.event).preventDefault();
 
-    return '必須給值才會彈窗';
+    // return '必須給值才會彈窗';
 
   }
 

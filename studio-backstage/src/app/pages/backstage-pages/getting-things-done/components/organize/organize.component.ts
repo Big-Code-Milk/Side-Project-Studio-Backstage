@@ -321,18 +321,19 @@ export class OrganizeComponent implements OnInit {
   }
 
   @HostListener('document:visibilitychange') visibilitychange(event: any) {
+    // 給手機板用的日後再搞
 
     console.log('visibilitychange');
 
-    var _SessionStorage = sessionStorage.getItem('Editing');
-    if (this.FirebaseModel.Status == '編輯中' && _SessionStorage == this.Key) {
-      this.FirebaseModel.Status = '';
-      this.UploadData('AutoActive');
-    }
-    (event || window.event).returnValue = "必須給值才會彈窗";
-    (event || window.event).preventDefault();
+    // var _SessionStorage = sessionStorage.getItem('Editing');
+    // if (this.FirebaseModel.Status == '編輯中' && _SessionStorage == this.Key) {
+    //   this.FirebaseModel.Status = '';
+    //   this.UploadData('AutoActive');
+    // }
+    // (event || window.event).returnValue = "必須給值才會彈窗";
+    // (event || window.event).preventDefault();
 
-    return '必須給值才會彈窗';
+    // return '必須給值才會彈窗';
 
   }
 
