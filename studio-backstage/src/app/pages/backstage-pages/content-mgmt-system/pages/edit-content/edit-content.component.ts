@@ -252,7 +252,7 @@ export class EditContentComponent implements OnInit {
   @HostListener('document:visibilitychange') visibilitychange(event: any) {
 
     console.log('visibilitychange');
-    console.log('this.FirebaseModel.Name', this.FirebaseModel.Name);
+
     if (this.FirebaseModel.Name != undefined) {// 必須要有值才能去存不然會存一堆怪異的空文章
       if (this.Key != undefined) {
         this.UpdateStatus();

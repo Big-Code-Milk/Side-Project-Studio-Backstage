@@ -211,7 +211,7 @@ export class OrganizeComponent implements OnInit {
 
     // https://blog.kevinyang.net/2018/04/30/angular-firebase/
     var _Document = this._FireStorageHelper.GetFireDocument('Task/' + this.Key);
-    _Document.valueChanges().subscribe((Param: any) => {
+    var Subscribe = _Document.valueChanges().subscribe((Param: any) => {
       // console.log('Param', Param);
 
       this.Term = new FormGroup({
@@ -234,6 +234,8 @@ export class OrganizeComponent implements OnInit {
         this.IsCoEditing = false;
       }
     });
+
+    Subscribe.unsubscribe();
 
     // 如果是從檢察頁面進入的不直接開啟編輯模式 2021-0324 Issue 直接全部都先進觀看畫面
     // if (this.ComponentType == this._EnumComponentType.Processed) {
