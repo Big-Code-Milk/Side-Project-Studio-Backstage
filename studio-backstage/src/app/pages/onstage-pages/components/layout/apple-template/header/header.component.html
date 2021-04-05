@@ -7,14 +7,14 @@
     </span>
     <span style="padding: 0 1em;"> </span>
     <div style="width: 100%;">
-        <button mat-button>
-          <a style="color: white !important;" class="ButtonLink" [routerLink]="'/SignIn'">關於</a>
-        </button>|
+        <a style="color: white !important;" class="ButtonLink" [routerLink]="'/SignIn'">
+            <button mat-button>關於</button>
+        </a>|
         <button mat-button>案例</button>|
         <div></div>
-        <button mat-button>
-          <a style="color: white !important;" class="ButtonLink" [routerLink]="'/articlecatalog'">文章</a>
-        </button>|
+        <a style="color: white !important;" class="ButtonLink" [routerLink]="'/articlecatalog'">
+            <button mat-button>文章</button>
+        </a>|
         <ng-container *ngFor="let Tag of allTags;let i=index">
             <span style="font-size: 0.5em !important;" *ngIf="i!=0">、</span>
             <a style="font-size: 0.5em !important;">{{Tag}}</a>
