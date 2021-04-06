@@ -22,7 +22,6 @@ import { BackStageLayoutModule } from './backstage-pages/components/layout/layou
 import { EditContentComponent } from './backstage-pages/content-mgmt-system/pages/edit-content/edit-content.component';
 import { GoalTextComponent } from './backstage-pages/content-mgmt-system/components/goal-text/goal-text.component';
 import { ContentTableComponent } from './backstage-pages/content-mgmt-system/components/content-table/content-table.component';
-import { ArticleTemplateComponent } from './onstage-pages/article-template/article-template.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { OnstageHomeComponent } from './onstage-pages/onstage-home/onstage-home.component';
 import { BackstageHomeComponent } from './backstage-pages/backstage-home/backstage-home.component';
@@ -43,7 +42,6 @@ import { ArticleCatalogComponent } from './onstage-pages/article-catalog/article
     EditContentComponent,
     GoalTextComponent,
     ContentTableComponent,
-    ArticleTemplateComponent,
     NotFoundComponent,
     OnstageHomeComponent,
     BackstageHomeComponent,
