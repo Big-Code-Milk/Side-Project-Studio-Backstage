@@ -5,7 +5,3 @@
 .Hided {
     display: none;
 }
-
-.FakeImg{
-  margin:auto;height: 20px !important;width: 20px !important;border-radius: 50%;
-}

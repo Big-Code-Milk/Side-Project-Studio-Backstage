@@ -1,9 +1,8 @@
 <ng-container *ngFor="let Data of OnlineUsers">
-  <!-- https://stackoverflow.com/questions/37686772/angular-2-hover-event -->
-  <button (mouseenter)="mouseEnter('div a') " (mouseleave)="mouseLeave('div a')" mat-icon-button
-    class="example-icon header-img" aria-label="Example icon-button with share icon">
+    <!-- https://stackoverflow.com/questions/37686772/angular-2-hover-event -->
+    <button (mouseenter)="mouseEnter('div a') " (mouseleave)="mouseLeave('div a')" mat-icon-button class="example-icon header-img" aria-label="Example icon-button with share icon">
     <!-- [ngStyle]="{'color':getRandomColor()}" -->
-    <div class="FackImg" [ngStyle]="{'background-color':Data.Color}"> </div>
+    <div [ngStyle]="{'margin':'auto','height':'20px','width':'20px','border-radius':'50%','background-color':Data.Color}"> </div>
   </button>
-  <div [class]="FakeAlt">{{Data.User}}</div>
+    <div [class]="FakeAlt">{{Data.User}}</div>
 </ng-container>
