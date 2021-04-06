@@ -1,28 +1,28 @@
 <mat-toolbar style="padding: 5vh 20vw; background-color:rgba(0,0,0,0.6);color:white">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <i class="material-icons">menu</i>
   </button>
-    <span>
-      <a style="color: white !important;" class="ButtonLink" [routerLink]="'/'">育愷新天地</a>
-    </span>
-    <span style="padding: 0 1em;"> </span>
-    <div style="width: 100%;">
-        <a style="color: white !important;" class="ButtonLink" [routerLink]="'/SignIn'">
-            <button mat-button>關於</button>
-        </a>|
-        <button mat-button>案例</button>|
-        <div></div>
-        <a style="color: white !important;" class="ButtonLink" [routerLink]="'/articlecatalog'">
-            <button mat-button>文章</button>
-        </a>|
-        <ng-container *ngFor="let Tag of allTags;let i=index">
-            <span style="font-size: 0.5em !important;" *ngIf="i!=0">、</span>
-            <a style="font-size: 0.5em !important;">{{Tag}}</a>
-        </ng-container>
-        <!-- <button mat-button [matMenuTriggerFor]="menu">查詢</button>
+  <span>
+    <a style="color: white !important;" class="ButtonLink" [routerLink]="'/'">育愷新天地</a>
+  </span>
+  <span style="padding: 0 1em;"> </span>
+  <div style="width: 100%;">
+    <a style="color: white !important;" class="ButtonLink" [routerLink]="'/SignIn'">
+      <button mat-button>關於</button>
+    </a>|
+    <button mat-button>案例</button>|
+    <div></div>
+    <a style="color: white !important;" class="ButtonLink" [routerLink]="'/articlecatalog'">
+      <button mat-button>文章</button>
+    </a>|
+    <ng-container *ngFor="let Tag of allTags;let i=index">
+      <span style="font-size: 0.5em !important;" *ngIf="i!=0">、</span>
+      <a style="font-size: 0.5em !important;color: white !important;">{{Tag}}</a>
+    </ng-container>
+    <!-- <button mat-button [matMenuTriggerFor]="menu">查詢</button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>Item 1</button>
       <button mat-menu-item>Item 2</button>
     </mat-menu> -->
-    </div>
+  </div>
 </mat-toolbar>

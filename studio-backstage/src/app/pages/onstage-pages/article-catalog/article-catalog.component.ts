@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DocumentChangeAction } from '@angular/fire/firestore';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DialogHelperService } from 'src/app/shared/common/dialog-helper/dialog-helper.service';
 import { FireStorageHelperService } from 'src/app/shared/common/fire-storage-helper/fire-storage-helper.service';
@@ -25,10 +27,14 @@ export class ArticleCatalogComponent implements OnInit {
     public _DomSanitizer: DomSanitizer,
   ) { }
 
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  dataSource: MatTableDataSource<FirebaseModel> = new MatTableDataSource<FirebaseModel>();
+
   ngOnInit(): void {
     this.DataInit();
   }
 
+  Obs: Observable<any>;
   FirebaseModels = [] as FirebaseModel[];
 
   DataInit() {
@@ -48,12 +54,15 @@ export class ArticleCatalogComponent implements OnInit {
       _Subscribe.unsubscribe();
       this.FirebaseModels = ReturnData;
       // init datatable
-      let dataSource = new MatTableDataSource(this.FirebaseModels);
+      this.dataSource = new MatTableDataSource(this.FirebaseModels);
       // https://stackoverflow.com/questions/54367152/how-to-add-mat-paginator-for-mat-cards
       // this.dataSource.paginator = this.paginator;
       // this.dataSource.sort = this.sort;
       // 目前這個都會幾筆資料就跑幾次... 效能異常...
       console.log(this.FirebaseModels);
+      this.dataSource.paginator = this.paginator;
+      this.paginator._intl.itemsPerPageLabel = "每頁顯示";
+      this.Obs = this.dataSource.connect();
 
     });
   }
