@@ -168,7 +168,7 @@ export class OrganizeComponent implements OnInit {
         }
 
         this._SnackBarHelper.OpenSnackBar('操作成功!');
-        this._Router.navigate(['dashboard/']);
+        this._Router.navigate(['dashboard/pages/processthenwork']);
       }
 
     });
@@ -209,10 +209,14 @@ export class OrganizeComponent implements OnInit {
 
   DataInit() {
 
+    console.log('this.Key', this.Key);
+
     // https://blog.kevinyang.net/2018/04/30/angular-firebase/
     var _Document = this._FireStorageHelper.GetFireDocument('Task/' + this.Key);
+    console.log('_Document', _Document);
+
     var Subscribe = _Document.valueChanges().subscribe((Param: any) => {
-      // console.log('Param', Param);
+      console.log('Param', Param);
 
       this.Term = new FormGroup({
         start: new FormControl(Param.StartDate),
@@ -233,9 +237,11 @@ export class OrganizeComponent implements OnInit {
       } else {
         this.IsCoEditing = false;
       }
+
+      Subscribe.unsubscribe();
     });
 
-    Subscribe.unsubscribe();
+
 
     // 如果是從檢察頁面進入的不直接開啟編輯模式 2021-0324 Issue 直接全部都先進觀看畫面
     // if (this.ComponentType == this._EnumComponentType.Processed) {
@@ -369,7 +375,7 @@ export class OrganizeComponent implements OnInit {
       }
 
       this._SnackBarHelper.OpenSnackBar('操作成功!');
-      this._Router.navigate(['dashboard/pages/contentmgmt']);
+      this._Router.navigate(['dashboard/pages/processthenwork']);
 
     });
   }

@@ -59,7 +59,7 @@ export class ArticleCatalogComponent implements OnInit {
       // this.dataSource.paginator = this.paginator;
       // this.dataSource.sort = this.sort;
       // 目前這個都會幾筆資料就跑幾次... 效能異常...
-      console.log(this.FirebaseModels);
+      // console.log(this.FirebaseModels);
       this.dataSource.paginator = this.paginator;
       this.paginator._intl.itemsPerPageLabel = "每頁顯示";
       this.Obs = this.dataSource.connect();
