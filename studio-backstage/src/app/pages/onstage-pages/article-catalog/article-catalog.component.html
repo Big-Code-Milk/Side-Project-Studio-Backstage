@@ -22,7 +22,9 @@
       <p style="max-height: 65px;overflow: hidden;">{{FirebaseModel.Summary}}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>看更多...</button>
+      <!-- https://stackoverflow.com/questions/38062702/how-to-pass-a-parameter-to-routerlink-that-is-somewhere-inside-the-url -->
+      <a [routerLink]="['/newsarticle','Key',FirebaseModel.id]" class="ButtonLink"><button
+          mat-button>看更多...</button></a>
     </mat-card-actions>
   </mat-card>
   <br>

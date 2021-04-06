@@ -26,6 +26,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { OnstageHomeComponent } from './onstage-pages/onstage-home/onstage-home.component';
 import { BackstageHomeComponent } from './backstage-pages/backstage-home/backstage-home.component';
 import { ArticleCatalogComponent } from './onstage-pages/article-catalog/article-catalog.component';
+import { NewsArticleComponent } from './onstage-pages/article-template/news-article/news-article.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ArticleCatalogComponent } from './onstage-pages/article-catalog/article
     OnstageHomeComponent,
     BackstageHomeComponent,
     ArticleCatalogComponent,
+    NewsArticleComponent,
   ],
   imports: [
     CommonModule,

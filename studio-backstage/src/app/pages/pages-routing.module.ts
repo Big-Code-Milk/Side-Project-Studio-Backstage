@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'editcontent', component: EditContentComponent },
   { path: 'organize', component: OrganizeComponent }, // 點擊進入任務編輯
   { path: 'linktreemgmt', component: LinktreeMgmtComponent }, // 友站連結管理
-  { path: 'tagshelper', component: TagsHelperComponent }
+  { path: 'tagshelper', component: TagsHelperComponent },
 ];
 
 @NgModule({

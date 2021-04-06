@@ -9,7 +9,7 @@ export class ImageHostingTabComponent implements OnInit {
 
   @Input() Title: string;
   DisplayMode: string = 'Close';
-  EditorMode: string = "";
+  EditorMode: string = "ImgSource";
 
   constructor() { }
 

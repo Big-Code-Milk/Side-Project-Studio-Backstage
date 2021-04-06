@@ -25,6 +25,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [],
@@ -55,6 +56,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatSelectModule,
     MatProgressSpinnerModule,
     MatSortModule,
+    MatGridListModule,
   ]
 })
 export class SharedAngularMaterialModule { }

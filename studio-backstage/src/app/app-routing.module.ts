@@ -18,6 +18,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { BackstageHomeComponent } from './pages/backstage-pages/backstage-home/backstage-home.component';
 import { OnstageHomeComponent } from './pages/onstage-pages/onstage-home/onstage-home.component';
 import { ArticleCatalogComponent } from './pages/onstage-pages/article-catalog/article-catalog.component';
+import { NewsArticleComponent } from './pages/onstage-pages/article-template/news-article/news-article.component';
 
 let routes: Routes = RouterHandler();
 // console.log(routes); environment.production
@@ -33,8 +34,10 @@ function RouterHandler() {
         },
         {
           path: 'articlecatalog', component: ArticleCatalogComponent
-        }
-        ,
+        },
+        {
+          path: 'newsarticle/Key/:Key', component: NewsArticleComponent
+        },
         {
           path: '404', component: NotFoundComponent // https://stackoverflow.com/questions/36260839/angular-2-how-to-redirect-to-404-or-other-path-if-the-path-does-not-exist
         }
