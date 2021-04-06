@@ -1,3 +1,4 @@
+import { SignInImgStickerHelperService } from './../../../../../shared/common/sign-in-img-sticker-helper/sign-in-img-sticker-helper.service';
 import { Component, OnInit } from '@angular/core';
 import { FireAuthHelperService } from '../../../../../shared/common/fire-auth-helper/fire-auth-helper.service'
 
@@ -10,7 +11,8 @@ export class MenuComponent implements OnInit {
 
 
   constructor(
-    public _FireAuthHelper: FireAuthHelperService
+    public _FireAuthHelper: FireAuthHelperService,
+    private _SignInImgStickerHelper: SignInImgStickerHelperService,
   ) {
   }
 
@@ -22,5 +24,12 @@ export class MenuComponent implements OnInit {
     SignInState.subscribe(x => {
       console.log('SignInState', x);
     })
+  }
+  SignOutImg() {
+    let Email = sessionStorage.getItem('Email');
+    console.log('Email', Email);
+    if (Email != null) {
+      this._SignInImgStickerHelper.Ofline([Email]);
+    }
   }
 }

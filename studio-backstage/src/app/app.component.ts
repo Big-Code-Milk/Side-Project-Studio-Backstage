@@ -1,3 +1,4 @@
+import { SignInImgStickerHelperService } from './shared/common/sign-in-img-sticker-helper/sign-in-img-sticker-helper.service';
 //參考
 // beforeunload https://segmentfault.com/a/1190000022905212
 
@@ -21,7 +22,8 @@ export class AppComponent {
 
   constructor(
     private _AngularFireAuth: AngularFireAuth,
-    private _FireStorageHelper: FireStorageHelperService
+    private _FireStorageHelper: FireStorageHelperService,
+    private _SignInImgStickerHelper: SignInImgStickerHelperService,
   ) {
   }
 
@@ -49,6 +51,12 @@ export class AppComponent {
     // // (event || window.event).returnValue = "";
 
     // console.log('returnValue');
+
+    // 登出大頭貼
+    let Email = sessionStorage.getItem('Email');
+    if (Email != null) {
+      this._SignInImgStickerHelper.Ofline([Email]);
+    }
   }
 
 }

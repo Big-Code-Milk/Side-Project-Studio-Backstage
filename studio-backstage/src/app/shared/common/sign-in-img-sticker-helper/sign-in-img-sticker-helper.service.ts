@@ -41,7 +41,7 @@ export class SignInImgStickerHelperService {
         let NowTags = JSON.parse(elements) || [];
         let FilterTags = NowTags.filter(
           (element: any) => {
-            return (UserInfo.indexOf(element) != -1);
+            return (UserInfo.indexOf(element) == -1);
           }
         );
 
