@@ -12,12 +12,19 @@ export class SignInImgStickerHelperComponent implements OnInit {
     private _FireStorageHelper: FireStorageHelperService,
   ) { }
 
-  OnlineUsers: any;
+  OnlineUsers: any = [];
 
   ngOnInit(): void {
     let Subscribe = this._FireStorageHelper.GetFireObject('OnlineUsers').valueChanges().subscribe((x: any) => {
-      this.OnlineUsers = JSON.parse(x);
-      // console.log('this.OnlineUsers', this.OnlineUsers);
+
+      let Temp = JSON.parse(x);
+
+      Temp.forEach((element: any) => {
+        this.OnlineUsers.push({ User: element, Color: this.getRandomColor() });
+      });
+
+      // this.OnlineUsers = JSON.parse(x);
+      console.log('this.OnlineUsers', this.OnlineUsers);
       // Subscribe.unsubscribe();
     });
   }
