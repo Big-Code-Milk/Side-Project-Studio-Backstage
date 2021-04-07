@@ -1,5 +1,21 @@
-<mat-grid-list cols="4" rowHeight="100px">
-  <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">
-    {{tile.text}}
-  </mat-grid-tile>
-</mat-grid-list>
+<p>> 文章 > 類別 > 可愛</p>
+<h1>{{Article.Name}}</h1>
+<h5>{{Article.SubTitle}} - {{Article.StartDate|date: 'yyyy-MM-dd'}}</h5>
+<section style="display: flex;">
+  <main style="width: 70%;height: 100%;">
+    <hr>
+    <img [src]="Article.KeyVision" style="box-shadow: 0 0 5px 0 rgb(0 0 0 / 50%), 0 0 2px 1px rgb(0 0 0 / 10%);">
+    <hr>
+    <div [innerHTML]="Article.Content"></div>
+  </main>
+  <section style="width: 30%;height: 100%;margin:1.5em 1em;">
+    <h5>Top 5</h5>
+    <div style="height: 300px; background-color: rgb(177,177,177,0.2);"></div>
+    <h5>FB</h5>
+    <div style="height: 200px; background-color: rgb(177,177,177,0.2);"></div>
+    <h5>Youtube</h5>
+    <div style="height: 100x; background-color: rgb(177,177,177,0.2);"></div>
+    <h5>IG</h5>
+    <div style="height: 200px; background-color: rgb(177,177,177,0.2);"></div>
+  </section>
+</section>
