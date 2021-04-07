@@ -1,6 +1,10 @@
 // 參考
 // dayjs 中文 https://day.js.org/docs/en/installation/typescript
 
+// disqus
+// https://stackoverflow.com/questions/36102556/is-this-the-right-way-to-embed-disqus-in-angular2-component
+// https://murhafsousli.github.io/ngx-disqus/
+
 import { CommonModule, JsonPipe } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { PrettyJsonModule } from 'angular2-prettyjson';
@@ -13,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CKEditorModule } from 'ng2-ckeditor';
 import { EditorMdDirective } from '../../pages/backstage-pages/example/editor-md-directive-fail/editor-md.directive';
+import { DisqusModule } from 'ngx-disqus';
 
 
 @NgModule({
@@ -23,12 +28,15 @@ import { EditorMdDirective } from '../../pages/backstage-pages/example/editor-md
     FormsModule,
     ReactiveFormsModule,
     CKEditorModule,
+    DisqusModule,
+    DisqusModule.forRoot('johch3n6-11u'),
   ],
   exports: [
     PrettyJsonModule,
     FormsModule,
     ReactiveFormsModule,
     CKEditorModule,
+    DisqusModule,
   ]
 })
 export class BaseSharedModule {
