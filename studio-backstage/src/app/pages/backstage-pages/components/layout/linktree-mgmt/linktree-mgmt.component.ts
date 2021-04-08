@@ -113,25 +113,36 @@ export class LinktreeMgmtComponent implements OnInit {
 
   Create(Index: any) {
     console.log('Index', typeof (Index));
-    let IndexArray: Array<string> = Index.split('.');
-    console.log('IndexArray', IndexArray.length);
-    // "0", "1", "0", "0" this.TreeDate[0].Children[1].Children[0].push()
-    let test: any;
-    IndexArray.forEach((value: string, index: number, array: string[]) => {
-      console.log('index', index);
-      if (index == 0) {
-        test = `this.TreeDate[${value}]`;
-      }
-      else if (index == IndexArray.length - 1) {
-        test += `.Children`;
-      } else {
-        test += `.Children[${value}]`;
-      }
-    });
-    console.log(test);
+    console.log('Index', Index);
+
+    let WaitParseString: any;
+    if (typeof (Index) == 'string') {
+
+      let IndexArray: Array<string> = Index.split('.');
+      console.log('IndexArray', IndexArray.length);
+      // "0", "1", "0", "0" this.TreeDate[0].Children[1].Children[0].push()
+
+      IndexArray.forEach((value: string, index: number, array: string[]) => {
+        console.log('index', index);
+        if (index == 0) {
+          WaitParseString = `this.TreeDate[${value}]`;
+        }
+        else if (index == IndexArray.length - 1) {
+          WaitParseString += `.Children`;
+        } else {
+          WaitParseString += `.Children[${value}]`;
+        }
+      });
+
+    } else {
+      WaitParseString = `this.TreeDate`;
+    }
+
+
+    console.log('WaitParseString', WaitParseString);
     // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/eval
-    console.log(eval(test));
-    let TestArray = eval(test);
+    console.log(eval(WaitParseString));
+    let TestArray = eval(WaitParseString);
     TestArray.push({
       NickName: 'TESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS', Url: '', Children: [
 
