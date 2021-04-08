@@ -19,7 +19,59 @@ export class LinktreeMgmtComponent implements OnInit {
         },
         {
           NickName: 'Vue3API', Url: 'https://uu9924079.medium.com/vue-composition-api-%E7%AD%86%E8%A8%98-%E4%B8%8A-d60eabe3f469', Children: [
+            {
+              NickName: '行銷', Url: '', Children: [
+                {
+                  NickName: 'SEO概念', Url: 'https://www.newscan.com.tw/all-seo/seo-guide.htm#', Children: [
 
+                  ]
+                },
+                {
+                  NickName: 'AG SEO', Url: 'https://medium.com/geekculture/seo-in-angular-without-server-side-rendering-fa7d984dd44b', Children: [
+                    {
+                      NickName: '行銷', Url: '', Children: [
+                        {
+                          NickName: 'SEO概念', Url: 'https://www.newscan.com.tw/all-seo/seo-guide.htm#', Children: [
+
+                          ]
+                        },
+                        {
+                          NickName: 'AG SEO', Url: 'https://medium.com/geekculture/seo-in-angular-without-server-side-rendering-fa7d984dd44b', Children: [
+                            {
+                              NickName: '行銷', Url: '', Children: [
+                                {
+                                  NickName: 'SEO概念', Url: 'https://www.newscan.com.tw/all-seo/seo-guide.htm#', Children: [
+
+                                  ]
+                                },
+                                {
+                                  NickName: 'AG SEO', Url: 'https://medium.com/geekculture/seo-in-angular-without-server-side-rendering-fa7d984dd44b', Children: [
+
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }, {
+              NickName: '行銷', Url: '', Children: [
+                {
+                  NickName: 'SEO概念', Url: 'https://www.newscan.com.tw/all-seo/seo-guide.htm#', Children: [
+
+                  ]
+                },
+                {
+                  NickName: 'AG SEO', Url: 'https://medium.com/geekculture/seo-in-angular-without-server-side-rendering-fa7d984dd44b', Children: [
+
+                  ]
+                }
+              ]
+            }
           ]
         }
       ]
