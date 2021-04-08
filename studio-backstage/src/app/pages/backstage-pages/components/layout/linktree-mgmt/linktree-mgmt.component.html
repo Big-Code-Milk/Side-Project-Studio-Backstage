@@ -37,13 +37,14 @@
       <button mat-stroked-button (click)="Create($event)">新增</button> -->
 
 <button mat-stroked-button (click)="IsEdited?IsEdited = false:IsEdited = true">編輯模式</button>
-
-<ul>
+<p>修改或新增都會以已下兩欄傳值</p>
+<input *ngIf="IsEdited" type="text" placeholder="名稱" [(ngModel)]="NickName">
+<input *ngIf="IsEdited" type="text" placeholder="網址(資料夾不用填)" [(ngModel)]="Url">
+<ul><button *ngIf="IsEdited" mat-stroked-button (click)="Create(1)">新增</button>
   <li *ngFor="let item of TreeDate; let i = index">
     <div>
       第 {{i}} 層 <br>
       內容:{{item.NickName}} <br>
-      <button mat-stroked-button (click)="Create(i)">新增</button>
     </div>
     <ng-container *ngTemplateOutlet="tree; context: { $implicit: item.Children, idx: i }">
     </ng-container>
@@ -57,7 +58,7 @@
       上一層:{{idx}} <br>
       第 {{n}} 層 <br>
       內容:{{item.NickName}} <br>
-      <button mat-stroked-button (click)="Create(idx+'.'+n)">新增</button>
+      <button *ngIf="IsEdited" mat-stroked-button (click)="Create(idx+'.'+n)">新增</button>
       <ng-container *ngTemplateOutlet="tree; context: { $implicit: item.Children, idx: idx + '.' + n }">
       </ng-container>
     </li>

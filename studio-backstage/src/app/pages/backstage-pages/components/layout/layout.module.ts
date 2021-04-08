@@ -23,6 +23,7 @@ import { ImgurComponent } from './imgur/imgur.component';
 import { UsefulLinksTreeComponent } from './useful-links-tree/useful-links-tree.component';
 import { LinktreeMgmtComponent } from './linktree-mgmt/linktree-mgmt.component';
 import { SignInImgStickerHelperComponent } from 'src/app/shared/common/sign-in-img-sticker-helper/sign-in-img-sticker-helper.component';
+import { DirectorytreeMgmtComponent } from './directorytree-mgmt/directorytree-mgmt.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { SignInImgStickerHelperComponent } from 'src/app/shared/common/sign-in-i
     UsefulLinksTreeComponent,
     LinktreeMgmtComponent,
     SignInImgStickerHelperComponent,
+    DirectorytreeMgmtComponent,
   ],
   providers: [
     FireStorageHelperService

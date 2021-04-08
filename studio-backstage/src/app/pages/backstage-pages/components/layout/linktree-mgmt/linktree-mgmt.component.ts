@@ -7,8 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LinktreeMgmtComponent implements OnInit {
 
-  toggle: any = {};
-
   TreeDate = [
     {
       NickName: '程式', Url: '', Children: [
@@ -97,8 +95,11 @@ export class LinktreeMgmtComponent implements OnInit {
     }
   ];
 
+  NickName: string = "";
+  Url: string = "";
+
+
   constructor() {
-    console.log('TreeDate', this.TreeDate);
   }
 
   IsEdited: boolean = false;
@@ -112,23 +113,28 @@ export class LinktreeMgmtComponent implements OnInit {
   }
 
   Create(Index: any) {
-    console.log('Index', typeof (Index));
-    console.log('Index', Index);
+    // console.log('Index', typeof (Index));
+    // console.log('Index', Index);
+
+    if (this.NickName == "") {
+      alert('NickName 必填');
+      return;
+    }
 
     let WaitParseString: any;
     if (typeof (Index) == 'string') {
 
       let IndexArray: Array<string> = Index.split('.');
-      console.log('IndexArray', IndexArray.length);
+      // console.log('IndexArray', IndexArray.length);
       // "0", "1", "0", "0" this.TreeDate[0].Children[1].Children[0].push()
 
       IndexArray.forEach((value: string, index: number, array: string[]) => {
-        console.log('index', index);
+        // console.log('index', index);
         if (index == 0) {
           WaitParseString = `this.TreeDate[${value}]`;
         }
         else if (index == IndexArray.length - 1) {
-          WaitParseString += `.Children`;
+          WaitParseString += `.Children[${value}].Children`;
         } else {
           WaitParseString += `.Children[${value}]`;
         }
@@ -138,16 +144,18 @@ export class LinktreeMgmtComponent implements OnInit {
       WaitParseString = `this.TreeDate`;
     }
 
+    // console.log('WaitParseString', WaitParseString);
+    // console.log(eval(WaitParseString));
 
-    console.log('WaitParseString', WaitParseString);
     // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/eval
-    console.log(eval(WaitParseString));
-    let TestArray = eval(WaitParseString);
-    TestArray.push({
-      NickName: 'TESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS', Url: '', Children: [
+    let ParsedArray = eval(WaitParseString);
 
-      ]
-    })
+    ParsedArray.push({
+      NickName: this.NickName, Url: this.Url, Children: []
+    });
+
+    this.NickName = "";
+    this.Url = "";
   }
 
   Update() {
