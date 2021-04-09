@@ -17,7 +17,7 @@
 
     <div id="ArticleDirectory">
       <ul><button *ngIf="IsEdited" mat-stroked-button (click)="Create('')">新增</button>
-        <li *ngFor="let item of TreeDate; let i = index">
+        <li *ngFor="let item of ArticleDirectory; let i = index">
           <div>
             <p *ngIf="IsEdited">編號：{{i}}</p>
             <a [href]="item.Url">

@@ -15,16 +15,16 @@ declare var $: any;
 })
 export class DirectorytreeMgmtComponent implements OnInit {
 
-  @Input() ArticleDirectory: string;
+  @Input() ArticleDirectory: any;
   @Input() Title: string;
   DisplayMode: string = 'Close';
 
-  constructor() { }
+  constructor() {
+  }
 
   NickName: string = "";
   Url: string = "";
   IsEdited: boolean = false;
-  TreeDate: Array<TreeDates> = [];
 
   ngOnInit(): void {
 
@@ -50,7 +50,7 @@ export class DirectorytreeMgmtComponent implements OnInit {
       IndexArray.forEach((value: string, index: number, array: string[]) => {
         // console.log('ForEach Index', index);
         if (index == 0) {
-          WaitParseString = `this.TreeDate[${value}]`;
+          WaitParseString = `this.ArticleDirectory[${value}]`;
         }
         else if (index == IndexArray.length - 1) {
           WaitParseString += `.Children[${value}].Children`;
@@ -61,9 +61,9 @@ export class DirectorytreeMgmtComponent implements OnInit {
 
     } else {
       if (typeof (Index) != 'number') {
-        WaitParseString = `this.TreeDate`;
+        WaitParseString = `this.ArticleDirectory`;
       } else {
-        WaitParseString = `this.TreeDate[${Index}].Children`;
+        WaitParseString = `this.ArticleDirectory[${Index}].Children`;
       }
     }
 
@@ -104,7 +104,7 @@ export class DirectorytreeMgmtComponent implements OnInit {
       IndexArray.forEach((value: string, index: number, array: string[]) => {
         // console.log('ForEach Index', index);
         if (index == 0) {
-          WaitParseString = `this.TreeDate[${value}]`;
+          WaitParseString = `this.ArticleDirectory[${value}]`;
         }
         else if (index == IndexArray.length - 1) {
           WaitParseString += `.Children`;
@@ -115,7 +115,7 @@ export class DirectorytreeMgmtComponent implements OnInit {
       });
 
     } else {
-      WaitParseString = `this.TreeDate`;
+      WaitParseString = `this.ArticleDirectory`;
       DeleteIndex = Index;
     }
 
@@ -145,7 +145,7 @@ export class DirectorytreeMgmtComponent implements OnInit {
       IndexArray.forEach((value: string, index: number, array: string[]) => {
         // console.log('ForEach Index', index);
         if (index == 0) {
-          WaitParseString = `this.TreeDate[${value}]`;
+          WaitParseString = `this.ArticleDirectory[${value}]`;
         }
         else {
           WaitParseString += `.Children[${value}]`;
@@ -155,7 +155,7 @@ export class DirectorytreeMgmtComponent implements OnInit {
     } else {
       // console.log('2');
       // console.log(typeof (Index))
-      WaitParseString = `this.TreeDate[${Index}]`;
+      WaitParseString = `this.ArticleDirectory[${Index}]`;
     }
 
     // console.log('WaitParseString', WaitParseString);
@@ -174,7 +174,7 @@ export class DirectorytreeMgmtComponent implements OnInit {
 
   @Output() onDirectorytreeChange: EventEmitter<any> = new EventEmitter<any>(); // 发射器
   ContentEmitter() {
-    this.onDirectorytreeChange.emit(this.TreeDate);
+    this.onDirectorytreeChange.emit(this.ArticleDirectory);
   }
 
 }

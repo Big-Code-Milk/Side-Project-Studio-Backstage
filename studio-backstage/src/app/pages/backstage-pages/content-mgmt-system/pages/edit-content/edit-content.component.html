@@ -96,6 +96,6 @@
   <app-image-hosting-tab [Title]="'圖庫'"></app-image-hosting-tab>
   <app-editor-tab [Title]="'內文編輯'" [MarkdownContent]="MarkdownContent" [HTMLContent]="HTMLContent"
     (onCotentChange)="SyncEditorModel($event)"></app-editor-tab>
-  <!-- [ArticleDirectory]="FirebaseModel.ArticleDirectory" -->
-  <app-directorytree-mgmt (onDirectorytreeChange)="SyncDirectorytreeModel($event)"></app-directorytree-mgmt>
+  <app-directorytree-mgmt [ArticleDirectory]="ArticleDirectory"
+    (onDirectorytreeChange)="SyncDirectorytreeModel($event)"></app-directorytree-mgmt>
 </form>
