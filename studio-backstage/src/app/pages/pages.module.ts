@@ -27,6 +27,7 @@ import { OnstageHomeComponent } from './onstage-pages/onstage-home/onstage-home.
 import { BackstageHomeComponent } from './backstage-pages/backstage-home/backstage-home.component';
 import { ArticleCatalogComponent } from './onstage-pages/article-catalog/article-catalog.component';
 import { NewsArticleComponent } from './onstage-pages/article-template/news-article/news-article.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { NewsArticleComponent } from './onstage-pages/article-template/news-arti
     SharedAngularMaterialModule,
     BaseSharedModule,
     BackStageLayoutModule,
-    OnStageLayoutModule
+    OnStageLayoutModule,
+    LayoutModule
   ]
 })
 export class PagesModule { }

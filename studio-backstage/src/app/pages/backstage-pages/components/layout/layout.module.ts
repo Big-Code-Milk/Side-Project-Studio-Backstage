@@ -54,6 +54,7 @@ import { DirectorytreeMgmtComponent } from './directorytree-mgmt/directorytree-m
     LayoutRoutingModule,
   ],
   exports: [
+    DirectorytreeMgmtComponent,
     DashboardComponent,
     SideNavComponent,
     DialogComponent,
