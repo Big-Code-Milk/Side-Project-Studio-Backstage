@@ -20,6 +20,8 @@
           第 {{i}} 層 <br>
           內容:{{item.NickName}} <br>
           <button *ngIf="IsEdited" mat-stroked-button (click)="Create(i)">新增</button>
+          <button *ngIf="IsEdited" mat-stroked-button (click)="Create(i)">刪除</button>
+          <button *ngIf="IsEdited" mat-stroked-button (click)="Create(i)">編輯</button>
         </div>
         <ng-container *ngTemplateOutlet="tree; context: { $implicit: item.Children, idx: i }">
         </ng-container>
@@ -33,6 +35,8 @@
           第 {{n}} 層 <br>
           內容:{{item.NickName}} <br>
           <button *ngIf="IsEdited" mat-stroked-button (click)="Create(idx+'.'+n)">新增</button>
+          <button *ngIf="IsEdited" mat-stroked-button (click)="Create(idx+'.'+n)">刪除</button>
+          <button *ngIf="IsEdited" mat-stroked-button (click)="Create(idx+'.'+n)">編輯</button>
           <ng-container *ngTemplateOutlet="tree; context: { $implicit: item.Children, idx: idx + '.' + n }">
           </ng-container>
         </li>
