@@ -35,6 +35,7 @@ export class DirectorytreeMgmtComponent implements OnInit {
   }
 
   Create(Index: any) {
+    console.log('this.ArticleDirectory', this.ArticleDirectory);
     // console.log('Index', typeof (Index));
     // console.log('Index', Index);
 
@@ -169,13 +170,8 @@ export class DirectorytreeMgmtComponent implements OnInit {
     ParsedString.Url = this.Url;
   }
 
-  ArticleDirectoryChange() {
-    // console.log($('#ArticleDirectory').html());
-    // console.log('this.TreeDate', this.TreeDate);
-    this.DirectorytreeEmitter()
-  }
-
-  @Input() ArticleDirectory: Array<TreeDates> = [];
+  // https://stackoverflow.com/questions/57769026/input-property-is-not-being-updated-second-time
+  @Input() ArticleDirectory: Array<TreeDates> = [] as Array<TreeDates>;
   @Output() onDirectorytreeChange: EventEmitter<any> = new EventEmitter<any>(); // 发射器
   DirectorytreeEmitter() {
     this.onDirectorytreeChange.emit(this.ArticleDirectory);

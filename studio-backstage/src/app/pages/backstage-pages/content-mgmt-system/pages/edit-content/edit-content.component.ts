@@ -15,6 +15,7 @@ import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/sn
 import { MatDialogConfig } from '@angular/material/dialog';
 import * as dayjs from 'dayjs';
 import { TagsHelperService } from 'src/app/shared/common/tags-helper/tags-helper.service';
+import { TreeDates } from '../../../components/layout/directorytree-mgmt/directorytree-mgmt.component';
 
 @Component({
   selector: 'app-edit-content',
@@ -135,7 +136,9 @@ export class EditContentComponent implements OnInit {
       this.FirebaseModel = Param;
       this.HTMLContent = Param.Content;
       this.MarkdownContent = Param.MarkdownContent;
-      this.ArticleDirectory = Param.ArticleDirectory;
+      if (Param.ArticleDirectory != undefined) {
+        this.ArticleDirectory = Param.ArticleDirectory;
+      }
       console.log('this.ArticleDirectory', this.ArticleDirectory);
       // console.log('Param', Param);
       // console.log('Param.HTMLContent', Param.Content);
@@ -150,6 +153,7 @@ export class EditContentComponent implements OnInit {
     this.FirebaseModel.Content = this.HTMLContent;
     this.FirebaseModel.MarkdownContent = this.MarkdownContent;
     this.FirebaseModel.Tags = [... new Set(this.Tags)];
+    this.FirebaseModel.ArticleDirectory = this.ArticleDirectory;
     // 新增一筆
     // console.log('this.FirebaseModel', this.FirebaseModel);
     let _Collection = this._FireStorageHelper.GetFireCollection<FirebaseModel>('Article');
@@ -182,7 +186,9 @@ export class EditContentComponent implements OnInit {
     this.FirebaseModel.Content = this.HTMLContent;
     this.FirebaseModel.MarkdownContent = this.MarkdownContent;
     this.FirebaseModel.Tags = [... new Set(this.Tags)];
+    this.FirebaseModel.ArticleDirectory = this.ArticleDirectory;
     // 更新
+    console.log('this.FirebaseModel', this.FirebaseModel);
     var _Document = this._FireStorageHelper.GetFireDocument('Article/' + this.Key);
     // console.log('this.FirebaseModel', this.FirebaseModel);
     let JSONStringUpdate = JSON.stringify(this.FirebaseModel);
@@ -308,10 +314,8 @@ export class EditContentComponent implements OnInit {
     });
   }
 
-  ArticleDirectory: any;
-  SyncDirectorytreeModel(Value: any) {
-    // https://stackoverflow.com/questions/57769026/input-property-is-not-being-updated-second-time
-    console.log('最外層 Value', Value);
-    // this.FirebaseModel.ArticleDirectory = Value;
-  }
+  // https://stackoverflow.com/questions/55133907/react-with-typescript-type-is-missing-the-following-properties-from-type
+  // 結果這樣就修好了...
+  ArticleDirectory: any = [] as Array<TreeDates>;
+
 }
