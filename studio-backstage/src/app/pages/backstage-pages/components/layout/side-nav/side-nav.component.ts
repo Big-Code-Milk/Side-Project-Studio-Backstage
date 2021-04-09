@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FireStorageHelperService } from '../../../../../shared/common/fire-storage-helper/fire-storage-helper.service'
 import UserInfoLog from '../../../../../shared/models/user-info-log'
 
@@ -90,5 +90,10 @@ export class SideNavComponent implements OnInit {
 
   toggle(event: any) {
     console.log('event', event);
+  }
+
+  @Output() onSideNavToggle: EventEmitter<any> = new EventEmitter<any>(); // 发射器
+  ContentEmitter() {
+    this.onSideNavToggle.emit('Toggle');
   }
 }
