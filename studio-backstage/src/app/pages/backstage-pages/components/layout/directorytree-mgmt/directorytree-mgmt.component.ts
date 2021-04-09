@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 export interface TreeDates {
   NickName: string;
@@ -15,6 +15,7 @@ declare var $: any;
 })
 export class DirectorytreeMgmtComponent implements OnInit {
 
+  @Input() ArticleDirectory: string;
   @Input() Title: string;
   DisplayMode: string = 'Close';
 
@@ -26,7 +27,7 @@ export class DirectorytreeMgmtComponent implements OnInit {
   TreeDate: Array<TreeDates> = [];
 
   ngOnInit(): void {
-    // console.log($('.markdown-body').html());
+
     (this.Title == "" || this.Title == undefined) ? this.Title = "目錄管理" : this.Title = this.Title;
   }
 
@@ -163,6 +164,17 @@ export class DirectorytreeMgmtComponent implements OnInit {
     let ParsedString = eval(WaitParseString);
     ParsedString.NickName = this.NickName;
     ParsedString.Url = this.Url;
+  }
+
+  ArticleDirectoryChange() {
+    // console.log($('#ArticleDirectory').html());
+    // console.log('this.TreeDate', this.TreeDate);
+    this.ContentEmitter()
+  }
+
+  @Output() onDirectorytreeChange: EventEmitter<any> = new EventEmitter<any>(); // 发射器
+  ContentEmitter() {
+    this.onDirectorytreeChange.emit(this.TreeDate);
   }
 
 }

@@ -92,8 +92,10 @@
       <button mat-raised-button color="warn" align="end" (click)="CheckFormThenSubmit()">存為草稿</button>
     </div>
   </mat-expansion-panel>
-  <app-directorytree-mgmt></app-directorytree-mgmt>
+
   <app-image-hosting-tab [Title]="'圖庫'"></app-image-hosting-tab>
   <app-editor-tab [Title]="'內文編輯'" [MarkdownContent]="MarkdownContent" [HTMLContent]="HTMLContent"
-    (onCotentChange)="SyncModel($event)"></app-editor-tab>
+    (onCotentChange)="SyncEditorModel($event)"></app-editor-tab>
+  <!-- [ArticleDirectory]="FirebaseModel.ArticleDirectory" -->
+  <app-directorytree-mgmt (onDirectorytreeChange)="SyncDirectorytreeModel($event)"></app-directorytree-mgmt>
 </form>

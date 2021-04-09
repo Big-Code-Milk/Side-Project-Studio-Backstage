@@ -59,7 +59,7 @@ export class EditContentComponent implements OnInit {
     }
   }
 
-  SyncModel(Value: any) {
+  SyncEditorModel(Value: any) {
     // console.log('最外層 Value', Value);
     this.HTMLContent = Value.HTMLContent;
     this.MarkdownContent = Value.MarkdownContent;
@@ -149,6 +149,7 @@ export class EditContentComponent implements OnInit {
     this.FirebaseModel.MarkdownContent = this.MarkdownContent;
     this.FirebaseModel.Tags = [... new Set(this.Tags)];
     // 新增一筆
+    // console.log('this.FirebaseModel', this.FirebaseModel);
     let _Collection = this._FireStorageHelper.GetFireCollection<FirebaseModel>('Article');
     let JSONString = JSON.stringify(this.FirebaseModel);
     let Obj = JSON.parse(JSONString);
@@ -181,6 +182,7 @@ export class EditContentComponent implements OnInit {
     this.FirebaseModel.Tags = [... new Set(this.Tags)];
     // 更新
     var _Document = this._FireStorageHelper.GetFireDocument('Article/' + this.Key);
+    // console.log('this.FirebaseModel', this.FirebaseModel);
     let JSONStringUpdate = JSON.stringify(this.FirebaseModel);
     let ObjUpdate = JSON.parse(JSONStringUpdate);
     var _Update = _Document.update(ObjUpdate).catch(error => {
@@ -304,4 +306,8 @@ export class EditContentComponent implements OnInit {
     });
   }
 
+  SyncDirectorytreeModel(Value: any) {
+    console.log('最外層 Value', Value);
+    this.FirebaseModel.ArticleDirectory = Value;
+  }
 }

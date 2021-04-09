@@ -86,7 +86,7 @@ export class FireStorageHelperService {
   // return this._CloudFirestore.collection<T>(QueryPath, _QueryFn);
 
   GetFireDocument<T>(QueryPath: string): AngularFirestoreDocument<T> {
-    console.log('GetFireDocument', QueryPath);
+    // console.log('GetFireDocument', QueryPath);
     return this._CloudFirestore.doc<T>(QueryPath);
   }
 }
