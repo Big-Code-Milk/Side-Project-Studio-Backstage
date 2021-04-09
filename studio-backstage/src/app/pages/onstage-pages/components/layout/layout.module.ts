@@ -8,12 +8,14 @@ import { BaseSharedModule } from 'src/app/shared/module/base-shared.module';
 import { FireStorageHelperService } from 'src/app/shared/common/fire-storage-helper/fire-storage-helper.service';
 import { FooterComponent } from './apple-template/footer/footer.component';
 import { HeaderComponent } from './apple-template/header/header.component';
+import { DirectoryNavigationComponent } from './directory-navigation/directory-navigation.component';
 
 @NgModule({
   declarations: [
     AppleTemplateComponent,
     FooterComponent,
     HeaderComponent,
+    DirectoryNavigationComponent,
   ],
   providers: [
     FireStorageHelperService,
@@ -25,6 +27,7 @@ import { HeaderComponent } from './apple-template/header/header.component';
     LayoutRoutingModule,
   ],
   exports: [
+    DirectoryNavigationComponent,
     AppleTemplateComponent,
   ]
 })

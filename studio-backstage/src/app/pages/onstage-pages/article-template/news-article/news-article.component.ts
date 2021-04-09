@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { FireStorageHelperService } from 'src/app/shared/common/fire-storage-helper/fire-storage-helper.service';
 import FirebaseModel from 'src/app/shared/models/firebase-model';
@@ -20,6 +21,7 @@ export class NewsArticleComponent implements OnInit {
   constructor(
     private _ActivatedRoute: ActivatedRoute,
     private _FireStorageHelper: FireStorageHelperService,
+    private _DomSanitizer: DomSanitizer,
   ) { }
 
   Key: any;
@@ -29,7 +31,13 @@ export class NewsArticleComponent implements OnInit {
     this.Key = this._ActivatedRoute.snapshot.paramMap.get('Key');
     console.log('this.Key', this.Key);
     var Observable = this._FireStorageHelper.GetFireDocument('Article/' + this.Key).valueChanges();
-    var Subscription = Observable.subscribe((Data: any) => { this.Article = Data; console.log('Data', Data); Subscription.unsubscribe(); });
+    var Subscription = Observable.subscribe((Data: any) => {
+      // https://stackoverflow.com/questions/48556861/angular-4-innerhtml-property-removing-id-attribute
+      Data.Content = this._DomSanitizer.bypassSecurityTrustHtml(Data.Content);
+      this.Article = Data;
+      console.log('Data', Data);
+      Subscription.unsubscribe();
+    });
   }
 
 }
