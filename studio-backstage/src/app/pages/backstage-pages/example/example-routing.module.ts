@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DirectorytreeMgmtComponent } from '../components/layout/directorytree-mgmt/directorytree-mgmt.component';
 import { EditorMdComponent } from '../components/layout/editor-md/editor-md.component';
 import { EditorTabComponent } from '../components/layout/editor-tab/editor-tab.component';
 import { GetStartedComponent } from '../components/layout/get-started/get-started.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'imagehostingtab', component: ImageHostingTabComponent },
   { path: 'getstarted', component: GetStartedComponent },
   { path: 'datatable', component: DataTableComponent },
+  { path: 'directorytreemgmt', component: DirectorytreeMgmtComponent },
 ];
 
 @NgModule({

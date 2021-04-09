@@ -14,6 +14,7 @@
         <div>
           第 {{i}} 層 <br>
           內容:{{item.NickName}} <br>
+          <button *ngIf="IsEdited" mat-stroked-button (click)="Create(i)">新增</button>
         </div>
         <ng-container *ngTemplateOutlet="tree; context: { $implicit: item.Children, idx: i }">
         </ng-container>
