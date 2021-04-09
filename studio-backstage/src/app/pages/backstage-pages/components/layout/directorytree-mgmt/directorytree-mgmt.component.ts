@@ -112,7 +112,7 @@ export class DirectorytreeMgmtComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    console.log($('.markdown-body').html());
+    // console.log($('.markdown-body').html());
     (this.Title == "" || this.Title == undefined) ? this.Title = "目錄管理" : this.Title = this.Title;
   }
 
@@ -166,60 +166,21 @@ export class DirectorytreeMgmtComponent implements OnInit {
     this.Url = "";
   }
 
-  Update(Index: any) {
-    if (!confirm(`確定要改為 NickName = ${this.NickName} ,Url = ${this.Url} ?`)) {
-      return;
-    }
-    console.log(Index);
-    console.log(typeof (Index));
-
-    let WaitParseString: any;
-    if (Index != '') {
-      console.log('1');
-
-      let IndexArray: Array<string> = Index.split('.');
-      // console.log('IndexArray', IndexArray.length);
-      // "0", "1", "0", "0" this.TreeDate[0].Children[1].Children[0].push()
-
-      IndexArray.forEach((value: string, index: number, array: string[]) => {
-        // console.log('ForEach Index', index);
-        if (index == 0) {
-          WaitParseString = `this.TreeDate[${value}]`;
-        }
-        else {
-          WaitParseString += `.Children[${value}]`;
-        }
-      });
-
-    } else {
-      console.log('2');
-      console.log(typeof (Index))
-      WaitParseString = `this.TreeDate[${Index}]`;
-    }
-
-    console.log('WaitParseString', WaitParseString);
-    console.log(eval(WaitParseString));
-
-    let ParsedString = eval(WaitParseString);
-    ParsedString.NickName = this.NickName;
-    ParsedString.Url = this.Url;
-  }
-
   Delete(Index: any) {
     if (!confirm(`確定要刪除 ${Index} ?`)) {
       return;
     }
 
-    console.log('Index', Index);
-    console.log(typeof (Index));
+    // console.log('Index', Index);
+    // console.log(typeof (Index));
 
     let WaitParseString: any;
     let DeleteIndex: any;
 
-    if (typeof (Index) != 'string') {
+    if (typeof (Index) == 'string') {
 
-      console.log('Index', Index);
-      console.log(typeof (Index));
+      // console.log('Index', Index);
+      // console.log(typeof (Index));
 
       let IndexArray: Array<string> = Index.split('.');
       // console.log('IndexArray', IndexArray.length);
@@ -230,9 +191,11 @@ export class DirectorytreeMgmtComponent implements OnInit {
         if (index == 0) {
           WaitParseString = `this.TreeDate[${value}]`;
         }
-        else {
-          DeleteIndex = value;
+        else if (index == IndexArray.length - 1) {
           WaitParseString += `.Children`;
+          DeleteIndex = value;
+        } else {
+          WaitParseString += `.Children[${value}]`;
         }
       });
 
@@ -249,5 +212,43 @@ export class DirectorytreeMgmtComponent implements OnInit {
     ParsedString.splice(DeleteIndex);
   }
 
+  Update(Index: any) {
+    if (!confirm(`確定要改為 NickName = ${this.NickName} ,Url = ${this.Url} ?`)) {
+      return;
+    }
+    // console.log(Index);
+    // console.log(typeof (Index));
+
+    let WaitParseString: any;
+    if (Index != '' && typeof (Index) != 'number') {
+      // console.log('1');
+
+      let IndexArray: Array<string> = Index.split('.');
+      // console.log('IndexArray', IndexArray.length);
+      // "0", "1", "0", "0" this.TreeDate[0].Children[1].Children[0].push()
+
+      IndexArray.forEach((value: string, index: number, array: string[]) => {
+        // console.log('ForEach Index', index);
+        if (index == 0) {
+          WaitParseString = `this.TreeDate[${value}]`;
+        }
+        else {
+          WaitParseString += `.Children[${value}]`;
+        }
+      });
+
+    } else {
+      // console.log('2');
+      // console.log(typeof (Index))
+      WaitParseString = `this.TreeDate[${Index}]`;
+    }
+
+    // console.log('WaitParseString', WaitParseString);
+    // console.log(eval(WaitParseString));
+
+    let ParsedString = eval(WaitParseString);
+    ParsedString.NickName = this.NickName;
+    ParsedString.Url = this.Url;
+  }
 
 }
