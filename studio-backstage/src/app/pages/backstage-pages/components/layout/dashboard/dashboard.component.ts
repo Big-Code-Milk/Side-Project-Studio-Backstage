@@ -86,6 +86,7 @@ export class DashboardComponent implements OnInit {
   }
 
   onSideNavToggle() {
+    // console.log('onSideNavToggle');
     this.Fold();
   }
 }

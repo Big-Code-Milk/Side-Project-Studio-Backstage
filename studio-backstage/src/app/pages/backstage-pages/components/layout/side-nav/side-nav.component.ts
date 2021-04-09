@@ -49,6 +49,8 @@ export class SideNavComponent implements OnInit {
     let _href = Event.path[1].href;
     let _innerText = Event.path[1].innerText;
     if (_href != undefined && _innerText != undefined) {
+      // console.log('MatAccordionOnClick');
+      this.SideNavEmitter();
       // 取出來篩選掉重複的再存進去
       let SideNavTemp = [];
       let _SideNavTemp = localStorage.getItem('SideNavTemp');
@@ -72,6 +74,7 @@ export class SideNavComponent implements OnInit {
       // console.log('_SideNavTemp', _SideNavTemp);
     }
     this.CommonlyUsedInit();
+
   }
 
   // 擷取相對路徑
@@ -93,7 +96,8 @@ export class SideNavComponent implements OnInit {
   }
 
   @Output() onSideNavToggle: EventEmitter<any> = new EventEmitter<any>(); // 发射器
-  ContentEmitter() {
+  SideNavEmitter() {
+    // console.log('onSideNavToggle');
     this.onSideNavToggle.emit('Toggle');
   }
 }

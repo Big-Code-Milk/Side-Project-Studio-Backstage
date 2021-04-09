@@ -20,6 +20,7 @@ export class DirectorytreeMgmtComponent implements OnInit {
   DisplayMode: string = 'Close';
 
   constructor() {
+    console.log(this.ArticleDirectory);
   }
 
   NickName: string = "";
@@ -29,6 +30,8 @@ export class DirectorytreeMgmtComponent implements OnInit {
   ngOnInit(): void {
 
     (this.Title == "" || this.Title == undefined) ? this.Title = "目錄管理" : this.Title = this.Title;
+
+    console.log(this.ArticleDirectory);
   }
 
   Create(Index: any) {
@@ -169,11 +172,11 @@ export class DirectorytreeMgmtComponent implements OnInit {
   ArticleDirectoryChange() {
     // console.log($('#ArticleDirectory').html());
     // console.log('this.TreeDate', this.TreeDate);
-    this.ContentEmitter()
+    this.DirectorytreeEmitter()
   }
 
   @Output() onDirectorytreeChange: EventEmitter<any> = new EventEmitter<any>(); // 发射器
-  ContentEmitter() {
+  DirectorytreeEmitter() {
     this.onDirectorytreeChange.emit(this.ArticleDirectory);
   }
 
