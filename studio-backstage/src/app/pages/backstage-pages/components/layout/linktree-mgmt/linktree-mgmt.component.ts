@@ -98,7 +98,6 @@ export class LinktreeMgmtComponent implements OnInit {
   NickName: string = "";
   Url: string = "";
 
-
   constructor() {
   }
 
