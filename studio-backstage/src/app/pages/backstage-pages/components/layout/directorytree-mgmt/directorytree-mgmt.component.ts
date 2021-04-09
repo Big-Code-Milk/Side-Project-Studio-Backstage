@@ -15,7 +15,7 @@ declare var $: any;
 })
 export class DirectorytreeMgmtComponent implements OnInit {
 
-  @Input() ArticleDirectory: any;
+
   @Input() Title: string;
   DisplayMode: string = 'Close';
 
@@ -175,6 +175,7 @@ export class DirectorytreeMgmtComponent implements OnInit {
     this.DirectorytreeEmitter()
   }
 
+  @Input() ArticleDirectory: any;
   @Output() onDirectorytreeChange: EventEmitter<any> = new EventEmitter<any>(); // 发射器
   DirectorytreeEmitter() {
     this.onDirectorytreeChange.emit(this.ArticleDirectory);

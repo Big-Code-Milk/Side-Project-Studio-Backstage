@@ -136,6 +136,7 @@ export class EditContentComponent implements OnInit {
       this.HTMLContent = Param.Content;
       this.MarkdownContent = Param.MarkdownContent;
       this.ArticleDirectory = Param.ArticleDirectory;
+      console.log('this.ArticleDirectory', this.ArticleDirectory);
       // console.log('Param', Param);
       // console.log('Param.HTMLContent', Param.Content);
       // console.log('this.HTMLContent', this.HTMLContent);
@@ -307,9 +308,10 @@ export class EditContentComponent implements OnInit {
     });
   }
 
-  ArticleDirectory: string;
+  ArticleDirectory: any;
   SyncDirectorytreeModel(Value: any) {
+    // https://stackoverflow.com/questions/57769026/input-property-is-not-being-updated-second-time
     console.log('最外層 Value', Value);
-    this.FirebaseModel.ArticleDirectory = Value;
+    // this.FirebaseModel.ArticleDirectory = Value;
   }
 }
