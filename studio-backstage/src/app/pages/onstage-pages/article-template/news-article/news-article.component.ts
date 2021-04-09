@@ -32,5 +32,4 @@ export class NewsArticleComponent implements OnInit {
     var Subscription = Observable.subscribe((Data: any) => { this.Article = Data; console.log('Data', Data); Subscription.unsubscribe(); });
   }
 
-
 }
