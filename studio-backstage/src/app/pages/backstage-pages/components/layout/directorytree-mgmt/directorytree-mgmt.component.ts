@@ -70,8 +70,8 @@ export class DirectorytreeMgmtComponent implements OnInit {
       }
     }
 
-    // console.log('WaitParseString', WaitParseString);
-    // console.log(eval(WaitParseString));
+    console.log('WaitParseString', WaitParseString);
+    console.log(eval(WaitParseString));
 
     // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/eval
     let ParsedArray = eval(WaitParseString);
@@ -175,7 +175,7 @@ export class DirectorytreeMgmtComponent implements OnInit {
     this.DirectorytreeEmitter()
   }
 
-  @Input() ArticleDirectory: any;
+  @Input() ArticleDirectory: Array<TreeDates> = [];
   @Output() onDirectorytreeChange: EventEmitter<any> = new EventEmitter<any>(); // 发射器
   DirectorytreeEmitter() {
     this.onDirectorytreeChange.emit(this.ArticleDirectory);
