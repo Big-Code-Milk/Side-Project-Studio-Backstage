@@ -31,29 +31,35 @@
   </ul>
 </ng-template> -->
 
-<button mat-stroked-button (click)="IsEdited?IsEdited = false:IsEdited = true">編輯模式</button>
-
-<ul>
-  <li>常用連結(根目錄)
-    <div *ngIf="IsEdited">
-      <input type="text" placeholder="名稱" />
+<!-- <input type="text" placeholder="名稱" />
       <input type="text" placeholder="網址(資料夾不用填)" />
-      <button mat-stroked-button>修改</button>
-      <button mat-stroked-button (click)="Create($event)">新增</button>
+      <button mat-stroked-button ()>修改</button>
+      <button mat-stroked-button (click)="Create($event)">新增</button> -->
+
+<button mat-stroked-button (click)="IsEdited?IsEdited = false:IsEdited = true">編輯模式</button>
+<p>修改或新增都會以已下兩欄傳值</p>
+<input *ngIf="IsEdited" type="text" placeholder="名稱" [(ngModel)]="NickName">
+<input *ngIf="IsEdited" type="text" placeholder="網址(資料夾不用填)" [(ngModel)]="Url">
+<ul><button *ngIf="IsEdited" mat-stroked-button (click)="Create(1)">新增</button>
+  <li *ngFor="let item of TreeDate; let i = index">
+    <div>
+      第 {{i}} 層 <br>
+      內容:{{item.NickName}} <br>
     </div>
+    <ng-container *ngTemplateOutlet="tree; context: { $implicit: item.Children, idx: i }">
+    </ng-container>
   </li>
-  <ng-container *ngTemplateOutlet="tree; context: { $implicit: TreeDate, another: [1],idx:[1] }">
-  </ng-container>
+
 </ul>
 
-<ng-template #tree let-AllItems let-another="another" let-idx="idx">
+<ng-template #tree let-allItems let-idx="idx">
   <ul>
-    <li *ngFor="let Item of AllItems;let _index = index;">
-      idx:{{idx}} <br>
-      another:{{another}} <br>
-      _index:{{_index}} <br>
-      Item.NickName:{{Item.NickName}} <br>
-      <ng-container *ngTemplateOutlet="tree; context: { $implicit: Item.Children, another:_index,idx:idx }">
+    <li *ngFor="let item of allItems; let n = index">
+      上一層:{{idx}} <br>
+      第 {{n}} 層 <br>
+      內容:{{item.NickName}} <br>
+      <button *ngIf="IsEdited" mat-stroked-button (click)="Create(idx+'.'+n)">新增</button>
+      <ng-container *ngTemplateOutlet="tree; context: { $implicit: item.Children, idx: idx + '.' + n }">
       </ng-container>
     </li>
   </ul>

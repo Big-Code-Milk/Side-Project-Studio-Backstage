@@ -1,81 +1,81 @@
         /* You can add global styles to this file, and also import other style files */
-        
+
         @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
-        img {
+        .OneHundredPercentImg {
             height: 100% !important;
             width: 100% !important;
         }
-        
+
         body {
             margin: 0 !important;
         }
         /* 未連結 */
-        
+
         .ButtonLink:link {
             color: #000000;
             text-decoration: none;
         }
         /* 已連結過 */
-        
+
         .ButtonLink:visited {
             color: #000000;
             text-decoration: none;
         }
         /* 滑鼠移至連結 */
-        
+
         .ButtonLink:hover {
             color: #00FF00;
         }
         /* 選擇的連結 */
-        
+
         .ButtonLink:active {
             color: #0000FF;
         }
-        
+
         .active-list-item {
             color: #00FF00 !important;
         }
-        
+
         .SideNavActived {
             width: 80vw;
             margin-left: 13vw !important;
         }
-        
+
         .SideNavInactive {
             width: 100vw;
         }
         /* 由子層控制畫面 */
-        
+
         mat-dialog-container {
             padding: 0 !important;
             border-radius: 10px !important;
         }
-        
+
         mat-dialog-content {
             margin: 0 !important;
             padding: 0 !important;
         }
-        
+
         mat-sidenav-content {
             height: 100vh !important;
             background-color: rgba(0, 0, 0, 0.1);
         }
-        
+
         .mat-tab-label {
             background-color: white;
         }
-        
+
         .SnackBarStyleClass {
             background-color: rgb(8, 25, 45);
             color: rgb(224, 60, 138);
         }
-        
+
         .mat-calendar {
             height: 100% !important;
         }
         /* 手機板 */
         /* https://blog.hinablue.me/css-media-query-tips/ */
-        
+
         @media (max-width: 767px) {
             span {
                 padding-left: 0 !important;
@@ -135,25 +135,25 @@
                 height: 300px;
             }
         }
-        
+
         @media (max-width: 480px) {}
-        
+
         @media (min-width: 768px) and (max-width: 979px) {}
-        
+
         @media (min-width: 980px) {}
-        
+
         @media (min-width: 1200px) {}
-        
+
         table tr td,
         table tr th {
             border: 1px solid #1d1e22;
             padding: 5px;
         }
-        
+
         table {
             border-collapse: collapse;
         }
-        
+
         @media only screen and (max-width: 992px) {
             table.responsive-table {
                 width: 100%;
@@ -214,12 +214,12 @@
                 border-right: 1px solid #1d1e22;
             }
         }
-        
+
         table {
             width: 100%;
             margin: 0.5em 0 !important;
         }
-        
+
         th.mat-header-cell,
         th,
         td.mat-cell,
@@ -227,7 +227,17 @@
             padding: 0.5em !important;
             border-bottom-color: black;
         }
-        
+
         th {
             color: rgba(0, 0, 0, .54);
+        }
+
+        .Loading{
+          width: 135px;
+          height: 140px;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          margin-top: -60px;
+          margin-left: -40px;
         }

@@ -1,0 +1,47 @@
+<main id="FakeMatExpansionPanel" class="boxshadow">
+  <section (click)="DisplayMode == 'Open' ? DisplayMode = 'Close':DisplayMode = 'Open' ">
+    <span *ngIf="DisplayMode=='Open'" style="padding-right: 1em;" class="material-icons">border_color</span>
+    <span *ngIf="DisplayMode!='Open'" style="padding-right: 1em;" class="material-icons">format_align_justify</span>
+    <h4>{{Title}}</h4>
+  </section>
+  <main *ngIf="DisplayMode=='Open'">
+
+    <button mat-stroked-button (click)="IsEdited?IsEdited = false:IsEdited = true">編輯模式</button>
+
+    <div *ngIf="IsEdited">
+      <p>修改或新增都會依照此兩欄傳值</p>
+      <input type="text" placeholder="名稱" [(ngModel)]="NickName">
+      <input type="text" placeholder="網址(資料夾不用填)" [(ngModel)]="Url">
+    </div>
+
+    <ul><button *ngIf="IsEdited" mat-stroked-button (click)="Create('')">新增</button>
+      <li *ngFor="let item of TreeDate; let i = index">
+        <div>
+          第 {{i}} 層 <br>
+          內容:{{item.NickName}} <br>
+          <button *ngIf="IsEdited" mat-stroked-button (click)="Create(i)">新增</button>
+          <button *ngIf="IsEdited" mat-stroked-button (click)="Create(i)">刪除</button>
+          <button *ngIf="IsEdited" mat-stroked-button (click)="Create(i)">編輯</button>
+        </div>
+        <ng-container *ngTemplateOutlet="tree; context: { $implicit: item.Children, idx: i }">
+        </ng-container>
+      </li>
+    </ul>
+
+    <ng-template #tree let-allItems let-idx="idx">
+      <ul>
+        <li *ngFor="let item of allItems; let n = index">
+          上一層:{{idx}} <br>
+          第 {{n}} 層 <br>
+          內容:{{item.NickName}} <br>
+          <button *ngIf="IsEdited" mat-stroked-button (click)="Create(idx+'.'+n)">新增</button>
+          <button *ngIf="IsEdited" mat-stroked-button (click)="Create(idx+'.'+n)">刪除</button>
+          <button *ngIf="IsEdited" mat-stroked-button (click)="Create(idx+'.'+n)">編輯</button>
+          <ng-container *ngTemplateOutlet="tree; context: { $implicit: item.Children, idx: idx + '.' + n }">
+          </ng-container>
+        </li>
+      </ul>
+    </ng-template>
+
+  </main>
+</main>
