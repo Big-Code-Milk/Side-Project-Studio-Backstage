@@ -94,7 +94,7 @@
     <hr>
     <app-image-hosting-tab [Title]="'圖庫'"></app-image-hosting-tab>
     <hr>
-    <app-editor-tab [Title]="'內文編輯'" [MarkdownContent]="MarkdownContent" [HTMLContent]="HTMLContent" (onCotentChange)="SyncEditorModel($event)"></app-editor-tab>
-    <hr>
     <app-directorytree-mgmt [(ArticleDirectory)]="ArticleDirectory"></app-directorytree-mgmt>
+    <hr>
+    <app-editor-tab [Title]="'內文編輯'" [MarkdownContent]="MarkdownContent" [HTMLContent]="HTMLContent" (onCotentChange)="SyncEditorModel($event)"></app-editor-tab>
 </form>
