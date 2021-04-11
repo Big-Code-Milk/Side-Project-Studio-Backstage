@@ -1,10 +1,11 @@
-<main id="FakeMatExpansionPanel" class="boxshadow" style="display: flex !important;">
+<main id="FakeMatExpansionPanel" class="boxshadow">
     <section (click)="DisplayMode == 'Open' ? DisplayMode = 'Close':DisplayMode = 'Open' ">
         <span *ngIf="DisplayMode=='Open'" style="padding-right: 1em;" class="material-icons">border_color</span>
         <span *ngIf="DisplayMode!='Open'" style="padding-right: 1em;" class="material-icons">format_align_justify</span>
         <h4>{{Title}}</h4>
     </section>
-    <main *ngIf="DisplayMode=='Open'">
+    <hr *ngIf="DisplayMode=='Open'">
+    <main *ngIf="DisplayMode=='Open'" style="display: flex;">
 
         <button mat-stroked-button (click)="IsEdited?IsEdited = false:IsEdited = true">編輯模式</button>
 

@@ -58,7 +58,7 @@
                 <button mat-stroked-button color="primary" (click)='Edit(row.id,row)' [disabled]="row.Status == '編輯中'">編輯</button>
                 <button mat-stroked-button color="primary" (click)='Delete(row.id)' [disabled]="row.Status == '編輯中'">刪除</button>
                 <br>
-                <button mat-stroked-button color="primary">預覽</button>
+                <a [routerLink]="['/newsarticle','Key',row.id]" class="ButtonLink"><button mat-stroked-button color="primary">預覽</button></a>
                 <button mat-stroked-button color="primary" (click)='Publish(row.id,row)' [disabled]="row.Status == '編輯中'">發佈</button>
             </td>
         </ng-container>
