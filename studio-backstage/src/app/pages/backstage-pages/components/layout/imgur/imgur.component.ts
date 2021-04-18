@@ -16,76 +16,40 @@ export class ImgurComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // 參考
-  // https://www.letswrite.tw/imgur-api-upload-load/
-
   ImgObject: any = {};
 
   ImgFileChange(Event: any) {
-    console.log(Event);
+    // console.log(Event);
     this.ImgObject.ImgFile = Event.target.files[0]; // input type="file" 的值
     this.ImgObject.ImgFile.name; // input的圖檔名稱
     this.ImgObject.ImgFileSize = Math.floor(this.ImgObject.ImgFile.size * 0.001) + 'KB'; // input的圖片大小
     this.ImgObject.ImgFileThumbnail = window.URL.createObjectURL(this.ImgObject.ImgFile); // input的圖片縮圖
-    console.log(this.ImgObject);
+    // console.log(this.ImgObject);
   }
 
-  GetImgurHostingList() {
-
-  }
-
-  protected _HttpOptions: any;
-
-  SetHeader() {
-
-    const ClientId = '2320545a1d64607';
-    const Token = 'c06ba04a68118964490e0f88d54c118de5dfed9c';
-    const Album = 'XXXX'; // 相簿 ID
-    const Url = "https://api.imgur.com/3/album/" + Album + "/images";
-    const Headers = { "Authorization": 'Bearer ' + Token };
-
-    this._HttpOptions = {
-      headers: new HttpHeaders(
-        {
-          "authorization": 'Bearer ' + Token
-        }
-      )
-    };
-  }
-
-  UploadImgur() {
-
-    this.SetHeader();
+  async UploadImgur() {
 
     console.log('this.ImgObject', this.ImgObject);
     if (this.ImgObject.ImgFile != undefined) {
 
+      const ClientId = 'da1c8b3de4e1e95';
+      const Token = '68adce9c1589772d2c8f4a2159011f5f8794e230';
+      const ClientSecret = '5ecc60434bdca9118fff6a200a0e5bc039fc9ee9';
       const Url = "https://api.imgur.com/3/image";
-      let Form = new FormData();
-      Form.append('image', this.ImgObject.ImgFile, this.ImgObject.ImgFile.name);
-      // Form.append('title', this.ImgObject.ImgFile.name);
-      // Form.append('description', this.des);
-      // Form.append('album', album); // 指定相簿
-      // https://apidocs.imgur.com/
-      var _Observable = this._HttpClient.post<any>(
-        Url,
-        Form,
-        this._HttpOptions,
-      );
-      _Observable.subscribe(res => {
-        console.log('_Observable', res)
-      }
-      )
+      let _FormData = new FormData();
+      _FormData.append('image', this.ImgObject.ImgFile);
+      let FormDataImg = _FormData.get('image'); // https://stackoverflow.com/questions/62303002/angular-9-formdata-appendkey-null-actually-appends-null-string
+
+      console.log('FormDataImg', FormDataImg);
+
+      let header = new HttpHeaders({
+        "authorization": 'Bearer ' + Token,
+      });
+
+      this._HttpClient.post(Url, _FormData, { headers: header });
     }
   }
 
-  // Update(formDate: any): Observable<any> {
-  //   const url = `${this.baseUrl}/Update`;
-  //   return this.http.
-  //     post<any>(
-  //       url,
-  //       formDate,
-  //       this.httpOptions);
-  // }
+
 
 }
