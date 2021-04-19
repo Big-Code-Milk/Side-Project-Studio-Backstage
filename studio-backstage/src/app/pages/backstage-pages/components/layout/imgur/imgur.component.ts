@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-imgur',
@@ -29,24 +29,21 @@ export class ImgurComponent implements OnInit {
 
   async UploadImgur() {
 
-    console.log('this.ImgObject', this.ImgObject);
     if (this.ImgObject.ImgFile != undefined) {
 
-      const ClientId = 'da1c8b3de4e1e95';
-      const Token = '68adce9c1589772d2c8f4a2159011f5f8794e230';
-      const ClientSecret = '5ecc60434bdca9118fff6a200a0e5bc039fc9ee9';
-      const Url = "https://api.imgur.com/3/image";
+      const Url = "https://api.imgur.com/3/image?withCredentials=false";
       let _FormData = new FormData();
       _FormData.append('image', this.ImgObject.ImgFile);
-      let FormDataImg = _FormData.get('image'); // https://stackoverflow.com/questions/62303002/angular-9-formdata-appendkey-null-actually-appends-null-string
 
-      console.log('FormDataImg', FormDataImg);
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Authorization': 'Client-ID da1c8b3de4e1e95',
+          'accept': '*/*'
+        }),
+      };
 
-      let header = new HttpHeaders({
-        "authorization": 'Bearer ' + Token,
-      });
+      var Subscribe = this._HttpClient.post(Url, _FormData, httpOptions).subscribe(observer => { console.log('observer', observer); });
 
-      this._HttpClient.post(Url, _FormData, { headers: header });
     }
   }
 
