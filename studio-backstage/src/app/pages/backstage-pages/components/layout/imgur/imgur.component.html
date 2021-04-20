@@ -11,7 +11,8 @@
 
     <!-- 上傳按鈕 -->
     <button (click)="UploadImgur()" type="button">上傳</button>
-
+    <img [src]="this.ImgObject.ImgFileThumbnail">
+    <p>{{this.ImgObject.ImgFileSize}}</p>
     <!--這篇過時無法用 <p>https://www.letswrite.tw/imgur-api-upload-load/</p> -->
     <p>檢測伺服器狀態 https://status.imgur.com/</p>
     <p>https://liu1165.imgur.com/all/</p>
