@@ -46,6 +46,9 @@
         </span>
         <div>
           <h2>Imgur 自訂圖庫</h2>
+          <div *ngFor="let Url of NowOnlineGallery" style="flex-wrap: wrap;">
+            <img [src]="Url">
+          </div>
         </div>
       </section>
 

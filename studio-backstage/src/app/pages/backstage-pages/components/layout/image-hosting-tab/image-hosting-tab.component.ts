@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FireStorageHelperService } from 'src/app/shared/common/fire-storage-helper/fire-storage-helper.service';
 
 @Component({
   selector: 'app-image-hosting-tab',
@@ -11,13 +12,16 @@ export class ImageHostingTabComponent implements OnInit {
   DisplayMode: string = 'Close';
   EditorMode: string = "ImgSource";
 
-  constructor() { }
+  constructor(
+    private _FireStorageHelper: FireStorageHelperService
+  ) { }
 
   ngOnInit(): void {
     // console.log('Title', this.Title);
     if (this.Title == undefined) {
       this.Title = '請注入此 Component Title';
     }
+    this.InitGallery();
   }
 
   EditorModeChange() {
@@ -34,4 +38,16 @@ export class ImageHostingTabComponent implements OnInit {
     }
   }
 
+  NowOnlineGallery: any;
+
+  InitGallery() {
+
+    let ResponseTags = this._FireStorageHelper.GetFireObject('Gallery');
+
+    let _Subscribe: any = ResponseTags.valueChanges().subscribe((elements: any) => {
+      _Subscribe.unsubscribe();
+      console.log('elements', elements);
+      this.NowOnlineGallery = JSON.parse(elements) || [];
+    })
+  }
 }
