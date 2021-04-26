@@ -1,21 +1,21 @@
 <div id="uplaod-wrap">
 
-    <!-- 選取圖片的 input -->
-    <input id="upload" type="file" accept="image/*" (change)="ImgFileChange($event)">
+  <!-- 選取圖片的 input -->
+  <input id="upload" type="file" accept="image/*" (change)="ImgFileChange($event)">
 
-    <!-- 圖片標題 -->
-    <input id="title" type="text" required placeholder="圖片標題">
+  <!-- 圖片標題 -->
+  <input id="title" type="text" required placeholder="圖片標題">
 
-    <!-- 圖片描述 -->
-    <input id="des" type="text" required placeholder="圖片描述">
+  <!-- 圖片描述 -->
+  <input id="des" type="text" required placeholder="圖片描述">
 
-    <!-- 上傳按鈕 -->
-    <button (click)="UploadImgur()" type="button">上傳</button>
-    <img [src]="this.ImgObject.ImgFileThumbnail">
-    <p>{{this.ImgObject.ImgFileSize}}</p>
-    <!--這篇過時無法用 <p>https://www.letswrite.tw/imgur-api-upload-load/</p> -->
-    <p>檢測伺服器狀態 https://status.imgur.com/</p>
-    <p>https://liu1165.imgur.com/all/</p>
-    <p>https://apidocs.imgur.com/</p>
-    <p>https://soshace.com/how-to-upload-images-to-a-cloud-storageimgur-in-an-angular-application/</p>
+  <!-- 上傳按鈕 -->
+  <button (click)="UploadImgur()" type="button">上傳</button>
+  <img [src]="this.ImgObject.ImgFileThumbnail">
+  <p>{{this.ImgObject.ImgFileSize}}</p>
+  <!-- <p>https://www.letswrite.tw/imgur-api-upload-load/</p> -->
+  <!-- <p>檢測伺服器狀態 https://status.imgur.com/</p> -->
+  <!-- <p>https://liu1165.imgur.com/all/</p> -->
+  <!-- <p>https://apidocs.imgur.com/</p> -->
+  <!-- <p>https://soshace.com/how-to-upload-images-to-a-cloud-storageimgur-in-an-angular-application/</p> -->
 </div>

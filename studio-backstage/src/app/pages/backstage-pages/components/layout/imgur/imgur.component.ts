@@ -49,11 +49,16 @@ export class ImgurComponent implements OnInit {
         }),
       };
 
-      var Subscribe = this._HttpClient.post(Url, _FormData, httpOptions).subscribe(observer => { console.log('observer', observer); });
+      var Subscribe = this._HttpClient.post(Url, _FormData, httpOptions).subscribe((observer: any) => {
+        console.log('observer', observer);
+        if (observer.data.link != undefined) {
+          Subscribe.unsubscribe();
+
+          console.log('observer.data.link', observer.data.link);
+        }
+      });
 
     }
   }
-
-
 
 }

@@ -10,7 +10,7 @@
       <label>圖庫模式：</label>
       <select [(ngModel)]="EditorMode" (change)="EditorModeChange()">
         <option value="ImgSource">ImgSource</option>
-        <option value="Imgur">Imgur</option>
+        <option value="Imgur">Imgur 匿名上傳</option>
         <option value="GoogleCloud">GoogleCloud</option>
         <option value="FirebaseStorage">FirebaseStorage</option>
       </select>
@@ -36,14 +36,17 @@
       <section style="padding: 2em;" *ngIf="EditorMode == 'ImgSource'">
         <span>
           <a href="https://imgur.com/" target="_blank">
-            Imgur
+            Imgur 線上查詢
           </a>
         </span>、
         <span>
           <a href="https://unsplash.com/" target="_blank">
-            Unsplash
+            Unsplash 線上查詢
           </a>
         </span>
+        <div>
+          <h2>Imgur 自訂圖庫</h2>
+        </div>
       </section>
 
       <section *ngIf="EditorMode == 'Imgur'">
