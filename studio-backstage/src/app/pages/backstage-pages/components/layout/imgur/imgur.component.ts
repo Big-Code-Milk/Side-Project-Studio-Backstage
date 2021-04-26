@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FireStorageHelperService } from 'src/app/shared/common/fire-storage-helper/fire-storage-helper.service';
+import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
 
 @Component({
   selector: 'app-imgur',
@@ -16,9 +18,13 @@ export class ImgurComponent implements OnInit {
   constructor(
     protected _HttpClient: HttpClient, // https://stackoverflow.com/questions/47236963/no-provider-for-httpclient
     protected _DomSanitizer: DomSanitizer,
+    protected _FireStorageHelper: FireStorageHelperService,
+    private _SnackBarHelper: SnackBarHelperService,
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(
+
+  ): void {
   }
 
   ImgObject: any = {};
@@ -55,6 +61,15 @@ export class ImgurComponent implements OnInit {
           Subscribe.unsubscribe();
 
           console.log('observer.data.link', observer.data.link);
+          let ResponseTags = this._FireStorageHelper.GetFireObject('Gallery');
+          let _Subscribe: any = ResponseTags.valueChanges().subscribe((elements: any) => {
+            _Subscribe.unsubscribe();
+
+            let NowOnlineGallery = JSON.parse(elements) || [];
+            NowOnlineGallery.push(observer.data.link);
+            ResponseTags.set(JSON.stringify(NowOnlineGallery));
+            this._SnackBarHelper.OpenSnackBar('儲存成功!網址為' + observer.data.link);
+          });
         }
       });
 
