@@ -45,9 +45,10 @@
           </a>
         </span>
         <div>
-          <h2>Imgur 自訂圖庫</h2>
-          <div *ngFor="let Url of NowOnlineGallery" style="flex-wrap: wrap;">
-            <img [src]="Url">
+          <h4>Imgur 自訂圖庫</h4>
+          <p>對照片點擊左鍵即可複製到剪貼簿</p>
+          <div style="flex-wrap: wrap;">
+            <img *ngFor="let Url of NowOnlineGallery" [src]="Url" (click)="CopyUrl(Url)">
           </div>
         </div>
       </section>
