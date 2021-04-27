@@ -66,6 +66,6 @@ export class ImageHostingTabComponent implements OnInit {
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
-    this._SnackBarHelper.OpenSnackBar(val + ' 已複製到剪貼簿');
+    this._SnackBarHelper.OpenSnackBar(val + ' 已複製到剪貼簿!!');
   }
 }
