@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class FooterComponent implements OnInit {
 
   NowDate = new Date();
-  StudioName = "育愷新天地";
+  StudioName = "66 IT Studio";
 
   constructor() { }
 
