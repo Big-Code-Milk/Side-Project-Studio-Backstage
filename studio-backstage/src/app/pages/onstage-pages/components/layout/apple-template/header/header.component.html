@@ -2,24 +2,23 @@
   <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <i class="material-icons">menu</i>
   </button> -->
-  <span style="text-shadow: black 0.1em 0.1em 0.2em">
-    <a style="color: white !important;" class="ButtonLink" [routerLink]="'/'">
+  <a style="color: white !important;" class="ButtonLink" [routerLink]="'/'">
+    <span style="text-shadow: black 0.1em 0.1em 0.2em">
       <i class="material-icons">
         dashboard_customize
       </i>
       66 IT Studio
-    </a>
-  </span>
+    </span>
+  </a>
   <span style="padding: 0 1em;"> </span>
   <div style="width: 100%;">
     <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">經歷</button>|
     <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">專案</button>|
     <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">功能</button>|
-
-    <button mat-button>
-      <a style="color: white !important;text-shadow: black 0.1em 0.1em 0.2em" class="ButtonLink"
-        [routerLink]="'/articlecatalog'">文章</a>
-    </button>|
+    <a style="color: white !important;" class="ButtonLink" [routerLink]="'/articlecatalog'">
+      <button mat-button style="text-shadow: black 0.1em 0.1em 0.2em">
+        文章
+      </button></a>|
 
     <button mat-button (click)="IsSearchOpend==true?IsSearchOpend=false:IsSearchOpend=true"
       style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">
