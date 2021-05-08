@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppleTemplateComponent implements OnInit {
 
+  RandomColor: string;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.RandomColor = this.getRandomColor();
   }
 
+  // 隨機取 rgb 字串
+  getRandomColor() {
+    var rgb = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',0.9)';
+    // console.log(rgb);
+    return rgb;
+  }
 }

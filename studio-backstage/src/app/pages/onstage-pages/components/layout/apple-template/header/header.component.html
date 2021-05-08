@@ -1,28 +1,55 @@
-<mat-toolbar style="padding: 5vh 20vw; background-color:rgba(0,0,0,0.6);color:white">
+<mat-toolbar [ngStyle]="{'background-color':RandomColor,'padding':'5vh 20vw'}">
   <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <i class="material-icons">menu</i>
   </button> -->
-  <span>
-    <a style="color: white !important;" class="ButtonLink" [routerLink]="'/'">66 IT Studio</a>
+  <span style="text-shadow: black 0.1em 0.1em 0.2em">
+    <a style="color: white !important;" class="ButtonLink" [routerLink]="'/'">
+      <i class="material-icons">
+        dashboard_customize
+      </i>
+      66 IT Studio
+    </a>
   </span>
   <span style="padding: 0 1em;"> </span>
   <div style="width: 100%;">
-    <button mat-button>關於</button>|
-    <button mat-button>專案</button>|
-    <button mat-button>功能</button>|
-    <a style="color: white !important;" class="ButtonLink" [routerLink]="'/articlecatalog'">
-      <button mat-button>文章</button>
-    </a>
+    <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">經歷</button>|
+    <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">專案</button>|
+    <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">功能</button>|
+
+    <button mat-button>
+      <a style="color: white !important;text-shadow: black 0.1em 0.1em 0.2em" class="ButtonLink"
+        [routerLink]="'/articlecatalog'">文章</a>
+    </button>|
+
+    <button mat-button (click)="IsSearchOpend==true?IsSearchOpend=false:IsSearchOpend=true"
+      style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">
+      搜尋
+    </button>
+
+    <mat-form-field *ngIf="IsSearchOpend">
+      <mat-label>
+        ...
+      </mat-label>
+      <input type="text" placeholder="" aria-label="Number" matInput>
+      <!-- <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete> -->
+    </mat-form-field>
     <div></div>
-    <button mat-button>標籤</button>|
-    <ng-container *ngFor="let Tag of allTags;let i=index">
-      <span style="font-size: 0.5em !important;" *ngIf="i!=0">、</span>
-      <a style="font-size: 0.5em !important;color: white !important;">{{Tag}}</a>
-    </ng-container>
+    <span *ngIf="!IsSearchOpend">
+      <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">標籤</button>|
+      <ng-container *ngFor="let Tag of allTags;let i=index">
+        <span style="font-size: 0.5em !important;text-shadow: black 0.1em 0.1em 0.2em" *ngIf="i!=0">、</span>
+        <a style="font-size: 0.5em !important;color: white !important;text-shadow: black 0.1em 0.1em 0.2em">{{Tag}}</a>
+      </ng-container>
+    </span>
     <!-- <button mat-button [matMenuTriggerFor]="menu">查詢</button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>Item 1</button>
       <button mat-menu-item>Item 2</button>
     </mat-menu> -->
+
   </div>
 </mat-toolbar>
