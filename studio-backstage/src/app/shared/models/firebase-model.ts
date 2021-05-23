@@ -14,4 +14,5 @@ export default class FirebaseModel {
   Templet?: string;
   KeyVision?: string;
   ArticleDirectory?: any;
+  Author?: string;
 }
