@@ -1,11 +1,6 @@
         /* You can add global styles to this file, and also import other style files */
         
         @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
-        .OneHundredPercentImg {
-            height: 100% !important;
-            width: 100% !important;
-        }
-        
         body {
             margin: 0 !important;
         }
@@ -231,17 +226,68 @@
         }
         
         .Loading {
-            width: 135px;
-            height: 140px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            margin-top: -60px;
-            margin-left: -40px;
+            width: 100vw;
+            height: 100vh;
+            background-image: url(assets/images/Ajux_loader.gif);
+            background-repeat: repeat;
         }
         
         .AppleTemplate {
             padding: 5vh 20vw;
             min-height: 80vh;
             background-color: rgba(128, 128, 128, 0.2);
+        }
+        
+        .mat-menu-panel {
+            min-height: 0 !important;
+        }
+        
+        blockquote {
+            color: #666;
+            border-left: 4px solid #ddd;
+            padding-left: 20px;
+            margin-left: 0;
+            font-size: 14px;
+            font-style: italic;
+        }
+        
+        code {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-left: 3px solid #f36d33;
+            color: #666;
+            page-break-inside: avoid;
+            font-family: monospace;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 1.6em;
+            max-width: 100%;
+            overflow: auto;
+            padding: 1em 1.5em;
+            display: block;
+            word-wrap: break-word;
+        }
+        
+        .MainContent {
+            font-size: 21px;
+            line-height: 32px;
+            margin-top: 24px;
+            margin-bottom: -0.46em;
+        }
+        
+        .at-link {
+            border: 1px solid #ddd;
+            background: #f6f6f6;
+            border-radius: 3px;
+            font-size: 14px;
+            padding: .2em 3px;
+            margin: 0;
+        }
+        
+        .MainContent>h2 {
+            margin-bottom: 1.7rem;
+        }
+        
+        .MainContent>h2 {
+            margin-bottom: 1.7rem;
         }

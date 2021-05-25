@@ -9,6 +9,7 @@ import { AngularFirebaseComponent } from './angular-fire-base/angular-firebase.c
 import { DataTableComponent } from './data-table/data-table.component';
 import { EditorComponent } from './editor-fail/editor.component';
 import { ShareServiceComponent } from './share-service/share-service.component';
+import { SharedDataGetStaticJsonComponent } from './shared-data-get-static-json/shared-data-get-static-json.component';
 
 const routes: Routes = [
   { path: 'angularfirebase', component: AngularFirebaseComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'getstarted', component: GetStartedComponent },
   { path: 'datatable', component: DataTableComponent },
   { path: 'directorytreemgmt', component: DirectorytreeMgmtComponent },
+  { path: 'shareddatagetstaticjson', component: SharedDataGetStaticJsonComponent },
 ];
 
 @NgModule({

@@ -21,7 +21,7 @@ export class ImageHostingTabComponent implements OnInit {
   ngOnInit(): void {
     // console.log('Title', this.Title);
     if (this.Title == undefined) {
-      this.Title = '請注入此 Component Title';
+      this.Title = '圖庫元件';
     }
     this.InitGallery();
   }
@@ -50,7 +50,7 @@ export class ImageHostingTabComponent implements OnInit {
       _Subscribe.unsubscribe();
       console.log('elements', elements);
       this.NowOnlineGallery = JSON.parse(elements) || [];
-    })
+    });
   }
 
   CopyUrl(val: string) {
@@ -67,5 +67,17 @@ export class ImageHostingTabComponent implements OnInit {
     document.execCommand('copy');
     document.body.removeChild(selBox);
     this._SnackBarHelper.OpenSnackBar(val + ' 已複製到剪貼簿!!');
+  }
+
+  Delete(Index: number, Url: string) {
+    if (confirm('確定要刪除此照片?' + Url)) {
+      this.NowOnlineGallery.splice(Index, 1);
+      let ResponseTags = this._FireStorageHelper.GetFireObject('Gallery');
+      let _Subscribe: any = ResponseTags.valueChanges().subscribe((elements: any) => {
+        _Subscribe.unsubscribe();
+        ResponseTags.set(JSON.stringify(this.NowOnlineGallery));
+        this._SnackBarHelper.OpenSnackBar('刪除成功!!');
+      });
+    }
   }
 }

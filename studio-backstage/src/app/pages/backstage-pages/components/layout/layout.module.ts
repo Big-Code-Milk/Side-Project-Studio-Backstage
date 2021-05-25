@@ -24,6 +24,7 @@ import { UsefulLinksTreeComponent } from './useful-links-tree/useful-links-tree.
 import { LinktreeMgmtComponent } from './linktree-mgmt/linktree-mgmt.component';
 import { SignInImgStickerHelperComponent } from 'src/app/shared/common/sign-in-img-sticker-helper/sign-in-img-sticker-helper.component';
 import { DirectorytreeMgmtComponent } from './directorytree-mgmt/directorytree-mgmt.component';
+import { SharedDataGetStaticJsonComponent } from '../../example/shared-data-get-static-json/shared-data-get-static-json.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { DirectorytreeMgmtComponent } from './directorytree-mgmt/directorytree-m
     LinktreeMgmtComponent,
     SignInImgStickerHelperComponent,
     DirectorytreeMgmtComponent,
+    SharedDataGetStaticJsonComponent,
   ],
   providers: [
     FireStorageHelperService

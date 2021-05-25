@@ -22,6 +22,8 @@ import { EnumSignInInfoState } from '../../../../../shared/enum/enum-user-info-l
 import * as dayjs from 'dayjs';
 import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
 import { SignInImgStickerHelperService } from 'src/app/shared/common/sign-in-img-sticker-helper/sign-in-img-sticker-helper.service';
+import { HttpClient } from '@angular/common/http';
+import { NipponColorHelperService } from 'src/app/shared/common/nippon-color-helper/nippon-color-helper.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -44,15 +46,17 @@ export class SignInComponent implements OnInit {
     private _FireStorageHelper: FireStorageHelperService,
     private _SnackBarHelper: SnackBarHelperService,
     private _SignInImgStickerHelper: SignInImgStickerHelperService,
+    private NipponColorHelper: NipponColorHelperService,
   ) {
 
   }
 
   ngOnInit(): void {
 
-    this.RandomColor = this.getRandomColor();
+    // this.RandomColor = this.getRandomColor();
     this._FireAuthHelper.CheckStorage();
     this.AutoSignIn();
+    this.NipponColorHelper.SharedNipponColors.subscribe(res => this.RandomColor = res[0]);
 
   }
 
@@ -95,11 +99,11 @@ export class SignInComponent implements OnInit {
   }
 
   // 隨機取 rgb 字串
-  getRandomColor() {
-    var rgb = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',0.4)';
-    // console.log(rgb);
-    return rgb;
-  }
+  // getRandomColor() {
+  //   var rgb = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',0.4)';
+  //   // console.log(rgb);
+  //   return rgb;
+  // }
 
   // SignInWithGoogle() {
   //   this._FireAuthHelper.SignInWithGoogle().then(
@@ -152,4 +156,6 @@ export class SignInComponent implements OnInit {
     }
 
   }
+
+
 }
