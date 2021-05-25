@@ -291,3 +291,8 @@
         .MainContent>h2 {
             margin-bottom: 1.7rem;
         }
+        
+        .OneHundredPercentImg {
+            width: 100%;
+            height: 100%;
+        }

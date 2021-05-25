@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-onstage-home',
@@ -12,5 +12,10 @@ export class OnstageHomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @ViewChild("Desktop") private _Desktop: ElementRef;
 
+
+  ngAfterViewInit(): void {
+    console.log(this._Desktop);
+  }
 }

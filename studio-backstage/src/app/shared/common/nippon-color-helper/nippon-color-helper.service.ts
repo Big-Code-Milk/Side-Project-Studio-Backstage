@@ -21,12 +21,12 @@ export class NipponColorHelperService {
     let RandomColorsIndex = [] as number[];
     let RandomColors = [] as string[];
 
-    console.log('NipponColor[47]', NipponColor[47]);
+    // console.log('NipponColor[47]', NipponColor[47]);
 
     while (RandomColorsIndex.length < 3) {
       let NowNum = this.GetRandom(1, 250);
       if (RandomColorsIndex.indexOf(NowNum) == -1) {
-        console.log('NowNum', NowNum);
+        // console.log('NowNum', NowNum);
         RandomColorsIndex.push(NowNum);
         RandomColors.push(NipponColor[NowNum].value);
       }

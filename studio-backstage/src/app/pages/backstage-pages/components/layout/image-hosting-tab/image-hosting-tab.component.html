@@ -50,7 +50,8 @@
                     <div style="flex-wrap: wrap;">
                         <ng-container *ngFor="let Url of NowOnlineGallery;let i = index;">
                             <button (click)="Delete(i,Url)"><span class="material-icons">clear</span></button>
-                            <img [src]="Url" (click)="CopyUrl(Url)">
+                            <span style="padding: 1em;"></span>
+                            <img [src]="Url" (click)="CopyUrl(Url)" style="width: auto;height: 300px;">
                         </ng-container>
                     </div>
                 </div>
