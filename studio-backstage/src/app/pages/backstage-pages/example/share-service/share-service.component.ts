@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
-import { SharedService } from '../../../../shared/services/shared.service';
+import { SharedService } from '../../../../shared/services/shared/shared.service';
 
 // 參考
 // 參數 @Input required https://stackoverflow.com/questions/35528395/make-directive-input-required

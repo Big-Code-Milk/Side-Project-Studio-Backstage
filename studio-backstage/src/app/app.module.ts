@@ -22,13 +22,14 @@ import { BaseSharedModule } from './shared/module/base-shared.module';
 import { ExampleModule } from './pages/backstage-pages/example/example.module';
 
 import { ErrorLogHandler } from '../app/shared/common/error-log-handler/error-log-hanler';
-import { SharedService } from './shared/services/shared.service';
+import { SharedService } from './shared/services/shared/shared.service';
 import { TemplateModule } from './pages/backstage-pages/template/template.module';
 
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { OnStageLayoutModule } from './pages/onstage-pages/components/layout/layout.module';
 import { BackStageLayoutModule } from './pages/backstage-pages/components/layout/layout.module';
 import { TagsHelperComponent } from './shared/common/tags-helper/tags-helper.component';
+import { HttpInterceptorService } from './shared/services/http-interceptor/http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { TagsHelperComponent } from './shared/common/tags-helper/tags-helper.com
   ],
   providers: [
     { provide: ErrorLogHandler, useFactory: ErrorLogHandler },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true },
     SharedService,
     HttpClientModule,
     HttpClient,

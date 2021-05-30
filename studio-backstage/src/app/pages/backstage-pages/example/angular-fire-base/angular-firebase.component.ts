@@ -8,7 +8,7 @@ import { FireStorageHelperService } from '../../../../shared/common/fire-storage
 import { DialogHelperService } from '../../../../shared/common/dialog-helper/dialog-helper.service';
 import { MatDialogConfig } from '@angular/material/dialog';
 
-import { SharedService } from '../../../../shared/services/shared.service'
+import { SharedService } from '../../../../shared/services/shared/shared.service'
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentData, QueryFn } from '@angular/fire/firestore';
 
