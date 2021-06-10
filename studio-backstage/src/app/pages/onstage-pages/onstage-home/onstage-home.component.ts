@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TweenMax, gsap } from "gsap";
+import { NipponColorHelperService } from 'src/app/shared/common/nippon-color-helper/nippon-color-helper.service';
 
 @Component({
   selector: 'app-onstage-home',
@@ -8,9 +9,14 @@ import { TweenMax, gsap } from "gsap";
 })
 export class OnstageHomeComponent implements OnInit {
 
-  constructor() { }
+  RandomColor: any;
+
+  constructor(
+    private NipponColorHelper: NipponColorHelperService,
+  ) { }
 
   ngOnInit(): void {
+    this.NipponColorHelper.SharedNipponColors.subscribe(res => this.RandomColor = res[0]);
   }
 
   @ViewChild("Img1") private _Img1: ElementRef;
@@ -33,9 +39,9 @@ export class OnstageHomeComponent implements OnInit {
     tl.to(this._Img2.nativeElement, { duration: 2, x: 576, y: 40, opacity: 1, ease: "bounce" });
     tl.to(this._Img3.nativeElement, { duration: 2, x: 172, y: 210, opacity: 1, ease: "bounce" });
     tl.to(this._Img4.nativeElement, { duration: 2, x: 114, y: 42, opacity: 1, ease: "bounce" });
-    tl2.to(this._Img2.nativeElement, { duration: 2, opacity: 0.2, delay: 9 });
-    tl3.to(this._Img3.nativeElement, { duration: 2, opacity: 0.2, delay: 9 });
-    tl4.to(this._Img4.nativeElement, { duration: 2, opacity: 0.2, delay: 9 });
-    tl.to(this._Img1.nativeElement, { duration: 5, x: 364, y: 205, opacity: 1, scale: 1.7, ease: "bounce" });
+    tl2.to(this._Img2.nativeElement, { duration: 2, opacity: 0.2, delay: 7 });
+    tl3.to(this._Img3.nativeElement, { duration: 2, opacity: 0.2, delay: 7 });
+    tl4.to(this._Img4.nativeElement, { duration: 2, opacity: 0.2, delay: 7 });
+    tl.to(this._Img1.nativeElement, { duration: 2, x: 364, y: 205, opacity: 1, scale: 1.7, ease: "bounce", delay: 2 });
   }
 }
