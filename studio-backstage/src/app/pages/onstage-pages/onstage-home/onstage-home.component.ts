@@ -25,13 +25,17 @@ export class OnstageHomeComponent implements OnInit {
   ngAfterViewInit(): void {
     console.log(this._Img1);
     console.log('gsap', gsap);
-    var tl = gsap.timeline({ repeat: 2, repeatDelay: 5 });
-    var tl2 = gsap.timeline({ repeat: 2, repeatDelay: 5 });
-    var tl3 = gsap.timeline({ repeat: 2, repeatDelay: 5 });
-    var tl4 = gsap.timeline({ repeat: 2, repeatDelay: 5 });
-    tl2.to(this._Img2.nativeElement, { duration: 2, x: 576, y: 40, opacity: 1, ease: "bounce" });
-    tl3.to(this._Img3.nativeElement, { duration: 2, x: 172, y: 210, opacity: 1, ease: "bounce" });
-    tl4.to(this._Img4.nativeElement, { duration: 2, x: 114, y: 42, opacity: 1, ease: "bounce" });
-    tl4.to(this._Img1.nativeElement, { duration: 2, x: 364, y: 205, opacity: 1, scale: 1.5, ease: "bounce" });
+    // repeatDelay: 1
+    var tl = gsap.timeline();
+    var tl2 = gsap.timeline();
+    var tl3 = gsap.timeline();
+    var tl4 = gsap.timeline();
+    tl.to(this._Img2.nativeElement, { duration: 2, x: 576, y: 40, opacity: 1, ease: "bounce" });
+    tl.to(this._Img3.nativeElement, { duration: 2, x: 172, y: 210, opacity: 1, ease: "bounce" });
+    tl.to(this._Img4.nativeElement, { duration: 2, x: 114, y: 42, opacity: 1, ease: "bounce" });
+    tl2.to(this._Img2.nativeElement, { duration: 2, opacity: 0.2, delay: 9 });
+    tl3.to(this._Img3.nativeElement, { duration: 2, opacity: 0.2, delay: 9 });
+    tl4.to(this._Img4.nativeElement, { duration: 2, opacity: 0.2, delay: 9 });
+    tl.to(this._Img1.nativeElement, { duration: 5, x: 364, y: 205, opacity: 1, scale: 1.7, ease: "bounce" });
   }
 }
