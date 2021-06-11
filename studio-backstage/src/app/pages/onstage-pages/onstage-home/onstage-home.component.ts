@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TweenMax, gsap } from "gsap";
+import { delay } from 'rxjs/operators';
 import { NipponColorHelperService } from 'src/app/shared/common/nippon-color-helper/nippon-color-helper.service';
 
 @Component({
@@ -10,16 +11,17 @@ import { NipponColorHelperService } from 'src/app/shared/common/nippon-color-hel
 export class OnstageHomeComponent implements OnInit {
 
   RandomColor: any;
+  RanNum: string[] = new Array('none', 'none', 'none');
 
   constructor(
     private NipponColorHelper: NipponColorHelperService,
-  ) { }
+  ) {
+    this.RanNum;
+  }
 
   ngOnInit(): void {
     this.NipponColorHelper.SharedNipponColors.subscribe(res => this.RandomColor = res[0]);
   }
-
-
 
   // https://greensock.com/get-started/
   // 中文文檔 https://www.tweenmax.com.cn/
@@ -27,9 +29,36 @@ export class OnstageHomeComponent implements OnInit {
   // 原理：每一條 timeline 都是各自獨立的，所以如果不同物件想在同個 timeline 做動就需要兩條 timeline。
   ngAfterViewInit(): void {
     console.log('gsap', gsap);
+
+    this.RandomAnimation();
+
     this.Part1Animation();
     this.Part2Animation();
     this.Part3Animation();
+
+    setInterval(() => {
+      this.RandomAnimation();
+    }, 15000);
+  }
+
+  RandomAnimation() {
+    switch (this.NipponColorHelper.GetRandom(1, 3)) {
+      case 1:
+        this.RanNum[0] = 'block';
+        this.RanNum[1] = 'none';
+        this.RanNum[2] = 'none';
+        break;
+      case 2:
+        this.RanNum[0] = 'none';
+        this.RanNum[1] = 'block';
+        this.RanNum[2] = 'none';
+        break;
+      case 3:
+        this.RanNum[0] = 'none';
+        this.RanNum[1] = 'none';
+        this.RanNum[2] = 'block';
+        break;
+    }
   }
 
   @ViewChild("Img1") private _Img1: ElementRef;

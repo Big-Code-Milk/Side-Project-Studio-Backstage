@@ -1,6 +1,7 @@
 import { SignInImgStickerHelperService } from './../../../../../shared/common/sign-in-img-sticker-helper/sign-in-img-sticker-helper.service';
 import { Component, OnInit } from '@angular/core';
 import { FireAuthHelperService } from '../../../../../shared/common/fire-auth-helper/fire-auth-helper.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -13,6 +14,7 @@ export class MenuComponent implements OnInit {
   constructor(
     public _FireAuthHelper: FireAuthHelperService,
     private _SignInImgStickerHelper: SignInImgStickerHelperService,
+    private _Router: Router,
   ) {
   }
 
@@ -31,5 +33,8 @@ export class MenuComponent implements OnInit {
     if (Email != null) {
       this._SignInImgStickerHelper.Ofline([Email]);
     }
+  }
+  BackFrontHomePage() {
+    this._Router.navigate(['/']);
   }
 }
