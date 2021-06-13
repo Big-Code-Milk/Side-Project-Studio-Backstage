@@ -15,4 +15,5 @@ export default class FirebaseModel {
   KeyVision?: string;
   ArticleDirectory?: any;
   Author?: string;
+  DisplaySummary?: string;
 }

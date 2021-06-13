@@ -133,9 +133,8 @@ export class EditContentComponent implements OnInit {
   DataInit() {
     var _Document = this._FireStorageHelper.GetFireDocument('Article/' + this.Key);
     var Subscribe = _Document.valueChanges().subscribe((Param: any) => {
-
+      console.log('Param', Param);
       Subscribe.unsubscribe();
-      console.log('this.FirebaseModel', this._FirebaseModel);
       this._FirebaseModel = JSON.parse(JSON.stringify(Param));
       this.HTMLContent = Param.Content;
       this.MarkdownContent = Param.MarkdownContent;
@@ -147,8 +146,6 @@ export class EditContentComponent implements OnInit {
       // console.log('Param.HTMLContent', Param.Content);
       // console.log('this.HTMLContent', this.HTMLContent);
       // console.log('this.MarkdownContent', this.MarkdownContent);
-
-      console.log('this.FirebaseModel', this._FirebaseModel);
 
     });
   }
@@ -322,11 +319,5 @@ export class EditContentComponent implements OnInit {
   // https://stackoverflow.com/questions/55133907/react-with-typescript-type-is-missing-the-following-properties-from-type
   // 結果這樣就修好了...
   ArticleDirectory: any = [] as Array<TreeDates>;
-
-  Test() {
-    console.log('this.FirebaseModel', this._FirebaseModel);
-  }
-
-
 
 }

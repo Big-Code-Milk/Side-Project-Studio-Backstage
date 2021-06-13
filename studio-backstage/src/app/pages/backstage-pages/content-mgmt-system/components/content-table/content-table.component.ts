@@ -21,7 +21,7 @@ export class ContentTableComponent implements OnInit {
 
   dataSource: MatTableDataSource<FirebaseModel>;
   FirebaseModels = [] as FirebaseModel[];
-  displayedColumns: string[] = ['Status', 'Name', 'Tags', 'SubTitle', 'StartDate', 'Templet', 'Summary', 'Tool'];
+  displayedColumns: string[] = ['Status', 'Name', 'Tags', 'SubTitle', 'StartDate', 'Summary', 'Tool'];
   _EnumComponentType = EnumComponentType;
 
   constructor(
@@ -74,12 +74,6 @@ export class ContentTableComponent implements OnInit {
       return actions.map(a => {
         const data = a.payload.doc.data() as FirebaseModel;
         const id = a.payload.doc.id;
-        // 值得注意的是底下 ... es6 語法只能複製一層 obj ，無法複製 obj 內的 obj，可能到時要改
-        // console.log('data', data);
-        if (data.Summary != undefined) {
-          data.Summary = data.Summary.substr(0, 10);
-        }
-
         return { id, ...data };
       });
     })
@@ -97,6 +91,15 @@ export class ContentTableComponent implements OnInit {
       this.dataSource.sort = this.sort;
       // 目前這個都會幾筆資料就跑幾次... 效能異常...
       // console.log('this.GtdTasks', this.GtdTasks);
+
+      // 值得注意的是底下 ... es6 語法只能複製一層 obj ，無法複製 obj 內的 obj，可能到時要改
+      // console.log('data', data);
+
+      this.FirebaseModels.forEach((data) => {
+        if (data.Summary != undefined) {
+          data.DisplaySummary = data.Summary.substr(0, 10);
+        }
+      });
 
       // _Subscribe.unsubscribe();
     });

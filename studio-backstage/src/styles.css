@@ -345,3 +345,7 @@
             color: #ec1115;
             background-color: white;
         }
+        
+        .MainContent h2 {
+            margin-top: 5rem;
+        }

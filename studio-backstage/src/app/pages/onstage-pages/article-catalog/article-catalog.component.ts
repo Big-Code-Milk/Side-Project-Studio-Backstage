@@ -52,7 +52,7 @@ export class ArticleCatalogComponent implements OnInit {
 
     var _Subscribe = Data.subscribe(ReturnData => {
       _Subscribe.unsubscribe();
-      this.FirebaseModels = ReturnData;
+      this.FirebaseModels = JSON.parse(JSON.stringify(ReturnData));
       // init datatable
       this.dataSource = new MatTableDataSource(this.FirebaseModels);
       // https://stackoverflow.com/questions/54367152/how-to-add-mat-paginator-for-mat-cards
