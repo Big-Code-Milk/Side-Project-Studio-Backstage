@@ -90,7 +90,7 @@ export class ContentTableComponent implements OnInit {
 
     var _Subscribe = Data.subscribe(ReturnData => {
 
-      this.FirebaseModels = ReturnData;
+      this.FirebaseModels = JSON.parse(JSON.stringify(ReturnData));
       // init datatable
       this.dataSource = new MatTableDataSource(this.FirebaseModels);
       this.dataSource.paginator = this.paginator;

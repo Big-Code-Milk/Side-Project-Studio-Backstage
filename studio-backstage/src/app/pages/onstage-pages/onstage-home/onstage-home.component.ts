@@ -11,12 +11,12 @@ import { NipponColorHelperService } from 'src/app/shared/common/nippon-color-hel
 export class OnstageHomeComponent implements OnInit {
 
   RandomColor: any;
-  RanNum: string[] = new Array('none', 'none', 'none');
+  RanNum: string[];
 
   constructor(
     private NipponColorHelper: NipponColorHelperService,
   ) {
-    this.RanNum;
+    this.RanNum = ['none', 'none', 'none'];
   }
 
   ngOnInit(): void {
@@ -29,13 +29,7 @@ export class OnstageHomeComponent implements OnInit {
   // 原理：每一條 timeline 都是各自獨立的，所以如果不同物件想在同個 timeline 做動就需要兩條 timeline。
   ngAfterViewInit(): void {
     console.log('gsap', gsap);
-
     this.RandomAnimation();
-
-    this.Part1Animation();
-    this.Part2Animation();
-    this.Part3Animation();
-
     setInterval(() => {
       this.RandomAnimation();
     }, 15000);
@@ -46,23 +40,22 @@ export class OnstageHomeComponent implements OnInit {
     // Case = 0; // Debug
     switch (Case) {
       case 1:
+        this.Part1Animation();
         this.RanNum[0] = 'block';
         this.RanNum[1] = 'none';
         this.RanNum[2] = 'none';
-        this.Part1Animation();
         break;
       case 2:
+        this.Part2Animation();
         this.RanNum[0] = 'none';
         this.RanNum[1] = 'block';
         this.RanNum[2] = 'none';
-        this.Part2Animation();
         break;
       case 3:
+        this.Part3Animation();
         this.RanNum[0] = 'none';
         this.RanNum[1] = 'none';
         this.RanNum[2] = 'block';
-        this.Part3Animation();
-
         break;
       case 0: // Debug
         this.RanNum[0] = 'block';

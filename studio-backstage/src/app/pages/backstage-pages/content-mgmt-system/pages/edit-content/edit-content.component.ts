@@ -27,7 +27,7 @@ export class EditContentComponent implements OnInit {
   DisplayMode: boolean;
   HTMLContent: string;
   MarkdownContent: string;
-  FirebaseModel: FirebaseModel = new FirebaseModel();
+  _FirebaseModel: FirebaseModel = new FirebaseModel();
   Term: FormGroup;
   Tags: string[] = [];
   _FormControl = new FormControl();
@@ -49,7 +49,7 @@ export class EditContentComponent implements OnInit {
     this._FilteredTags = this._FormControl.valueChanges.pipe(
       startWith(null),
       map((Tag: string | null) => Tag ? this._filter(Tag) : this.allTags.slice()));
-    this.FirebaseModel.StartDate = new Date();
+    this._FirebaseModel.StartDate = new Date();
   }
 
   ngOnInit(): void {
@@ -133,31 +133,36 @@ export class EditContentComponent implements OnInit {
   DataInit() {
     var _Document = this._FireStorageHelper.GetFireDocument('Article/' + this.Key);
     var Subscribe = _Document.valueChanges().subscribe((Param: any) => {
-      this.FirebaseModel = Param;
+
+      Subscribe.unsubscribe();
+      console.log('this.FirebaseModel', this._FirebaseModel);
+      this._FirebaseModel = JSON.parse(JSON.stringify(Param));
       this.HTMLContent = Param.Content;
       this.MarkdownContent = Param.MarkdownContent;
       if (Param.ArticleDirectory != undefined) {
         this.ArticleDirectory = Param.ArticleDirectory;
       }
-      console.log('this.ArticleDirectory', this.ArticleDirectory);
+      // console.log('this.ArticleDirectory', this.ArticleDirectory);
       // console.log('Param', Param);
       // console.log('Param.HTMLContent', Param.Content);
       // console.log('this.HTMLContent', this.HTMLContent);
       // console.log('this.MarkdownContent', this.MarkdownContent);
-      Subscribe.unsubscribe();
+
+      console.log('this.FirebaseModel', this._FirebaseModel);
+
     });
   }
 
   Add(UploadType: string) {
-    this.FirebaseModel.Status = "草稿";
-    this.FirebaseModel.Content = this.HTMLContent;
-    this.FirebaseModel.MarkdownContent = this.MarkdownContent;
-    this.FirebaseModel.Tags = [... new Set(this.Tags)];
-    this.FirebaseModel.ArticleDirectory = this.ArticleDirectory;
+    this._FirebaseModel.Status = "草稿";
+    this._FirebaseModel.Content = this.HTMLContent;
+    this._FirebaseModel.MarkdownContent = this.MarkdownContent;
+    this._FirebaseModel.Tags = [... new Set(this.Tags)];
+    this._FirebaseModel.ArticleDirectory = this.ArticleDirectory;
     // 新增一筆
     // console.log('this.FirebaseModel', this.FirebaseModel);
     let _Collection = this._FireStorageHelper.GetFireCollection<FirebaseModel>('Article');
-    let JSONString = JSON.stringify(this.FirebaseModel);
+    let JSONString = JSON.stringify(this._FirebaseModel);
     let Obj = JSON.parse(JSONString);
     // console.log('Obj', Obj);
     var HttpRequest = _Collection.add(Obj).catch(error => {
@@ -165,14 +170,14 @@ export class EditContentComponent implements OnInit {
       this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
     }).then(success => {
 
-      let Tags: any = this.FirebaseModel.Tags;
+      let Tags: any = this._FirebaseModel.Tags;
       if (Tags.length > 0) {
         this._TagsHelper.ReSetTags(Tags);
       }
 
-      this.FirebaseModel = new FirebaseModel();
+      this._FirebaseModel = new FirebaseModel();
       this.Tags = [];
-      this.FirebaseModel.StartDate = new Date();
+      this._FirebaseModel.StartDate = new Date();
 
       this._SnackBarHelper.OpenSnackBar('操作成功!');
       if (UploadType == 'SubmitButton') {
@@ -182,16 +187,16 @@ export class EditContentComponent implements OnInit {
   }
 
   Update(UploadType: string) {
-    this.FirebaseModel.Status = "草稿";
-    this.FirebaseModel.Content = this.HTMLContent;
-    this.FirebaseModel.MarkdownContent = this.MarkdownContent;
-    this.FirebaseModel.Tags = [... new Set(this.Tags)];
-    this.FirebaseModel.ArticleDirectory = this.ArticleDirectory;
+    this._FirebaseModel.Status = "草稿";
+    this._FirebaseModel.Content = this.HTMLContent;
+    this._FirebaseModel.MarkdownContent = this.MarkdownContent;
+    this._FirebaseModel.Tags = [... new Set(this.Tags)];
+    this._FirebaseModel.ArticleDirectory = this.ArticleDirectory;
     // 更新
-    console.log('this.FirebaseModel', this.FirebaseModel);
+    console.log('this.FirebaseModel', this._FirebaseModel);
     var _Document = this._FireStorageHelper.GetFireDocument('Article/' + this.Key);
     // console.log('this.FirebaseModel', this.FirebaseModel);
-    let JSONStringUpdate = JSON.stringify(this.FirebaseModel);
+    let JSONStringUpdate = JSON.stringify(this._FirebaseModel);
     let ObjUpdate = JSON.parse(JSONStringUpdate);
     var _Update = _Document.update(ObjUpdate).catch(error => {
       this._MatDialogConfig.data = error;
@@ -201,7 +206,7 @@ export class EditContentComponent implements OnInit {
       // this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
       // this.IsEdit = false;
 
-      let Tags: any = this.FirebaseModel.Tags;
+      let Tags: any = this._FirebaseModel.Tags;
       if (Tags.length > 0) {
         this._TagsHelper.ReSetTags(Tags);
       }
@@ -219,8 +224,8 @@ export class EditContentComponent implements OnInit {
     console.log('ngOnDestroy');
     // var _SessionStorage = sessionStorage.getItem('Editing');
     // console.log('_SessionStorage', _SessionStorage);
-    if (this.FirebaseModel.Status == '編輯中') {
-      this.FirebaseModel.Status = '草稿';
+    if (this._FirebaseModel.Status == '編輯中') {
+      this._FirebaseModel.Status = '草稿';
       // this.Update('AutoActive');
       this.UpdateStatus();
       // sessionStorage.removeItem('Editing');
@@ -294,16 +299,16 @@ export class EditContentComponent implements OnInit {
 
   UpdateStatus() {
 
-    this.FirebaseModel.Status = "草稿";
+    this._FirebaseModel.Status = "草稿";
     var _Document = this._FireStorageHelper.GetFireDocument('Article/' + this.Key);
-    let JSONStringUpdate = JSON.stringify(this.FirebaseModel);
+    let JSONStringUpdate = JSON.stringify(this._FirebaseModel);
     let ObjUpdate = JSON.parse(JSONStringUpdate);
     var _Update = _Document.update(ObjUpdate).catch(error => {
       this._MatDialogConfig.data = error;
       this._DialogHelper.ShowMessage<string>(this._MatDialogConfig);
     }).then(success => {
 
-      let Tags: any = this.FirebaseModel.Tags;
+      let Tags: any = this._FirebaseModel.Tags;
       if (Tags.length > 0) {
         this._TagsHelper.ReSetTags(Tags);
       }
@@ -317,5 +322,11 @@ export class EditContentComponent implements OnInit {
   // https://stackoverflow.com/questions/55133907/react-with-typescript-type-is-missing-the-following-properties-from-type
   // 結果這樣就修好了...
   ArticleDirectory: any = [] as Array<TreeDates>;
+
+  Test() {
+    console.log('this.FirebaseModel', this._FirebaseModel);
+  }
+
+
 
 }

@@ -48,7 +48,7 @@ export class ImageHostingTabComponent implements OnInit {
 
     let _Subscribe: any = ResponseTags.valueChanges().subscribe((elements: any) => {
       _Subscribe.unsubscribe();
-      console.log('elements', elements);
+      // console.log('elements', elements);
       this.NowOnlineGallery = JSON.parse(elements) || [];
     });
   }

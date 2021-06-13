@@ -20,7 +20,7 @@ export class DirectorytreeMgmtComponent implements OnInit {
   DisplayMode: string = 'Close';
 
   constructor() {
-    console.log(this.ArticleDirectory);
+    // console.log(this.ArticleDirectory);
   }
 
   NickName: string = "";
@@ -31,7 +31,7 @@ export class DirectorytreeMgmtComponent implements OnInit {
 
     (this.Title == "" || this.Title == undefined) ? this.Title = "目錄管理" : this.Title = this.Title;
 
-    console.log(this.ArticleDirectory);
+    // console.log(this.ArticleDirectory);
   }
 
   Create(Index: any) {
