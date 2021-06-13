@@ -156,6 +156,8 @@ export class EditContentComponent implements OnInit {
     this._FirebaseModel.MarkdownContent = this.MarkdownContent;
     this._FirebaseModel.Tags = [... new Set(this.Tags)];
     this._FirebaseModel.ArticleDirectory = this.ArticleDirectory;
+
+    this._FirebaseModel.Content = this._FirebaseModel.Content.replaceAll('<a', '<a target="_blank" ');
     // 新增一筆
     // console.log('this.FirebaseModel', this.FirebaseModel);
     let _Collection = this._FireStorageHelper.GetFireCollection<FirebaseModel>('Article');
@@ -189,6 +191,9 @@ export class EditContentComponent implements OnInit {
     this._FirebaseModel.MarkdownContent = this.MarkdownContent;
     this._FirebaseModel.Tags = [... new Set(this.Tags)];
     this._FirebaseModel.ArticleDirectory = this.ArticleDirectory;
+
+    this._FirebaseModel.Content = this._FirebaseModel.Content.replaceAll('<a', '<a target="_blank" ');
+
     // 更新
     console.log('this.FirebaseModel', this._FirebaseModel);
     var _Document = this._FireStorageHelper.GetFireDocument('Article/' + this.Key);
