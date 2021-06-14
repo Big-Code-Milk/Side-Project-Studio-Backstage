@@ -305,7 +305,7 @@
         }
         
         .BannerBox {
-            min-height: 80vh;
+            min-height: 90vh;
             padding: 0vh 20vw;
             display: flex;
             flex-direction: row;
@@ -314,7 +314,7 @@
         .TextBox {
             color: white;
             font-size: 2rem;
-            background-color: rgba(255, 255, 255, 0.6);
+            /* background-color: rgba(255, 255, 255, 0.6); */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -325,27 +325,63 @@
         }
         
         .AnimationBox {
-            height: 70vh;
+            height: 75vh;
         }
         
-        .TextBox>span {
+        .FirstButton {
             margin-left: 1rem;
             font-size: 1rem;
             text-shadow: none;
-            border: solid .2rem #ec1115;
+            /* border: solid .1rem #ec1115; */
             border-radius: 50px;
             width: 160px;
             z-index: 1000;
             cursor: pointer;
             background-color: #ec1115;
             color: white;
+            padding: 0.3rem 1rem;
         }
         
-        .TextBox>span:hover {
+        .FirstButton:hover {
             color: #ec1115;
             background-color: white;
         }
         
         .MainContent h2 {
             margin-top: 5rem;
+        }
+        
+        .SecondButton {
+            margin-left: 1rem;
+            font-size: 1rem;
+            text-shadow: none;
+            /* border: solid .1rem #ec1115; */
+            border-radius: 50px;
+            width: 160px;
+            z-index: 1000;
+            cursor: pointer;
+            background-color: white;
+            color: #ec1115;
+            padding: 0.3rem 1rem;
+        }
+        
+        .SecondButton:hover {
+            color: white;
+            background-color: #ec1115;
+        }
+        
+        .SkillBox {
+            height: 100vh;
+        }
+        
+        .FlowBox {
+            height: 100vh;
+        }
+        
+        .ServicesBox {
+            height: 100vh;
+        }
+        
+        .AboutBox {
+            height: 100vh;
         }

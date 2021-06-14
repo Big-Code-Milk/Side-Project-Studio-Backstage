@@ -1,54 +1,58 @@
 <mat-toolbar [ngStyle]="{'background-color':RandomColor,'padding':'5vh 20vw'}">
-  <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <i class="material-icons">menu</i>
   </button> -->
-  <a style="color: white !important;" class="ButtonLink" [routerLink]="'/'">
-    <span style="text-shadow: black 0.1em 0.1em 0.2em">
+    <a style="color: white !important;" class="ButtonLink" [routerLink]="'/'">
+        <span style="text-shadow: black 0.1em 0.1em 0.2em">
       <i class="material-icons">
         dashboard_customize
       </i>
-      66 IT Studio
+      XX IT Studio
     </span>
-  </a>
-  <span style="padding: 0 1em;"> </span>
-  <div style="width: 100%;">
-    <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">經歷</button>|
-    <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">專案</button>|
-    <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">功能</button>|
-    <a style="color: white !important;" class="ButtonLink" [routerLink]="'/articlecatalog'">
-      <button mat-button style="text-shadow: black 0.1em 0.1em 0.2em">
-        文章
-      </button></a>|
-
+    </a>
+    <span style="padding: 0 1em;"> </span>
+    <div style="width: 100%;">
+        <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">關於</button>|
+        <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">項目</button>|
+        <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">服務</button>|
+        <a style="color: white !important;" class="ButtonLink" [routerLink]="'/articlecatalog'">
+            <button mat-button style="text-shadow: black 0.1em 0.1em 0.2em">
+            網誌
+            </button>
+        </a>|
+        <span class="FirstButton">免費諮詢您的想法</span>
+        <!--
     <button mat-button (click)="IsSearchOpend==true?IsSearchOpend=false:IsSearchOpend=true"
       style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">
       搜尋
-    </button>
+    </button> -->
 
-    <mat-form-field *ngIf="IsSearchOpend">
-      <mat-label>
-        ...
-      </mat-label>
-      <input type="text" placeholder="" aria-label="Number" matInput>
-      <!-- <mat-autocomplete #auto="matAutocomplete">
+        <mat-form-field *ngIf="IsSearchOpend">
+            <mat-label>
+                ...
+            </mat-label>
+            <input type="text" placeholder="" aria-label="Number" matInput>
+            <!-- <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
           {{option}}
         </mat-option>
       </mat-autocomplete> -->
-    </mat-form-field>
-    <div></div>
-    <span *ngIf="!IsSearchOpend">
+        </mat-form-field>
+        <div></div>
+
+        <!-- <span *ngIf="!IsSearchOpend">
       <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">標籤</button>|
       <ng-container *ngFor="let Tag of allTags;let i=index">
         <span style="font-size: 0.5em !important;text-shadow: black 0.1em 0.1em 0.2em" *ngIf="i!=0">、</span>
         <a style="font-size: 0.5em !important;color: white !important;text-shadow: black 0.1em 0.1em 0.2em">{{Tag}}</a>
       </ng-container>
-    </span>
-    <!-- <button mat-button [matMenuTriggerFor]="menu">查詢</button>
+    </span> -->
+
+        <!-- <button mat-button [matMenuTriggerFor]="menu">查詢</button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>Item 1</button>
       <button mat-menu-item>Item 2</button>
     </mat-menu> -->
 
-  </div>
+    </div>
 </mat-toolbar>

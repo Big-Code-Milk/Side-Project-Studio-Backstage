@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { TweenMax, gsap } from "gsap";
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { TweenMax, gsap, TweenLite } from "gsap";
 import { delay } from 'rxjs/operators';
 import { NipponColorHelperService } from 'src/app/shared/common/nippon-color-helper/nippon-color-helper.service';
 
@@ -10,17 +10,17 @@ import { NipponColorHelperService } from 'src/app/shared/common/nippon-color-hel
 })
 export class OnstageHomeComponent implements OnInit {
 
-  RandomColor: any;
+  RandomColor: any = new Array(3);
   RanNum: string[];
 
   constructor(
     private NipponColorHelper: NipponColorHelperService,
   ) {
-    this.RanNum = ['none', 'none', 'none'];
+    this.RanNum = ['block', 'block', 'block'];
   }
 
   ngOnInit(): void {
-    this.NipponColorHelper.SharedNipponColors.subscribe(res => this.RandomColor = res[0]);
+    this.NipponColorHelper.SharedNipponColors.subscribe(res => this.RandomColor = res);
   }
 
   // https://greensock.com/get-started/
@@ -76,13 +76,13 @@ export class OnstageHomeComponent implements OnInit {
     var tl2 = gsap.timeline();
     var tl3 = gsap.timeline();
     var tl4 = gsap.timeline();
-    tl.to(this._Img2.nativeElement, { duration: 2, x: 634, y: 7, opacity: 1, ease: "bounce" });
-    tl.to(this._Img3.nativeElement, { duration: 2, x: 276, y: 240, opacity: 1, ease: "bounce" });
-    tl.to(this._Img4.nativeElement, { duration: 2, x: 178, y: 27, opacity: 1, ease: "bounce" });
+    tl.to(this._Img2.nativeElement, { duration: 2, x: 634, y: 57, opacity: 1, ease: "bounce" });
+    tl.to(this._Img3.nativeElement, { duration: 2, x: 276, y: 290, opacity: 1, ease: "bounce" });
+    tl.to(this._Img4.nativeElement, { duration: 2, x: 178, y: 77, opacity: 1, ease: "bounce" });
     tl2.to(this._Img2.nativeElement, { duration: 2, opacity: 0.2, delay: 7 });
     tl3.to(this._Img3.nativeElement, { duration: 2, opacity: 0.2, delay: 7 });
     tl4.to(this._Img4.nativeElement, { duration: 2, opacity: 0.2, delay: 7 });
-    tl.to(this._Img1.nativeElement, { duration: 2, x: 430, y: 205, opacity: 1, scale: 1.7, ease: "bounce", delay: 2 });
+    tl.to(this._Img1.nativeElement, { duration: 2, x: 430, y: 255, opacity: 1, scale: 1.7, ease: "bounce", delay: 2 });
   }
 
   @ViewChild("Img5") private _Img5: ElementRef;
@@ -153,4 +153,39 @@ export class OnstageHomeComponent implements OnInit {
     tl9.to(this._Img18.nativeElement, { rotate: -15, duration: 2, x: 220, y: 189, opacity: 1, scale: 1, ease: "bounce", delay: 9 });
     tl10.to(this._Img19.nativeElement, { rotate: 10, duration: 2, x: 379, y: 93, opacity: 1, scale: 1, ease: "bounce", delay: 9 });
   }
+
+  // https://stackoverflow.com/questions/39743915/angular-2-scroll-event-not-firing/44869326
+  // https://codepen.io/bassta/pen/kDvmC?editors=0010
+  // https://greensock.com/scrolltoplugin/
+  // https://stackoverflow.com/questions/44337691/how-to-test-a-directive-with-a-mouse-wheel-event-in-angular-2-4/44338419
+  // https://www.itread01.com/p/662521.html
+
+
+  @HostListener('mousewheel', ['$event']) EvenntHandler(event: any) {
+    console.clear();
+    // console.log('event', event);
+    // console.log('window', window);
+    // console.log('document', document);
+    // console.log('window.pageYOffset', window.pageYOffset);
+    // console.log('window.innerHeight', window.innerHeight);
+    // console.log('window.outerHeight', window.outerHeight);
+    // console.log('event.wheelDelta', event.wheelDelta);
+    if (event.wheelDelta > 0) { // 往上滾
+      // gsap.to(window, { duration: 2, scrollTo: 400 });
+      // console.log('-', window.pageYOffset - window.innerHeight);
+      // this.TempNowBoxNum = this.TempNowBoxNum - 1;
+      // console.log(this.TempNowBoxNum);
+      // this.TempNowBoxY = this.TempNowBoxY - (this.TempNowBoxNum * window.innerHeight);
+      // this.TempNowBoxY = this.TempNowBoxY - event.wheelDelta;
+      // console.log('-', this.TempNowBoxY);
+      // window.scrollTo(0, this.TempNowBoxY);
+    }
+    if (event.wheelDelta < 0) { // 往下滾
+      // gsap.to(window, { duration: 2, scrollTo: 800 });
+      // console.log('+', window.pageYOffset + window.innerHeight);
+      window.scrollTo(0, 696);
+    }
+  }
+
 }
+
