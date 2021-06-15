@@ -44,7 +44,15 @@
     </div>
 </div>
 
-<div class="SkillBox" [ngStyle]="{'background-color':RandomColor[1]}"></div>
-<div class="FlowBox" [ngStyle]="{'background-color':RandomColor[2]}"></div>
-<div class="ServicesBox" [ngStyle]="{'background-color':RandomColor[0]}"></div>
-<div class="AboutBox" style="height:90vh" [ngStyle]="{'background-color':RandomColor[1]}"></div>
+<div id="ServicesBox" class="ServicesBox" [ngStyle]="{'background-color':RandomColor[1]}">
+    ServicesBox
+</div>
+<div id="AboutBox" class="AboutBox" [ngStyle]="{'background-color':RandomColor[2]}">
+    AboutBox
+</div>
+<div id="SkillBox" class="SkillBox" [ngStyle]="{'background-color':RandomColor[1]}">
+    SkillBox
+</div>
+<div id="FlowBox" class="FlowBox" style="height:90vh" [ngStyle]="{'background-color':RandomColor[0]}">
+    FlowBox
+</div>

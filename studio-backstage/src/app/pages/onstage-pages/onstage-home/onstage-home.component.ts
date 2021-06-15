@@ -159,8 +159,7 @@ export class OnstageHomeComponent implements OnInit {
   // https://greensock.com/scrolltoplugin/
   // https://stackoverflow.com/questions/44337691/how-to-test-a-directive-with-a-mouse-wheel-event-in-angular-2-4/44338419
   // https://www.itread01.com/p/662521.html
-
-
+  // 暫時想不出解法
   @HostListener('mousewheel', ['$event']) EvenntHandler(event: any) {
     console.clear();
     // console.log('event', event);
@@ -183,9 +182,13 @@ export class OnstageHomeComponent implements OnInit {
     if (event.wheelDelta < 0) { // 往下滾
       // gsap.to(window, { duration: 2, scrollTo: 800 });
       // console.log('+', window.pageYOffset + window.innerHeight);
-      window.scrollTo(0, 696);
+      // window.scrollTo(0, 696);
     }
   }
 
+
+  test() {
+    window.scrollTo(0, 4368);
+  }
 }
 

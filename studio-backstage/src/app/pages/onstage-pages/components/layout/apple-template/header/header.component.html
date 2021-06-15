@@ -12,15 +12,15 @@
     </a>
     <span style="padding: 0 1em;"> </span>
     <div style="width: 100%;">
-        <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">關於</button>|
-        <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">項目</button>|
-        <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">服務</button>|
+        <button mat-button class="MenuBtn" (click)="Navigator('AboutBox')">關於</button>|
         <a style="color: white !important;" class="ButtonLink" [routerLink]="'/articlecatalog'">
-            <button mat-button style="text-shadow: black 0.1em 0.1em 0.2em">
-            網誌
-            </button>
+            <button mat-button class="MenuBtn">項目</button>
         </a>|
-        <span class="FirstButton">免費諮詢您的想法</span>
+        <button mat-button class="MenuBtn" (click)="Navigator('ServicesBox')">服務</button>|
+        <a style="color: white !important;" class="ButtonLink" [routerLink]="'/articlecatalog'">
+            <button mat-button class="MenuBtn">網誌</button>
+        </a>|
+        <span class="FirstButton" (click)="Navigator('FlowBox')">免費諮詢您的想法</span>
         <!--
     <button mat-button (click)="IsSearchOpend==true?IsSearchOpend=false:IsSearchOpend=true"
       style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">

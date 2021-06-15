@@ -372,16 +372,29 @@
         
         .SkillBox {
             height: 100vh;
+            color: white;
+            font-size: 15rem;
         }
         
         .FlowBox {
             height: 100vh;
+            color: white;
+            font-size: 15rem;
         }
         
         .ServicesBox {
             height: 100vh;
+            color: white;
+            font-size: 15rem;
         }
         
         .AboutBox {
             height: 100vh;
+            color: white;
+            font-size: 15rem;
+        }
+        
+        .MenuBtn {
+            color: white;
+            text-shadow: black 0.1em 0.1em 0.2em
         }
