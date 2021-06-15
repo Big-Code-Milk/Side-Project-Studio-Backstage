@@ -374,24 +374,40 @@
             height: 100vh;
             color: white;
             font-size: 15rem;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
         
         .FlowBox {
             height: 100vh;
             color: white;
             font-size: 15rem;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
         
         .ServicesBox {
             height: 100vh;
             color: white;
             font-size: 15rem;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
         
         .AboutBox {
             height: 100vh;
             color: white;
             font-size: 15rem;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
         
         .MenuBtn {
