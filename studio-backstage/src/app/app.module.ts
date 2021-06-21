@@ -30,6 +30,7 @@ import { OnStageLayoutModule } from './pages/onstage-pages/components/layout/lay
 import { BackStageLayoutModule } from './pages/backstage-pages/components/layout/layout.module';
 import { TagsHelperComponent } from './shared/common/tags-helper/tags-helper.component';
 import { HttpInterceptorService } from './shared/services/http-interceptor/http-interceptor.service';
+// 參考 https://ng-bootstrap.github.io/#/components/carousel/examples
 
 @NgModule({
   declarations: [

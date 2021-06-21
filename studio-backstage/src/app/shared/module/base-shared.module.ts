@@ -19,11 +19,11 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { EditorMdDirective } from '../../pages/backstage-pages/example/editor-md-directive-fail/editor-md.directive';
 import { DisqusModule } from 'ngx-disqus';
 
-
 @NgModule({
   declarations: [
   ],
   imports: [
+
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

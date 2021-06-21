@@ -9,6 +9,7 @@ import { FireStorageHelperService } from 'src/app/shared/common/fire-storage-hel
 import { FooterComponent } from './apple-template/footer/footer.component';
 import { HeaderComponent } from './apple-template/header/header.component';
 import { DirectoryNavigationComponent } from './directory-navigation/directory-navigation.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { DirectoryNavigationComponent } from './directory-navigation/directory-n
     FooterComponent,
     HeaderComponent,
     DirectoryNavigationComponent,
+    CarouselComponent,
   ],
   providers: [
     FireStorageHelperService,
