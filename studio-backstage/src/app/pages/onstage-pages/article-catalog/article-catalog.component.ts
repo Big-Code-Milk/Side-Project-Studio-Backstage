@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 import { DialogHelperService } from 'src/app/shared/common/dialog-helper/dialog-helper.service';
 import { FireStorageHelperService } from 'src/app/shared/common/fire-storage-helper/fire-storage-helper.service';
 import { SnackBarHelperService } from 'src/app/shared/common/snack-bar-helper/snack-bar-helper.service';
+import { TagsHelperService } from 'src/app/shared/common/tags-helper/tags-helper.service';
 import FirebaseModel from 'src/app/shared/models/firebase-model';
 
 
@@ -26,6 +27,7 @@ export class ArticleCatalogComponent implements OnInit {
     private _ActivatedRoute: ActivatedRoute,
     private _SnackBarHelper: SnackBarHelperService,
     public _DomSanitizer: DomSanitizer,
+    private _TagsHelper: TagsHelperService,
   ) { }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -33,6 +35,7 @@ export class ArticleCatalogComponent implements OnInit {
 
   ngOnInit(): void {
     this.DataInit();
+    this.TagsInit();
   }
 
   Obs: Observable<any>;
@@ -54,6 +57,9 @@ export class ArticleCatalogComponent implements OnInit {
     var _Subscribe = Data.subscribe(ReturnData => {
       _Subscribe.unsubscribe();
       this.FirebaseModels = JSON.parse(JSON.stringify(ReturnData));
+      this.FirebaseModels.forEach((data: any) => {
+        data.DisplaySummary = data.Summary.substr(0, 100);
+      })
       // init datatable
       this.dataSource = new MatTableDataSource(this.FirebaseModels);
       // https://stackoverflow.com/questions/54367152/how-to-add-mat-paginator-for-mat-cards
@@ -65,6 +71,15 @@ export class ArticleCatalogComponent implements OnInit {
       this.paginator._intl.itemsPerPageLabel = "每頁顯示";
       this.Obs = this.dataSource.connect();
 
+    });
+  }
+
+  allTags: any;
+
+  TagsInit() {
+    var Subscribe = this._TagsHelper.GetTagsSubscribe().subscribe((x: any) => {
+      this.allTags = JSON.parse(x);
+      Subscribe.unsubscribe();
     });
   }
 }

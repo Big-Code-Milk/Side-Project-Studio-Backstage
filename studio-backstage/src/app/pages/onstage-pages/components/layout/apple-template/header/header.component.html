@@ -27,21 +27,21 @@
       搜尋
     </button> -->
 
-        <mat-form-field *ngIf="IsSearchOpend">
+        <!-- <mat-form-field *ngIf="IsSearchOpend">
             <mat-label>
                 ...
             </mat-label>
             <input type="text" placeholder="" aria-label="Number" matInput>
-            <!-- <mat-autocomplete #auto="matAutocomplete">
+            <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
           {{option}}
         </mat-option>
-      </mat-autocomplete> -->
+      </mat-autocomplete>
         </mat-form-field>
-        <div></div>
+        <div></div> -->
 
         <!-- <span *ngIf="!IsSearchOpend">
-      <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">標籤</button>|
+      <button mat-button style="color:white ;text-shadow: black 0.1em 0.1em 0.2em">Tag</button>|
       <ng-container *ngFor="let Tag of allTags;let i=index">
         <span style="font-size: 0.5em !important;text-shadow: black 0.1em 0.1em 0.2em" *ngIf="i!=0">、</span>
         <a style="font-size: 0.5em !important;color: white !important;text-shadow: black 0.1em 0.1em 0.2em">{{Tag}}</a>

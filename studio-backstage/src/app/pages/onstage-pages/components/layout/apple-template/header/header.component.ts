@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.TagsInit();
+    // this.TagsInit();
   }
 
   allTags: any;

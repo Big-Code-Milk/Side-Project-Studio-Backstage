@@ -459,3 +459,17 @@
             margin-top: 1rem;
             padding: 0.5rem;
         }
+        
+        .TagBox {
+            display: flex;
+            max-width: 100%;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .TagBox>li:first-child {
+            margin-right: 1rem;
+            font-size: 1.3rem;
+        }

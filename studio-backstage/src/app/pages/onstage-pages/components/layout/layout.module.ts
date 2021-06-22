@@ -10,6 +10,7 @@ import { FooterComponent } from './apple-template/footer/footer.component';
 import { HeaderComponent } from './apple-template/header/header.component';
 import { DirectoryNavigationComponent } from './directory-navigation/directory-navigation.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -27,10 +28,13 @@ import { CarouselComponent } from './carousel/carousel.component';
     SharedAngularMaterialModule,
     BaseSharedModule,
     LayoutRoutingModule,
+    NgbModule
   ],
   exports: [
     DirectoryNavigationComponent,
     AppleTemplateComponent,
+    NgbModule,
+    CarouselComponent,
   ]
 })
 export class OnStageLayoutModule { }
