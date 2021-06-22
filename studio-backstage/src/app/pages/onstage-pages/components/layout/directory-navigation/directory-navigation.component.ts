@@ -14,7 +14,7 @@ export class DirectoryNavigationComponent implements OnInit {
   constructor(
     _Router: Router,
   ) {
-    // https://stackoverflow.com/questions/36101756/angular2-routing-with-hashtag-to-page-anchor
+    // 參考 https://stackoverflow.com/questions/36101756/angular2-routing-with-hashtag-to-page-anchor
     _Router.events.subscribe(s => {
       if (s instanceof NavigationEnd) {
         const tree = _Router.parseUrl(_Router.url);
