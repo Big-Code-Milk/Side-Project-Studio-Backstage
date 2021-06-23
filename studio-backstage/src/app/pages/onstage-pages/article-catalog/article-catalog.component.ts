@@ -70,7 +70,7 @@ export class ArticleCatalogComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.paginator._intl.itemsPerPageLabel = "每頁顯示";
       this.Obs = this.dataSource.connect();
-
+      console.log('InitData', this.FirebaseModels);
     });
   }
 

@@ -1,13 +1,20 @@
 <ngb-carousel #carousel [interval]="5000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
-    <ng-template ngbSlide *ngFor="let img of images; index as i">
-        <div class="carousel-caption">
-            <h3>My slide {{i + 1}} title</h3>
+    <ng-template ngbSlide *ngFor="let Data of ShowData; index as i">
+        <div [routerLink]="['/newsarticle','Key',Data.id]" style="cursor: pointer;">
+            <div class="carousel-caption">
+                <h3>{{Data.Name}}</h3>
+            </div>
+            <a target="_blank" [rel]="Data.SubTitle">
+                <div class="picsum-img-wrapper" style="width: 100%;max-height: 337px;">
+                    <img [src]="Data.KeyVision" [alt]="Data.SubTitle" style="width: 100%;">
+                </div>
+            </a>
         </div>
-        <a href="https://www.google.fr/?q=Number+{{i+1}}" target="_blank" rel="nofollow noopener noreferrer">
+        <!-- <a href="https://www.google.fr/?q=Number+{{i+1}}" target="_blank" rel="nofollow noopener noreferrer">
             <div class="picsum-img-wrapper">
                 <img [src]="img" alt="My image {{i + 1}} description" style="width: 100%;">
             </div>
-        </a>
+        </a> -->
     </ng-template>
 </ngb-carousel>
 
